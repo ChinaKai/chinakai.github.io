@@ -8,10 +8,12 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>TOOLS</category>
+        <category>Hexo</category>
+        <category>Theme</category>
       </categories>
       <tags>
-        <tag>HEXO</tag>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
       </tags>
   </entry>
 </search>

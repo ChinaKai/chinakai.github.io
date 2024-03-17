@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>如何使用HEXO搭建个人博客</title>
-    <url>/2024/03/17/hello-world/</url>
+    <url>/2024/03/17/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p><em>作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧</em><br><a href="https://butterfly.js.org/">主题链接</a></p>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>

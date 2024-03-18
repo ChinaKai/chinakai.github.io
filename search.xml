@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/study/git/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone git@gitlab.hualaikeji.com:firmware/hl_router.git</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"></span><br><span class="line">区别：</span><br><span class="line">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span><br><span class="line">rebase则只需要git add,之后git rebase --continue,如果不想解决冲突且不在合并，可以git rebase --abort</span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push --tags //推送所有tag到远端</span><br><span class="line">git push origin tagname //推送单个tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">github新建仓库，拿到地址</span><br><span class="line">$git remote add origin git@github.com:toopens/hl-x86.git</span><br><span class="line">$git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clean -n [path]//显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] //删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df //删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf //删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"></span><br><span class="line">保存退出</span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 进入需要更新的目录</span><br><span class="line">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>study</category>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmake基础语法</title>
+    <url>/2024/03/18/study/cmake/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>study</category>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>tools</tag>
+        <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HEXO搭建个人博客</title>
     <url>/2024/03/17/study/hexo/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
@@ -11,10 +65,10 @@
 ]]></content>
       <categories>
         <category>Hexo</category>
-        <category>Theme</category>
+        <category>study</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>tools</tag>
         <tag>Butterfly</tag>
       </tags>
   </entry>

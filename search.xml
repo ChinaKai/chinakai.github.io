@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>GIT基础命令</title>
-    <url>/2024/03/18/study/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
-<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
-<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
-
-<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
-
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>study</category>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux系统时区设置</title>
     <url>/2024/03/20/study/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
@@ -103,6 +65,44 @@
       </tags>
   </entry>
   <entry>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/study/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>study</category>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HEXO搭建个人博客</title>
     <url>/2024/03/17/study/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
@@ -134,6 +134,36 @@
       </categories>
       <tags>
         <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音频编解码</title>
+    <url>/2024/03/20/study/wiki/%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="PCM-脉冲编码调制（PulseCodeModulation）"><a href="#PCM-脉冲编码调制（PulseCodeModulation）" class="headerlink" title="PCM - 脉冲编码调制（PulseCodeModulation）"></a>PCM - 脉冲编码调制（PulseCodeModulation）</h2><p>奈克斯特-香农采样定理：采样频率大于2倍的最大频率，才能最大限度的还原出模拟信号。<br>PCM是一种数字音频编码方式，用于将模拟信号转换为数字信号。在PCM编码中，模拟信号按照一定的采样频率进行采样，并通过量化和编码转换为数字信号。PCM数据可以直接送进DAC进行播放。</p>
+<h2 id="音频参数"><a href="#音频参数" class="headerlink" title="音频参数"></a>音频参数</h2><ol>
+<li><p>采样率（Sample Rate）：采样率是指每秒钟对声音信号的采样次数，以赫兹（Hz）为单位。常见的采样率包括 44.1kHz（CD音质）、48kHz（DVD、蓝光音质）、96kHz（高清音质）等。采样率越高，能够记录的声音频率范围也就越宽，音质也就更好，但相应的文件大小也会增加。</p>
+</li>
+<li><p>位深度（Bit Depth）：位深度表示每个样本的量化精度，通常以比特（bit）为单位。常见的位深度包括 16位、24位和32位浮点数。位深度越高，可以表示的动态范围就越大，音频的细节表现也更丰富，但文件大小也随之增加。</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/381093568?ivk_sa=1024320u&utm_id=0">什么是位深度</a></li>
+</ul>
+<ol start="3">
+<li><p>声道数（Channels）：声道数表示音频文件中包含的独立声道数量，常见的有单声道（mono）和双声道（stereo）。多声道音频可以更准确地定位声音来源，实现环绕音效等，但同时也会增加文件大小。</p>
+</li>
+<li><p>编码格式（Codec Format）：编码格式决定了音频数据的压缩方式和解码规则，常见的包括MP3、AAC、WAV、FLAC、OPUS等。不同的编码格式具有不同的压缩率和音质表现，选择合适的编码格式可以根据具体的应用需求和存储&#x2F;传输资源进行权衡。</p>
+</li>
+</ol>
+<h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><p>编码一般情况都是由原始的PCM数据编码成其他数据，解码反之。</p>
+<h3 id="WAV编码"><a href="#WAV编码" class="headerlink" title="WAV编码"></a>WAV编码</h3><h3 id="WAV解码"><a href="#WAV解码" class="headerlink" title="WAV解码"></a>WAV解码</h3><h3 id="G711编码"><a href="#G711编码" class="headerlink" title="G711编码"></a>G711编码</h3><h3 id="G711解码"><a href="#G711解码" class="headerlink" title="G711解码"></a>G711解码</h3><h3 id="OPUS编码"><a href="#OPUS编码" class="headerlink" title="OPUS编码"></a>OPUS编码</h3><h3 id="OPUS解码"><a href="#OPUS解码" class="headerlink" title="OPUS解码"></a>OPUS解码</h3>]]></content>
+      <categories>
+        <category>study</category>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
+        <tag>编解码</tag>
       </tags>
   </entry>
   <entry>
@@ -327,35 +357,6 @@
       </categories>
       <tags>
         <tag>kernel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音频编解码</title>
-    <url>/2024/03/20/study/wiki/%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="PCM-脉冲编码调制（PulseCodeModulation）"><a href="#PCM-脉冲编码调制（PulseCodeModulation）" class="headerlink" title="PCM - 脉冲编码调制（PulseCodeModulation）"></a>PCM - 脉冲编码调制（PulseCodeModulation）</h2><p>奈克斯特-香农采样定理：采样频率大于2倍的最大频率，才能最大限度的还原出模拟信号。<br>PCM是一种数字音频编码方式，用于将模拟信号转换为数字信号。在PCM编码中，模拟信号按照一定的采样频率进行采样，并通过量化和编码转换为数字信号。PCM数据可以直接送进DAC进行播放。</p>
-<h2 id="音频参数"><a href="#音频参数" class="headerlink" title="音频参数"></a>音频参数</h2><ol>
-<li><p>采样率（Sample Rate）：采样率是指每秒钟对声音信号的采样次数，以赫兹（Hz）为单位。常见的采样率包括 44.1kHz（CD音质）、48kHz（DVD、蓝光音质）、96kHz（高清音质）等。采样率越高，能够记录的声音频率范围也就越宽，音质也就更好，但相应的文件大小也会增加。</p>
-</li>
-<li><p>位深度（Bit Depth）：位深度表示每个样本的量化精度，通常以比特（bit）为单位。常见的位深度包括 16位、24位和32位浮点数。位深度越高，可以表示的动态范围就越大，音频的细节表现也更丰富，但文件大小也随之增加。</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/381093568?ivk_sa=1024320u&utm_id=0">什么是位深度</a></li>
-</ul>
-<ol start="3">
-<li><p>声道数（Channels）：声道数表示音频文件中包含的独立声道数量，常见的有单声道（mono）和双声道（stereo）。多声道音频可以更准确地定位声音来源，实现环绕音效等，但同时也会增加文件大小。</p>
-</li>
-<li><p>编码格式（Codec Format）：编码格式决定了音频数据的压缩方式和解码规则，常见的包括MP3、AAC、WAV、FLAC、OPUS等。不同的编码格式具有不同的压缩率和音质表现，选择合适的编码格式可以根据具体的应用需求和存储&#x2F;传输资源进行权衡。</p>
-</li>
-</ol>
-<h2 id="WAV"><a href="#WAV" class="headerlink" title="WAV"></a>WAV</h2><h3 id="WAV编码"><a href="#WAV编码" class="headerlink" title="WAV编码"></a>WAV编码</h3><h3 id="WAV解码"><a href="#WAV解码" class="headerlink" title="WAV解码"></a>WAV解码</h3><h2 id="G711编码"><a href="#G711编码" class="headerlink" title="G711编码"></a>G711编码</h2><h3 id="G711编码-1"><a href="#G711编码-1" class="headerlink" title="G711编码"></a>G711编码</h3><h3 id="G711解码"><a href="#G711解码" class="headerlink" title="G711解码"></a>G711解码</h3><h2 id="OPUS编码"><a href="#OPUS编码" class="headerlink" title="OPUS编码"></a>OPUS编码</h2><h3 id="OPUS编码-1"><a href="#OPUS编码-1" class="headerlink" title="OPUS编码"></a>OPUS编码</h3><h3 id="OPUS解码"><a href="#OPUS解码" class="headerlink" title="OPUS解码"></a>OPUS解码</h3>]]></content>
-      <categories>
-        <category>study</category>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>音视频相关</tag>
-        <tag>编解码</tag>
       </tags>
   </entry>
 </search>

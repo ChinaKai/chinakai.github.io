@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>1.从零开始学Linux内核源码 - 源码下载及配置编译 | L.S.W</title><meta name="author" content="蒋有才"><meta name="copyright" content="蒋有才"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="所有操作均是linux-6.8.2版本 kernel源码下载 官方网站 linux-6.8.2  kernel目录结构 目录说明   目录 说明    arch 包含了各种不同的CPU体系架构的代码，如果ARM、x86、MIPS等   block 包含块设备相关的代码   crets 包含了用于签名和验证内核模块的证书文件和工具   crypto 包含加密相关的代码   Documentation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.从零开始学Linux内核源码 - 源码下载及配置编译">
+<meta property="og:url" content="https://chinakai.github.io/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:site_name" content="L.S.W">
+<meta property="og:description" content="所有操作均是linux-6.8.2版本 kernel源码下载 官方网站 linux-6.8.2  kernel目录结构 目录说明   目录 说明    arch 包含了各种不同的CPU体系架构的代码，如果ARM、x86、MIPS等   block 包含块设备相关的代码   crets 包含了用于签名和验证内核模块的证书文件和工具   crypto 包含加密相关的代码   Documentation">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png">
+<meta property="article:published_time" content="2024-03-30T12:28:54.000Z">
+<meta property="article:modified_time" content="2025-09-22T06:47:56.905Z">
+<meta property="article:author" content="蒋有才">
+<meta property="article:tag" content="kernel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png"><link rel="shortcut icon" href="/img/%E8%B7%AF%E9%A3%9E.svg"><link rel="canonical" href="https://chinakai.github.io/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1.从零开始学Linux内核源码 - 源码下载及配置编译',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-22 14:47:56'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4470443_xkzqkn8l8x9.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E8%B7%AF%E9%A3%9E.svg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-shu"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-24gl-tags3"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/life/"><i class="fa-fw iconfont icon-shenghuo"></i><span> 生活</span></a></div><div class="menus_item"><a class="site-page" href="/work/"><i class="fa-fw iconfont icon-gongzuo"></i><span> 工作</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-gongju"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></li><li><a class="site-page child" href="/messageboard/"><i class="fa-fw iconfont icon-xiaoxi"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="L.S.W"><span class="site-name">L.S.W</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-shu"></i><span> 学习</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-24gl-tags3"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/life/"><i class="fa-fw iconfont icon-shenghuo"></i><span> 生活</span></a></div><div class="menus_item"><a class="site-page" href="/work/"><i class="fa-fw iconfont icon-gongzuo"></i><span> 工作</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-gongju"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></li><li><a class="site-page child" href="/messageboard/"><i class="fa-fw iconfont icon-xiaoxi"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">1.从零开始学Linux内核源码 - 源码下载及配置编译</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-30T12:28:54.000Z" title="发表于 2024-03-30 20:28:54">2024-03-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-22T06:47:56.905Z" title="更新于 2025-09-22 14:47:56">2025-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/kernel/">kernel</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1.从零开始学Linux内核源码 - 源码下载及配置编译"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><em>所有操作均是linux-6.8.2版本</em></p>
+<h2 id="kernel源码下载"><a href="#kernel源码下载" class="headerlink" title="kernel源码下载"></a>kernel源码下载</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kernel.org/">官方网站</a></li>
+<li><a target="_blank" rel="noopener" href="https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.8.2.tar.xz">linux-6.8.2</a></li>
+</ul>
+<h2 id="kernel目录结构"><a href="#kernel目录结构" class="headerlink" title="kernel目录结构"></a>kernel目录结构</h2><p><img src="/img/kernel/linux-6.8.2%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="Linux-6.8.2一级目录"></p>
+<h3 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h3><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>arch</td>
+<td>包含了各种不同的CPU体系架构的代码，如果ARM、x86、MIPS等</td>
+</tr>
+<tr>
+<td>block</td>
+<td>包含块设备相关的代码</td>
+</tr>
+<tr>
+<td>crets</td>
+<td>包含了用于签名和验证内核模块的证书文件和工具</td>
+</tr>
+<tr>
+<td>crypto</td>
+<td>包含加密相关的代码</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>包含了内核的文档，包括各种文档、注释和帮助文件</td>
+</tr>
+<tr>
+<td>drivers</td>
+<td>含了设备驱动程序的源代码，如输入输出设备、网络设备等</td>
+</tr>
+<tr>
+<td>fs</td>
+<td>包含了文件系统相关的代码，如 ext4、NTFS、FAT 等</td>
+</tr>
+<tr>
+<td>include</td>
+<td>包含了一些头文件，用于引入定义和声明</td>
+</tr>
+<tr>
+<td>init</td>
+<td>包含了启动和初始化代码</td>
+</tr>
+<tr>
+<td>io_uring</td>
+<td>包含了与 io_uring 框架相关的代码</td>
+</tr>
+<tr>
+<td>ipc</td>
+<td>包含了进程间通信相关的代码</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>包含了内核的核心代码</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>包含了一些通用的函数库</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>包含了内存管理相关的代码</td>
+</tr>
+<tr>
+<td>net</td>
+<td>包含了网络协议栈相关的代码</td>
+</tr>
+<tr>
+<td>rust</td>
+<td>引入了一些rust特性</td>
+</tr>
+<tr>
+<td>samples</td>
+<td>包含了一些示例代码</td>
+</tr>
+<tr>
+<td>scripts</td>
+<td>包含了一些辅助脚本，用于构建和维护内核</td>
+</tr>
+<tr>
+<td>security</td>
+<td>包含了安全子系统相关的代码</td>
+</tr>
+<tr>
+<td>sound</td>
+<td>包含了声音子系统相关的代码</td>
+</tr>
+<tr>
+<td>tools</td>
+<td>包含了一些工具，用于辅助内核开发和调试</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>包含了用户空间工具和库，这些工具和库通常用于与内核交互</td>
+</tr>
+<tr>
+<td>virt</td>
+<td>包含了虚拟化相关的代码</td>
+</tr>
+</tbody></table>
+<h3 id="文件说明"><a href="#文件说明" class="headerlink" title="文件说明"></a>文件说明</h3><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COPYING</td>
+<td>包含了许可证信息</td>
+</tr>
+<tr>
+<td>CREDITS</td>
+<td>包含了对 Linux 内核贡献者的致谢</td>
+</tr>
+<tr>
+<td>Kbuild</td>
+<td>用于管理内核源代码的编译和构建过程</td>
+</tr>
+<tr>
+<td>Kconfig</td>
+<td>用于配置内核编译时的各种选项和特性</td>
+</tr>
+<tr>
+<td>MAINTAINERS</td>
+<td>包含了 Linux 内核的维护者列表</td>
+</tr>
+<tr>
+<td>Makefile</td>
+<td>系统编译和构建脚本</td>
+</tr>
+<tr>
+<td>README</td>
+<td>从入门到入土😭</td>
+</tr>
+</tbody></table>
+<h2 id="README"><a href="#README" class="headerlink" title="README"></a>README</h2><p>提供了两个非常重要的信息：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/admin-guide/README.html">Documentation&#x2F;admin-guide&#x2F;README.rst</a> :什么是Linux以及如何编译和配置他？</li>
+<li><a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/process/changes.html#changes">Documentation&#x2F;process&#x2F;changes.rst</a> ：编译内核的最小配置？编译遇到错误，参考该文章</li>
+</ol>
+<h3 id="安装内核"><a href="#安装内核" class="headerlink" title="安装内核"></a>安装内核</h3><h4 id="首次安装"><a href="#首次安装" class="headerlink" title="首次安装"></a>首次安装</h4><p>使用下面的命令：该命令是将文件提取并解压到当前文件夹，当然也可以选择其他的解压方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xz -<span class="built_in">cd</span> linux-6.8.2.tar.xz | tar xvf -</span><br></pre></td></tr></table></figure>
+<h4 id="更新patch"><a href="#更新patch" class="headerlink" title="更新patch"></a>更新patch</h4><p>在linux内核源码的根目录执行下面的命令:<code>/path/to</code>是patch所在目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xz -<span class="built_in">cd</span> /path/to/patch-6.x.xz | patch -p1</span><br></pre></td></tr></table></figure>
+<p>或者使用<code>scripts/patch-kernel</code>脚本自动升级patch</p>
+<h3 id="配置并编译内核"><a href="#配置并编译内核" class="headerlink" title="配置并编译内核"></a>配置并编译内核</h3><p>可以通过<code>make O=output/dir</code>设置编译目录和输出目录。如果没有配置目录，则编译的临时文件都将在源码的根目录产生。如果使用了参数，后续执行的命令建议都带着参数使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux-6.8.2</span><br><span class="line">make O=./output</span><br></pre></td></tr></table></figure>
+<h4 id="内核配置"><a href="#内核配置" class="headerlink" title="内核配置"></a>内核配置</h4><p>可以通过<code>make menuconfig</code>命令调用图形配置界面配置内核，当然也支持其他的方法修改配置,可以使用<code>make help</code>查看更多的选项。<br>如下图：方向键控制选项，<code>ENTER</code>键进入子菜单，<code>space</code>空格键更改编译方式，保存后会将修改后的配置保存到<code>.config</code>文件里：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">[ ]: 不编译</span><br><span class="line">[*]: 编译进内核</span><br><span class="line">&lt; &gt;: 不编译</span><br><span class="line">&lt;*&gt;: 编译进内核</span><br><span class="line">&lt;M&gt;: 以可加载的形式编译</span><br></pre></td></tr></table></figure>
+<p>使用默认配置文件，根据当前操作架构作为默认配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make O=./output defconfig</span><br></pre></td></tr></table></figure>
+<p><img src="/img/kernel/menuconfig.png" alt="menuconfig"></p>
+<h4 id="内核编译"><a href="#内核编译" class="headerlink" title="内核编译"></a>内核编译</h4><p>执行下面的命令，编译过程生成的中间产物，和最终产物都会在当前目录的output目录下产生：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make O=./output</span><br></pre></td></tr></table></figure>
+<p>最终编译的kernel在<code>./output/arch/x86_64/boot/bzImage</code></p>
+<h4 id="内核Makefile常用的命令行参数"><a href="#内核Makefile常用的命令行参数" class="headerlink" title="内核Makefile常用的命令行参数"></a>内核Makefile常用的命令行参数</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>使用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ARCH</td>
+<td>make ARCH&#x3D;arm</td>
+<td>指定目标架构，如x86、ARM等，该架构代码必须在arch文件夹中存在</td>
+</tr>
+<tr>
+<td>CROSS_COMPILE</td>
+<td>make CROSS_COMPILE&#x3D;arm-linux-gnueabi-</td>
+<td>指定编译使用的交叉工具链前缀</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://chinakai.github.io">蒋有才</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://chinakai.github.io/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/">https://chinakai.github.io/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://chinakai.github.io" target="_blank">L.S.W</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/kernel/">kernel</a></div><div class="post_share"><div class="social-share" data-image="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/" title="C语言使用syslog"><img class="cover" src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C语言使用syslog</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="Ubuntu交叉编译环境配置"><img class="cover" src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ubuntu交叉编译环境配置</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E8%B7%AF%E9%A3%9E.svg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">蒋有才</div><div class="author-info__description">Life, Study and Work.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chinakai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生命不息，折腾不止！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#kernel%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.</span> <span class="toc-text">kernel源码下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kernel%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">kernel目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E8%AF%B4%E6%98%8E"><span class="toc-number">2.1.</span> <span class="toc-text">目录说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">文件说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#README"><span class="toc-number">3.</span> <span class="toc-text">README</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8"><span class="toc-number">3.1.</span> <span class="toc-text">安装内核</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.1.</span> <span class="toc-text">首次安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0patch"><span class="toc-number">3.1.2.</span> <span class="toc-text">更新patch</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B9%B6%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="toc-number">3.2.</span> <span class="toc-text">配置并编译内核</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">内核配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91"><span class="toc-number">3.2.2.</span> <span class="toc-text">内核编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8Makefile%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="toc-number">3.2.3.</span> <span class="toc-text">内核Makefile常用的命令行参数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/25/linux/C%E8%AF%AD%E8%A8%80%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82/" title="C语言命令行传参"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C语言命令行传参"/></a><div class="content"><a class="title" href="/2024/08/25/linux/C%E8%AF%AD%E8%A8%80%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82/" title="C语言命令行传参">C语言命令行传参</a><time datetime="2024-08-25T04:44:34.000Z" title="发表于 2024-08-25 12:44:34">2024-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/" title="Ubuntu交叉编译Bluez"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu交叉编译Bluez"/></a><div class="content"><a class="title" href="/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/" title="Ubuntu交叉编译Bluez">Ubuntu交叉编译Bluez</a><time datetime="2024-08-07T05:35:35.000Z" title="发表于 2024-08-07 13:35:35">2024-08-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/" title="Linux性能分析-网络"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux性能分析-网络"/></a><div class="content"><a class="title" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/" title="Linux性能分析-网络">Linux性能分析-网络</a><time datetime="2024-05-08T03:36:25.000Z" title="发表于 2024-05-08 11:36:25">2024-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/" title="Linux性能分析-CPU"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux性能分析-CPU"/></a><div class="content"><a class="title" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/" title="Linux性能分析-CPU">Linux性能分析-CPU</a><time datetime="2024-05-08T03:36:20.000Z" title="发表于 2024-05-08 11:36:20">2024-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/" title="Linux性能分析-内存"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux性能分析-内存"/></a><div class="content"><a class="title" href="/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/" title="Linux性能分析-内存">Linux性能分析-内存</a><time datetime="2024-05-08T03:36:10.000Z" title="发表于 2024-05-08 11:36:10">2024-05-08</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 蒋有才</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'JhSH8lA9OxDHwn1xBQUA314t-gzGzoHsz',
+      appKey: 'qwWOPR29x1JhnUVUJOqDvZov',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux性能分析-CPU</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>性能分析</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>CPU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C语言使用syslog</title>
     <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
@@ -33,32 +20,6 @@
       <tags>
         <tag>syslog</tag>
         <tag>linux-c</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-内存</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>性能分析</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>内存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-网络</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>性能分析</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -112,43 +73,16 @@
       </tags>
   </entry>
   <entry>
-    <title>GIT基础命令</title>
-    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
-<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
-<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
-
-<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
-
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
-
-<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Linux性能分析-内存</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-        <category>tools</category>
-        <category>git</category>
+        <category>linux</category>
+        <category>性能分析</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>Linux性能</tag>
+        <tag>内存</tag>
       </tags>
   </entry>
   <entry>
@@ -234,23 +168,93 @@
       </tags>
   </entry>
   <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>Linux性能分析-CPU</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-        <category>tools</category>
-        <category>hexo</category>
+        <category>linux</category>
+        <category>性能分析</category>
       </categories>
       <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
+        <tag>Linux性能</tag>
+        <tag>CPU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux性能分析-网络</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>性能分析</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu交叉编译环境配置</title>
+    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
+<ol>
+<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
+<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>交叉编译</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>交叉编译</tag>
       </tags>
   </entry>
   <entry>
@@ -305,59 +309,6 @@
       <tags>
         <tag>Linux设置</tag>
         <tag>TZ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音频编解码</title>
-    <url>/2024/03/20/wiki/%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="PCM-脉冲编码调制（PulseCodeModulation）"><a href="#PCM-脉冲编码调制（PulseCodeModulation）" class="headerlink" title="PCM - 脉冲编码调制（PulseCodeModulation）"></a>PCM - 脉冲编码调制（PulseCodeModulation）</h2><p>奈克斯特-香农采样定理：采样频率大于2倍的最大频率，才能最大限度的还原出模拟信号。<br>PCM是一种数字音频编码方式，用于将模拟信号转换为数字信号。在PCM编码中，模拟信号按照一定的采样频率进行采样，并通过量化和编码转换为数字信号。PCM数据可以直接送进DAC进行播放。</p>
-<h2 id="音频参数"><a href="#音频参数" class="headerlink" title="音频参数"></a>音频参数</h2><ol>
-<li><p>采样率（Sample Rate）：采样率是指每秒钟对声音信号的采样次数，以赫兹（Hz）为单位。常见的采样率包括 44.1kHz（CD音质）、48kHz（DVD、蓝光音质）、96kHz（高清音质）等。采样率越高，能够记录的声音频率范围也就越宽，音质也就更好，但相应的文件大小也会增加。</p>
-</li>
-<li><p>位深度（Bit Depth）：位深度表示每个样本的量化精度，通常以比特（bit）为单位。常见的位深度包括 16位、24位和32位浮点数。位深度越高，可以表示的动态范围就越大，音频的细节表现也更丰富，但文件大小也随之增加。</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/381093568?ivk_sa=1024320u&utm_id=0">什么是位深度</a></li>
-</ul>
-<ol start="3">
-<li><p>声道数（Channels）：声道数表示音频文件中包含的独立声道数量，常见的有单声道（mono）和双声道（stereo）。多声道音频可以更准确地定位声音来源，实现环绕音效等，但同时也会增加文件大小。</p>
-</li>
-<li><p>编码格式（Codec Format）：编码格式决定了音频数据的压缩方式和解码规则，常见的包括MP3、AAC、WAV、FLAC、OPUS等。不同的编码格式具有不同的压缩率和音质表现，选择合适的编码格式可以根据具体的应用需求和存储&#x2F;传输资源进行权衡。</p>
-</li>
-</ol>
-<h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><p>编码一般情况都是由原始的PCM数据编码成其他数据，解码反之。</p>
-<h3 id="WAV编码"><a href="#WAV编码" class="headerlink" title="WAV编码"></a>WAV编码</h3><h3 id="WAV解码"><a href="#WAV解码" class="headerlink" title="WAV解码"></a>WAV解码</h3><h3 id="G711编码"><a href="#G711编码" class="headerlink" title="G711编码"></a>G711编码</h3><h3 id="G711解码"><a href="#G711解码" class="headerlink" title="G711解码"></a>G711解码</h3><h3 id="OPUS编码"><a href="#OPUS编码" class="headerlink" title="OPUS编码"></a>OPUS编码</h3><h3 id="OPUS解码"><a href="#OPUS解码" class="headerlink" title="OPUS解码"></a>OPUS解码</h3>]]></content>
-      <categories>
-        <category>wiki</category>
-        <category>video-audio</category>
-      </categories>
-      <tags>
-        <tag>音视频相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu交叉编译环境配置</title>
-    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
-<ol>
-<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
-<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
-<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
-<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>交叉编译</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>交叉编译</tag>
       </tags>
   </entry>
   <entry>
@@ -551,6 +502,55 @@
       </categories>
       <tags>
         <tag>kernel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音频编解码</title>
+    <url>/2024/03/20/wiki/%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="PCM-脉冲编码调制（PulseCodeModulation）"><a href="#PCM-脉冲编码调制（PulseCodeModulation）" class="headerlink" title="PCM - 脉冲编码调制（PulseCodeModulation）"></a>PCM - 脉冲编码调制（PulseCodeModulation）</h2><p>奈克斯特-香农采样定理：采样频率大于2倍的最大频率，才能最大限度的还原出模拟信号。<br>PCM是一种数字音频编码方式，用于将模拟信号转换为数字信号。在PCM编码中，模拟信号按照一定的采样频率进行采样，并通过量化和编码转换为数字信号。PCM数据可以直接送进DAC进行播放。</p>
+<h2 id="音频参数"><a href="#音频参数" class="headerlink" title="音频参数"></a>音频参数</h2><ol>
+<li><p>采样率（Sample Rate）：采样率是指每秒钟对声音信号的采样次数，以赫兹（Hz）为单位。常见的采样率包括 44.1kHz（CD音质）、48kHz（DVD、蓝光音质）、96kHz（高清音质）等。采样率越高，能够记录的声音频率范围也就越宽，音质也就更好，但相应的文件大小也会增加。</p>
+</li>
+<li><p>位深度（Bit Depth）：位深度表示每个样本的量化精度，通常以比特（bit）为单位。常见的位深度包括 16位、24位和32位浮点数。位深度越高，可以表示的动态范围就越大，音频的细节表现也更丰富，但文件大小也随之增加。</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/381093568?ivk_sa=1024320u&utm_id=0">什么是位深度</a></li>
+</ul>
+<ol start="3">
+<li><p>声道数（Channels）：声道数表示音频文件中包含的独立声道数量，常见的有单声道（mono）和双声道（stereo）。多声道音频可以更准确地定位声音来源，实现环绕音效等，但同时也会增加文件大小。</p>
+</li>
+<li><p>编码格式（Codec Format）：编码格式决定了音频数据的压缩方式和解码规则，常见的包括MP3、AAC、WAV、FLAC、OPUS等。不同的编码格式具有不同的压缩率和音质表现，选择合适的编码格式可以根据具体的应用需求和存储&#x2F;传输资源进行权衡。</p>
+</li>
+</ol>
+<h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><p>编码一般情况都是由原始的PCM数据编码成其他数据，解码反之。</p>
+<h3 id="WAV编码"><a href="#WAV编码" class="headerlink" title="WAV编码"></a>WAV编码</h3><h3 id="WAV解码"><a href="#WAV解码" class="headerlink" title="WAV解码"></a>WAV解码</h3><h3 id="G711编码"><a href="#G711编码" class="headerlink" title="G711编码"></a>G711编码</h3><h3 id="G711解码"><a href="#G711解码" class="headerlink" title="G711解码"></a>G711解码</h3><h3 id="OPUS编码"><a href="#OPUS编码" class="headerlink" title="OPUS编码"></a>OPUS编码</h3><h3 id="OPUS解码"><a href="#OPUS解码" class="headerlink" title="OPUS解码"></a>OPUS解码</h3>]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>video-audio</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
 </search>

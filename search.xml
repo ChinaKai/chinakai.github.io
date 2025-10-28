@@ -86,70 +86,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>c</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu交叉编译环境配置</title>
-    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
-<ol>
-<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
-<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
-<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
-<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>交叉编译</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>交叉编译</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu交叉编译Bluez</title>
     <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
@@ -262,191 +198,27 @@
       </tags>
   </entry>
   <entry>
-    <title>音视频扫盲</title>
-    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>帧率，FPS</td>
-<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
-</tr>
-<tr>
-<td>码率，bitRate</td>
-<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
-</tr>
-<tr>
-<td>分辨率</td>
-<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
-</tr>
-<tr>
-<td>GOP</td>
-<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
-</tr>
-<tr>
-<td>YUV</td>
-<td>一种颜色编码系统，常用于视频处理与压缩</td>
-</tr>
-<tr>
-<td>NV12</td>
-<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
-</tr>
-<tr>
-<td>H265</td>
-<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
-</tr>
-<tr>
-<td>H264</td>
-<td>目前最常用的视频编码标准，兼容性好</td>
-</tr>
-<tr>
-<td>MP4</td>
-<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
-</tr>
-<tr>
-<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
-<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
-</tr>
-<tr>
-<td>RGB</td>
-<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
-</tr>
-<tr>
-<td>色度抽样</td>
-<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
-</tr>
-<tr>
-<td>量化参数（QP）</td>
-<td>控制编码质量和压缩率的参数</td>
-</tr>
-<tr>
-<td>编码档次（Profile）</td>
-<td>如 Baseline、Main、High，定义编码功能的子集</td>
-</tr>
-<tr>
-<td>级别（Level）</td>
-<td>限制视频参数的等级，如最大分辨率、码率等</td>
-</tr>
-<tr>
-<td>VUI</td>
-<td>视频可用性信息（Video Usability Information）</td>
-</tr>
-<tr>
-<td>SEI</td>
-<td>补充增强信息（Supplemental Enhancement Information）</td>
-</tr>
-<tr>
-<td>运动估计（Motion Estimation）</td>
-<td>视频编码中用于减少时间冗余的技术</td>
-</tr>
-<tr>
-<td>熵编码</td>
-<td>如 CABAC（上下文自适应二进制算术编码）</td>
-</tr>
-</tbody></table>
-<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>采样率</td>
-<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
-</tr>
-<tr>
-<td>位深</td>
-<td>每个采样点的精度，如 16bit、24bit</td>
-</tr>
-<tr>
-<td>声道数</td>
-<td>如单声道（Mono）、立体声（Stereo）</td>
-</tr>
-<tr>
-<td>音频编码格式</td>
-<td>如 AAC、MP3、OPUS、FLAC</td>
-</tr>
-<tr>
-<td>AAC</td>
-<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
-</tr>
-<tr>
-<td>MP3</td>
-<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
-</tr>
-<tr>
-<td>PCM</td>
-<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
-</tr>
-<tr>
-<td>比特率</td>
-<td>音频每秒钟的数据量，影响音质和文件大小</td>
-</tr>
-<tr>
-<td>声道布局</td>
-<td>如 5.1、7.1 环绕声</td>
-</tr>
-<tr>
-<td>声压级（SPL）</td>
-<td>声音的强度级别，单位分贝（dB）</td>
-</tr>
-<tr>
-<td>频响范围</td>
-<td>设备或系统能响应的频率范围</td>
-</tr>
-</tbody></table>
-]]></content>
+    <title>Ubuntu交叉编译环境配置</title>
+    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
+<ol>
+<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
+<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>wiki</category>
-        <category>video-audio</category>
+        <category>linux</category>
+        <category>交叉编译</category>
       </categories>
       <tags>
-        <tag>音视频相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GIT基础命令</title>
-    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
-<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
-<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
-
-<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
-
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
-
-<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
+        <tag>ubuntu</tag>
+        <tag>交叉编译</tag>
       </tags>
   </entry>
   <entry>
@@ -557,6 +329,26 @@
       </categories>
       <tags>
         <tag>mtd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -780,23 +572,231 @@
       </tags>
   </entry>
   <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>tools</category>
-        <category>hexo</category>
+        <category>git</category>
       </categories>
       <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>c</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音视频扫盲</title>
+    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>帧率，FPS</td>
+<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
+</tr>
+<tr>
+<td>码率，bitRate</td>
+<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
+</tr>
+<tr>
+<td>GOP</td>
+<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
+</tr>
+<tr>
+<td>YUV</td>
+<td>一种颜色编码系统，常用于视频处理与压缩</td>
+</tr>
+<tr>
+<td>NV12</td>
+<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
+</tr>
+<tr>
+<td>H265</td>
+<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
+</tr>
+<tr>
+<td>H264</td>
+<td>目前最常用的视频编码标准，兼容性好</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
+</tr>
+<tr>
+<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
+<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
+</tr>
+<tr>
+<td>色度抽样</td>
+<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
+</tr>
+<tr>
+<td>量化参数（QP）</td>
+<td>控制编码质量和压缩率的参数</td>
+</tr>
+<tr>
+<td>编码档次（Profile）</td>
+<td>如 Baseline、Main、High，定义编码功能的子集</td>
+</tr>
+<tr>
+<td>级别（Level）</td>
+<td>限制视频参数的等级，如最大分辨率、码率等</td>
+</tr>
+<tr>
+<td>VUI</td>
+<td>视频可用性信息（Video Usability Information）</td>
+</tr>
+<tr>
+<td>SEI</td>
+<td>补充增强信息（Supplemental Enhancement Information）</td>
+</tr>
+<tr>
+<td>运动估计（Motion Estimation）</td>
+<td>视频编码中用于减少时间冗余的技术</td>
+</tr>
+<tr>
+<td>熵编码</td>
+<td>如 CABAC（上下文自适应二进制算术编码）</td>
+</tr>
+</tbody></table>
+<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>采样率</td>
+<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
+</tr>
+<tr>
+<td>位深</td>
+<td>每个采样点的精度，如 16bit、24bit</td>
+</tr>
+<tr>
+<td>声道数</td>
+<td>如单声道（Mono）、立体声（Stereo）</td>
+</tr>
+<tr>
+<td>音频编码格式</td>
+<td>如 AAC、MP3、OPUS、FLAC</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
+</tr>
+<tr>
+<td>比特率</td>
+<td>音频每秒钟的数据量，影响音质和文件大小</td>
+</tr>
+<tr>
+<td>声道布局</td>
+<td>如 5.1、7.1 环绕声</td>
+</tr>
+<tr>
+<td>声压级（SPL）</td>
+<td>声音的强度级别，单位分贝（dB）</td>
+</tr>
+<tr>
+<td>频响范围</td>
+<td>设备或系统能响应的频率范围</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>video-audio</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
       </tags>
   </entry>
   <entry>
@@ -811,6 +811,36 @@
       </categories>
       <tags>
         <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vs-pico使用GitHub图床</title>
+    <url>/2025/10/28/wiki/vs-pico%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
+<h2 id="安装picgo插件"><a href="#安装picgo插件" class="headerlink" title="安装picgo插件"></a>安装picgo插件</h2><p>插件商店搜索<code>picgo</code>，安装：</p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164656.png" alt="20251028164656"></p>
+<h2 id="配置picgo插件"><a href="#配置picgo插件" class="headerlink" title="配置picgo插件"></a>配置picgo插件</h2><p>打开设置picgo设置界面，填写下面4项信息：</p>
+<ul>
+<li><code>Picgo › Pic Bed › GitHub: Repo</code>注意按照<code>username/reponame</code>,注意不是仓库链接</li>
+<li><code>Picgo › Pic Bed › GitHub: Token</code>:登录github网站后，<a href="https://github.com/settings/tokens">生成Token</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164920.png" alt="20251028164920"></p>
+<ul>
+<li>token选择classic，并且选中repo权限（注意token生成后，只会显示一次，记得保存）<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165718.png" alt="20251028165718"><br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165853.png" alt="20251028165853"></li>
+</ul>
+<h2 id="使用picgo插件（Windows）"><a href="#使用picgo插件（Windows）" class="headerlink" title="使用picgo插件（Windows）"></a>使用picgo插件（Windows）</h2><ul>
+<li><code>Ctrl+Alt+U</code>: 从剪切板上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+E</code>: 从文件管理器上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+O</code>: 从提供的图片路径上传，上传成功后会自动添加链接</li>
+</ul>
+]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>vs-picgo</category>
+      </categories>
+      <tags>
+        <tag>图床</tag>
+        <tag>vs-picgo</tag>
       </tags>
   </entry>
   <entry>

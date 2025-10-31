@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C语言使用syslog</title>
+    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
+<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
+<p>level: 日志等级</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
+<p>action: 动作，一般跟路径，代表保存到该文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
+<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>c</category>
+      </categories>
+      <tags>
+        <tag>syslog</tag>
+        <tag>linux-c</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言命令行传参</title>
     <url>/2024/08/25/linux/C%E8%AF%AD%E8%A8%80%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="命令行传参"><a href="#命令行传参" class="headerlink" title="命令行传参"></a>命令行传参</h2><p>命令行传参函数原型为<code>int main(int argc, char *argv[])</code>或者<code>int main(int argc, char **argv)</code>，其中<code>argv</code>是参数个数，<code>argv</code>是实际传参。</p>
@@ -61,41 +83,6 @@
       <tags>
         <tag>Linux性能</tag>
         <tag>CPU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言使用syslog</title>
-    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
-<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
-<p>level: 日志等级</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
-<p>action: 动作，一般跟路径，代表保存到该文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
-<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>linux</category>
-        <category>c</category>
-      </categories>
-      <tags>
-        <tag>syslog</tag>
-        <tag>linux-c</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-内存</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>性能分析</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>内存</tag>
       </tags>
   </entry>
   <entry>
@@ -176,6 +163,108 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu交叉编译Bluez</title>
+    <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
+<h2 id="交叉编译前准备"><a href="#交叉编译前准备" class="headerlink" title="交叉编译前准备"></a>交叉编译前准备</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>  <em>由于bluez编译过程中依赖项比较多，所以创建一个文件夹，作为编译目录，文件目录结构如下</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bluez-cross-complier/</span><br><span class="line">├── download     <span class="comment">#源码下载在此处操作</span></span><br><span class="line">└── output       <span class="comment">#编译产物输出到此目录</span></span><br><span class="line">└── source-code  <span class="comment">#源码存放目录</span></span><br></pre></td></tr></table></figure>
+<h3 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h3><p><a href="https://www.bluez.org/">BlueZ</a> <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">Readline</a> <a href="https://invisible-island.net/ncurses/announce.html">Ncurses</a> <a href="https://www.freedesktop.org/wiki/Software/dbus/">D-Bus</a> <a href="https://libexpat.github.io/">Expat</a> <a href="https://docs.gtk.org/glib/">Glib</a> <a href="https://zlib.net/">Zlib</a> <a href="https://sourceware.org/libffi/">libffi</a> <a href="https://www.gnu.org/software/gettext/">gettext</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> bluez-cross-complier/download/</span><br><span class="line">wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.66.tar.xz</span><br><span class="line">wget ftp://ftp.cwru.edu/pub/bash/readline-8.2.tar.gz</span><br><span class="line">wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.4.tar.gz</span><br><span class="line">wget https://dbus.freedesktop.org/releases/dbus/dbus-1.15.0.tar.xz</span><br><span class="line">wget https://github.com/libexpat/libexpat/releases/download/R_2_6_2/expat-2.6.2.tar.gz</span><br><span class="line">wget https://download.gnome.org/sources/glib/2.46/glib-2.46.2.tar.xz</span><br><span class="line">wget https://zlib.net/zlib-1.3.1.tar.gz</span><br><span class="line">wget https://github.com/libffi/libffi/releases/download/v3.4.5/libffi-3.4.5.tar.gz</span><br><span class="line">wget https://ftp.gnu.org/pub/gnu/gettext/gettext-0.22.5.tar.gz</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ./*.tar.*; <span class="keyword">do</span> tar -xvf <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -C ./../source-code/; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="最终的目录结构为"><a href="#最终的目录结构为" class="headerlink" title="最终的目录结构为"></a>最终的目录结构为</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bluez-cross-complier/</span><br><span class="line">├── download</span><br><span class="line">│   ├── bluez-5.66.tar.xz</span><br><span class="line">│   ├── dbus-1.15.0.tar.xz</span><br><span class="line">│   ├── expat-2.6.2.tar.gz</span><br><span class="line">│   ├── gettext-0.22.5.tar.gz</span><br><span class="line">│   ├── glib-2.46.2.tar.xz</span><br><span class="line">│   ├── libffi-3.4.5.tar.gz</span><br><span class="line">│   ├── ncurses-6.4.tar.gz</span><br><span class="line">│   ├── readline-8.2.tar.gz</span><br><span class="line">│   └── zlib-1.3.1.tar.gz</span><br><span class="line">├── output</span><br><span class="line">└── source-code</span><br><span class="line">    ├── bluez-5.66</span><br><span class="line">    ├── dbus-1.15.0</span><br><span class="line">    ├── expat-2.6.2</span><br><span class="line">    ├── gettext-0.22.5</span><br><span class="line">    ├── glib-2.46.2</span><br><span class="line">    ├── libffi-3.4.5</span><br><span class="line">    ├── ncurses-6.4</span><br><span class="line">    ├── readline-8.2</span><br><span class="line">    └── zlib-1.3.1</span><br></pre></td></tr></table></figure>
+<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p><em>为了方便后面编译时直接使用</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> bluez_output=/home/kaikai/hl_project/bluez-cross-complier/mstar-output</span><br><span class="line"><span class="built_in">export</span> bluez_cc=arm-sigmastar-linux-uclibcgnueabihf-gcc</span><br><span class="line"><span class="built_in">export</span> bluez_cxx=arm-sigmastar-linux-uclibcgnueabihf-g++</span><br><span class="line"><span class="built_in">export</span> bluez_host=arm-sigmastar-linux-uclibcgnueabihf</span><br></pre></td></tr></table></figure>
+<h2 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h2><h3 id="Readline交叉编译"><a href="#Readline交叉编译" class="headerlink" title="Readline交叉编译"></a>Readline交叉编译</h3><p><em>注意：如果是用的6.5版本的ncures,生成的库名是libncursesw.a</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/readline-8.2/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>CFLAGS&#x3D;”-fPIC” : 为了后面方便连接静态库</em></li>
+</ul>
+<h3 id="ncurses交叉编译"><a href="#ncurses交叉编译" class="headerlink" title="ncurses交叉编译"></a>ncurses交叉编译</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/ncurses-6.4/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> --with-shared</span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>–with-shared  默认生成静态库，加这个参数同时生成静态库和动态库</em></li>
+</ul>
+<h3 id="glib-2-46-2编译前准备"><a href="#glib-2-46-2编译前准备" class="headerlink" title="glib-2.46.2编译前准备"></a>glib-2.46.2编译前准备</h3><p><em>在正式编译glib之前需要提前编译依赖库</em></p>
+<h4 id="gettext交叉编译"><a href="#gettext交叉编译" class="headerlink" title="gettext交叉编译"></a>gettext交叉编译</h4><p><em>解决：You must have either have gettext support in your C library, or use the GNU gettext library.</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/gettext-0.22.5/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="编译libffi"><a href="#编译libffi" class="headerlink" title="编译libffi"></a>编译libffi</h4><p><em>解决： gclosure.c:28:10: fatal error: ffi.h: No such file or directory</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/libffi-3.4.5</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="编译zlib"><a href="#编译zlib" class="headerlink" title="编译zlib"></a>编译zlib</h4><p><em>解决：gzlibcompressor.c:26:10: fatal error: zlib.h: No such file or directory</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/zlib-1.3.1/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span></span><br></pre></td></tr></table></figure>
+<p><em>由于zlib的auto configure不支持命令行修改编译链，所以需要手动修改makefile</em></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">CC=arm-sigmastar-linux-uclibcgnueabihf-gcc</span><br><span class="line">CFLAGS=-O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -fPIC</span><br><span class="line">LDSHARED=arm-sigmastar-linux-uclibcgnueabihf-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map</span><br><span class="line">CPP=arm-sigmastar-linux-uclibcgnueabihf-gcc -E</span><br><span class="line">AR=arm-sigmastar-linux-uclibcgnueabihf-ar</span><br><span class="line">RANLIB=arm-sigmastar-linux-uclibcgnueabihf-ranlib</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="增加arm-linux-cache"><a href="#增加arm-linux-cache" class="headerlink" title="增加arm-linux.cache"></a>增加arm-linux.cache</h4><p><em>解决：configure: error: cannot run test program while cross compiling</em> <a href="https://blog.csdn.net/junlon2006/article/details/82773450">参考连接</a><br><code>vim glib-2.46.2/arm-linux.cache</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#编译链不同，检查的内容也不通</span></span><br><span class="line">glib_cv_stack_grows=no</span><br><span class="line">glib_cv_uscore=no</span><br><span class="line">ac_cv_func_posix_getpwuid_r=<span class="built_in">yes</span></span><br><span class="line">ac_cv_func_posix_getgrgid_r=no</span><br></pre></td></tr></table></figure>
+<h4 id="修改源码"><a href="#修改源码" class="headerlink" title="修改源码"></a>修改源码</h4><p><em>可选项：这是代码编译过程中警告被当作错误处理，如果不想修改源码，可使用-Wno-error参数忽略指定错误</em></p>
+<ul>
+<li>gdate.c:2497:7<br><em>解决：gdate.c:2497:7: error: format not a string literal, format string not checked [-Werror&#x3D;format-nonliteral]</em><br>添加下面的代码到<code>gdate.c</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#pragma GCC diagnostic ignored &quot;-Wformat-nonliteral&quot;</span><br></pre></td></tr></table></figure></li>
+<li>gdbusauth.c<br><em>解决：gdbusauth.c:1295:11: error: ‘%s’ directive argument is null [-Werror&#x3D;format-overflow&#x3D;]<br>gdbusmessage.c:2698:30: error: ‘%s’ directive argument is null [-Werror&#x3D;format-overflow&#x3D;]</em><br>参考<a href="https://blog.csdn.net/colarLemon/article/details/121069867">gdbusauth.c:1302:11: error: ‘%s’ directive argument is null</a></li>
+</ul>
+<h3 id="正式编译glib-2-46-2"><a href="#正式编译glib-2-46-2" class="headerlink" title="正式编译glib-2.46.2"></a>正式编译glib-2.46.2</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/glib-2.46.2/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> --host=<span class="variable">$bluez_host</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span>  --cache-file=arm-linux.cache --enable-static </span><br><span class="line">make CFLAGS=<span class="string">&quot;-Wno-error=format-nonliteral&quot;</span> ZLIB_LIBS=-l:libz.a LIBFFI_LIBS=<span class="string">&quot;-l:libffi.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>configure</code> 编译添加 <code>ZLIB_LIBS=-l:libz.a LIBFFI_LIBS=-l:libffi.a</code>链接静态库</li>
+<li>–enable-static 编译同时生成静态库</li>
+</ul>
+<h3 id="编译D-Bus"><a href="#编译D-Bus" class="headerlink" title="编译D-Bus"></a>编译D-Bus</h3><h4 id="编译expat-2-6-2"><a href="#编译expat-2-6-2" class="headerlink" title="编译expat-2.6.2"></a>编译expat-2.6.2</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/expat-2.6.2/</span><br><span class="line">sudo apt-get install -y docbook2x</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="编译D-Bus-1"><a href="#编译D-Bus-1" class="headerlink" title="编译D-Bus"></a>编译D-Bus</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/dbus-1.15.0/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span> --with-dbus-user=root --with-system-socket=/tmp/system_bus_socket --with-system-pid-file=/tmp/messagebus.pid --enable-selinux=no --without-x</span><br><span class="line">make EXPAT_LIBS=<span class="string">&quot;-l:libexpat.a&quot;</span> LIBS=<span class="string">&quot;-l:libz.a -l:libffi.a -l:libintl.a&quot;</span> GLIB_LIBS=<span class="string">&quot;-l:libgio-2.0.a -l:libgmodule-2.0.a -l:libgobject-2.0.a -l:libglib-2.0.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>–with-dbus-user&#x3D;root –with-system-socket&#x3D;&#x2F;tmp&#x2F;system_bus_socket –with-system-pid-file&#x3D;&#x2F;tmp&#x2F;messagebus.pid：如何你的目标开发板文件系统是只读的建议加这几个参数</li>
+</ul>
+<h3 id="编译BlueZ"><a href="#编译BlueZ" class="headerlink" title="编译BlueZ"></a>编译BlueZ</h3><h4 id="静态链接readline-glib-d-bus"><a href="#静态链接readline-glib-d-bus" class="headerlink" title="静态链接readline&#x2F;glib&#x2F;d-bus"></a>静态链接readline&#x2F;glib&#x2F;d-bus</h4><p><em>glib&#x2F;d-bus: GLIB_LIBS&#x3D;”-l:libglib-2.0.a” DBUS_LIBS&#x3D;”-l:libdbus-1.a”</em><br><em>readline: 生成makefile后将makefile里的-lreadline替换为-l:libreadline.a</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/bluez-5.66/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span> --enable-btpclient --disable-systemd --disable-udev --disable-cups --disable-obex --enable-library --enable-deprecated --localstatedir=/tmp --disable-bap --disable-mcp --disable-vcp</span><br><span class="line">make GLIB_LIBS=<span class="string">&quot;-l:libglib-2.0.a&quot;</span> DBUS_LIBS=<span class="string">&quot;-l:libdbus-1.a&quot;</span> LIBS=<span class="string">&quot;-l:libintl.a -l:libreadline.a -l:libncurses.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<ul>
+<li>–enable-deprecated: 编译hciconfig、hcitool、hcidump、hciattach</li>
+<li>–enable-btpclient：编译btpclient</li>
+<li>–localstatedir&#x3D;&#x2F;tmp: bluetoothd运行会创建文件保存信息，确保路径可读写<br>以上，至此Bluez交叉编译完成。</li>
+</ul>
+<h2 id="移植到目标开发板"><a href="#移植到目标开发板" class="headerlink" title="移植到目标开发板"></a>移植到目标开发板</h2><h3 id="hci工具"><a href="#hci工具" class="headerlink" title="hci工具"></a>hci工具</h3><p><em>生成路径：$bluez_output&#x2F;bin</em><br>hciconfig、hcitool、hcidump、hciattach这4个工具可以独立使用，如果编译链接了readline和ncurses的静态库</p>
+<h3 id="dbus"><a href="#dbus" class="headerlink" title="dbus"></a>dbus</h3><p><em>dbus-daemon生成路径：$bluez_output&#x2F;bin</em><br><em>dbus-daemon conf路径：$bluez_output&#x2F;share&#x2F;dbus-1</em><br><em>libdbus-1.so.3路径：$bluez_output&#x2F;lib</em></p>
+<h3 id="bluetoothd-bluetoothctl"><a href="#bluetoothd-bluetoothctl" class="headerlink" title="bluetoothd&#x2F;bluetoothctl"></a>bluetoothd&#x2F;bluetoothctl</h3><p><em>bluetoothd生成路径：$bluez_output&#x2F;libexec&#x2F;bluetooth</em><br><em>bluetoothctl生成路径：$bluez_output&#x2F;bin</em><br><em>配置文件路径：bluez源码，src&#x2F;bluetooth.conf</em><br><em>libreadline.so.8路径：$bluez_output&#x2F;lib</em><br>将<code>bluetooth.confbluetooth.conf</code>复制到<code>share/dbus-1/system.d/</code>目录下</p>
+<h3 id="最后移植的内容如下"><a href="#最后移植的内容如下" class="headerlink" title="最后移植的内容如下"></a>最后移植的内容如下</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">├── bin</span><br><span class="line">│   ├── bluetoothctl</span><br><span class="line">│   ├── bluetoothd</span><br><span class="line">│   ├── dbus-daemon</span><br><span class="line">│   ├── hciattach</span><br><span class="line">│   ├── hciconfig</span><br><span class="line">│   ├── hcidump</span><br><span class="line">│   └── hcitool</span><br><span class="line">├── lib</span><br><span class="line">│   ├── libdbus-1.so</span><br><span class="line">│   ├── libdbus-1.so.3</span><br><span class="line">│   ├── libdbus-1.so.3.34.0</span><br><span class="line">│   ├── libreadline.so</span><br><span class="line">│   ├── libreadline.so.8</span><br><span class="line">│   └── libreadline.so.8.2</span><br><span class="line">└── share</span><br><span class="line">    └── dbus-1</span><br><span class="line">        ├── services</span><br><span class="line">        ├── session.conf</span><br><span class="line">        ├── session.d</span><br><span class="line">        ├── system.conf</span><br><span class="line">        ├── system.d</span><br><span class="line">        │   └── bluetooth.conf</span><br><span class="line">        └── system-services</span><br></pre></td></tr></table></figure>
+<h3 id="bluez运行"><a href="#bluez运行" class="headerlink" title="bluez运行"></a>bluez运行</h3><h4 id="运行bluetoothd"><a href="#运行bluetoothd" class="headerlink" title="运行bluetoothd"></a>运行bluetoothd</h4><p><em>下面的操作是将程序和库放到SD卡里使用</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="string">&#x27;/system/lib:/mnt/sdcard/bluez-5.66/lib&#x27;</span></span><br><span class="line">./dbus-daemon --config-file=/mnt/sdcard/bluez-5.66/share/dbus-1/system.conf</span><br><span class="line">./bluetoothd -n -C &amp;</span><br></pre></td></tr></table></figure>
+<h4 id="测试bluetoothctl"><a href="#测试bluetoothctl" class="headerlink" title="测试bluetoothctl"></a>测试bluetoothctl</h4><p><code>./bluetoothctl</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Agent registered        uetoothd...</span><br><span class="line">[CHG] Controller EB:BF:AD:FC:FD:FE Pairable: <span class="built_in">yes</span></span><br><span class="line">[bluetooth]<span class="comment"># help</span></span><br><span class="line">Menu main:</span><br><span class="line">Available commands:</span><br><span class="line">-------------------</span><br><span class="line">advertise                                         Advertise Options Submenu</span><br><span class="line">monitor                                           Advertisement Monitor Options Submenu</span><br><span class="line">scan                                              Scan Options Submenu</span><br><span class="line">gatt                                              Generic Attribute Submenu</span><br><span class="line">admin                                             Admin Policy Submenu</span><br><span class="line">player                                            Media Player Submenu</span><br><span class="line">endpoint                                          Media Endpoint Submenu</span><br><span class="line">transport                                         Media Transport Submenu</span><br><span class="line">list                                              List available controllers</span><br><span class="line">show [ctrl]                                       Controller information</span><br><span class="line"><span class="keyword">select</span> &lt;ctrl&gt;                                     Select default controller</span><br><span class="line">devices [Paired/Bonded/Trusted/Connected]         List available devices, with an optional property as the filter</span><br><span class="line">system-alias &lt;name&gt;                               Set controller <span class="built_in">alias</span></span><br><span class="line">reset-alias                                       Reset controller <span class="built_in">alias</span></span><br><span class="line">power &lt;on/off&gt;                                    Set controller power</span><br><span class="line">pairable &lt;on/off&gt;                                 Set controller pairable mode</span><br><span class="line">discoverable &lt;on/off&gt;                             Set controller discoverable mode</span><br><span class="line">discoverable-timeout [value]                      Set discoverable <span class="built_in">timeout</span></span><br><span class="line">agent &lt;on/off/capability&gt;                         Enable/disable agent with given capability</span><br><span class="line">default-agent                                     Set agent as the default one</span><br><span class="line">advertise &lt;on/off/type&gt;                           Enable/disable advertising with given <span class="built_in">type</span></span><br><span class="line">set-alias &lt;<span class="built_in">alias</span>&gt;                                 Set device <span class="built_in">alias</span></span><br><span class="line">scan &lt;on/off/bredr/le&gt;                            Scan <span class="keyword">for</span> devices</span><br><span class="line">info [dev]                                        Device information</span><br><span class="line">pair [dev]                                        Pair with device</span><br><span class="line">cancel-pairing [dev]                              Cancel pairing with device</span><br><span class="line">trust [dev]                                       Trust device</span><br><span class="line">untrust [dev]                                     Untrust device</span><br><span class="line">block [dev]                                       Block device</span><br><span class="line">unblock [dev]                                     Unblock device</span><br><span class="line">remove &lt;dev&gt;                                      Remove device</span><br><span class="line">connect &lt;dev&gt;                                     Connect device</span><br><span class="line">disconnect [dev]                                  Disconnect device</span><br><span class="line">menu &lt;name&gt;                                       Select submenu</span><br><span class="line">version                                           Display version</span><br><span class="line">quit                                              Quit program</span><br><span class="line"><span class="built_in">exit</span>                                              Quit program</span><br><span class="line"><span class="built_in">help</span>                                              Display <span class="built_in">help</span> about this program</span><br><span class="line"><span class="built_in">export</span>                                            Print environment variables</span><br><span class="line">[bluetooth]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h2 id="bluetoothd-bluetoothctl使用过程中遇到的其他问题"><a href="#bluetoothd-bluetoothctl使用过程中遇到的其他问题" class="headerlink" title="bluetoothd&#x2F;bluetoothctl使用过程中遇到的其他问题"></a>bluetoothd&#x2F;bluetoothctl使用过程中遇到的其他问题</h2><h3 id="bluetoothd启动后没有报错直接退出"><a href="#bluetoothd启动后没有报错直接退出" class="headerlink" title="bluetoothd启动后没有报错直接退出"></a>bluetoothd启动后没有报错直接退出</h3><p>内核没有开启<code>CONFIG_SIGNALFD</code>配置，导致不支持signalfd函数，内核开启该配置即可。</p>
+<h4 id="原因bluez源码此处报错直接返回了，没有打印错误信息"><a href="#原因bluez源码此处报错直接返回了，没有打印错误信息" class="headerlink" title="原因bluez源码此处报错直接返回了，没有打印错误信息"></a>原因bluez源码此处报错直接返回了，没有打印错误信息</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">struct</span> io *<span class="title function_">setup_signalfd</span><span class="params">(<span class="type">void</span> *user_data)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">io</span> *<span class="title">io</span>;</span></span><br><span class="line">	<span class="type">sigset_t</span> mask;</span><br><span class="line">	<span class="type">int</span> fd;</span><br><span class="line"></span><br><span class="line">	sigemptyset(&amp;mask);</span><br><span class="line">	sigaddset(&amp;mask, SIGINT);</span><br><span class="line">	sigaddset(&amp;mask, SIGTERM);</span><br><span class="line">	sigaddset(&amp;mask, SIGUSR2);</span><br><span class="line">	sigaddset(&amp;mask, SIGCHLD);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (sigprocmask(SIG_BLOCK, &amp;mask, <span class="literal">NULL</span>) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	fd = signalfd(<span class="number">-1</span>, &amp;mask, SFD_NONBLOCK | SFD_CLOEXEC);</span><br><span class="line">	<span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	io = io_new(fd);</span><br><span class="line"></span><br><span class="line">	io_set_close_on_destroy(io, <span class="literal">true</span>);</span><br><span class="line">	io_set_read_handler(io, signal_read, user_data, <span class="built_in">free</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> io;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="测试demo"><a href="#测试demo" class="headerlink" title="测试demo"></a>测试demo</h4><p><em>编译后在板子里执行如果报错Function not implemented，在内核开启signalfd配置即可</em></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/signalfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">sigset_t</span> mask;</span><br><span class="line">    <span class="type">int</span> sfd;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signalfd_siginfo</span> <span class="title">fdsi</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化信号集</span></span><br><span class="line">    sigemptyset(&amp;mask);</span><br><span class="line">    sigaddset(&amp;mask, SIGINT);  <span class="comment">// 添加 SIGINT 到信号集</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建 signalfd</span></span><br><span class="line">    sfd = signalfd(<span class="number">-1</span>, &amp;mask, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (sfd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;signalfd&quot;</span>); <span class="comment">//此处报错Function not implemented</span></span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取信号</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">ssize_t</span> s = read(sfd, &amp;fdsi, <span class="keyword">sizeof</span>(fdsi));</span><br><span class="line">        <span class="keyword">if</span> (s != <span class="keyword">sizeof</span>(fdsi)) &#123;</span><br><span class="line">            perror(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fdsi.ssi_signo == SIGINT) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Received SIGINT\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件描述符</span></span><br><span class="line">    close(sfd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bluetoothctl报错"><a href="#bluetoothctl报错" class="headerlink" title="bluetoothctl报错"></a>bluetoothctl报错</h3><h4 id="Failed-to-start-discovery-org-bluez-Error-NotReady"><a href="#Failed-to-start-discovery-org-bluez-Error-NotReady" class="headerlink" title="Failed to start discovery: org.bluez.Error.NotReady"></a>Failed to start discovery: org.bluez.Error.NotReady</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[bluetooth]<span class="comment"># scan on</span></span><br><span class="line">Failed to start discovery: org.bluez.Error.NotReady</span><br><span class="line">[bluetooth]<span class="comment"># power on</span></span><br><span class="line">Changing power on succeeded</span><br><span class="line">[CHG] Controller EB:BF:AD:FC:FD:FE Powered: <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<h4 id="Failed-to-start-discovery-org-bluez-Error-InProgress"><a href="#Failed-to-start-discovery-org-bluez-Error-InProgress" class="headerlink" title="Failed to start discovery: org.bluez.Error.InProgress"></a>Failed to start discovery: org.bluez.Error.InProgress</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[bluetooth]<span class="comment"># scan on</span></span><br><span class="line">Failed to start discovery: org.bluez.Error.InProgress</span><br></pre></td></tr></table></figure>
+<ul>
+<li>网上搜到类似问题 ，但是无法解决我遇到的问题 <a href="https://www.cnblogs.com/wanglouxiaozi/p/17782573.html">网上类似问题</a></li>
+<li>hcitool可以scan，通过对比二者的hcilog，发现hcitool使用的基础指令，bluetoothd使用的是extened指令集，解决方案需要蓝牙芯片厂商给controller开启extened指令集<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//bluetoothd/bluetoothctl使用</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_HCI_CMD_LE_SET_EXT_SCAN_PARAMS		0x2041</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bt_hci_cmd_le_set_ext_scan_params</span> &#123;</span></span><br><span class="line">	<span class="type">uint8_t</span>  own_addr_type;</span><br><span class="line">	<span class="type">uint8_t</span>  filter_policy;</span><br><span class="line">	<span class="type">uint8_t</span>  num_phys;</span><br><span class="line">	<span class="type">uint8_t</span>  data[<span class="number">0</span>];</span><br><span class="line">&#125; __attribute__ ((packed));</span><br><span class="line"></span><br><span class="line"><span class="comment">//hcitool使用</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_HCI_CMD_LE_SET_SCAN_PARAMETERS	0x200b</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bt_hci_cmd_le_set_scan_parameters</span> &#123;</span></span><br><span class="line">	<span class="type">uint8_t</span>  type;</span><br><span class="line">	<span class="type">uint16_t</span> interval;</span><br><span class="line">	<span class="type">uint16_t</span> window;</span><br><span class="line">	<span class="type">uint8_t</span>  own_addr_type;</span><br><span class="line">	<span class="type">uint8_t</span>  filter_policy;</span><br><span class="line">&#125; __attribute__ ((packed));</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+        <category>交叉编译</category>
+      </categories>
+      <tags>
+        <tag>arm</tag>
+        <tag>bluez</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -289,6 +378,19 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux性能分析-内存</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>性能分析</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>内存</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux性能分析-网络</title>
     <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
@@ -303,312 +405,6 @@
       <tags>
         <tag>Linux性能</tag>
         <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu交叉编译Bluez</title>
-    <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
-<h2 id="交叉编译前准备"><a href="#交叉编译前准备" class="headerlink" title="交叉编译前准备"></a>交叉编译前准备</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>  <em>由于bluez编译过程中依赖项比较多，所以创建一个文件夹，作为编译目录，文件目录结构如下</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bluez-cross-complier/</span><br><span class="line">├── download     <span class="comment">#源码下载在此处操作</span></span><br><span class="line">└── output       <span class="comment">#编译产物输出到此目录</span></span><br><span class="line">└── source-code  <span class="comment">#源码存放目录</span></span><br></pre></td></tr></table></figure>
-<h3 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h3><p><a href="https://www.bluez.org/">BlueZ</a> <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">Readline</a> <a href="https://invisible-island.net/ncurses/announce.html">Ncurses</a> <a href="https://www.freedesktop.org/wiki/Software/dbus/">D-Bus</a> <a href="https://libexpat.github.io/">Expat</a> <a href="https://docs.gtk.org/glib/">Glib</a> <a href="https://zlib.net/">Zlib</a> <a href="https://sourceware.org/libffi/">libffi</a> <a href="https://www.gnu.org/software/gettext/">gettext</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> bluez-cross-complier/download/</span><br><span class="line">wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.66.tar.xz</span><br><span class="line">wget ftp://ftp.cwru.edu/pub/bash/readline-8.2.tar.gz</span><br><span class="line">wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.4.tar.gz</span><br><span class="line">wget https://dbus.freedesktop.org/releases/dbus/dbus-1.15.0.tar.xz</span><br><span class="line">wget https://github.com/libexpat/libexpat/releases/download/R_2_6_2/expat-2.6.2.tar.gz</span><br><span class="line">wget https://download.gnome.org/sources/glib/2.46/glib-2.46.2.tar.xz</span><br><span class="line">wget https://zlib.net/zlib-1.3.1.tar.gz</span><br><span class="line">wget https://github.com/libffi/libffi/releases/download/v3.4.5/libffi-3.4.5.tar.gz</span><br><span class="line">wget https://ftp.gnu.org/pub/gnu/gettext/gettext-0.22.5.tar.gz</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ./*.tar.*; <span class="keyword">do</span> tar -xvf <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -C ./../source-code/; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h3 id="最终的目录结构为"><a href="#最终的目录结构为" class="headerlink" title="最终的目录结构为"></a>最终的目录结构为</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bluez-cross-complier/</span><br><span class="line">├── download</span><br><span class="line">│   ├── bluez-5.66.tar.xz</span><br><span class="line">│   ├── dbus-1.15.0.tar.xz</span><br><span class="line">│   ├── expat-2.6.2.tar.gz</span><br><span class="line">│   ├── gettext-0.22.5.tar.gz</span><br><span class="line">│   ├── glib-2.46.2.tar.xz</span><br><span class="line">│   ├── libffi-3.4.5.tar.gz</span><br><span class="line">│   ├── ncurses-6.4.tar.gz</span><br><span class="line">│   ├── readline-8.2.tar.gz</span><br><span class="line">│   └── zlib-1.3.1.tar.gz</span><br><span class="line">├── output</span><br><span class="line">└── source-code</span><br><span class="line">    ├── bluez-5.66</span><br><span class="line">    ├── dbus-1.15.0</span><br><span class="line">    ├── expat-2.6.2</span><br><span class="line">    ├── gettext-0.22.5</span><br><span class="line">    ├── glib-2.46.2</span><br><span class="line">    ├── libffi-3.4.5</span><br><span class="line">    ├── ncurses-6.4</span><br><span class="line">    ├── readline-8.2</span><br><span class="line">    └── zlib-1.3.1</span><br></pre></td></tr></table></figure>
-<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p><em>为了方便后面编译时直接使用</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> bluez_output=/home/kaikai/hl_project/bluez-cross-complier/mstar-output</span><br><span class="line"><span class="built_in">export</span> bluez_cc=arm-sigmastar-linux-uclibcgnueabihf-gcc</span><br><span class="line"><span class="built_in">export</span> bluez_cxx=arm-sigmastar-linux-uclibcgnueabihf-g++</span><br><span class="line"><span class="built_in">export</span> bluez_host=arm-sigmastar-linux-uclibcgnueabihf</span><br></pre></td></tr></table></figure>
-<h2 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h2><h3 id="Readline交叉编译"><a href="#Readline交叉编译" class="headerlink" title="Readline交叉编译"></a>Readline交叉编译</h3><p><em>注意：如果是用的6.5版本的ncures,生成的库名是libncursesw.a</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/readline-8.2/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<ul>
-<li><em>CFLAGS&#x3D;”-fPIC” : 为了后面方便连接静态库</em></li>
-</ul>
-<h3 id="ncurses交叉编译"><a href="#ncurses交叉编译" class="headerlink" title="ncurses交叉编译"></a>ncurses交叉编译</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/ncurses-6.4/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> --with-shared</span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<ul>
-<li><em>–with-shared  默认生成静态库，加这个参数同时生成静态库和动态库</em></li>
-</ul>
-<h3 id="glib-2-46-2编译前准备"><a href="#glib-2-46-2编译前准备" class="headerlink" title="glib-2.46.2编译前准备"></a>glib-2.46.2编译前准备</h3><p><em>在正式编译glib之前需要提前编译依赖库</em></p>
-<h4 id="gettext交叉编译"><a href="#gettext交叉编译" class="headerlink" title="gettext交叉编译"></a>gettext交叉编译</h4><p><em>解决：You must have either have gettext support in your C library, or use the GNU gettext library.</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/gettext-0.22.5/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h4 id="编译libffi"><a href="#编译libffi" class="headerlink" title="编译libffi"></a>编译libffi</h4><p><em>解决： gclosure.c:28:10: fatal error: ffi.h: No such file or directory</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/libffi-3.4.5</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h4 id="编译zlib"><a href="#编译zlib" class="headerlink" title="编译zlib"></a>编译zlib</h4><p><em>解决：gzlibcompressor.c:26:10: fatal error: zlib.h: No such file or directory</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/zlib-1.3.1/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span></span><br></pre></td></tr></table></figure>
-<p><em>由于zlib的auto configure不支持命令行修改编译链，所以需要手动修改makefile</em></p>
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">CC=arm-sigmastar-linux-uclibcgnueabihf-gcc</span><br><span class="line">CFLAGS=-O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -fPIC</span><br><span class="line">LDSHARED=arm-sigmastar-linux-uclibcgnueabihf-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map</span><br><span class="line">CPP=arm-sigmastar-linux-uclibcgnueabihf-gcc -E</span><br><span class="line">AR=arm-sigmastar-linux-uclibcgnueabihf-ar</span><br><span class="line">RANLIB=arm-sigmastar-linux-uclibcgnueabihf-ranlib</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h4 id="增加arm-linux-cache"><a href="#增加arm-linux-cache" class="headerlink" title="增加arm-linux.cache"></a>增加arm-linux.cache</h4><p><em>解决：configure: error: cannot run test program while cross compiling</em> <a href="https://blog.csdn.net/junlon2006/article/details/82773450">参考连接</a><br><code>vim glib-2.46.2/arm-linux.cache</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#编译链不同，检查的内容也不通</span></span><br><span class="line">glib_cv_stack_grows=no</span><br><span class="line">glib_cv_uscore=no</span><br><span class="line">ac_cv_func_posix_getpwuid_r=<span class="built_in">yes</span></span><br><span class="line">ac_cv_func_posix_getgrgid_r=no</span><br></pre></td></tr></table></figure>
-<h4 id="修改源码"><a href="#修改源码" class="headerlink" title="修改源码"></a>修改源码</h4><p><em>可选项：这是代码编译过程中警告被当作错误处理，如果不想修改源码，可使用-Wno-error参数忽略指定错误</em></p>
-<ul>
-<li>gdate.c:2497:7<br><em>解决：gdate.c:2497:7: error: format not a string literal, format string not checked [-Werror&#x3D;format-nonliteral]</em><br>添加下面的代码到<code>gdate.c</code><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#pragma GCC diagnostic ignored &quot;-Wformat-nonliteral&quot;</span><br></pre></td></tr></table></figure></li>
-<li>gdbusauth.c<br><em>解决：gdbusauth.c:1295:11: error: ‘%s’ directive argument is null [-Werror&#x3D;format-overflow&#x3D;]<br>gdbusmessage.c:2698:30: error: ‘%s’ directive argument is null [-Werror&#x3D;format-overflow&#x3D;]</em><br>参考<a href="https://blog.csdn.net/colarLemon/article/details/121069867">gdbusauth.c:1302:11: error: ‘%s’ directive argument is null</a></li>
-</ul>
-<h3 id="正式编译glib-2-46-2"><a href="#正式编译glib-2-46-2" class="headerlink" title="正式编译glib-2.46.2"></a>正式编译glib-2.46.2</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/glib-2.46.2/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> --host=<span class="variable">$bluez_host</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span>  --cache-file=arm-linux.cache --enable-static </span><br><span class="line">make CFLAGS=<span class="string">&quot;-Wno-error=format-nonliteral&quot;</span> ZLIB_LIBS=-l:libz.a LIBFFI_LIBS=<span class="string">&quot;-l:libffi.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>configure</code> 编译添加 <code>ZLIB_LIBS=-l:libz.a LIBFFI_LIBS=-l:libffi.a</code>链接静态库</li>
-<li>–enable-static 编译同时生成静态库</li>
-</ul>
-<h3 id="编译D-Bus"><a href="#编译D-Bus" class="headerlink" title="编译D-Bus"></a>编译D-Bus</h3><h4 id="编译expat-2-6-2"><a href="#编译expat-2-6-2" class="headerlink" title="编译expat-2.6.2"></a>编译expat-2.6.2</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/expat-2.6.2/</span><br><span class="line">sudo apt-get install -y docbook2x</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span></span><br><span class="line">make -j8 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h4 id="编译D-Bus-1"><a href="#编译D-Bus-1" class="headerlink" title="编译D-Bus"></a>编译D-Bus</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/dbus-1.15.0/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span> --with-dbus-user=root --with-system-socket=/tmp/system_bus_socket --with-system-pid-file=/tmp/messagebus.pid --enable-selinux=no --without-x</span><br><span class="line">make EXPAT_LIBS=<span class="string">&quot;-l:libexpat.a&quot;</span> LIBS=<span class="string">&quot;-l:libz.a -l:libffi.a -l:libintl.a&quot;</span> GLIB_LIBS=<span class="string">&quot;-l:libgio-2.0.a -l:libgmodule-2.0.a -l:libgobject-2.0.a -l:libglib-2.0.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<ul>
-<li>–with-dbus-user&#x3D;root –with-system-socket&#x3D;&#x2F;tmp&#x2F;system_bus_socket –with-system-pid-file&#x3D;&#x2F;tmp&#x2F;messagebus.pid：如何你的目标开发板文件系统是只读的建议加这几个参数</li>
-</ul>
-<h3 id="编译BlueZ"><a href="#编译BlueZ" class="headerlink" title="编译BlueZ"></a>编译BlueZ</h3><h4 id="静态链接readline-glib-d-bus"><a href="#静态链接readline-glib-d-bus" class="headerlink" title="静态链接readline&#x2F;glib&#x2F;d-bus"></a>静态链接readline&#x2F;glib&#x2F;d-bus</h4><p><em>glib&#x2F;d-bus: GLIB_LIBS&#x3D;”-l:libglib-2.0.a” DBUS_LIBS&#x3D;”-l:libdbus-1.a”</em><br><em>readline: 生成makefile后将makefile里的-lreadline替换为-l:libreadline.a</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> source-code/bluez-5.66/</span><br><span class="line">./configure --prefix=<span class="variable">$bluez_output</span> CC=<span class="variable">$bluez_cc</span> CXX=<span class="variable">$bluez_cxx</span> --host=<span class="variable">$bluez_host</span> CFLAGS=<span class="string">&quot;-fPIC&quot;</span> CPPFLAGS=<span class="string">&quot;-I<span class="variable">$bluez_output</span>/include&quot;</span> LDFLAGS=<span class="string">&quot;-L<span class="variable">$bluez_output</span>/lib&quot;</span> --enable-btpclient --disable-systemd --disable-udev --disable-cups --disable-obex --enable-library --enable-deprecated --localstatedir=/tmp --disable-bap --disable-mcp --disable-vcp</span><br><span class="line">make GLIB_LIBS=<span class="string">&quot;-l:libglib-2.0.a&quot;</span> DBUS_LIBS=<span class="string">&quot;-l:libdbus-1.a&quot;</span> LIBS=<span class="string">&quot;-l:libintl.a -l:libreadline.a -l:libncurses.a&quot;</span> -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<ul>
-<li>–enable-deprecated: 编译hciconfig、hcitool、hcidump、hciattach</li>
-<li>–enable-btpclient：编译btpclient</li>
-<li>–localstatedir&#x3D;&#x2F;tmp: bluetoothd运行会创建文件保存信息，确保路径可读写<br>以上，至此Bluez交叉编译完成。</li>
-</ul>
-<h2 id="移植到目标开发板"><a href="#移植到目标开发板" class="headerlink" title="移植到目标开发板"></a>移植到目标开发板</h2><h3 id="hci工具"><a href="#hci工具" class="headerlink" title="hci工具"></a>hci工具</h3><p><em>生成路径：$bluez_output&#x2F;bin</em><br>hciconfig、hcitool、hcidump、hciattach这4个工具可以独立使用，如果编译链接了readline和ncurses的静态库</p>
-<h3 id="dbus"><a href="#dbus" class="headerlink" title="dbus"></a>dbus</h3><p><em>dbus-daemon生成路径：$bluez_output&#x2F;bin</em><br><em>dbus-daemon conf路径：$bluez_output&#x2F;share&#x2F;dbus-1</em><br><em>libdbus-1.so.3路径：$bluez_output&#x2F;lib</em></p>
-<h3 id="bluetoothd-bluetoothctl"><a href="#bluetoothd-bluetoothctl" class="headerlink" title="bluetoothd&#x2F;bluetoothctl"></a>bluetoothd&#x2F;bluetoothctl</h3><p><em>bluetoothd生成路径：$bluez_output&#x2F;libexec&#x2F;bluetooth</em><br><em>bluetoothctl生成路径：$bluez_output&#x2F;bin</em><br><em>配置文件路径：bluez源码，src&#x2F;bluetooth.conf</em><br><em>libreadline.so.8路径：$bluez_output&#x2F;lib</em><br>将<code>bluetooth.confbluetooth.conf</code>复制到<code>share/dbus-1/system.d/</code>目录下</p>
-<h3 id="最后移植的内容如下"><a href="#最后移植的内容如下" class="headerlink" title="最后移植的内容如下"></a>最后移植的内容如下</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">├── bin</span><br><span class="line">│   ├── bluetoothctl</span><br><span class="line">│   ├── bluetoothd</span><br><span class="line">│   ├── dbus-daemon</span><br><span class="line">│   ├── hciattach</span><br><span class="line">│   ├── hciconfig</span><br><span class="line">│   ├── hcidump</span><br><span class="line">│   └── hcitool</span><br><span class="line">├── lib</span><br><span class="line">│   ├── libdbus-1.so</span><br><span class="line">│   ├── libdbus-1.so.3</span><br><span class="line">│   ├── libdbus-1.so.3.34.0</span><br><span class="line">│   ├── libreadline.so</span><br><span class="line">│   ├── libreadline.so.8</span><br><span class="line">│   └── libreadline.so.8.2</span><br><span class="line">└── share</span><br><span class="line">    └── dbus-1</span><br><span class="line">        ├── services</span><br><span class="line">        ├── session.conf</span><br><span class="line">        ├── session.d</span><br><span class="line">        ├── system.conf</span><br><span class="line">        ├── system.d</span><br><span class="line">        │   └── bluetooth.conf</span><br><span class="line">        └── system-services</span><br></pre></td></tr></table></figure>
-<h3 id="bluez运行"><a href="#bluez运行" class="headerlink" title="bluez运行"></a>bluez运行</h3><h4 id="运行bluetoothd"><a href="#运行bluetoothd" class="headerlink" title="运行bluetoothd"></a>运行bluetoothd</h4><p><em>下面的操作是将程序和库放到SD卡里使用</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="string">&#x27;/system/lib:/mnt/sdcard/bluez-5.66/lib&#x27;</span></span><br><span class="line">./dbus-daemon --config-file=/mnt/sdcard/bluez-5.66/share/dbus-1/system.conf</span><br><span class="line">./bluetoothd -n -C &amp;</span><br></pre></td></tr></table></figure>
-<h4 id="测试bluetoothctl"><a href="#测试bluetoothctl" class="headerlink" title="测试bluetoothctl"></a>测试bluetoothctl</h4><p><code>./bluetoothctl</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Agent registered        uetoothd...</span><br><span class="line">[CHG] Controller EB:BF:AD:FC:FD:FE Pairable: <span class="built_in">yes</span></span><br><span class="line">[bluetooth]<span class="comment"># help</span></span><br><span class="line">Menu main:</span><br><span class="line">Available commands:</span><br><span class="line">-------------------</span><br><span class="line">advertise                                         Advertise Options Submenu</span><br><span class="line">monitor                                           Advertisement Monitor Options Submenu</span><br><span class="line">scan                                              Scan Options Submenu</span><br><span class="line">gatt                                              Generic Attribute Submenu</span><br><span class="line">admin                                             Admin Policy Submenu</span><br><span class="line">player                                            Media Player Submenu</span><br><span class="line">endpoint                                          Media Endpoint Submenu</span><br><span class="line">transport                                         Media Transport Submenu</span><br><span class="line">list                                              List available controllers</span><br><span class="line">show [ctrl]                                       Controller information</span><br><span class="line"><span class="keyword">select</span> &lt;ctrl&gt;                                     Select default controller</span><br><span class="line">devices [Paired/Bonded/Trusted/Connected]         List available devices, with an optional property as the filter</span><br><span class="line">system-alias &lt;name&gt;                               Set controller <span class="built_in">alias</span></span><br><span class="line">reset-alias                                       Reset controller <span class="built_in">alias</span></span><br><span class="line">power &lt;on/off&gt;                                    Set controller power</span><br><span class="line">pairable &lt;on/off&gt;                                 Set controller pairable mode</span><br><span class="line">discoverable &lt;on/off&gt;                             Set controller discoverable mode</span><br><span class="line">discoverable-timeout [value]                      Set discoverable <span class="built_in">timeout</span></span><br><span class="line">agent &lt;on/off/capability&gt;                         Enable/disable agent with given capability</span><br><span class="line">default-agent                                     Set agent as the default one</span><br><span class="line">advertise &lt;on/off/type&gt;                           Enable/disable advertising with given <span class="built_in">type</span></span><br><span class="line">set-alias &lt;<span class="built_in">alias</span>&gt;                                 Set device <span class="built_in">alias</span></span><br><span class="line">scan &lt;on/off/bredr/le&gt;                            Scan <span class="keyword">for</span> devices</span><br><span class="line">info [dev]                                        Device information</span><br><span class="line">pair [dev]                                        Pair with device</span><br><span class="line">cancel-pairing [dev]                              Cancel pairing with device</span><br><span class="line">trust [dev]                                       Trust device</span><br><span class="line">untrust [dev]                                     Untrust device</span><br><span class="line">block [dev]                                       Block device</span><br><span class="line">unblock [dev]                                     Unblock device</span><br><span class="line">remove &lt;dev&gt;                                      Remove device</span><br><span class="line">connect &lt;dev&gt;                                     Connect device</span><br><span class="line">disconnect [dev]                                  Disconnect device</span><br><span class="line">menu &lt;name&gt;                                       Select submenu</span><br><span class="line">version                                           Display version</span><br><span class="line">quit                                              Quit program</span><br><span class="line"><span class="built_in">exit</span>                                              Quit program</span><br><span class="line"><span class="built_in">help</span>                                              Display <span class="built_in">help</span> about this program</span><br><span class="line"><span class="built_in">export</span>                                            Print environment variables</span><br><span class="line">[bluetooth]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<h2 id="bluetoothd-bluetoothctl使用过程中遇到的其他问题"><a href="#bluetoothd-bluetoothctl使用过程中遇到的其他问题" class="headerlink" title="bluetoothd&#x2F;bluetoothctl使用过程中遇到的其他问题"></a>bluetoothd&#x2F;bluetoothctl使用过程中遇到的其他问题</h2><h3 id="bluetoothd启动后没有报错直接退出"><a href="#bluetoothd启动后没有报错直接退出" class="headerlink" title="bluetoothd启动后没有报错直接退出"></a>bluetoothd启动后没有报错直接退出</h3><p>内核没有开启<code>CONFIG_SIGNALFD</code>配置，导致不支持signalfd函数，内核开启该配置即可。</p>
-<h4 id="原因bluez源码此处报错直接返回了，没有打印错误信息"><a href="#原因bluez源码此处报错直接返回了，没有打印错误信息" class="headerlink" title="原因bluez源码此处报错直接返回了，没有打印错误信息"></a>原因bluez源码此处报错直接返回了，没有打印错误信息</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">struct</span> io *<span class="title function_">setup_signalfd</span><span class="params">(<span class="type">void</span> *user_data)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">io</span> *<span class="title">io</span>;</span></span><br><span class="line">	<span class="type">sigset_t</span> mask;</span><br><span class="line">	<span class="type">int</span> fd;</span><br><span class="line"></span><br><span class="line">	sigemptyset(&amp;mask);</span><br><span class="line">	sigaddset(&amp;mask, SIGINT);</span><br><span class="line">	sigaddset(&amp;mask, SIGTERM);</span><br><span class="line">	sigaddset(&amp;mask, SIGUSR2);</span><br><span class="line">	sigaddset(&amp;mask, SIGCHLD);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (sigprocmask(SIG_BLOCK, &amp;mask, <span class="literal">NULL</span>) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	fd = signalfd(<span class="number">-1</span>, &amp;mask, SFD_NONBLOCK | SFD_CLOEXEC);</span><br><span class="line">	<span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	io = io_new(fd);</span><br><span class="line"></span><br><span class="line">	io_set_close_on_destroy(io, <span class="literal">true</span>);</span><br><span class="line">	io_set_read_handler(io, signal_read, user_data, <span class="built_in">free</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> io;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="测试demo"><a href="#测试demo" class="headerlink" title="测试demo"></a>测试demo</h4><p><em>编译后在板子里执行如果报错Function not implemented，在内核开启signalfd配置即可</em></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/signalfd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">sigset_t</span> mask;</span><br><span class="line">    <span class="type">int</span> sfd;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">signalfd_siginfo</span> <span class="title">fdsi</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化信号集</span></span><br><span class="line">    sigemptyset(&amp;mask);</span><br><span class="line">    sigaddset(&amp;mask, SIGINT);  <span class="comment">// 添加 SIGINT 到信号集</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建 signalfd</span></span><br><span class="line">    sfd = signalfd(<span class="number">-1</span>, &amp;mask, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (sfd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;signalfd&quot;</span>); <span class="comment">//此处报错Function not implemented</span></span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取信号</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">ssize_t</span> s = read(sfd, &amp;fdsi, <span class="keyword">sizeof</span>(fdsi));</span><br><span class="line">        <span class="keyword">if</span> (s != <span class="keyword">sizeof</span>(fdsi)) &#123;</span><br><span class="line">            perror(<span class="string">&quot;read&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (fdsi.ssi_signo == SIGINT) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Received SIGINT\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭文件描述符</span></span><br><span class="line">    close(sfd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="bluetoothctl报错"><a href="#bluetoothctl报错" class="headerlink" title="bluetoothctl报错"></a>bluetoothctl报错</h3><h4 id="Failed-to-start-discovery-org-bluez-Error-NotReady"><a href="#Failed-to-start-discovery-org-bluez-Error-NotReady" class="headerlink" title="Failed to start discovery: org.bluez.Error.NotReady"></a>Failed to start discovery: org.bluez.Error.NotReady</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[bluetooth]<span class="comment"># scan on</span></span><br><span class="line">Failed to start discovery: org.bluez.Error.NotReady</span><br><span class="line">[bluetooth]<span class="comment"># power on</span></span><br><span class="line">Changing power on succeeded</span><br><span class="line">[CHG] Controller EB:BF:AD:FC:FD:FE Powered: <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
-<h4 id="Failed-to-start-discovery-org-bluez-Error-InProgress"><a href="#Failed-to-start-discovery-org-bluez-Error-InProgress" class="headerlink" title="Failed to start discovery: org.bluez.Error.InProgress"></a>Failed to start discovery: org.bluez.Error.InProgress</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[bluetooth]<span class="comment"># scan on</span></span><br><span class="line">Failed to start discovery: org.bluez.Error.InProgress</span><br></pre></td></tr></table></figure>
-<ul>
-<li>网上搜到类似问题 ，但是无法解决我遇到的问题 <a href="https://www.cnblogs.com/wanglouxiaozi/p/17782573.html">网上类似问题</a></li>
-<li>hcitool可以scan，通过对比二者的hcilog，发现hcitool使用的基础指令，bluetoothd使用的是extened指令集，解决方案需要蓝牙芯片厂商给controller开启extened指令集<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//bluetoothd/bluetoothctl使用</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_HCI_CMD_LE_SET_EXT_SCAN_PARAMS		0x2041</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bt_hci_cmd_le_set_ext_scan_params</span> &#123;</span></span><br><span class="line">	<span class="type">uint8_t</span>  own_addr_type;</span><br><span class="line">	<span class="type">uint8_t</span>  filter_policy;</span><br><span class="line">	<span class="type">uint8_t</span>  num_phys;</span><br><span class="line">	<span class="type">uint8_t</span>  data[<span class="number">0</span>];</span><br><span class="line">&#125; __attribute__ ((packed));</span><br><span class="line"></span><br><span class="line"><span class="comment">//hcitool使用</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BT_HCI_CMD_LE_SET_SCAN_PARAMETERS	0x200b</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bt_hci_cmd_le_set_scan_parameters</span> &#123;</span></span><br><span class="line">	<span class="type">uint8_t</span>  type;</span><br><span class="line">	<span class="type">uint16_t</span> interval;</span><br><span class="line">	<span class="type">uint16_t</span> window;</span><br><span class="line">	<span class="type">uint8_t</span>  own_addr_type;</span><br><span class="line">	<span class="type">uint8_t</span>  filter_policy;</span><br><span class="line">&#125; __attribute__ ((packed));</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>linux</category>
-        <category>交叉编译</category>
-      </categories>
-      <tags>
-        <tag>arm</tag>
-        <tag>bluez</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu交叉编译环境配置</title>
-    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
-<ol>
-<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
-<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
-<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
-<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-        <category>交叉编译</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>交叉编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音视频扫盲</title>
-    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>帧率，FPS</td>
-<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
-</tr>
-<tr>
-<td>码率，bitRate</td>
-<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
-</tr>
-<tr>
-<td>分辨率</td>
-<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
-</tr>
-<tr>
-<td>GOP</td>
-<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
-</tr>
-<tr>
-<td>YUV</td>
-<td>一种颜色编码系统，常用于视频处理与压缩</td>
-</tr>
-<tr>
-<td>NV12</td>
-<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
-</tr>
-<tr>
-<td>H265</td>
-<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
-</tr>
-<tr>
-<td>H264</td>
-<td>目前最常用的视频编码标准，兼容性好</td>
-</tr>
-<tr>
-<td>MP4</td>
-<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
-</tr>
-<tr>
-<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
-<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
-</tr>
-<tr>
-<td>RGB</td>
-<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
-</tr>
-<tr>
-<td>色度抽样</td>
-<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
-</tr>
-<tr>
-<td>量化参数（QP）</td>
-<td>控制编码质量和压缩率的参数</td>
-</tr>
-<tr>
-<td>编码档次（Profile）</td>
-<td>如 Baseline、Main、High，定义编码功能的子集</td>
-</tr>
-<tr>
-<td>级别（Level）</td>
-<td>限制视频参数的等级，如最大分辨率、码率等</td>
-</tr>
-<tr>
-<td>VUI</td>
-<td>视频可用性信息（Video Usability Information）</td>
-</tr>
-<tr>
-<td>SEI</td>
-<td>补充增强信息（Supplemental Enhancement Information）</td>
-</tr>
-<tr>
-<td>运动估计（Motion Estimation）</td>
-<td>视频编码中用于减少时间冗余的技术</td>
-</tr>
-<tr>
-<td>熵编码</td>
-<td>如 CABAC（上下文自适应二进制算术编码）</td>
-</tr>
-</tbody></table>
-<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>采样率</td>
-<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
-</tr>
-<tr>
-<td>位深</td>
-<td>每个采样点的精度，如 16bit、24bit</td>
-</tr>
-<tr>
-<td>声道数</td>
-<td>如单声道（Mono）、立体声（Stereo）</td>
-</tr>
-<tr>
-<td>音频编码格式</td>
-<td>如 AAC、MP3、OPUS、FLAC</td>
-</tr>
-<tr>
-<td>AAC</td>
-<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
-</tr>
-<tr>
-<td>MP3</td>
-<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
-</tr>
-<tr>
-<td>PCM</td>
-<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
-</tr>
-<tr>
-<td>比特率</td>
-<td>音频每秒钟的数据量，影响音质和文件大小</td>
-</tr>
-<tr>
-<td>声道布局</td>
-<td>如 5.1、7.1 环绕声</td>
-</tr>
-<tr>
-<td>声压级（SPL）</td>
-<td>声音的强度级别，单位分贝（dB）</td>
-</tr>
-<tr>
-<td>频响范围</td>
-<td>设备或系统能响应的频率范围</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>wiki</category>
-        <category>video-audio</category>
-      </categories>
-      <tags>
-        <tag>音视频相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cmake基础语法</title>
-    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-        <category>cmake</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo文章加密</title>
-    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>wiki</category>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>hexo-blog-encrypt</tag>
       </tags>
   </entry>
   <entry>
@@ -832,6 +628,202 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo文章加密</title>
+    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>hexo-blog-encrypt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vs-picgo使用GitHub图床</title>
+    <url>/2025/10/28/wiki/vs-picgo%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
+<h2 id="安装picgo插件"><a href="#安装picgo插件" class="headerlink" title="安装picgo插件"></a>安装picgo插件</h2><p>插件商店搜索<code>picgo</code>，安装：</p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164656.png" alt="20251028164656"></p>
+<h2 id="配置picgo插件"><a href="#配置picgo插件" class="headerlink" title="配置picgo插件"></a>配置picgo插件</h2><p>打开设置picgo设置界面，填写下面4项信息：</p>
+<ul>
+<li><code>Picgo › Pic Bed › GitHub: Repo</code>注意按照<code>username/reponame</code>,注意不是仓库链接</li>
+<li><code>Picgo › Pic Bed › GitHub: Token</code>:登录github网站后，<a href="https://github.com/settings/tokens">生成Token</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164920.png" alt="20251028164920"></p>
+<ul>
+<li>token选择classic，并且选中repo权限（注意token生成后，只会显示一次，记得保存）<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165718.png" alt="20251028165718"><br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165853.png" alt="20251028165853"></li>
+</ul>
+<h2 id="使用picgo插件（Windows）"><a href="#使用picgo插件（Windows）" class="headerlink" title="使用picgo插件（Windows）"></a>使用picgo插件（Windows）</h2><ul>
+<li><code>Ctrl+Alt+U</code>: 从剪切板上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+E</code>: 从文件管理器上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+O</code>: 从提供的图片路径上传，上传成功后会自动添加链接</li>
+</ul>
+]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>vs-picgo</category>
+      </categories>
+      <tags>
+        <tag>图床</tag>
+        <tag>vs-picgo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音视频扫盲</title>
+    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>帧率，FPS</td>
+<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
+</tr>
+<tr>
+<td>码率，bitRate</td>
+<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
+</tr>
+<tr>
+<td>GOP</td>
+<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
+</tr>
+<tr>
+<td>YUV</td>
+<td>一种颜色编码系统，常用于视频处理与压缩</td>
+</tr>
+<tr>
+<td>NV12</td>
+<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
+</tr>
+<tr>
+<td>H265</td>
+<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
+</tr>
+<tr>
+<td>H264</td>
+<td>目前最常用的视频编码标准，兼容性好</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
+</tr>
+<tr>
+<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
+<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
+</tr>
+<tr>
+<td>色度抽样</td>
+<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
+</tr>
+<tr>
+<td>量化参数（QP）</td>
+<td>控制编码质量和压缩率的参数</td>
+</tr>
+<tr>
+<td>编码档次（Profile）</td>
+<td>如 Baseline、Main、High，定义编码功能的子集</td>
+</tr>
+<tr>
+<td>级别（Level）</td>
+<td>限制视频参数的等级，如最大分辨率、码率等</td>
+</tr>
+<tr>
+<td>VUI</td>
+<td>视频可用性信息（Video Usability Information）</td>
+</tr>
+<tr>
+<td>SEI</td>
+<td>补充增强信息（Supplemental Enhancement Information）</td>
+</tr>
+<tr>
+<td>运动估计（Motion Estimation）</td>
+<td>视频编码中用于减少时间冗余的技术</td>
+</tr>
+<tr>
+<td>熵编码</td>
+<td>如 CABAC（上下文自适应二进制算术编码）</td>
+</tr>
+</tbody></table>
+<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>采样率</td>
+<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
+</tr>
+<tr>
+<td>位深</td>
+<td>每个采样点的精度，如 16bit、24bit</td>
+</tr>
+<tr>
+<td>声道数</td>
+<td>如单声道（Mono）、立体声（Stereo）</td>
+</tr>
+<tr>
+<td>音频编码格式</td>
+<td>如 AAC、MP3、OPUS、FLAC</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
+</tr>
+<tr>
+<td>比特率</td>
+<td>音频每秒钟的数据量，影响音质和文件大小</td>
+</tr>
+<tr>
+<td>声道布局</td>
+<td>如 5.1、7.1 环绕声</td>
+</tr>
+<tr>
+<td>声压级（SPL）</td>
+<td>声音的强度级别，单位分贝（dB）</td>
+</tr>
+<tr>
+<td>频响范围</td>
+<td>设备或系统能响应的频率范围</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wiki</category>
+        <category>video-audio</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1.从零开始学Linux内核源码 - 源码下载及配置编译</title>
     <url>/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>所有操作均是linux-6.8.2版本</em></p>
@@ -1025,33 +1017,41 @@
       </tags>
   </entry>
   <entry>
-    <title>vs-picgo使用GitHub图床</title>
-    <url>/2025/10/28/wiki/vs-picgo%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
-<h2 id="安装picgo插件"><a href="#安装picgo插件" class="headerlink" title="安装picgo插件"></a>安装picgo插件</h2><p>插件商店搜索<code>picgo</code>，安装：</p>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164656.png" alt="20251028164656"></p>
-<h2 id="配置picgo插件"><a href="#配置picgo插件" class="headerlink" title="配置picgo插件"></a>配置picgo插件</h2><p>打开设置picgo设置界面，填写下面4项信息：</p>
-<ul>
-<li><code>Picgo › Pic Bed › GitHub: Repo</code>注意按照<code>username/reponame</code>,注意不是仓库链接</li>
-<li><code>Picgo › Pic Bed › GitHub: Token</code>:登录github网站后，<a href="https://github.com/settings/tokens">生成Token</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164920.png" alt="20251028164920"></p>
-<ul>
-<li>token选择classic，并且选中repo权限（注意token生成后，只会显示一次，记得保存）<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165718.png" alt="20251028165718"><br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165853.png" alt="20251028165853"></li>
-</ul>
-<h2 id="使用picgo插件（Windows）"><a href="#使用picgo插件（Windows）" class="headerlink" title="使用picgo插件（Windows）"></a>使用picgo插件（Windows）</h2><ul>
-<li><code>Ctrl+Alt+U</code>: 从剪切板上传，上传成功后会自动添加链接</li>
-<li><code>Ctrl+Alt+E</code>: 从文件管理器上传，上传成功后会自动添加链接</li>
-<li><code>Ctrl+Alt+O</code>: 从提供的图片路径上传，上传成功后会自动添加链接</li>
-</ul>
+    <title>cmake基础语法</title>
+    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>wiki</category>
-        <category>vs-picgo</category>
+        <category>tools</category>
+        <category>cmake</category>
       </categories>
       <tags>
-        <tag>图床</tag>
-        <tag>vs-picgo</tag>
+        <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu交叉编译环境配置</title>
+    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
+<ol>
+<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
+<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+        <category>交叉编译</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>交叉编译</tag>
       </tags>
   </entry>
 </search>

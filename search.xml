@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C语言使用syslog</title>
+    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
+<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
+<p>level: 日志等级</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
+<p>action: 动作，一般跟路径，代表保存到该文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
+<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>syslog</tag>
+        <tag>linux-c</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言命令行传参</title>
     <url>/2024/08/25/linux/C%E8%AF%AD%E8%A8%80%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="命令行传参"><a href="#命令行传参" class="headerlink" title="命令行传参"></a>命令行传参</h2><p>命令行传参函数原型为<code>int main(int argc, char *argv[])</code>或者<code>int main(int argc, char **argv)</code>，其中<code>argv</code>是参数个数，<code>argv</code>是实际传参。</p>
@@ -50,18 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux性能分析-内存</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>内存</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux性能分析-CPU</title>
     <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
@@ -71,27 +80,6 @@
       <tags>
         <tag>Linux性能</tag>
         <tag>CPU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言使用syslog</title>
-    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
-<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
-<p>level: 日志等级</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
-<p>action: 动作，一般跟路径，代表保存到该文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
-<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>syslog</tag>
-        <tag>linux-c</tag>
       </tags>
   </entry>
   <entry>
@@ -118,58 +106,125 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
+    <title>GCC二进制文件构成</title>
+    <url>/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。</em></p>
+<h2 id="查询文件格式"><a href="#查询文件格式" class="headerlink" title="查询文件格式"></a>查询文件格式</h2><h3 id="file查看是否是ELF格式"><a href="#file查看是否是ELF格式" class="headerlink" title="file查看是否是ELF格式"></a><code>file</code>查看是否是ELF格式</h3><p>格式：<code>file [file path]</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:31:34 ELF <span class="variable">$file</span> *</span><br><span class="line">json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, with debug_info, not stripped</span><br><span class="line">libcjson.so:  ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, not stripped</span><br><span class="line">libjson-c.a:  current ar archive</span><br></pre></td></tr></table></figure>
+<h3 id="readelf详细查看ELF文件信息"><a href="#readelf详细查看ELF文件信息" class="headerlink" title="readelf详细查看ELF文件信息"></a><code>readelf</code>详细查看ELF文件信息</h3><p>格式：<code>readelf &lt;option(s)&gt; elf-file(s)</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:46:14 ELF <span class="variable">$readelf</span> -h json_example </span><br><span class="line">ELF Header:</span><br><span class="line">  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 </span><br><span class="line">  Class:                             ELF32</span><br><span class="line">  Data:                              2<span class="string">&#x27;s complement, little endian</span></span><br><span class="line"><span class="string">  Version:                           1 (current)</span></span><br><span class="line"><span class="string">  OS/ABI:                            UNIX - System V</span></span><br><span class="line"><span class="string">  ABI Version:                       0</span></span><br><span class="line"><span class="string">  Type:                              EXEC (Executable file)</span></span><br><span class="line"><span class="string">  Machine:                           ARM</span></span><br><span class="line"><span class="string">  Version:                           0x1</span></span><br><span class="line"><span class="string">  Entry point address:               0x11189</span></span><br><span class="line"><span class="string">  Start of program headers:          52 (bytes into file)</span></span><br><span class="line"><span class="string">  Start of section headers:          143200 (bytes into file)</span></span><br><span class="line"><span class="string">  Flags:                             0x5000400, Version5 EABI, hard-float ABI</span></span><br><span class="line"><span class="string">  Size of this header:               52 (bytes)</span></span><br><span class="line"><span class="string">  Size of program headers:           32 (bytes)</span></span><br><span class="line"><span class="string">  Number of program headers:         8</span></span><br><span class="line"><span class="string">  Size of section headers:           40 (bytes)</span></span><br><span class="line"><span class="string">  Number of section headers:         34</span></span><br><span class="line"><span class="string">  Section header string table index: 33</span></span><br></pre></td></tr></table></figure>
+<h2 id="分析文件体积"><a href="#分析文件体积" class="headerlink" title="分析文件体积"></a>分析文件体积</h2><h3 id="size-du查看文件所占内存-磁盘"><a href="#size-du查看文件所占内存-磁盘" class="headerlink" title="size/du查看文件所占内存&#x2F;磁盘"></a><code>size/du</code>查看文件所占内存&#x2F;磁盘</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:50:12 ELF <span class="variable">$size</span> json_example</span><br><span class="line">   text    data     bss     dec     hex filename</span><br><span class="line">  40726    1032     304   42062    a44e json_example</span><br><span class="line">14:00:42 ELF <span class="variable">$du</span> -k json_example </span><br><span class="line">144     json_example <span class="comment"># k</span></span><br><span class="line">14:00:47 ELF <span class="variable">$du</span> -b json_example </span><br><span class="line">144560  json_exampl <span class="comment"># 字节</span></span><br></pre></td></tr></table></figure>
+<h3 id="字段说明"><a href="#字段说明" class="headerlink" title="字段说明"></a>字段说明</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>text</strong></td>
+<td>代码段</td>
+<td>40726 字节</td>
+<td>包含程序的可执行代码（机器指令），通常是只读的</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td>数据段</td>
+<td>1032 字节</td>
+<td>包含已初始化的全局变量和静态变量，占用磁盘空间</td>
+</tr>
+<tr>
+<td><strong>bss</strong></td>
+<td>未初始化数据段</td>
+<td>304 字节</td>
+<td>包含未初始化的全局变量和静态变量，运行时初始化为0</td>
+</tr>
+<tr>
+<td><strong>dec</strong></td>
+<td>十进制总和</td>
+<td>42062 字节</td>
+<td>前三项的总和：40726 + 1032 + 304</td>
+</tr>
+<tr>
+<td><strong>hex</strong></td>
+<td>十六进制总和</td>
+<td>a44e</td>
+<td>总大小的十六进制表示</td>
+</tr>
+<tr>
+<td><strong>filename</strong></td>
+<td>文件名</td>
+<td>json_example</td>
+<td>被分析的可执行文件名称</td>
+</tr>
+</tbody></table>
+<h2 id="体积优化"><a href="#体积优化" class="headerlink" title="体积优化"></a>体积优化</h2><h3 id="移除调试信息"><a href="#移除调试信息" class="headerlink" title="移除调试信息"></a>移除调试信息</h3><ol>
+<li><code>file</code>命令查看是否包含符号信息<br><em>查看是否包含<code>not stripped</code>字段</em><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:50:26 ELF <span class="variable">$file</span> libcjson.so </span><br><span class="line">libcjson.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, not stripped</span><br><span class="line">13:35:25 ELF <span class="variable">$file</span> json_example </span><br><span class="line">json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, with debug_info, not stripped</span><br></pre></td></tr></table></figure></li>
+<li><code>strip --strip-debug --strip-unneeded libcjson.so</code>移除调试符号<br><em>动态库不能过度<code>strip</code>,不然有可能导致无法使用，上面两个参数是相对安全的参数</em></li>
+<li><code>strip json_example</code>移除所有调试信息</li>
 </ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-网络</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
-<li>方案一：调整程序优先级<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nice -n 20 your_program &amp;</span><br><span class="line">nice -n -20 iperfs -c your_ip  -t 60 -u -b 100M -R</span><br></pre></td></tr></table></figure></li>
-<li>方案二：修改发送、接收缓冲区buffer<br>缓冲区buffer调整到2MB<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2M</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_max</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_max</span></span><br></pre></td></tr></table></figure></li>
-</ol>
+<h3 id="Os-编译选项"><a href="#Os-编译选项" class="headerlink" title="-Os 编译选项"></a><code>-Os</code> 编译选项</h3><p><code>GCC</code>的<code>-O</code>选项是一组用于控制编译优化级别的参数，这些优化级别在代码大小和执行速度之间进行不同的权衡。</p>
+<table>
+<thead>
+<tr>
+<th>优化级别</th>
+<th>编译时间</th>
+<th>执行速度</th>
+<th>代码体积</th>
+<th>可调试性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-O0</td>
+<td>最快</td>
+<td>最慢</td>
+<td>最大</td>
+<td>最好</td>
+</tr>
+<tr>
+<td>-O1</td>
+<td>较快</td>
+<td>较快</td>
+<td>较小</td>
+<td>较好</td>
+</tr>
+<tr>
+<td>-O2</td>
+<td>中等</td>
+<td>快</td>
+<td>中等</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>-O3</td>
+<td>较慢</td>
+<td>最快*</td>
+<td>较大</td>
+<td>差</td>
+</tr>
+<tr>
+<td>-Os</td>
+<td>中等</td>
+<td>较快</td>
+<td>最小</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>-Og</td>
+<td>较快</td>
+<td>中等</td>
+<td>中等</td>
+<td>好</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>linux</category>
       </categories>
       <tags>
-        <tag>Linux性能</tag>
-        <tag>网络</tag>
+        <tag>elf</tag>
       </tags>
   </entry>
   <entry>
@@ -251,25 +306,6 @@
       <tags>
         <tag>arm</tag>
         <tag>bluez</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -382,6 +418,105 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux性能分析-内存</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>内存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux性能分析-网络</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
+<li>方案一：调整程序优先级<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nice -n 20 your_program &amp;</span><br><span class="line">nice -n -20 iperfs -c your_ip  -t 60 -u -b 100M -R</span><br></pre></td></tr></table></figure></li>
+<li>方案二：修改发送、接收缓冲区buffer<br>缓冲区buffer调整到2MB<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2M</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_max</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_max</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmake基础语法</title>
+    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cjson使用</title>
     <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
@@ -413,219 +548,6 @@
       </categories>
       <tags>
         <tag>cjson</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cmake基础语法</title>
-    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker命令</title>
-    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>docker version</code></td>
-<td>显示 Docker 版本信息</td>
-</tr>
-<tr>
-<td><code>docker info</code></td>
-<td>显示 Docker 系统信息</td>
-</tr>
-<tr>
-<td><code>docker 命令 --help</code></td>
-<td>查看 Docker 命令帮助</td>
-</tr>
-</tbody></table>
-<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
-<p>解释：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>REPOSITORY</code></td>
-<td>镜像的仓库源</td>
-</tr>
-<tr>
-<td><code>TAG</code></td>
-<td>镜像的标签</td>
-</tr>
-<tr>
-<td><code>IMAGE ID</code></td>
-<td>镜像的 ID</td>
-</tr>
-<tr>
-<td><code>CREATED</code></td>
-<td>镜像的创建时间</td>
-</tr>
-<tr>
-<td><code>SIZE</code></td>
-<td>镜像的大小</td>
-</tr>
-<tr>
-<td>可选项：</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><code>-a, --all</code>：列出所有镜像</li>
-<li><code>-q, --quiet</code>：只显示镜像 ID</li>
-</ul>
-<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
-<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
-<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>--name=&quot;Name&quot;</code></td>
-<td>容器名字</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>后台方式运行</td>
-</tr>
-<tr>
-<td>-it</td>
-<td>交互方式运行</td>
-</tr>
-<tr>
-<td>-p</td>
-<td>指定容器的端口</td>
-</tr>
-<tr>
-<td>示例:</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol>
-<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
-<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
-<li>exit：停止并退出容器</li>
-<li>Ctrl + P + Q：退出但不停止容器</li>
-</ul>
-<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
-<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
-<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
-<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
-<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
-<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
-<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 –volumes-from 实现多个容器数据同步</li>
-<li>删除父容器不会删除共享数据</li>
-</ul>
-<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
-<ol>
-<li>新建 Dockerfile 文件</li>
-<li><code>docker build</code> 构建镜像</li>
-<li><code>docker run</code> 运行镜像</li>
-<li><code>docker push</code> 发布镜像</li>
-</ol>
-<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FROM</td>
-<td>基础镜像</td>
-</tr>
-<tr>
-<td>MAINTAINER</td>
-<td>镜像作者（姓名+邮箱）</td>
-</tr>
-<tr>
-<td>RUN</td>
-<td>镜像构建时运行的命令</td>
-</tr>
-<tr>
-<td>ADD</td>
-<td>添加内容（会自动解压）</td>
-</tr>
-<tr>
-<td>WORKDIR</td>
-<td>镜像的工作目录</td>
-</tr>
-<tr>
-<td>VOLUME</td>
-<td>挂载的目录</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>暴露的端口</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>容器启动时运行的命令（只有最后一个生效）</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>容器启动时运行的命令（可追加）</td>
-</tr>
-<tr>
-<td>ONBUILD</td>
-<td>当被继承时运行的指令</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>设置环境变量</td>
-</tr>
-</tbody></table>
-<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
-<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
-<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
-<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
-<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
-<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
-<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
-<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -887,35 +809,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vs-picgo使用GitHub图床</title>
-    <url>/2025/10/28/wiki/vs-picgo%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
-<h2 id="安装picgo插件"><a href="#安装picgo插件" class="headerlink" title="安装picgo插件"></a>安装picgo插件</h2><p>插件商店搜索<code>picgo</code>，安装：</p>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164656.png" alt="20251028164656"></p>
-<h2 id="配置picgo插件"><a href="#配置picgo插件" class="headerlink" title="配置picgo插件"></a>配置picgo插件</h2><p>打开设置picgo设置界面，填写下面4项信息：</p>
-<ul>
-<li><code>Picgo › Pic Bed › GitHub: Repo</code>注意按照<code>username/reponame</code>,注意不是仓库链接</li>
-<li><code>Picgo › Pic Bed › GitHub: Token</code>:登录github网站后，<a href="https://github.com/settings/tokens">生成Token</a></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164920.png" alt="20251028164920"></p>
-<ul>
-<li>token选择classic，并且选中repo权限（注意token生成后，只会显示一次，记得保存）<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165718.png" alt="20251028165718"><br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165853.png" alt="20251028165853"></li>
-</ul>
-<h2 id="使用picgo插件（Windows）"><a href="#使用picgo插件（Windows）" class="headerlink" title="使用picgo插件（Windows）"></a>使用picgo插件（Windows）</h2><ul>
-<li><code>Ctrl+Alt+U</code>: 从剪切板上传，上传成功后会自动添加链接</li>
-<li><code>Ctrl+Alt+E</code>: 从文件管理器上传，上传成功后会自动添加链接</li>
-<li><code>Ctrl+Alt+O</code>: 从提供的图片路径上传，上传成功后会自动添加链接</li>
-</ul>
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>图床</tag>
-        <tag>vs-picgo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git提交格式 - Conventional Commits</title>
     <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
@@ -988,6 +881,206 @@
       </tags>
   </entry>
   <entry>
+    <title>docker命令</title>
+    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docker version</code></td>
+<td>显示 Docker 版本信息</td>
+</tr>
+<tr>
+<td><code>docker info</code></td>
+<td>显示 Docker 系统信息</td>
+</tr>
+<tr>
+<td><code>docker 命令 --help</code></td>
+<td>查看 Docker 命令帮助</td>
+</tr>
+</tbody></table>
+<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>REPOSITORY</code></td>
+<td>镜像的仓库源</td>
+</tr>
+<tr>
+<td><code>TAG</code></td>
+<td>镜像的标签</td>
+</tr>
+<tr>
+<td><code>IMAGE ID</code></td>
+<td>镜像的 ID</td>
+</tr>
+<tr>
+<td><code>CREATED</code></td>
+<td>镜像的创建时间</td>
+</tr>
+<tr>
+<td><code>SIZE</code></td>
+<td>镜像的大小</td>
+</tr>
+<tr>
+<td>可选项：</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>-a, --all</code>：列出所有镜像</li>
+<li><code>-q, --quiet</code>：只显示镜像 ID</li>
+</ul>
+<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
+<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--name=&quot;Name&quot;</code></td>
+<td>容器名字</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>后台方式运行</td>
+</tr>
+<tr>
+<td>-it</td>
+<td>交互方式运行</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定容器的端口</td>
+</tr>
+<tr>
+<td>示例:</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
+<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
+<li>exit：停止并退出容器</li>
+<li>Ctrl + P + Q：退出但不停止容器</li>
+</ul>
+<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
+<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
+<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
+<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
+<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 –volumes-from 实现多个容器数据同步</li>
+<li>删除父容器不会删除共享数据</li>
+</ul>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
+<ol>
+<li>新建 Dockerfile 文件</li>
+<li><code>docker build</code> 构建镜像</li>
+<li><code>docker run</code> 运行镜像</li>
+<li><code>docker push</code> 发布镜像</li>
+</ol>
+<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>基础镜像</td>
+</tr>
+<tr>
+<td>MAINTAINER</td>
+<td>镜像作者（姓名+邮箱）</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>镜像构建时运行的命令</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加内容（会自动解压）</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>镜像的工作目录</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>挂载的目录</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>暴露的端口</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>容器启动时运行的命令（只有最后一个生效）</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>容器启动时运行的命令（可追加）</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>当被继承时运行的指令</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量</td>
+</tr>
+</tbody></table>
+<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
+<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
+<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
+<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
+<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
+<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
+<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
+</ol>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo文章加密</title>
     <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
@@ -1005,150 +1098,32 @@
       </tags>
   </entry>
   <entry>
-    <title>音视频扫盲</title>
-    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>帧率，FPS</td>
-<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
-</tr>
-<tr>
-<td>码率，bitRate</td>
-<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
-</tr>
-<tr>
-<td>分辨率</td>
-<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
-</tr>
-<tr>
-<td>GOP</td>
-<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
-</tr>
-<tr>
-<td>YUV</td>
-<td>一种颜色编码系统，常用于视频处理与压缩</td>
-</tr>
-<tr>
-<td>NV12</td>
-<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
-</tr>
-<tr>
-<td>H265</td>
-<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
-</tr>
-<tr>
-<td>H264</td>
-<td>目前最常用的视频编码标准，兼容性好</td>
-</tr>
-<tr>
-<td>MP4</td>
-<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
-</tr>
-<tr>
-<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
-<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
-</tr>
-<tr>
-<td>RGB</td>
-<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
-</tr>
-<tr>
-<td>色度抽样</td>
-<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
-</tr>
-<tr>
-<td>量化参数（QP）</td>
-<td>控制编码质量和压缩率的参数</td>
-</tr>
-<tr>
-<td>编码档次（Profile）</td>
-<td>如 Baseline、Main、High，定义编码功能的子集</td>
-</tr>
-<tr>
-<td>级别（Level）</td>
-<td>限制视频参数的等级，如最大分辨率、码率等</td>
-</tr>
-<tr>
-<td>VUI</td>
-<td>视频可用性信息（Video Usability Information）</td>
-</tr>
-<tr>
-<td>SEI</td>
-<td>补充增强信息（Supplemental Enhancement Information）</td>
-</tr>
-<tr>
-<td>运动估计（Motion Estimation）</td>
-<td>视频编码中用于减少时间冗余的技术</td>
-</tr>
-<tr>
-<td>熵编码</td>
-<td>如 CABAC（上下文自适应二进制算术编码）</td>
-</tr>
-</tbody></table>
-<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>采样率</td>
-<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
-</tr>
-<tr>
-<td>位深</td>
-<td>每个采样点的精度，如 16bit、24bit</td>
-</tr>
-<tr>
-<td>声道数</td>
-<td>如单声道（Mono）、立体声（Stereo）</td>
-</tr>
-<tr>
-<td>音频编码格式</td>
-<td>如 AAC、MP3、OPUS、FLAC</td>
-</tr>
-<tr>
-<td>AAC</td>
-<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
-</tr>
-<tr>
-<td>MP3</td>
-<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
-</tr>
-<tr>
-<td>PCM</td>
-<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
-</tr>
-<tr>
-<td>比特率</td>
-<td>音频每秒钟的数据量，影响音质和文件大小</td>
-</tr>
-<tr>
-<td>声道布局</td>
-<td>如 5.1、7.1 环绕声</td>
-</tr>
-<tr>
-<td>声压级（SPL）</td>
-<td>声音的强度级别，单位分贝（dB）</td>
-</tr>
-<tr>
-<td>频响范围</td>
-<td>设备或系统能响应的频率范围</td>
-</tr>
-</tbody></table>
+    <title>vs-picgo使用GitHub图床</title>
+    <url>/2025/10/28/wiki/vs-picgo%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
+<h2 id="安装picgo插件"><a href="#安装picgo插件" class="headerlink" title="安装picgo插件"></a>安装picgo插件</h2><p>插件商店搜索<code>picgo</code>，安装：</p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164656.png" alt="20251028164656"></p>
+<h2 id="配置picgo插件"><a href="#配置picgo插件" class="headerlink" title="配置picgo插件"></a>配置picgo插件</h2><p>打开设置picgo设置界面，填写下面4项信息：</p>
+<ul>
+<li><code>Picgo › Pic Bed › GitHub: Repo</code>注意按照<code>username/reponame</code>,注意不是仓库链接</li>
+<li><code>Picgo › Pic Bed › GitHub: Token</code>:登录github网站后，<a href="https://github.com/settings/tokens">生成Token</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028164920.png" alt="20251028164920"></p>
+<ul>
+<li>token选择classic，并且选中repo权限（注意token生成后，只会显示一次，记得保存）<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165718.png" alt="20251028165718"><br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251028165853.png" alt="20251028165853"></li>
+</ul>
+<h2 id="使用picgo插件（Windows）"><a href="#使用picgo插件（Windows）" class="headerlink" title="使用picgo插件（Windows）"></a>使用picgo插件（Windows）</h2><ul>
+<li><code>Ctrl+Alt+U</code>: 从剪切板上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+E</code>: 从文件管理器上传，上传成功后会自动添加链接</li>
+<li><code>Ctrl+Alt+O</code>: 从提供的图片路径上传，上传成功后会自动添加链接</li>
+</ul>
 ]]></content>
       <categories>
         <category>wiki</category>
       </categories>
       <tags>
-        <tag>音视频相关</tag>
+        <tag>图床</tag>
+        <tag>vs-picgo</tag>
       </tags>
   </entry>
   <entry>
@@ -1341,6 +1316,153 @@
       </categories>
       <tags>
         <tag>kernel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音视频扫盲</title>
+    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>帧率，FPS</td>
+<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
+</tr>
+<tr>
+<td>码率，bitRate</td>
+<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
+</tr>
+<tr>
+<td>GOP</td>
+<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
+</tr>
+<tr>
+<td>YUV</td>
+<td>一种颜色编码系统，常用于视频处理与压缩</td>
+</tr>
+<tr>
+<td>NV12</td>
+<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
+</tr>
+<tr>
+<td>H265</td>
+<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
+</tr>
+<tr>
+<td>H264</td>
+<td>目前最常用的视频编码标准，兼容性好</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
+</tr>
+<tr>
+<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
+<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
+</tr>
+<tr>
+<td>色度抽样</td>
+<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
+</tr>
+<tr>
+<td>量化参数（QP）</td>
+<td>控制编码质量和压缩率的参数</td>
+</tr>
+<tr>
+<td>编码档次（Profile）</td>
+<td>如 Baseline、Main、High，定义编码功能的子集</td>
+</tr>
+<tr>
+<td>级别（Level）</td>
+<td>限制视频参数的等级，如最大分辨率、码率等</td>
+</tr>
+<tr>
+<td>VUI</td>
+<td>视频可用性信息（Video Usability Information）</td>
+</tr>
+<tr>
+<td>SEI</td>
+<td>补充增强信息（Supplemental Enhancement Information）</td>
+</tr>
+<tr>
+<td>运动估计（Motion Estimation）</td>
+<td>视频编码中用于减少时间冗余的技术</td>
+</tr>
+<tr>
+<td>熵编码</td>
+<td>如 CABAC（上下文自适应二进制算术编码）</td>
+</tr>
+</tbody></table>
+<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>采样率</td>
+<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
+</tr>
+<tr>
+<td>位深</td>
+<td>每个采样点的精度，如 16bit、24bit</td>
+</tr>
+<tr>
+<td>声道数</td>
+<td>如单声道（Mono）、立体声（Stereo）</td>
+</tr>
+<tr>
+<td>音频编码格式</td>
+<td>如 AAC、MP3、OPUS、FLAC</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
+</tr>
+<tr>
+<td>比特率</td>
+<td>音频每秒钟的数据量，影响音质和文件大小</td>
+</tr>
+<tr>
+<td>声道布局</td>
+<td>如 5.1、7.1 环绕声</td>
+</tr>
+<tr>
+<td>声压级（SPL）</td>
+<td>声音的强度级别，单位分贝（dB）</td>
+</tr>
+<tr>
+<td>频响范围</td>
+<td>设备或系统能响应的频率范围</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
       </tags>
   </entry>
 </search>

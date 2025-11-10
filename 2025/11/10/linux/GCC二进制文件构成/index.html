@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GCC二进制文件构成 | L.S.W</title><meta name="author" content="蒋有才"><meta name="copyright" content="蒋有才"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。 查询文件格式file查看是否是ELF格式格式：file [file path] 10:31:34 ELF $file *json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCC二进制文件构成">
+<meta property="og:url" content="https://chinakai.github.io/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/index.html">
+<meta property="og:site_name" content="L.S.W">
+<meta property="og:description" content="GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。 查询文件格式file查看是否是ELF格式格式：file [file path] 10:31:34 ELF $file *json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chinakai.github.io/img/1.svg">
+<meta property="article:published_time" content="2025-11-10T01:20:57.000Z">
+<meta property="article:modified_time" content="2025-11-10T06:39:33.582Z">
+<meta property="article:author" content="蒋有才">
+<meta property="article:tag" content="elf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chinakai.github.io/img/1.svg"><link rel="shortcut icon" href="/img/1.svg"><link rel="canonical" href="https://chinakai.github.io/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GCC二进制文件构成',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-10 14:39:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4470443_xkzqkn8l8x9.css"><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1.svg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-24gl-tags3"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-gongju"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></li><li><a class="site-page child" href="/messageboard/"><i class="fa-fw iconfont icon-xiaoxi"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="L.S.W"><span class="site-name">L.S.W</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-24gl-tags3"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw iconfont icon-gongju"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></li><li><a class="site-page child" href="/messageboard/"><i class="fa-fw iconfont icon-xiaoxi"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">GCC二进制文件构成</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-10T01:20:57.000Z" title="发表于 2025-11-10 09:20:57">2025-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-10T06:39:33.582Z" title="更新于 2025-11-10 14:39:33">2025-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">726</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GCC二进制文件构成"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p><em>GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。</em></p>
+<h2 id="查询文件格式"><a href="#查询文件格式" class="headerlink" title="查询文件格式"></a>查询文件格式</h2><h3 id="file查看是否是ELF格式"><a href="#file查看是否是ELF格式" class="headerlink" title="file查看是否是ELF格式"></a><code>file</code>查看是否是ELF格式</h3><p>格式：<code>file [file path]</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:31:34 ELF <span class="variable">$file</span> *</span><br><span class="line">json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, with debug_info, not stripped</span><br><span class="line">libcjson.so:  ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, not stripped</span><br><span class="line">libjson-c.a:  current ar archive</span><br></pre></td></tr></table></figure>
+<h3 id="readelf详细查看ELF文件信息"><a href="#readelf详细查看ELF文件信息" class="headerlink" title="readelf详细查看ELF文件信息"></a><code>readelf</code>详细查看ELF文件信息</h3><p>格式：<code>readelf &lt;option(s)&gt; elf-file(s)</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:46:14 ELF <span class="variable">$readelf</span> -h json_example </span><br><span class="line">ELF Header:</span><br><span class="line">  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 </span><br><span class="line">  Class:                             ELF32</span><br><span class="line">  Data:                              2<span class="string">&#x27;s complement, little endian</span></span><br><span class="line"><span class="string">  Version:                           1 (current)</span></span><br><span class="line"><span class="string">  OS/ABI:                            UNIX - System V</span></span><br><span class="line"><span class="string">  ABI Version:                       0</span></span><br><span class="line"><span class="string">  Type:                              EXEC (Executable file)</span></span><br><span class="line"><span class="string">  Machine:                           ARM</span></span><br><span class="line"><span class="string">  Version:                           0x1</span></span><br><span class="line"><span class="string">  Entry point address:               0x11189</span></span><br><span class="line"><span class="string">  Start of program headers:          52 (bytes into file)</span></span><br><span class="line"><span class="string">  Start of section headers:          143200 (bytes into file)</span></span><br><span class="line"><span class="string">  Flags:                             0x5000400, Version5 EABI, hard-float ABI</span></span><br><span class="line"><span class="string">  Size of this header:               52 (bytes)</span></span><br><span class="line"><span class="string">  Size of program headers:           32 (bytes)</span></span><br><span class="line"><span class="string">  Number of program headers:         8</span></span><br><span class="line"><span class="string">  Size of section headers:           40 (bytes)</span></span><br><span class="line"><span class="string">  Number of section headers:         34</span></span><br><span class="line"><span class="string">  Section header string table index: 33</span></span><br></pre></td></tr></table></figure>
+<h2 id="分析文件体积"><a href="#分析文件体积" class="headerlink" title="分析文件体积"></a>分析文件体积</h2><h3 id="size-du查看文件所占内存-磁盘"><a href="#size-du查看文件所占内存-磁盘" class="headerlink" title="size/du查看文件所占内存&#x2F;磁盘"></a><code>size/du</code>查看文件所占内存&#x2F;磁盘</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:50:12 ELF <span class="variable">$size</span> json_example</span><br><span class="line">   text    data     bss     dec     hex filename</span><br><span class="line">  40726    1032     304   42062    a44e json_example</span><br><span class="line">14:00:42 ELF <span class="variable">$du</span> -k json_example </span><br><span class="line">144     json_example <span class="comment"># k</span></span><br><span class="line">14:00:47 ELF <span class="variable">$du</span> -b json_example </span><br><span class="line">144560  json_exampl <span class="comment"># 字节</span></span><br></pre></td></tr></table></figure>
+<h3 id="字段说明"><a href="#字段说明" class="headerlink" title="字段说明"></a>字段说明</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>示例值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>text</strong></td>
+<td>代码段</td>
+<td>40726 字节</td>
+<td>包含程序的可执行代码（机器指令），通常是只读的</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td>数据段</td>
+<td>1032 字节</td>
+<td>包含已初始化的全局变量和静态变量，占用磁盘空间</td>
+</tr>
+<tr>
+<td><strong>bss</strong></td>
+<td>未初始化数据段</td>
+<td>304 字节</td>
+<td>包含未初始化的全局变量和静态变量，运行时初始化为0</td>
+</tr>
+<tr>
+<td><strong>dec</strong></td>
+<td>十进制总和</td>
+<td>42062 字节</td>
+<td>前三项的总和：40726 + 1032 + 304</td>
+</tr>
+<tr>
+<td><strong>hex</strong></td>
+<td>十六进制总和</td>
+<td>a44e</td>
+<td>总大小的十六进制表示</td>
+</tr>
+<tr>
+<td><strong>filename</strong></td>
+<td>文件名</td>
+<td>json_example</td>
+<td>被分析的可执行文件名称</td>
+</tr>
+</tbody></table>
+<h2 id="体积优化"><a href="#体积优化" class="headerlink" title="体积优化"></a>体积优化</h2><h3 id="移除调试信息"><a href="#移除调试信息" class="headerlink" title="移除调试信息"></a>移除调试信息</h3><ol>
+<li><code>file</code>命令查看是否包含符号信息<br><em>查看是否包含<code>not stripped</code>字段</em><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10:50:26 ELF <span class="variable">$file</span> libcjson.so </span><br><span class="line">libcjson.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, not stripped</span><br><span class="line">13:35:25 ELF <span class="variable">$file</span> json_example </span><br><span class="line">json_example: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, with debug_info, not stripped</span><br></pre></td></tr></table></figure></li>
+<li><code>strip --strip-debug --strip-unneeded libcjson.so</code>移除调试符号<br><em>动态库不能过度<code>strip</code>,不然有可能导致无法使用，上面两个参数是相对安全的参数</em></li>
+<li><code>strip json_example</code>移除所有调试信息</li>
+</ol>
+<h3 id="Os-编译选项"><a href="#Os-编译选项" class="headerlink" title="-Os 编译选项"></a><code>-Os</code> 编译选项</h3><p><code>GCC</code>的<code>-O</code>选项是一组用于控制编译优化级别的参数，这些优化级别在代码大小和执行速度之间进行不同的权衡。</p>
+<table>
+<thead>
+<tr>
+<th>优化级别</th>
+<th>编译时间</th>
+<th>执行速度</th>
+<th>代码体积</th>
+<th>可调试性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-O0</td>
+<td>最快</td>
+<td>最慢</td>
+<td>最大</td>
+<td>最好</td>
+</tr>
+<tr>
+<td>-O1</td>
+<td>较快</td>
+<td>较快</td>
+<td>较小</td>
+<td>较好</td>
+</tr>
+<tr>
+<td>-O2</td>
+<td>中等</td>
+<td>快</td>
+<td>中等</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>-O3</td>
+<td>较慢</td>
+<td>最快*</td>
+<td>较大</td>
+<td>差</td>
+</tr>
+<tr>
+<td>-Os</td>
+<td>中等</td>
+<td>较快</td>
+<td>最小</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>-Og</td>
+<td>较快</td>
+<td>中等</td>
+<td>中等</td>
+<td>好</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://chinakai.github.io">蒋有才</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://chinakai.github.io/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/">https://chinakai.github.io/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://chinakai.github.io" target="_blank">L.S.W</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/elf/">elf</a></div><div class="post_share"><div class="social-share" data-image="/img/1.svg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">查询文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#file%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E6%98%AFELF%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">file查看是否是ELF格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readelf%E8%AF%A6%E7%BB%86%E6%9F%A5%E7%9C%8BELF%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">readelf详细查看ELF文件信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF"><span class="toc-number">2.</span> <span class="toc-text">分析文件体积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#size-du%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%89%80%E5%8D%A0%E5%86%85%E5%AD%98-%E7%A3%81%E7%9B%98"><span class="toc-number">2.1.</span> <span class="toc-text">size&#x2F;du查看文件所占内存&#x2F;磁盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E8%AF%B4%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">字段说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E7%A7%AF%E4%BC%98%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">体积优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF"><span class="toc-number">3.1.</span> <span class="toc-text">移除调试信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Os-%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="toc-number">3.2.</span> <span class="toc-text">-Os 编译选项</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'JhSH8lA9OxDHwn1xBQUA314t-gzGzoHsz',
+      appKey: 'qwWOPR29x1JhnUVUJOqDvZov',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

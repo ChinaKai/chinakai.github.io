@@ -273,6 +273,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu交叉编译Bluez</title>
     <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
@@ -728,6 +767,102 @@
 <li><code>video-frames</code> — 视频处理</li>
 </ul>
 <p>也可以自己编写技能，参考现有技能结构。</p>
+<hr>
+<h2 id="会话机制详解"><a href="#会话机制详解" class="headerlink" title="会话机制详解"></a>会话机制详解</h2><p>OpenClaw 支持多种会话类型，理解它们的区别有助于更好地使用：</p>
+<h3 id="Main-会话（主会话）"><a href="#Main-会话（主会话）" class="headerlink" title="Main 会话（主会话）"></a>Main 会话（主会话）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>通过 Web 界面、Telegram、Discord 等渠道直接对话</li>
+<li>持续的历史记录，上下文连贯</li>
+<li>可以访问 <code>MEMORY.md</code> 等长期记忆文件</li>
+<li>适合日常对话、任务执行</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>日常问答、闲聊</li>
+<li>文件操作、代码编写</li>
+<li>需要上下文记忆的任务</li>
+</ul>
+<h3 id="子会话（Subagent）"><a href="#子会话（Subagent）" class="headerlink" title="子会话（Subagent）"></a>子会话（Subagent）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>独立的隔离会话，不影响主会话</li>
+<li>可以指定不同的模型或参数</li>
+<li>适合并行处理多个任务</li>
+<li>完成后结果返回主会话</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>并行处理多个独立任务</li>
+<li>需要不同模型处理同一问题（对比结果）</li>
+<li>长时间运行的任务（避免阻塞主会话）</li>
+<li>敏感操作（隔离风险）</li>
+</ul>
+<p><strong>如何创建：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在主会话中调用</span></span><br><span class="line">spawn subagent <span class="string">&quot;任务描述&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ACP-会话（Agent-Coding-Protocol）"><a href="#ACP-会话（Agent-Coding-Protocol）" class="headerlink" title="ACP 会话（Agent Coding Protocol）"></a>ACP 会话（Agent Coding Protocol）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>专门用于代码编写和开发任务</li>
+<li>支持 Codex、Claude Code、Pi 等编码助手</li>
+<li>可以绑定到特定目录或项目</li>
+<li>支持线程模式（Discord 等群聊场景）</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>大型项目开发</li>
+<li>代码审查和重构</li>
+<li>多文件协同修改</li>
+<li>需要深度代码分析的任务</li>
+</ul>
+<p><strong>如何创建：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Discord 等支持线程的渠道</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="会话对比表"><a href="#会话对比表" class="headerlink" title="会话对比表"></a>会话对比表</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Main 会话</th>
+<th>子会话</th>
+<th>ACP 会话</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上下文连续性</td>
+<td>✅ 完整历史</td>
+<td>❌ 独立</td>
+<td>⚠️ 线程内连续</td>
+</tr>
+<tr>
+<td>访问 MEMORY.md</td>
+<td>✅ 可以</td>
+<td>❌ 不可以</td>
+<td>❌ 不可以</td>
+</tr>
+<tr>
+<td>并行执行</td>
+<td>❌ 顺序</td>
+<td>✅ 并行</td>
+<td>✅ 并行</td>
+</tr>
+<tr>
+<td>适合任务</td>
+<td>日常对话</td>
+<td>独立子任务</td>
+<td>代码开发</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>长期</td>
+<td>任务完成即结束</td>
+<td>可长期&#x2F;临时</td>
+</tr>
+</tbody></table>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
+<li><strong>简单任务</strong> → 直接在 Main 会话完成</li>
+<li><strong>多个独立任务</strong> → 使用子会话并行处理</li>
+<li><strong>复杂开发</strong> → 使用 ACP 会话，绑定到项目目录</li>
+<li><strong>需要记忆</strong> → 确保在 Main 会话，或主动更新 MEMORY.md</li>
+</ol>
+<hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OpenClaw 的核心优势：</p>
 <ul>
 <li><strong>本地部署</strong> — 数据隐私可控</li>
@@ -1495,23 +1630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo文章加密</title>
-    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>hexo-blog-encrypt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vs-picgo使用GitHub图床</title>
     <url>/2025/10/28/wiki/vs-picgo%E4%BD%BF%E7%94%A8GitHub%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于平时使用vscode编辑md文档，文档内添加图片在所难免，记录下vscode安装picgo插件以及使用github图床的说明。</p>
@@ -1538,6 +1656,23 @@
       <tags>
         <tag>图床</tag>
         <tag>vs-picgo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo文章加密</title>
+    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>hexo-blog-encrypt</tag>
       </tags>
   </entry>
   <entry>
@@ -1921,45 +2056,6 @@
       </categories>
       <tags>
         <tag>kernel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
       </tags>
   </entry>
 </search>

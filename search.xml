@@ -710,6 +710,137 @@
 <td>清空当前对话</td>
 </tr>
 </tbody></table>
+<h3 id="会话内命令详解"><a href="#会话内命令详解" class="headerlink" title="会话内命令详解"></a>会话内命令详解</h3><p>OpenClaw 支持多种会话内命令，在聊天窗口直接输入即可执行。以下是常用命令的详细说明：</p>
+<h4 id="基础会话命令"><a href="#基础会话命令" class="headerlink" title="基础会话命令"></a>基础会话命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/new</code></td>
+<td>开启新会话</td>
+<td><code>/new</code></td>
+<td>创建全新会话，之前的对话历史会被清空，适合开始新话题</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>清空当前对话</td>
+<td><code>/clear</code></td>
+<td>清除当前会话的显示内容，但保持会话不断开</td>
+</tr>
+<tr>
+<td><code>/status</code></td>
+<td>查看会话状态</td>
+<td><code>/status</code></td>
+<td>显示当前使用的模型、运行时间、token 消耗等信息</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>切换模型</td>
+<td><code>/model</code> 或 <code>/model gpt-4o</code></td>
+<td>不带参数列出可用模型，带参数直接切换指定模型</td>
+</tr>
+<tr>
+<td><code>/reasoning</code></td>
+<td>开关推理模式</td>
+<td><code>/reasoning</code></td>
+<td>开启后 AI 会显示思考过程，适合复杂问题；再次输入关闭</td>
+</tr>
+</tbody></table>
+<h4 id="记忆管理命令"><a href="#记忆管理命令" class="headerlink" title="记忆管理命令"></a>记忆管理命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/memory</code></td>
+<td>查看长期记忆</td>
+<td><code>/memory</code></td>
+<td>显示 MEMORY.md 中记录的重要信息，快速恢复上下文</td>
+</tr>
+<tr>
+<td><code>/remember</code></td>
+<td>记住某事</td>
+<td><code>/remember 我的服务器IP是192.168.1.100</code></td>
+<td>将信息写入长期记忆，下次会话自动记住</td>
+</tr>
+</tbody></table>
+<h4 id="子会话管理命令"><a href="#子会话管理命令" class="headerlink" title="子会话管理命令"></a>子会话管理命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/spawn</code></td>
+<td>创建子会话</td>
+<td><code>/spawn 帮我写一段Python代码</code></td>
+<td>启动独立子会话处理任务，不干扰当前对话</td>
+</tr>
+<tr>
+<td><code>/subagents</code></td>
+<td>管理子会话</td>
+<td><code>/subagents</code></td>
+<td>列出所有子会话，可查看状态或终止任务</td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>查看所有会话</td>
+<td><code>/sessions</code></td>
+<td>显示当前活跃的所有会话列表</td>
+</tr>
+</tbody></table>
+<h4 id="工具与帮助命令"><a href="#工具与帮助命令" class="headerlink" title="工具与帮助命令"></a>工具与帮助命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tools</code></td>
+<td>列出可用工具</td>
+<td><code>/tools</code></td>
+<td>显示当前启用的技能和工具，如天气查询、代码助手等</td>
+</tr>
+<tr>
+<td><code>/skills</code></td>
+<td>列出可用技能</td>
+<td><code>/skills</code></td>
+<td>同 <code>/tools</code>，查看可以调用的功能模块</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>显示帮助</td>
+<td><code>/help</code></td>
+<td>列出所有可用命令及其简要说明</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>查看配置</td>
+<td><code>/config</code></td>
+<td>显示当前 OpenClaw 的配置摘要</td>
+</tr>
+</tbody></table>
+<h4 id="命令使用小贴士"><a href="#命令使用小贴士" class="headerlink" title="命令使用小贴士"></a>命令使用小贴士</h4><ul>
+<li><strong>大小写不敏感</strong>：<code>/STATUS</code> 和 <code>/status</code> 效果相同</li>
+<li><strong>随时可用</strong>：大部分命令在对话的任何阶段都可以使用</li>
+<li><strong>查看结果</strong>：执行命令后，AI 会显示操作结果或相关信息</li>
+<li><strong>错误处理</strong>：如果命令不存在，AI 会提示并建议相似命令</li>
+</ul>
 <h3 id="工作目录说明"><a href="#工作目录说明" class="headerlink" title="工作目录说明"></a>工作目录说明</h3><p>OpenClaw 会在用户目录创建 workspace：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/openclaw-workspace/</span><br><span class="line">├── AGENTS.md      # 工作手册</span><br><span class="line">├── IDENTITY.md    # AI 身份配置</span><br><span class="line">├── USER.md        # 用户信息</span><br><span class="line">├── SOUL.md        # 行为准则</span><br><span class="line">├── TOOLS.md       # 工具配置</span><br><span class="line">├── MEMORY.md      # 长期记忆</span><br><span class="line">├── memory/        # 每日日志</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
 
@@ -1269,6 +1400,107 @@
       </tags>
   </entry>
   <entry>
+    <title>ubunut使用minicom</title>
+    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
+<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
+<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
+<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
+<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
+<li>启动参数<code>-O timestamp=extended</code></li>
+</ul>
+<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
+<ul>
+<li>日志保存到自定义的默认文件夹</li>
+<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
+<li>启动时提供设备节点选择</li>
+</ul>
+<p>修改<code>LOG_DIR</code>到自定义目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>minicom</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git提交格式 - Conventional Commits</title>
+    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
+<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
+<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>feat</td>
+<td>新增功能</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复bug</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>仅修改了文档</td>
+</tr>
+<tr>
+<td>style</td>
+<td>修改了代码风格，不影响代码逻辑</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>代码重构，没有新增功能也没有修复bug</td>
+</tr>
+<tr>
+<td>perf</td>
+<td>性能优化</td>
+</tr>
+<tr>
+<td>test</td>
+<td>增加或修改测试用例</td>
+</tr>
+<tr>
+<td>build</td>
+<td>编译脚本</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>CI CD相关</td>
+</tr>
+<tr>
+<td>chore</td>
+<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
+</tr>
+<tr>
+<td>revert</td>
+<td>回退</td>
+</tr>
+</tbody></table>
+<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
+<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
+<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>Conventional Commits</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker命令</title>
     <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
@@ -1685,107 +1917,6 @@
       </categories>
       <tags>
         <tag>iperf3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubunut使用minicom</title>
-    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
-<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
-<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
-<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
-<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
-<li>启动参数<code>-O timestamp=extended</code></li>
-</ul>
-<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
-<ul>
-<li>日志保存到自定义的默认文件夹</li>
-<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
-<li>启动时提供设备节点选择</li>
-</ul>
-<p>修改<code>LOG_DIR</code>到自定义目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>minicom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git提交格式 - Conventional Commits</title>
-    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
-<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
-<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>feat</td>
-<td>新增功能</td>
-</tr>
-<tr>
-<td>fix</td>
-<td>修复bug</td>
-</tr>
-<tr>
-<td>docs</td>
-<td>仅修改了文档</td>
-</tr>
-<tr>
-<td>style</td>
-<td>修改了代码风格，不影响代码逻辑</td>
-</tr>
-<tr>
-<td>refactor</td>
-<td>代码重构，没有新增功能也没有修复bug</td>
-</tr>
-<tr>
-<td>perf</td>
-<td>性能优化</td>
-</tr>
-<tr>
-<td>test</td>
-<td>增加或修改测试用例</td>
-</tr>
-<tr>
-<td>build</td>
-<td>编译脚本</td>
-</tr>
-<tr>
-<td>ci</td>
-<td>CI CD相关</td>
-</tr>
-<tr>
-<td>chore</td>
-<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
-</tr>
-<tr>
-<td>revert</td>
-<td>回退</td>
-</tr>
-</tbody></table>
-<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
-<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
-<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
-<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>Conventional Commits</tag>
       </tags>
   </entry>
   <entry>

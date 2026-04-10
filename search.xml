@@ -71,6 +71,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux性能分析-CPU</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>CPU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GCC二进制文件构成</title>
     <url>/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。</em></p>
@@ -233,18 +245,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux性能分析-CPU</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>CPU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux性能分析-内存</title>
     <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
@@ -254,61 +254,6 @@
       <tags>
         <tag>Linux性能</tag>
         <tag>内存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-网络</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
-<li>方案一：调整程序优先级<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nice -n 20 your_program &amp;</span><br><span class="line">nice -n -20 iperfs -c your_ip  -t 60 -u -b 100M -R</span><br></pre></td></tr></table></figure></li>
-<li>方案二：修改发送、接收缓冲区buffer<br>缓冲区buffer调整到2MB<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2M</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_max</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_max</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
       </tags>
   </entry>
   <entry>
@@ -413,6 +358,61 @@
       <tags>
         <tag>ubuntu</tag>
         <tag>交叉编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux性能分析-网络</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
+<li>方案一：调整程序优先级<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nice -n 20 your_program &amp;</span><br><span class="line">nice -n -20 iperfs -c your_ip  -t 60 -u -b 100M -R</span><br></pre></td></tr></table></figure></li>
+<li>方案二：修改发送、接收缓冲区buffer<br>缓冲区buffer调整到2MB<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2M</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/rmem_max</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_default</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">echo</span> 2097152 &gt; /proc/sys/net/core/wmem_max</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
       </tags>
   </entry>
   <entry>
@@ -1153,6 +1153,257 @@
 <li><strong>需要记忆</strong> → 确保在 Main 会话，或主动更新 MEMORY.md</li>
 </ol>
 <hr>
+<h2 id="Skills-技能系统详解"><a href="#Skills-技能系统详解" class="headerlink" title="Skills 技能系统详解"></a>Skills 技能系统详解</h2><p>OpenClaw 的技能系统（Skills）是其核心扩展机制，让 AI 能够执行各种专业任务。技能位于 <code>node_modules/openclaw/skills/</code> 目录，每个技能都有独立的 <code>SKILL.md</code> 说明文件。</p>
+<h3 id="内置技能一览"><a href="#内置技能一览" class="headerlink" title="内置技能一览"></a>内置技能一览</h3><table>
+<thead>
+<tr>
+<th>技能名称</th>
+<th>功能描述</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>coding-agent</code></td>
+<td>代码助手（Codex&#x2F;Claude Code&#x2F;Pi）</td>
+<td>大型项目开发、代码审查、重构</td>
+</tr>
+<tr>
+<td><code>weather</code></td>
+<td>天气查询</td>
+<td>获取当前天气和预报</td>
+</tr>
+<tr>
+<td><code>video-frames</code></td>
+<td>视频帧提取</td>
+<td>从视频中提取帧或短片段</td>
+</tr>
+<tr>
+<td><code>healthcheck</code></td>
+<td>安全加固检查</td>
+<td>系统安全审计、防火墙配置</td>
+</tr>
+<tr>
+<td><code>node-connect</code></td>
+<td>节点连接诊断</td>
+<td>修复移动端配对问题</td>
+</tr>
+<tr>
+<td><code>skill-creator</code></td>
+<td>技能创建工具</td>
+<td>开发新技能、审核现有技能</td>
+</tr>
+</tbody></table>
+<h3 id="技能使用方法"><a href="#技能使用方法" class="headerlink" title="技能使用方法"></a>技能使用方法</h3><h4 id="1-自动调用"><a href="#1-自动调用" class="headerlink" title="1. 自动调用"></a>1. 自动调用</h4><p>大部分技能会在 AI 判断需要时<strong>自动调用</strong>。例如：</p>
+<ul>
+<li>你说”查一下北京天气” → 自动调用 <code>weather</code> 技能</li>
+<li>你说”帮我写个 Python 脚本” → 自动调用 <code>coding-agent</code> 技能</li>
+</ul>
+<h4 id="2-查看可用技能"><a href="#2-查看可用技能" class="headerlink" title="2. 查看可用技能"></a>2. 查看可用技能</h4><p>在对话中输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/skills</span><br><span class="line"># 或</span><br><span class="line">/tools</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-手动指定技能"><a href="#3-手动指定技能" class="headerlink" title="3. 手动指定技能"></a>3. 手动指定技能</h4><p>某些技能需要明确触发：</p>
+<p><strong>coding-agent 技能示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建子会话处理代码任务</span></span><br><span class="line">spawn subagent <span class="string">&quot;帮我重构这个项目的登录模块&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 Discord 中使用 ACP 模式（推荐）</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>skill-creator 技能示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建新技能</span></span><br><span class="line">帮我创建一个名为 my-skill 的新技能</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审核现有技能</span></span><br><span class="line">帮我审核 video-frames 技能</span><br></pre></td></tr></table></figure>
+
+<h3 id="技能工作原理"><a href="#技能工作原理" class="headerlink" title="技能工作原理"></a>技能工作原理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户请求 → AI 分析 → 匹配技能 → 读取 SKILL.md → 执行操作 → 返回结果</span><br></pre></td></tr></table></figure>
+
+<p>每个技能的 <code>SKILL.md</code> 包含：</p>
+<ul>
+<li><strong>描述</strong>：技能功能和适用场景</li>
+<li><strong>使用方法</strong>：如何调用该技能</li>
+<li><strong>参数说明</strong>：需要的输入参数</li>
+<li><strong>示例</strong>：典型使用案例</li>
+</ul>
+<h3 id="自定义技能开发"><a href="#自定义技能开发" class="headerlink" title="自定义技能开发"></a>自定义技能开发</h3><p>如果你想开发自己的技能，可以使用 <code>skill-creator</code> 技能：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 告诉 AI 你要创建技能</span></span><br><span class="line"><span class="string">&quot;帮我创建一个名为 data-analysis 的技能，用于数据分析&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. AI 会引导你完成：</span></span><br><span class="line"><span class="comment">#    - 创建技能目录结构</span></span><br><span class="line"><span class="comment">#    - 编写 SKILL.md</span></span><br><span class="line"><span class="comment">#    - 添加必要的脚本文件</span></span><br></pre></td></tr></table></figure>
+
+<p>技能目录结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">skills/</span><br><span class="line">└── your-skill/</span><br><span class="line">    ├── SKILL.md          # 技能说明（必需）</span><br><span class="line">    ├── scripts/          # 辅助脚本（可选）</span><br><span class="line">    │   └── helper.sh</span><br><span class="line">    └── references/       # 参考资料（可选）</span><br><span class="line">        └── example.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="技能最佳实践"><a href="#技能最佳实践" class="headerlink" title="技能最佳实践"></a>技能最佳实践</h3><ol>
+<li><strong>阅读 SKILL.md</strong>：使用技能前，AI 会自动阅读对应技能的说明文件</li>
+<li><strong>提供上下文</strong>：复杂任务时，提供足够的背景信息</li>
+<li><strong>分步骤执行</strong>：大型任务拆分成多个小步骤</li>
+<li><strong>检查输出</strong>：技能执行后检查结果是否符合预期</li>
+</ol>
+<hr>
+<h2 id="Cron-定时任务详解"><a href="#Cron-定时任务详解" class="headerlink" title="Cron 定时任务详解"></a>Cron 定时任务详解</h2><p>OpenClaw 内置 Cron 系统，可以设置定时任务让 AI 自动执行周期性工作。</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Job</strong></td>
+<td>一个定时任务，包含执行时间和操作</td>
+</tr>
+<tr>
+<td><strong>Schedule</strong></td>
+<td>调度规则（一次性、间隔、Cron表达式）</td>
+</tr>
+<tr>
+<td><strong>Payload</strong></td>
+<td>任务内容（系统事件或 Agent 执行）</td>
+</tr>
+<tr>
+<td><strong>Delivery</strong></td>
+<td>结果投递方式（静默、公告、Webhook）</td>
+</tr>
+</tbody></table>
+<h3 id="定时任务类型"><a href="#定时任务类型" class="headerlink" title="定时任务类型"></a>定时任务类型</h3><h4 id="1-一次性任务（at）"><a href="#1-一次性任务（at）" class="headerlink" title="1. 一次性任务（at）"></a>1. 一次性任务（at）</h4><p>在指定时间执行一次：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:00:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-周期性任务（every）"><a href="#2-周期性任务（every）" class="headerlink" title="2. 周期性任务（every）"></a>2. 周期性任务（every）</h4><p>按固定间隔重复执行：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span><span class="punctuation">,</span>  <span class="comment">// 每小时</span></span><br><span class="line">    <span class="attr">&quot;anchorMs&quot;</span><span class="punctuation">:</span> <span class="number">1712716800000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Cron-表达式任务"><a href="#3-Cron-表达式任务" class="headerlink" title="3. Cron 表达式任务"></a>3. Cron 表达式任务</h4><p>使用标准 Cron 语法：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * 1&quot;</span><span class="punctuation">,</span>  <span class="comment">// 每周一 9:00</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用-Cron-表达式示例"><a href="#常用-Cron-表达式示例" class="headerlink" title="常用 Cron 表达式示例"></a>常用 Cron 表达式示例</h3><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0 * * * *</code></td>
+<td>每小时</td>
+<td>每小时的第 0 分钟</td>
+</tr>
+<tr>
+<td><code>0 */6 * * *</code></td>
+<td>每 6 小时</td>
+<td>一天 4 次</td>
+</tr>
+<tr>
+<td><code>0 9 * * *</code></td>
+<td>每天 9:00</td>
+<td>早上提醒</td>
+</tr>
+<tr>
+<td><code>0 9 * * 1</code></td>
+<td>每周一 9:00</td>
+<td>周报提醒</td>
+</tr>
+<tr>
+<td><code>0 9 1 * *</code></td>
+<td>每月 1 日 9:00</td>
+<td>月报提醒</td>
+</tr>
+<tr>
+<td><code>*/30 * * * *</code></td>
+<td>每 30 分钟</td>
+<td>高频检查</td>
+</tr>
+</tbody></table>
+<h3 id="任务内容类型（Payload）"><a href="#任务内容类型（Payload）" class="headerlink" title="任务内容类型（Payload）"></a>任务内容类型（Payload）</h3><h4 id="1-系统事件（systemEvent）"><a href="#1-系统事件（systemEvent）" class="headerlink" title="1. 系统事件（systemEvent）"></a>1. 系统事件（systemEvent）</h4><p>在主会话中注入消息，适合提醒类任务：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：该喝水了！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Agent-执行（agentTurn）"><a href="#2-Agent-执行（agentTurn）" class="headerlink" title="2. Agent 执行（agentTurn）"></a>2. Agent 执行（agentTurn）</h4><p>在独立会话中执行 AI 任务，适合复杂操作：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;检查未读邮件和即将到来的日程&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;thinking&quot;</span><span class="punctuation">:</span> <span class="string">&quot;on&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="结果投递方式（Delivery）"><a href="#结果投递方式（Delivery）" class="headerlink" title="结果投递方式（Delivery）"></a>结果投递方式（Delivery）</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>none</code></td>
+<td>静默执行，不通知</td>
+<td>后台维护任务</td>
+</tr>
+<tr>
+<td><code>announce</code></td>
+<td>发送消息到聊天频道</td>
+<td>提醒、报告</td>
+</tr>
+<tr>
+<td><code>webhook</code></td>
+<td>POST 到指定 URL</td>
+<td>集成外部系统</td>
+</tr>
+</tbody></table>
+<h3 id="完整配置示例"><a href="#完整配置示例" class="headerlink" title="完整配置示例"></a>完整配置示例</h3><h4 id="示例-1：每日早报"><a href="#示例-1：每日早报" class="headerlink" title="示例 1：每日早报"></a>示例 1：每日早报</h4><p>每天早上 9 点发送天气和日程提醒：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;每日早报&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * *&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成今日早报：1.查询今日天气 2.检查今日日程 3.总结待办事项&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-2：每小时健康检查"><a href="#示例-2：每小时健康检查" class="headerlink" title="示例 2：每小时健康检查"></a>示例 2：每小时健康检查</h4><p>每小时检查系统状态：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;系统健康检查&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;执行系统健康检查：检查磁盘空间、内存使用、服务状态&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeoutSeconds&quot;</span><span class="punctuation">:</span> <span class="number">300</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;none&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-3：20-分钟后提醒"><a href="#示例-3：20-分钟后提醒" class="headerlink" title="示例 3：20 分钟后提醒"></a>示例 3：20 分钟后提醒</h4><p>一次性提醒任务：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;会议提醒&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:30:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：15 分钟后有项目会议，请准备！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="管理定时任务"><a href="#管理定时任务" class="headerlink" title="管理定时任务"></a>管理定时任务</h3><h4 id="查看所有任务"><a href="#查看所有任务" class="headerlink" title="查看所有任务"></a>查看所有任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron list</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron add --json <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;我的任务&quot;,</span></span><br><span class="line"><span class="string">  &quot;schedule&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;payload&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;sessionTarget&quot;: &quot;isolated&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="立即执行任务"><a href="#立即执行任务" class="headerlink" title="立即执行任务"></a>立即执行任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron run &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron remove &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看执行历史"><a href="#查看执行历史" class="headerlink" title="查看执行历史"></a>查看执行历史</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron runs &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Heartbeat-vs-Cron：如何选择？"><a href="#Heartbeat-vs-Cron：如何选择？" class="headerlink" title="Heartbeat vs Cron：如何选择？"></a>Heartbeat vs Cron：如何选择？</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Heartbeat</th>
+<th>Cron</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>触发方式</td>
+<td>定期轮询（~30分钟）</td>
+<td>精确时间触发</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>较低（可漂移）</td>
+<td>高（精确到分钟）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>批量检查多个项目</td>
+<td>精确时间任务</td>
+</tr>
+<tr>
+<td>会话依赖</td>
+<td>需要主会话上下文</td>
+<td>独立执行</td>
+</tr>
+<tr>
+<td>配置方式</td>
+<td>HEARTBEAT.md</td>
+<td>openclaw cron 命令</td>
+</tr>
+</tbody></table>
+<p><strong>选择建议：</strong></p>
+<ul>
+<li><strong>Heartbeat</strong>：适合检查邮件、日历、通知等多个项目，可以批量处理</li>
+<li><strong>Cron</strong>：适合精确时间的提醒、定期报告、自动化脚本</li>
+</ul>
+<h3 id="定时任务最佳实践"><a href="#定时任务最佳实践" class="headerlink" title="定时任务最佳实践"></a>定时任务最佳实践</h3><ol>
+<li><strong>合理设置超时</strong>：长时间任务设置 <code>timeoutSeconds</code>，避免卡死</li>
+<li><strong>使用隔离会话</strong>：复杂任务用 <code>sessionTarget: isolated</code>，避免影响主会话</li>
+<li><strong>选择合适的投递方式</strong>：<ul>
+<li>重要提醒 → <code>announce</code></li>
+<li>后台任务 → <code>none</code></li>
+<li>系统集成 → <code>webhook</code></li>
+</ul>
+</li>
+<li><strong>添加上下文</strong>：Agent 任务中提供足够的背景信息</li>
+<li><strong>定期检查</strong>：用 <code>cron list</code> 和 <code>cron runs</code> 监控任务状态</li>
+</ol>
+<hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OpenClaw 的核心优势：</p>
 <ul>
 <li><strong>本地部署</strong> — 数据隐私可控</li>
@@ -1354,150 +1605,6 @@
       </categories>
       <tags>
         <tag>claude-code</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cmake基础语法</title>
-    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="链接静态库"><a href="#链接静态库" class="headerlink" title="链接静态库"></a>链接静态库</h2><p><em>编译小工具时，默认情况下C库会使用动态库，可以通过添加下面的语句使用静态链接</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h3><p><em>库文件命名：直接指定 libmbedtls.a 可能被 CMake 误解</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> libmbedtls.a libmbedx509.a libmbedcrypto.a)</span><br></pre></td></tr></table></figure>
-<h3 id="正确示范"><a href="#正确示范" class="headerlink" title="正确示范"></a>正确示范</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> mbedtls mbedx509 lmbedcrypto)</span><br></pre></td></tr></table></figure>
-<h2 id="GCC命令行编译补充"><a href="#GCC命令行编译补充" class="headerlink" title="GCC命令行编译补充"></a>GCC命令行编译补充</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc main.c -I./include -L./lib -l:libmbedtls.a -l:libmbedx509.a -l:libmbedcrypto.a --static</span><br><span class="line">gcc main.c -I./include -L./lib -lmbedtls -lmbedx509 -lmbedcrypto --static</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-I</td>
-<td>设置头文件搜索路径</td>
-<td>-I${PATH}</td>
-</tr>
-<tr>
-<td>-L</td>
-<td>设置库文件搜索路径</td>
-<td>-L${PATH}</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>指定库文件</td>
-<td>-l:libdemo.a&#x2F;-ldemo</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>cmake</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubunut使用minicom</title>
-    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
-<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
-<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
-<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
-<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
-<li>启动参数<code>-O timestamp=extended</code></li>
-</ul>
-<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
-<ul>
-<li>日志保存到自定义的默认文件夹</li>
-<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
-<li>启动时提供设备节点选择</li>
-</ul>
-<p>修改<code>LOG_DIR</code>到自定义目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>minicom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git提交格式 - Conventional Commits</title>
-    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
-<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
-<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>feat</td>
-<td>新增功能</td>
-</tr>
-<tr>
-<td>fix</td>
-<td>修复bug</td>
-</tr>
-<tr>
-<td>docs</td>
-<td>仅修改了文档</td>
-</tr>
-<tr>
-<td>style</td>
-<td>修改了代码风格，不影响代码逻辑</td>
-</tr>
-<tr>
-<td>refactor</td>
-<td>代码重构，没有新增功能也没有修复bug</td>
-</tr>
-<tr>
-<td>perf</td>
-<td>性能优化</td>
-</tr>
-<tr>
-<td>test</td>
-<td>增加或修改测试用例</td>
-</tr>
-<tr>
-<td>build</td>
-<td>编译脚本</td>
-</tr>
-<tr>
-<td>ci</td>
-<td>CI CD相关</td>
-</tr>
-<tr>
-<td>chore</td>
-<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
-</tr>
-<tr>
-<td>revert</td>
-<td>回退</td>
-</tr>
-</tbody></table>
-<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
-<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
-<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
-<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>Conventional Commits</tag>
       </tags>
   </entry>
   <entry>
@@ -1917,6 +2024,150 @@
       </categories>
       <tags>
         <tag>iperf3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmake基础语法</title>
+    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="链接静态库"><a href="#链接静态库" class="headerlink" title="链接静态库"></a>链接静态库</h2><p><em>编译小工具时，默认情况下C库会使用动态库，可以通过添加下面的语句使用静态链接</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h3><p><em>库文件命名：直接指定 libmbedtls.a 可能被 CMake 误解</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> libmbedtls.a libmbedx509.a libmbedcrypto.a)</span><br></pre></td></tr></table></figure>
+<h3 id="正确示范"><a href="#正确示范" class="headerlink" title="正确示范"></a>正确示范</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> mbedtls mbedx509 lmbedcrypto)</span><br></pre></td></tr></table></figure>
+<h2 id="GCC命令行编译补充"><a href="#GCC命令行编译补充" class="headerlink" title="GCC命令行编译补充"></a>GCC命令行编译补充</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc main.c -I./include -L./lib -l:libmbedtls.a -l:libmbedx509.a -l:libmbedcrypto.a --static</span><br><span class="line">gcc main.c -I./include -L./lib -lmbedtls -lmbedx509 -lmbedcrypto --static</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-I</td>
+<td>设置头文件搜索路径</td>
+<td>-I${PATH}</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>设置库文件搜索路径</td>
+<td>-L${PATH}</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>指定库文件</td>
+<td>-l:libdemo.a&#x2F;-ldemo</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubunut使用minicom</title>
+    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
+<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
+<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
+<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
+<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
+<li>启动参数<code>-O timestamp=extended</code></li>
+</ul>
+<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
+<ul>
+<li>日志保存到自定义的默认文件夹</li>
+<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
+<li>启动时提供设备节点选择</li>
+</ul>
+<p>修改<code>LOG_DIR</code>到自定义目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>minicom</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git提交格式 - Conventional Commits</title>
+    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
+<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
+<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>feat</td>
+<td>新增功能</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复bug</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>仅修改了文档</td>
+</tr>
+<tr>
+<td>style</td>
+<td>修改了代码风格，不影响代码逻辑</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>代码重构，没有新增功能也没有修复bug</td>
+</tr>
+<tr>
+<td>perf</td>
+<td>性能优化</td>
+</tr>
+<tr>
+<td>test</td>
+<td>增加或修改测试用例</td>
+</tr>
+<tr>
+<td>build</td>
+<td>编译脚本</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>CI CD相关</td>
+</tr>
+<tr>
+<td>chore</td>
+<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
+</tr>
+<tr>
+<td>revert</td>
+<td>回退</td>
+</tr>
+</tbody></table>
+<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
+<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
+<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>Conventional Commits</tag>
       </tags>
   </entry>
   <entry>

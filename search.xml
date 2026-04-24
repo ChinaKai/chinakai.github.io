@@ -6,23 +6,85 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>自动收集的 AI 编程相关资讯，每日更新。</p>
 </blockquote>
-<h2 id="GitHub-Trending"><a href="#GitHub-Trending" class="headerlink" title="GitHub Trending"></a>GitHub Trending</h2><ul>
-<li><strong>Significant-Gravitas&#x2F;AutoGPT</strong> — <a href="https://github.com/Significant-Gravitas/AutoGPT">链接</a></li>
-<li><strong>f&#x2F;prompts.chat</strong> — <a href="https://github.com/f/prompts.chat">链接</a></li>
-<li><strong>hacksider&#x2F;Deep-Live-Cam</strong> — <a href="https://github.com/hacksider/Deep-Live-Cam">链接</a></li>
-<li><strong>tensorflow&#x2F;tensorflow</strong> — <a href="https://github.com/tensorflow/tensorflow">链接</a></li>
-<li><strong>huggingface&#x2F;transformers</strong> — <a href="https://github.com/huggingface/transformers">链接</a></li>
-<li><strong>AUTOMATIC1111&#x2F;stable-diffusion-webui</strong> — <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">链接</a></li>
-<li><strong>ollama&#x2F;ollama</strong> — <a href="https://github.com/ollama/ollama">链接</a></li>
-<li><strong>affaan-m&#x2F;everything-claude-code</strong> — <a href="https://github.com/affaan-m/everything-claude-code">链接</a></li>
-</ul>
-<h2 id="Hacker-News"><a href="#Hacker-News" class="headerlink" title="Hacker News"></a>Hacker News</h2><ul>
-<li><strong>I am building a cloud</strong> — <a href="https://crawshaw.io/blog/building-a-cloud">链接</a></li>
-<li><strong>Alberta startup sells no-tech tractors for half price</strong> — <a href="https://wheelfront.com/this-alberta-startup-sells-no-tech-tractors-for-half-price/">链接</a></li>
-<li><strong>Your hex editor should color-code bytes</strong> — <a href="https://simonomi.dev/blog/color-code-your-bytes/">链接</a></li>
-<li><strong>Apple fixes bug that cops used to extract deleted chat messages from iPhones</strong> — <a href="https://techcrunch.com/2026/04/22/apple-fixes-bug-that-cops-used-to-extract-deleted-chat-messages-from-iphones/">链接</a></li>
-<li><strong>Our newsroom AI policy</strong> — <a href="https://arstechnica.com/staff/2026/04/our-newsroom-ai-policy/">链接</a></li>
-</ul>
+<h2 id="GitHub-Trending"><a href="#GitHub-Trending" class="headerlink" title="GitHub Trending"></a>GitHub Trending</h2><h3 id="Significant-Gravitas-AutoGPT"><a href="#Significant-Gravitas-AutoGPT" class="headerlink" title="Significant-Gravitas&#x2F;AutoGPT"></a>Significant-Gravitas&#x2F;AutoGPT</h3><p>AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</p>
+<p>🔗 <a href="https://github.com/Significant-Gravitas/AutoGPT">查看详情</a></p>
+<h3 id="f-prompts-chat"><a href="#f-prompts-chat" class="headerlink" title="f&#x2F;prompts.chat"></a>f&#x2F;prompts.chat</h3><p>f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.</p>
+<p>🔗 <a href="https://github.com/f/prompts.chat">查看详情</a></p>
+<h3 id="hacksider-Deep-Live-Cam"><a href="#hacksider-Deep-Live-Cam" class="headerlink" title="hacksider&#x2F;Deep-Live-Cam"></a>hacksider&#x2F;Deep-Live-Cam</h3><p>real time face swap and one-click video deepfake with only a single image</p>
+<p>🔗 <a href="https://github.com/hacksider/Deep-Live-Cam">查看详情</a></p>
+<h3 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h3><p>An Open Source Machine Learning Framework for Everyone</p>
+<p>🔗 <a href="https://github.com/tensorflow/tensorflow">查看详情</a></p>
+<h3 id="huggingface-transformers"><a href="#huggingface-transformers" class="headerlink" title="huggingface&#x2F;transformers"></a>huggingface&#x2F;transformers</h3><p>🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. </p>
+<p>🔗 <a href="https://github.com/huggingface/transformers">查看详情</a></p>
+<h3 id="AUTOMATIC1111-stable-diffusion-webui"><a href="#AUTOMATIC1111-stable-diffusion-webui" class="headerlink" title="AUTOMATIC1111&#x2F;stable-diffusion-webui"></a>AUTOMATIC1111&#x2F;stable-diffusion-webui</h3><p>Stable Diffusion web UI</p>
+<p>🔗 <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">查看详情</a></p>
+<h3 id="ollama-ollama"><a href="#ollama-ollama" class="headerlink" title="ollama&#x2F;ollama"></a>ollama&#x2F;ollama</h3><p>Get up and running with Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.</p>
+<p>🔗 <a href="https://github.com/ollama/ollama">查看详情</a></p>
+<h3 id="affaan-m-everything-claude-code"><a href="#affaan-m-everything-claude-code" class="headerlink" title="affaan-m&#x2F;everything-claude-code"></a>affaan-m&#x2F;everything-claude-code</h3><p>The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</p>
+<p>🔗 <a href="https://github.com/affaan-m/everything-claude-code">查看详情</a></p>
+<h3 id="rasbt-LLMs-from-scratch"><a href="#rasbt-LLMs-from-scratch" class="headerlink" title="rasbt&#x2F;LLMs-from-scratch"></a>rasbt&#x2F;LLMs-from-scratch</h3><p>Implement a ChatGPT-like LLM in PyTorch from scratch, step by step</p>
+<p>🔗 <a href="https://github.com/rasbt/LLMs-from-scratch">查看详情</a></p>
+<h3 id="fighting41love-funNLP"><a href="#fighting41love-funNLP" class="headerlink" title="fighting41love&#x2F;funNLP"></a>fighting41love&#x2F;funNLP</h3><p>中英文敏感词、语言检测、中外手机&#x2F;电话归属地&#x2F;运营商查询、名字推断性别、手机号抽取、身份证抽取、邮箱抽取、中日文人名库、中文缩写库、拆字词典、词汇情感值、停用词、反动词表、暴恐词表、繁简体转换、英文模拟中文发音、汪峰歌词生成器、职业名称词库、同义词库、反义词库、否定词库、汽车品牌词库、汽车零件词库、连续英文切割、各种中文词向量、公司名字大全、古诗词库、IT词库、财经词库、成语词库、地名词库、历史名人词库、诗词词库、医学词库、饮食词库、法律词库、汽车词库、动物词库、中文聊天语料、中文谣言数据、百度中文问答数据集、句子相似度匹配算法集合、bert资源、文本生成&amp;摘要相关工具、cocoNLP信息抽取工具、国内电话号码正则匹配、清华大学XLORE:中英文跨语言百科知识图谱、清华大学人工智能技术系列报告、自然语言生成、NLU太难了系列、自动对联数据及机器人、用户名黑名单列表、罪名法务名词及分类模型、微信公众号语料、cs224n深度学习自然语言处理课程、中文手写汉字识别、中文自然语言处理 语料&#x2F;数据集、变量命名神器、分词语料库+代码、任务型对话英文数据集、ASR 语音数据集 + 基于深度学习的中文语音识别系统、笑声检测器、Microsoft多语言数字&#x2F;单位&#x2F;如日期时间识别包、中华新华字典数据库及api(包括常用歇后语、成语、词语和汉字)、文档图谱自动生成、SpaCy 中文模型、Common Voice语音识别数据集新版、神经网络关系抽取、基于bert的命名实体识别、关键词(Keyphrase)抽取包pke、基于医疗领域知识图谱的问答系统、基于依存句法与语义角色标注的事件三元组抽取、依存句法分析4万句高质量标注数据、cnocr：用来做中文OCR的Python3包、中文人物关系知识图谱项目、中文nlp竞赛项目及代码汇总、中文字符数据、speech-aligner: 从“人声语音”及其“语言文本”产生音素级别时间对齐标注的工具、AmpliGraph: 知识图谱表示学习(Python)库：知识图谱概念链接预测、Scattertext 文本可视化(python)、语言&#x2F;知识表示工具：BERT &amp; ERNIE、中文对比英文自然语言处理NLP的区别综述、Synonyms中文近义词工具包、HarvestText领域自适应文本挖掘工具（新词发现-情感分析-实体链接等）、word2word：(Python)方便易用的多语言词-词对集：62种语言&#x2F;3,564个多语言对、语音识别语料生成工具：从具有音频&#x2F;字幕的在线视频创建自动��音识别(ASR)语料库、构建医疗实体识别的模型（包含词典和语料标注）、单文档非监督的关键词抽取、Kashgari中使用gpt-2语言模型、开源的金融投资数据提取工具、文本自动摘要库TextTeaser: 仅支持英文、人民日报语料处理工具集、一些关于自然语言的基本模型、基于14W歌曲知识库的问答尝试–功能包括歌词接龙and已知歌词找歌曲以及歌曲歌手歌词三角关系的问答、基于Siamese bilstm模型的相似句子判定模型并提供训练数据集和测试数据集、用Transformer编解码模型实现的根据Hacker News文章标题自动生成评论、用BERT进行序列标记和文本分类的模板代码、LitBank：NLP数据集——支持自然语言处理和计算人文学科任务的100部带标记英文小说语料、百度开源的基准信息抽取系统、虚假新闻数据集、Facebook: LAMA语言模型分析，提供Transformer-XL&#x2F;BERT&#x2F;ELMo&#x2F;GPT预训练语言模型的统一访问接口、CommonsenseQA：面向常识的英文QA挑战、中文知识图谱资料、数据及工具、各大公司内部里大牛分享的技术文档 PDF 或者 PPT、自然语言生成SQL语句（英文）、中文NLP数据增强（EDA）工具、英文NLP数据增强工具 、基于医药知识图谱的智能问答系统、京东商品知识图谱、��于mongodb存储的军事领域知识图谱问答项目、基于远监督的中文关系抽取、语音情感分析、中文ULMFiT-情感分析-文本分类-语料及模型、一个拍照做题程��、世界各国大规模人名库、一个利用有趣中文语料库 qingyun 训练出来的中文聊天机器人、中文聊天机器人seqGAN、省市区镇行政区划数据带拼音标注、教育行业新闻语料库包含自动文摘功能、开放了对话机器人-知识图谱-语义理解-自然语言处理工具及数据、中文知识图谱：基于百度百科中文页面-抽取三元组信息-构建中文知识图谱、masr: 中文语音识别-提供预训练模型-高识别率、Python音频数据增广库、中文全词覆盖BERT及两份阅读理解数据、ConvLab：开源多域端到端对话系统平台、中文自然语言处理数据集、基于最新版本rasa搭建的对话系统、基于TensorFlow和BERT的管道式实体及关系抽取、一个小型的证券知识图谱&#x2F;知识库、复盘所有NLP比赛的TOP方案、OpenCLaP：多领域开源中文预训练语言模型仓库、UER：基于不同语料+编码器+目标任务的中文预训练模型仓库、中文自然语言处理向量合集、基于金融-司法领域(兼有闲聊性质)的聊天机器人、g2pC：基于上下文的汉语读音自动标记模块、Zincbase 知识图谱构建工具包、诗歌质量评价&#x2F;细粒度情感诗歌语料库、快速转化「中文数字」和「阿拉伯数字」、百度知道问答语料库、基于知识图谱的问答系统、jieba_fast 加速版的jieba、正则表达式教程、中文阅读理解数据集、基于BERT等最新语言模型的抽取式摘要提取、Python利用深度学习进行文本摘要的综合指南、知识图谱深度学习相关资料整理、维基大规模平行文本语料、StanfordNLP 0.2.0：纯Python版自然语言处理包、NeuralNLP-NeuralClassifier：腾讯开源深度学习文本分类工具、端到端的封闭域对话系统、中文命名实体识别：NeuroNER vs. BertNER、新闻事件线索抽取、2019年百度的三元组抽取比赛：“科学空间队”源码、基于依存句法的开放域文本知识三元组抽取和知识库构建、中文的GPT2训练代码、ML-NLP - 机器学习(Machine Learning)NLP面试中常考到的知识点和代码实现、nlp4han:中文自然语言处理工具集(断句&#x2F;分词&#x2F;词性标注&#x2F;组块&#x2F;句法分析&#x2F;语义分析&#x2F;NER&#x2F;N元语法&#x2F;HMM&#x2F;代词消解&#x2F;情感分析&#x2F;拼写检查、XLM：Facebook的跨语言预训练语言模型、用基于BERT的微调和特征提取方法来进行知识图谱百度百科人物词条属性抽取、中文自然语言处理相关的开放任务-数据集-当前最佳结果、CoupletAI - 基于CNN+Bi-LSTM+Attention 的自动对对联系统、抽象知识图谱、MiningZhiDaoQACorpus - 580万百度知道问答数据挖掘项目、brat rapid annotation tool: 序列标注工具、大规模中文知识图谱数据：1.4亿实体、数据增强在机器翻译及其他nlp任务中的应用及效果、allennlp阅读理解:支持多种数据和模型、PDF表格数据提取工具 、 Graphbrain：AI开源软件库和科研工具，目的是促进自动意义提取和文本理解以及知识的探索和推断、简历自动筛选系统、基于命名实体识别的简历自动摘要、中文语言理解测评基准，包括代表性的数据集&amp;基准模型&amp;语料库&amp;排行榜、树洞 OCR 文字识别 、从包含表格的扫描图片中识别表格和文字、语声迁移、Python口语自然语言处理工具集(英文)、 similarity：相似度计算工具包，java编写、海量中文预训练ALBERT模型 、Transformers 2.0 、基于大规模音频数据集Audioset的音频增强 、Poplar：网页版自然语言标注工具、图片文字去除，可用于漫画翻译 、186种语言的数字叫法库、Amazon发布基于知识的人-人开放领域对话数据集 、中文文本纠错模块代码、繁简体转换 、 Python实现的多种文本可读性评价指标、类似于人名&#x2F;地名&#x2F;组织机构名的命名体识别数据集 、东南大学《知识图谱》研究生课程(资料)、. 英文拼写检查库 、 wwsearch是企业微信后台自研的全文检索引擎、CHAMELEON：深度���习新闻推荐系统元架构 、 8篇论文梳理BERT相关模型进展与反思、DocSearch：免费文档搜索引擎、 LIDA：轻量交互式对话标注工具 、aili - the fastest in-memory index in the East 东半球最快并发索引 、知识图谱车音工作项目、自然语言生成资源大全 、中日韩分词库mecab的Python接口库、中文文本摘要&#x2F;关键词提取、汉字字符特征提取器 (featurizer)，提取汉字的特征（发音特征、字形特征）用做深度学习的特征、中文生成任务基准测评 、中文缩写数据集、中文任务基准测评 - 代表性的数据集-基准(预训练)模型-语料库-baseline-工具包-排行榜、PySS3：面向可解释AI的SS3文本分类器机器可视化工具 、中文NLP数据集列表、COPE - 格律诗编辑程序、doccano：基于网页的开源协同多语言文本标注工具 、PreNLP：自然语言预处理库、简单的简历解析器，用来从简历中提取关键信息、用于中文闲聊的GPT2模型：GPT2-chitchat、基于检索聊天机器人多轮响应选择相关资源列表(Leaderboards、Datasets、Papers)、(Colab)抽象文本摘要实现集锦(教程 、词语拼音数据、高效模糊搜索工具、NLP数据增广资源集、微软对话机器人框架 、 GitHub Typo Corpus：大规模GitHub多语言拼写错误&#x2F;语法错误数据集、TextCluster：短文本聚类预处理模块 Short text cluster、面向语音识别的中文文本���范化、BLINK：最先进的实体链接库、BertPunc：基于BERT的最先进标点修复模型、Tokenizer：快速、可定制的文本词条化库、中文语言理解测评基准，包括代表性的数据集、基准(预训练)模型、语料库、排行榜、spaCy 医学文本挖掘与信息提取 、 NLP任务示例项目代码集、 python拼写检查库、chatbot-list - 行业内关于智能客服、聊天机器人的应用和架构、算法分享和介绍、语音质量评价指标(MOSNet, BSSEval, STOI, PESQ, SRMR)、 用138GB语料训练的法文RoBERTa预训练语言模型 、BERT-NER-Pytorch：三种不同模式的BERT中文NER实验、无道词典 - 有道词典的命令行版本，支持英汉互查和在线查询、2019年NLP亮点回顾、 Chinese medical dialogue data 中文医疗对话数据集 、最好的汉字数字(中文数字)-阿拉伯数字转换工具、 基于百科知识库的中文词语多词义&#x2F;义项获取与特定句子词语语义消歧、awesome-nlp-sentiment-analysis - 情感分析、情绪原因识别、评价对象和评价词抽取、LineFlow：面向所有深度学习框架的NLP数据高效加载器、中文医学NLP公开资源整理 、MedQuAD：(英文)医学问答数据集、将自然语言数字串解析转换为整数和浮点数、Transfer Learning in Natural Language Processing (NLP) 、面��语音识别的中文&#x2F;英文发音辞典、Tokenizers：注重性能与多功能性的最先进分词器、CLUENER 细粒度命名实体识别 Fine Grained Named Entity Recognition、 基于BERT的中文命名实体识别、中文谣言数据库、NLP数据集&#x2F;基准任务大列表、nlp相关的一些论文及代码, 包括主题模型、词向量(Word Embedding)、命名实体识别(NER)、文本分类(Text Classificatin)、文本生成(Text Generation)、文本相似性(Text Similarity)计算等，涉及到各种与nlp相关的算法，基于keras和tensorflow 、Python文本挖掘&#x2F;NLP实战示例、 Blackstone：面向非结构化法律文本的spaCy pipeline和NLP模型通过同义词替换实现文本“变脸” 、中文 预训练 ELECTREA 模型: 基于对抗学习 pretrain Chinese Model 、albert-chinese-ner - 用预训练语言模型ALBERT做中文NER 、基于GPT2的特定主题文本生成&#x2F;文本增广、开源预训练语言模型合集、多语言句向量包、编码、标记和实现：一种可控高效的文本生成方法、 英文脏话大列表 、attnvis：GPT2、BERT等transformer语言模型注意力交互可视化、CoVoST：Facebook发布的多语种语音-文本翻译语料库，包括11种语言(法语、德语、荷兰语、俄语、西班牙语、意大利语、土耳其语、波斯语、瑞典语、蒙古语和中��)的语音、文字转录及英文译文、Jiagu自然语言处理工具 - 以BiLSTM等模型为基础，提供知识图谱关系抽取 中文分词 词性标注 命名实体识别 情感分析 新词发现 关键词 文本摘要 文本聚类等功能、用unet实现对文档表格的自动检测，表格重建、NLP事件提取文献资源列表 、 金融领域自然语言处理研究资源大列表、CLUEDatasetSearch - 中英文NLP数据集：搜索所有中文NLP数据集，附常用英文NLP数据集 、medical_NER - 中文医学知识图谱命名实体识别 、(哈佛)讲因果推理的免费书、知识图谱相关学习资料&#x2F;数据集&#x2F;工具资源大列表、Forte：灵活强大的自然语言处理pipeline工具集 、Python字符串相似性算法库、PyLaia：面向手写文档分析的深度学习工具包、TextFooler：针对文本分类&#x2F;推理的对抗文本生成模块、Haystack：灵活、强大的可扩展问答(QA)框架、中文关键短语抽取工具</p>
+<p>🔗 <a href="https://github.com/fighting41love/funNLP">查看详情</a></p>
+<h2 id="Hacker-News"><a href="#Hacker-News" class="headerlink" title="Hacker News"></a>Hacker News</h2><h3 id="I-am-building-a-cloud"><a href="#I-am-building-a-cloud" class="headerlink" title="I am building a cloud"></a>I am building a cloud</h3><p>🔗 <a href="https://crawshaw.io/blog/building-a-cloud">查看详情</a></p>
+<h3 id="Alberta-startup-sells-no-tech-tractors-for-half-price"><a href="#Alberta-startup-sells-no-tech-tractors-for-half-price" class="headerlink" title="Alberta startup sells no-tech tractors for half price"></a>Alberta startup sells no-tech tractors for half price</h3><p>🔗 <a href="https://wheelfront.com/this-alberta-startup-sells-no-tech-tractors-for-half-price/">查看详情</a></p>
+<h3 id="Your-hex-editor-should-color-code-bytes"><a href="#Your-hex-editor-should-color-code-bytes" class="headerlink" title="Your hex editor should color-code bytes"></a>Your hex editor should color-code bytes</h3><p>🔗 <a href="https://simonomi.dev/blog/color-code-your-bytes/">查看详情</a></p>
+<h3 id="Apple-fixes-bug-that-cops-used-to-extract-deleted-chat-messages-from-iPhones"><a href="#Apple-fixes-bug-that-cops-used-to-extract-deleted-chat-messages-from-iPhones" class="headerlink" title="Apple fixes bug that cops used to extract deleted chat messages from iPhones"></a>Apple fixes bug that cops used to extract deleted chat messages from iPhones</h3><p>🔗 <a href="https://techcrunch.com/2026/04/22/apple-fixes-bug-that-cops-used-to-extract-deleted-chat-messages-from-iphones/">查看详情</a></p>
+<h3 id="Do-you-want-the-US-to-“win”-AI"><a href="#Do-you-want-the-US-to-“win”-AI" class="headerlink" title="Do you want the US to “win” AI?"></a>Do you want the US to “win” AI?</h3><p>🔗 <a href="https://geohot.github.io//blog/jekyll/update/2026/04/23/us-win-ai.html">查看详情</a></p>
+<hr>
+<p><em>本文由关关自动收集整理发布。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-04-24</title>
+    <url>/2026/04/24/2026-04-24-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>自动收集的 AI 编程相关资讯，每日更新。</p>
+</blockquote>
+<h2 id="GitHub-Trending"><a href="#GitHub-Trending" class="headerlink" title="GitHub Trending"></a>GitHub Trending</h2><h3 id="sindresorhus-awesome"><a href="#sindresorhus-awesome" class="headerlink" title="sindresorhus&#x2F;awesome"></a>sindresorhus&#x2F;awesome</h3><p>😎 Awesome lists about all kinds of interesting topics</p>
+<p>🔗 <a href="https://github.com/sindresorhus/awesome">查看详情</a></p>
+<h3 id="freeCodeCamp-freeCodeCamp"><a href="#freeCodeCamp-freeCodeCamp" class="headerlink" title="freeCodeCamp&#x2F;freeCodeCamp"></a>freeCodeCamp&#x2F;freeCodeCamp</h3><p>freeCodeCamp.org’s open-source codebase and curriculum. Learn math, programming, and computer science for free.</p>
+<p>🔗 <a href="https://github.com/freeCodeCamp/freeCodeCamp">查看详情</a></p>
+<h3 id="EbookFoundation-free-programming-books"><a href="#EbookFoundation-free-programming-books" class="headerlink" title="EbookFoundation&#x2F;free-programming-books"></a>EbookFoundation&#x2F;free-programming-books</h3><p>:books: Freely available programming books</p>
+<p>🔗 <a href="https://github.com/EbookFoundation/free-programming-books">查看详情</a></p>
+<h3 id="openclaw-openclaw"><a href="#openclaw-openclaw" class="headerlink" title="openclaw&#x2F;openclaw"></a>openclaw&#x2F;openclaw</h3><p>Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 </p>
+<p>🔗 <a href="https://github.com/openclaw/openclaw">查看详情</a></p>
+<h3 id="kamranahmedse-developer-roadmap"><a href="#kamranahmedse-developer-roadmap" class="headerlink" title="kamranahmedse&#x2F;developer-roadmap"></a>kamranahmedse&#x2F;developer-roadmap</h3><p>Interactive roadmaps, guides and other educational content to help developers grow in their careers.</p>
+<p>🔗 <a href="https://github.com/kamranahmedse/developer-roadmap">查看详情</a></p>
+<h3 id="vinta-awesome-python"><a href="#vinta-awesome-python" class="headerlink" title="vinta&#x2F;awesome-python"></a>vinta&#x2F;awesome-python</h3><p>An opinionated list of Python frameworks, libraries, tools, and resources</p>
+<p>🔗 <a href="https://github.com/vinta/awesome-python">查看详情</a></p>
+<h3 id="awesome-selfhosted-awesome-selfhosted"><a href="#awesome-selfhosted-awesome-selfhosted" class="headerlink" title="awesome-selfhosted&#x2F;awesome-selfhosted"></a>awesome-selfhosted&#x2F;awesome-selfhosted</h3><p>A list of Free Software network services and web applications which can be hosted on your own servers</p>
+<p>🔗 <a href="https://github.com/awesome-selfhosted/awesome-selfhosted">查看详情</a></p>
+<h3 id="facebook-react"><a href="#facebook-react" class="headerlink" title="facebook&#x2F;react"></a>facebook&#x2F;react</h3><p>The library for web and native user interfaces.</p>
+<p>🔗 <a href="https://github.com/facebook/react">查看详情</a></p>
+<h3 id="torvalds-linux"><a href="#torvalds-linux" class="headerlink" title="torvalds&#x2F;linux"></a>torvalds&#x2F;linux</h3><p>Linux kernel source tree</p>
+<p>🔗 <a href="https://github.com/torvalds/linux">查看详情</a></p>
+<h3 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h3><p>An Open Source Machine Learning Framework for Everyone</p>
+<p>🔗 <a href="https://github.com/tensorflow/tensorflow">查看详情</a></p>
+<h3 id="ultraworkers-claw-code"><a href="#ultraworkers-claw-code" class="headerlink" title="ultraworkers&#x2F;claw-code"></a>ultraworkers&#x2F;claw-code</h3><p>The repo is finally unlocked. enjoy the party! The fastest repo in history to surpass 100K stars ⭐. Built in just X days.</p>
+<p>🔗 <a href="https://github.com/ultraworkers/claw-code">查看详情</a></p>
+<h3 id="n8n-io-n8n"><a href="#n8n-io-n8n" class="headerlink" title="n8n-io&#x2F;n8n"></a>n8n-io&#x2F;n8n</h3><p>Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.</p>
+<p>🔗 <a href="https://github.com/n8n-io/n8n">查看详情</a></p>
+<h3 id="microsoft-vscode"><a href="#microsoft-vscode" class="headerlink" title="microsoft&#x2F;vscode"></a>microsoft&#x2F;vscode</h3><p>Visual Studio Code</p>
+<p>🔗 <a href="https://github.com/microsoft/vscode">查看详情</a></p>
+<h2 id="Hacker-News"><a href="#Hacker-News" class="headerlink" title="Hacker News"></a>Hacker News</h2><h3 id="Alberta-startup-sells-no-tech-tractors-for-half-price"><a href="#Alberta-startup-sells-no-tech-tractors-for-half-price" class="headerlink" title="Alberta startup sells no-tech tractors for half price"></a>Alberta startup sells no-tech tractors for half price</h3><p>🔗 <a href="https://wheelfront.com/this-alberta-startup-sells-no-tech-tractors-for-half-price/">查看详情</a></p>
+<h3 id="GPT-5-5"><a href="#GPT-5-5" class="headerlink" title="GPT-5.5"></a>GPT-5.5</h3><p>🔗 <a href="https://openai.com/index/introducing-gpt-5-5/">查看详情</a></p>
+<h3 id="I-am-building-a-cloud"><a href="#I-am-building-a-cloud" class="headerlink" title="I am building a cloud"></a>I am building a cloud</h3><p>🔗 <a href="https://crawshaw.io/blog/building-a-cloud">查看详情</a></p>
+<h3 id="Palantir-employees-are-starting-to-wonder-if-they’re-the-bad-guys"><a href="#Palantir-employees-are-starting-to-wonder-if-they’re-the-bad-guys" class="headerlink" title="Palantir employees are starting to wonder if they’re the bad guys"></a>Palantir employees are starting to wonder if they’re the bad guys</h3><p>🔗 <a href="https://www.wired.com/story/palantir-employees-are-starting-to-wonder-if-theyre-the-bad-guys/">查看详情</a></p>
+<h3 id="Bitwarden-CLI-compromised-in-ongoing-Checkmarx-supply-chain-campaign"><a href="#Bitwarden-CLI-compromised-in-ongoing-Checkmarx-supply-chain-campaign" class="headerlink" title="Bitwarden CLI compromised in ongoing Checkmarx supply chain campaign"></a>Bitwarden CLI compromised in ongoing Checkmarx supply chain campaign</h3><p>🔗 <a href="https://socket.dev/blog/bitwarden-cli-compromised">查看详情</a></p>
+<h3 id="An-update-on-recent-Claude-Code-quality-reports"><a href="#An-update-on-recent-Claude-Code-quality-reports" class="headerlink" title="An update on recent Claude Code quality reports"></a>An update on recent Claude Code quality reports</h3><p>🔗 <a href="https://www.anthropic.com/engineering/april-23-postmortem">查看详情</a></p>
+<h3 id="Your-hex-editor-should-color-code-bytes"><a href="#Your-hex-editor-should-color-code-bytes" class="headerlink" title="Your hex editor should color-code bytes"></a>Your hex editor should color-code bytes</h3><p>🔗 <a href="https://simonomi.dev/blog/color-code-your-bytes/">查看详情</a></p>
+<h3 id="If-America’s-so-rich-how’d-it-get-so-sad"><a href="#If-America’s-so-rich-how’d-it-get-so-sad" class="headerlink" title="If America’s so rich, how’d it get so sad?"></a>If America’s so rich, how’d it get so sad?</h3><p>🔗 <a href="https://www.derekthompson.org/p/if-americas-so-rich-howd-it-get-so">查看详情</a></p>
+<h3 id="French-government-agency-confirms-breach-as-hacker-offers-to-sell-data"><a href="#French-government-agency-confirms-breach-as-hacker-offers-to-sell-data" class="headerlink" title="French government agency confirms breach as hacker offers to sell data"></a>French government agency confirms breach as hacker offers to sell data</h3><p>🔗 <a href="https://www.bleepingcomputer.com/news/security/french-govt-agency-confirms-breach-as-hacker-offers-to-sell-data/">查看详情</a></p>
+<h3 id="Arch-Linux-Now-Has-a-Bit-for-Bit-Reproducible-Docker-Image"><a href="#Arch-Linux-Now-Has-a-Bit-for-Bit-Reproducible-Docker-Image" class="headerlink" title="Arch Linux Now Has a Bit-for-Bit Reproducible Docker Image"></a>Arch Linux Now Has a Bit-for-Bit Reproducible Docker Image</h3><p>🔗 <a href="https://antiz.fr/blog/archlinux-now-has-a-reproducible-docker-image/">查看详情</a></p>
 <hr>
 <p><em>本文由关关自动收集整理发布。</em></p>
 ]]></content>
@@ -383,18 +445,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux性能分析-CPU</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>CPU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GCC二进制文件构成</title>
     <url>/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。</em></p>
@@ -554,6 +604,18 @@
       </categories>
       <tags>
         <tag>elf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux性能分析-CPU</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>CPU</tag>
       </tags>
   </entry>
   <entry>
@@ -1465,6 +1527,189 @@
 <li><strong>需要记忆</strong> → 确保在 Main 会话，或主动更新 MEMORY.md</li>
 </ol>
 <hr>
+<h2 id="上下文管理详解"><a href="#上下文管理详解" class="headerlink" title="上下文管理详解"></a>上下文管理详解</h2><p>OpenClaw 的上下文（Context）是指 AI 在对话中”记住”的信息范围，理解上下文管理能帮助你更高效地使用 AI。</p>
+<h3 id="什么是上下文？"><a href="#什么是上下文？" class="headerlink" title="什么是上下文？"></a>什么是上下文？</h3><p><strong>上下文（Context Window）</strong> 是 AI 模型处理对话时的”工作记忆”。它包含：</p>
+<table>
+<thead>
+<tr>
+<th>组成部分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>系统提示词</strong></td>
+<td>AI 的行为准则、角色定义（SOUL.md、AGENTS.md 等）</td>
+</tr>
+<tr>
+<td><strong>对话历史</strong></td>
+<td>用户和 AI 的交流记录</td>
+</tr>
+<tr>
+<td><strong>工具调用记录</strong></td>
+<td>AI 使用过的工具及返回结果</td>
+</tr>
+<tr>
+<td><strong>工作区文件</strong></td>
+<td>Workspace 中的文件内容（按需加载）</td>
+</tr>
+</tbody></table>
+<p><strong>上下文大小 &#x3D; 模型能处理的最大 Token 数</strong>（如 200k、128k 等），超出部分会被”遗忘”。</p>
+<h3 id="OpenClaw-的上下文机制"><a href="#OpenClaw-的上下文机制" class="headerlink" title="OpenClaw 的上下文机制"></a>OpenClaw 的上下文机制</h3><p>OpenClaw 会话显示的上下文使用率计算公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上下文使用率 = (已消耗 Token 数 / 上下文上限) × 100%</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键行为：</strong></p>
+<ul>
+<li>使用率越高，AI “遗忘”早期对话内容的概率越大</li>
+<li>工具调用、文件读取会显著增加上下文消耗</li>
+<li>每次回复都会累积新的 Token</li>
+</ul>
+<h3 id="上下文相关命令"><a href="#上下文相关命令" class="headerlink" title="上下文相关命令"></a>上下文相关命令</h3><p>OpenClaw 提供多个命令管理上下文：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>对上下文的影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/clear</code></td>
+<td>清除当前对话历史</td>
+<td>清空对话记录，保留系统提示和 Workspace 配置</td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>开启新会话</td>
+<td>完全重置，上下文归零，重新加载系统文件</td>
+</tr>
+<tr>
+<td><code>/reset</code></td>
+<td>深度重置</td>
+<td>清空上下文 + 重新加载 AGENTS.md、SOUL.md 等配置文件</td>
+</tr>
+<tr>
+<td><code>/status</code></td>
+<td>查看会话状态</td>
+<td>显示当前上下文使用率、模型、运行时间等</td>
+</tr>
+</tbody></table>
+<h4 id="clear-—-清空当前对话"><a href="#clear-—-清空当前对话" class="headerlink" title="/clear — 清空当前对话"></a><code>/clear</code> — 清空当前对话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/clear</span><br><span class="line">效果：清除当前会话的对话历史显示</span><br><span class="line">保留：系统提示词、Workspace 配置、MEMORY.md</span><br><span class="line">适用：想开始新话题，但不想丢失 Workspace 设置</span><br></pre></td></tr></table></figure>
+
+<h4 id="new-—-开启新会话"><a href="#new-—-开启新会话" class="headerlink" title="/new — 开启新会话"></a><code>/new</code> — 开启新会话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/new</span><br><span class="line">效果：创建全新会话</span><br><span class="line">重置：上下文完全清零</span><br><span class="line">重新加载：SOUL.md、AGENTS.md、USER.md、IDENTITY.md、TOOLS.md</span><br><span class="line">适用：完全重新开始，不带任何历史对话</span><br></pre></td></tr></table></figure>
+
+<h4 id="reset-—-深度重置"><a href="#reset-—-深度重置" class="headerlink" title="/reset — 深度重置"></a><code>/reset</code> — 深度重置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/reset</span><br><span class="line">效果：清空上下文 + 重新读取所有配置文件</span><br><span class="line">重置程度：比 /new 更彻底</span><br><span class="line">重新加载：所有 Workspace 文件（包括 skill 配置）</span><br><span class="line">适用：配置文件修改后需要完全重载，或遇到异常状态</span><br></pre></td></tr></table></figure>
+
+<h4 id="status-—-查看上下文状态"><a href="#status-—-查看上下文状态" class="headerlink" title="/status — 查看上下文状态"></a><code>/status</code> — 查看上下文状态</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/status</span><br><span class="line">输出示例：</span><br><span class="line">🧠 Model: minimax/MiniMax-M2.7-highspeed</span><br><span class="line">🧮 Tokens: 20k in / 974 out</span><br><span class="line">📚 Context: 21k/200k (11%)</span><br><span class="line">⏱️ Runtime: 45m</span><br></pre></td></tr></table></figure>
+
+<h3 id="上下文使用率监控"><a href="#上下文使用率监控" class="headerlink" title="上下文使用率监控"></a>上下文使用率监控</h3><p>OpenClaw 在每条回复末尾显示上下文使用率：</p>
+<table>
+<thead>
+<tr>
+<th>显示</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>📚 Context: 11%</code></td>
+<td>上下文状态良好</td>
+</tr>
+<tr>
+<td><code>📚 Context: 50%</code></td>
+<td>使用率过半，建议关注</td>
+</tr>
+<tr>
+<td><code>📚 Context: 70%</code></td>
+<td>使用率高，建议 <code>/new</code> 开启新会话</td>
+</tr>
+<tr>
+<td><code>📚 Context: 90%</code></td>
+<td>即将耗尽，必须 <code>/new</code></td>
+</tr>
+</tbody></table>
+<h3 id="上下文管理最佳实践"><a href="#上下文管理最佳实践" class="headerlink" title="上下文管理最佳实践"></a>上下文管理最佳实践</h3><h4 id="1-长任务使用子会话"><a href="#1-长任务使用子会话" class="headerlink" title="1. 长任务使用子会话"></a>1. 长任务使用子会话</h4><p>复杂任务放到子会话处理，避免撑爆主会话上下文：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 主会话中调用</span><br><span class="line">/spawn 帮我分析这个项目的代码结构</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-定期开启新会话"><a href="#2-定期开启新会话" class="headerlink" title="2. 定期开启新会话"></a>2. 定期开启新会话</h4><p>日常使用中，当上下文使用率超过 50% 时，主动 <code>/new</code> 可以：</p>
+<ul>
+<li>获得更清晰的对话质量</li>
+<li>减少 Token 消耗（节省成本）</li>
+<li>避免上下文被”截断”导致的前后不一致</li>
+</ul>
+<h4 id="3-重要信息写入-MEMORY-md"><a href="#3-重要信息写入-MEMORY-md" class="headerlink" title="3. 重要信息写入 MEMORY.md"></a>3. 重要信息写入 MEMORY.md</h4><p>不要依赖上下文记忆重要信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">记住：我的服务器IP是 192.168.1.100</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用-HEARTBEAT-md-做定期检查"><a href="#4-使用-HEARTBEAT-md-做定期检查" class="headerlink" title="4. 使用 HEARTBEAT.md 做定期检查"></a>4. 使用 HEARTBEAT.md 做定期检查</h4><p>配置心跳任务定期监控上下文：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># HEARTBEAT.md</span></span><br><span class="line"><span class="section">## 检查上下文使用率</span></span><br><span class="line"><span class="bullet">-</span> 如果超过 50%，提醒用户考虑 /new</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-大文件处理"><a href="#5-大文件处理" class="headerlink" title="5. 大文件处理"></a>5. 大文件处理</h4><p>读取大型文件会消耗大量上下文：</p>
+<table>
+<thead>
+<tr>
+<th>文件大小</th>
+<th>上下文消耗估算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; 100 行</td>
+<td>~1-5%</td>
+</tr>
+<tr>
+<td>100-500 行</td>
+<td>~5-15%</td>
+</tr>
+<tr>
+<td>&gt; 500 行</td>
+<td>&gt; 15%</td>
+</tr>
+</tbody></table>
+<p>处理大文件建议：</p>
+<ul>
+<li>使用子会话单独处理</li>
+<li>分批次读取和讨论</li>
+<li>读取后主动 <code>/new</code> 恢复</li>
+</ul>
+<h3 id="会话类型与上下文"><a href="#会话类型与上下文" class="headerlink" title="会话类型与上下文"></a>会话类型与上下文</h3><table>
+<thead>
+<tr>
+<th>会话类型</th>
+<th>上下文行为</th>
+<th>MEMORY.md 访问</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Main（主会话）</td>
+<td>持续累积</td>
+<td>✅ 可读写</td>
+</tr>
+<tr>
+<td>子会话</td>
+<td>独立上下文</td>
+<td>❌ 不可访问</td>
+</tr>
+<tr>
+<td>ACP 会话</td>
+<td>隔离上下文</td>
+<td>❌ 不可访问</td>
+</tr>
+<tr>
+<td>群聊</td>
+<td>共享上下文</td>
+<td>❌ 不加载（安全）</td>
+</tr>
+</tbody></table>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p><strong>上下文耗尽的表现：</strong></p>
+<ul>
+<li>AI 开始”遗忘”之前的约定</li>
+<li>回复变得不一致</li>
+<li>工具调用结果被忽略</li>
+</ul>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>立即 <code>/new</code> 开启新会话</li>
+<li>重要的跨会话信息写入 MEMORY.md</li>
+<li>复杂任务拆分成多个子会话</li>
+</ol>
+<hr>
 <h2 id="Skills-技能系统详解"><a href="#Skills-技能系统详解" class="headerlink" title="Skills 技能系统详解"></a>Skills 技能系统详解</h2><p>OpenClaw 的技能系统（Skills）是其核心扩展机制，让 AI 能够执行各种专业任务。技能位于 <code>node_modules/openclaw/skills/</code> 目录，每个技能都有独立的 <code>SKILL.md</code> 说明文件。</p>
 <h3 id="内置技能一览"><a href="#内置技能一览" class="headerlink" title="内置技能一览"></a>内置技能一览</h3><table>
 <thead>
@@ -1880,8 +2125,8 @@
 </ul>
 <p>生成方式：</p>
 <ol>
-<li>使用claude对话时使用<code>/init</code>命令会自动扫描项目生成项目大概</li>
-<li>使用<code>#</code>命令，如<code>#call me kk</code>,会在CLAUDE.md文件记录这句话</li>
+<li>使用 <code>/init</code> 命令会自动扫描项目并生成（详见「&#x2F;init 深度用法」章节）</li>
+<li>使用 <code>#</code> 命令，如 <code>#call me kk</code>，会在 CLAUDE.md 文件记录这句话</li>
 </ol>
 <h3 id="常规对话模式（默认）"><a href="#常规对话模式（默认）" class="headerlink" title="常规对话模式（默认）"></a>常规对话模式（默认）</h3><p>适用于文件查看、简单修改、单点问题解决</p>
 <p><strong>特点</strong>：</p>
@@ -1900,11 +2145,179 @@
 <ol start="2">
 <li>新会话如何继续之前执行的计划<br>根据第一步我们知道claude会在<code>~/.claude/plans/</code>创建计划文档，<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; `path/to/your_plan.md`告诉我这个计划执行到哪个阶段了？还是哪些没有实现？</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="使用第三方API"><a href="#使用第三方API" class="headerlink" title="使用第三方API"></a>使用第三方API</h3><p><a href="https://platform.minimaxi.com/docs/guides/text-ai-coding-tools">在 AI 编程工具里使用 M2</a></p>
+<h2 id="进阶功能"><a href="#进阶功能" class="headerlink" title="进阶功能"></a>进阶功能</h2><h3 id="非交互式调用（CI-自动化场景）"><a href="#非交互式调用（CI-自动化场景）" class="headerlink" title="非交互式调用（CI &#x2F; 自动化场景）"></a>非交互式调用（CI &#x2F; 自动化场景）</h3><p>默认情况下 Claude Code 需要终端交互，适合日常开发。但在脚本、CI Pipeline、定时任务中，需要用 <code>--print</code> 配合 <code>--permission-mode</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 典型用法：把提示词通过管道传入，直接拿到输出</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;解释这段代码的作用&quot;</span> | claude --<span class="built_in">print</span> --permission-mode bypassPermissions ./src/utils.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复杂场景：结合 heredoc 传入多行提示</span></span><br><span class="line">claude --<span class="built_in">print</span> --permission-mode bypassPermissions &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">Review this <span class="keyword">function</span> and suggest improvements:</span><br><span class="line">@./src/api.js</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>**<code>--print</code>**：让 Claude Code 直接输出结果到 stdout，不再显示进度、思考过程等交互内容。</p>
+<p>**<code>--permission-mode bypassPermissions</code>**：跳过所有权限确认（如执行危险命令、访问特定目录），相当于提前给所有操作授权。注意这是 <strong>危险操作</strong>，仅在完全信任输入源时使用。</p>
+<p>常见组合：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 适合 CI：安全地审查 PR</span></span><br><span class="line">claude --<span class="built_in">print</span> --permission-mode bypassPermissions --model sonnet <span class="string">&quot;Review this diff: <span class="subst">$(git diff)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 适合脚本：自动修复 lint 错误</span></span><br><span class="line">claude --<span class="built_in">print</span> --permission-mode bypassPermissions <span class="string">&quot;Fix ESLint errors: <span class="subst">$(npx eslint --format json)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="settings-json-完整配置"><a href="#settings-json-完整配置" class="headerlink" title="settings.json 完整配置"></a>settings.json 完整配置</h3><p>Claude Code 的配置文件位于 <code>~/.claude/settings.json</code>，以下是比较实用的字段：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_AUTH_TOKEN&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_BASE_URL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.anthropic.com&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;api_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;API_KEY&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;api_timeout_ms&quot;</span><span class="punctuation">:</span> <span class="number">300000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;compact_threshold&quot;</span><span class="punctuation">:</span> <span class="number">150000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;output_format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pretty&quot;</span><span class="punctuation">,</span>           <span class="comment">// 或 &quot;stream-json&quot;, &quot;null&quot;</span></span><br><span class="line">  <span class="attr">&quot;temperature&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;theme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dark&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;language&quot;</span><span class="punctuation">:</span> <span class="string">&quot;zh-CN&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dangerously_skip_auth&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cursor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pointer&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">类型</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>env</code></td>
+<td align="left">object</td>
+<td align="left">环境变量，会被 Claude Code 读取，覆盖系统环境变量</td>
+</tr>
+<tr>
+<td align="left"><code>api_key</code></td>
+<td align="left">string</td>
+<td align="left">直接写 API Key（<code>env.ANTHROPIC_AUTH_TOKEN</code> 的简写）</td>
+</tr>
+<tr>
+<td align="left"><code>api_timeout_ms</code></td>
+<td align="left">number</td>
+<td align="left">单次 API 请求超时（毫秒），默认较大，可调小用于快速失败</td>
+</tr>
+<tr>
+<td align="left"><code>compact_threshold</code></td>
+<td align="left">number</td>
+<td align="left">上下文达到多少 token 时触发自动压缩</td>
+</tr>
+<tr>
+<td align="left"><code>output_format</code></td>
+<td align="left">string</td>
+<td align="left"><code>pretty</code>(默认): 带颜色输出；<code>stream-json</code>: 流式 JSON；<code>null</code>: 无输出</td>
+</tr>
+<tr>
+<td align="left"><code>temperature</code></td>
+<td align="left">number</td>
+<td align="left">模型温度，0-1，影响创造性</td>
+</tr>
+<tr>
+<td align="left"><code>theme</code></td>
+<td align="left">string</td>
+<td align="left">界面主题：<code>dark</code> &#x2F; <code>light</code></td>
+</tr>
+<tr>
+<td align="left"><code>language</code></td>
+<td align="left">string</td>
+<td align="left">界面语言，不影响模型思考语言</td>
+</tr>
+<tr>
+<td align="left"><code>dangerously_skip_auth</code></td>
+<td align="left">boolean</td>
+<td align="left">跳过登录验证（仅测试环境使用）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="claude-–doctor-环境检查"><a href="#claude-–doctor-环境检查" class="headerlink" title="claude –doctor 环境检查"></a>claude –doctor 环境检查</h3><p>运行以下命令检查 Claude Code 的环境是否正常：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">claude --doctor</span><br></pre></td></tr></table></figure>
+
+<p>会检查：</p>
+<ul>
+<li>API Key 是否配置且有效</li>
+<li>网络连接是否正常</li>
+<li>依赖是否完整</li>
+<li>配置是否有明显错误</li>
+</ul>
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">✓ API key configured</span><br><span class="line">✓ Network connection OK</span><br><span class="line">✓ Settings file valid</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="使用第三方API"><a href="#使用第三方API" class="headerlink" title="使用第三方API"></a>使用第三方API</h3><p><a href="https://platform.minimaxi.com/docs/guides/text-ai-coding-tools">在 AI 编程工具里使用 M2</a></p>
 <ol>
 <li>清理<code>Anthropic</code>环境变量<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ANTHROPIC_AUTH_TOKEN=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">export</span> ANTHROPIC_BASE_URL=<span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure></li>
 <li>编辑或创建<code>Claude Code</code>的配置文件，路径为<code>~/.claude/settings.json</code>，在该文件中添加或更新<code>env</code>字段。<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;env&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_BASE_URL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://api.minimaxi.com/anthropic&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_AUTH_TOKEN&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&lt;MINIMAX_API_KEY&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;API_TIMEOUT_MS&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3000000&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_MODEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MiniMax-M2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_SMALL_FAST_MODEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MiniMax-M2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_DEFAULT_SONNET_MODEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MiniMax-M2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_DEFAULT_OPUS_MODEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MiniMax-M2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ANTHROPIC_DEFAULT_HAIKU_MODEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MiniMax-M2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
+<p><strong>各字段说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ANTHROPIC_BASE_URL</code></td>
+<td align="left">第三方 API 地址（MiniMax 国内加速地址）</td>
+</tr>
+<tr>
+<td align="left"><code>ANTHROPIC_AUTH_TOKEN</code></td>
+<td align="left">第三方 API Key</td>
+</tr>
+<tr>
+<td align="left"><code>API_TIMEOUT_MS</code></td>
+<td align="left">请求超时（毫秒），大文件&#x2F;长任务建议调大</td>
+</tr>
+<tr>
+<td align="left"><code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</code></td>
+<td align="left"><strong>禁用非必要流量</strong>（如匿名使用统计），调用第三方 API 时建议设为 <code>1</code>，避免多余请求浪费配额</td>
+</tr>
+<tr>
+<td align="left"><code>ANTHROPIC_MODEL</code></td>
+<td align="left">默认模型</td>
+</tr>
+<tr>
+<td align="left"><code>ANTHROPIC_SMALL_FAST_MODEL</code></td>
+<td align="left">轻量快速模型（简单任务自动降级）</td>
+</tr>
+<tr>
+<td align="left"><code>ANTHROPIC_DEFAULT_SONNET/OPUS/HAIKU_MODEL</code></td>
+<td align="left">分别对应平衡&#x2F;复杂&#x2F;最快场景的模型名</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="init-深度用法"><a href="#init-深度用法" class="headerlink" title="&#x2F;init 深度用法"></a>&#x2F;init 深度用法</h3><p><code>/init</code> 不只是”扫描项目”这么简单，实际流程更细致：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 标准流程</span></span><br><span class="line"><span class="built_in">cd</span> /path/to/project</span><br><span class="line">claude</span><br><span class="line">&gt; /init</span><br></pre></td></tr></table></figure>
+
+<p><strong>扫描行为：</strong></p>
+<ul>
+<li>读取项目根目录的 <code>CLAUDE.md</code>（如果存在，跳过生成）</li>
+<li>分析语言&#x2F;框架类型（通过 <code>package.json</code>、<code>*.pyproj</code>、<code>Cargo.toml</code> 等）</li>
+<li>扫描源码目录结构（默认忽略 <code>node_modules</code>、<code>vendor</code>、<code>__pycache__</code>、<code>.git</code> 等）</li>
+<li>生成项目摘要写入根目录的 <code>CLAUDE.md</code></li>
+</ul>
+<p><strong>可调参数：</strong></p>
+<ul>
+<li><code>--no-input</code>：不提问，直接生成并写入 <code>CLAUDE.md</code>（适合自动化脚本）</li>
+<li><code>--dir &lt;path&gt;</code>：指定要扫描的子目录（默认整个项目）</li>
+<li><code>--output &lt;file&gt;</code>：指定输出文件名（默认 <code>CLAUDE.md</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 自动化场景：不提问，直接生成</span></span><br><span class="line">claude --<span class="built_in">print</span> --permission-mode bypassPermissions /init --no-input</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只扫描 src 目录</span></span><br><span class="line">claude /init --<span class="built_in">dir</span> ./src</span><br></pre></td></tr></table></figure>
+
+<p><strong>生成的 CLAUDE.md 内容示例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># Project Overview</span></span><br><span class="line"><span class="bullet">-</span> Type: Node.js/TypeScript API Server</span><br><span class="line"><span class="bullet">-</span> Framework: Express.js</span><br><span class="line"><span class="bullet">-</span> Key Files: src/index.ts, src/routes/<span class="emphasis">*.ts</span></span><br><span class="line"><span class="emphasis">- Build: npm run build</span></span><br><span class="line"><span class="emphasis">- Tests: npm test</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="SSH-远程开发"><a href="#SSH-远程开发" class="headerlink" title="SSH 远程开发"></a>SSH 远程开发</h3><p>Claude Code 支持在远程服务器上运行，典型场景是 SSH 连到开发机或服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接 SSH 过去跑</span></span><br><span class="line">ssh user@your-server.com</span><br><span class="line"><span class="built_in">cd</span> /path/to/project</span><br><span class="line">claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或通过 SSH Tunnel 代理本地 Claude Code 流量（减少服务器上直接存 API Key）</span></span><br><span class="line">ssh -L 8080:localhost:8080 user@your-server.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>服务器首次运行会要求信任目录（输入 <code>y</code>）</li>
+<li>建议在本地配置好 <code>~/.claude/settings.json</code> 的 API Key，通过 SSH Tunnel 不需要在服务器存 Key</li>
+<li>服务器性能影响响应速度，网络延迟是主要瓶颈</li>
+<li>推荐搭配 <code>screen</code> 或 <code>tmux</code> 使用，断连不丢会话：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建持久会话</span></span><br><span class="line">screen -S claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复会话</span></span><br><span class="line">screen -r claude</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="多会话管理"><a href="#多会话管理" class="headerlink" title="多会话管理"></a>多会话管理</h3><p>日常开发中常需要同时维护多个项目会话，Claude Code 没有内置会话列表，但可以用以下方式管理：</p>
+<p><strong>方式一：不同终端窗口</strong></p>
+<ul>
+<li>每个项目开一个终端，互不干扰</li>
+<li>最简单直接</li>
+</ul>
+<p><strong>方式二：使用 <code>--session</code> 指定会话文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存当前会话到指定文件</span></span><br><span class="line">claude --save-session ~/claude-sessions/myproject.json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复某个会话继续工作</span></span><br><span class="line">claude --resume-session ~/claude-sessions/myproject.json</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式三：plans 目录管理</strong><br>Plan 模式的计划文件会保存在 <code>~/.claude/plans/</code>，可以用有意义的名称命名：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 重命名计划文件，方便识别</span></span><br><span class="line"><span class="built_in">mv</span> ~/.claude/plans/auto-generated.md ~/.claude/plans/myproject-redesign.md</span><br><span class="line"></span><br><span class="line"><span class="comment"># 继续之前的工作</span></span><br><span class="line">claude</span><br><span class="line">&gt; /plan ~/.claude/plans/myproject-redesign.md</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式四：项目内会话隔离</strong><br>在项目根目录放 <code>.claude</code> 子目录，存放项目级别的会话和配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p .claude</span><br><span class="line"><span class="comment"># 项目特定的 settings</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;env&quot;:&#123;&quot;ANTHROPIC_MODEL&quot;:&quot;sonnet&quot;&#125;&#125;&#x27;</span> &gt; .claude/settings.json</span><br></pre></td></tr></table></figure>
 <h2 id="个人使用技巧"><a href="#个人使用技巧" class="headerlink" title="个人使用技巧"></a>个人使用技巧</h2><h3 id="解决程序报错"><a href="#解决程序报错" class="headerlink" title="解决程序报错"></a>解决程序报错</h3><ol>
 <li>保存程序运行报错前后的日志</li>
 <li>进入项目源码目录</li>
@@ -1915,7 +2328,9 @@
 <ul>
 <li>首次使用时配置 API KEY 避免频繁登录</li>
 <li>复杂任务使用 Plan 模式，简单任务使用常规模式</li>
-<li>善用 CLAUDE.md 记录项目上下文</li>
+<li>善用 CLAUDE.md 记录项目上下文，配合 <code>/init</code> 自动化生成</li>
+<li>自动化场景优先用 <code>--print</code> + <code>--permission-mode bypassPermissions</code></li>
+<li>远程开发推荐配合 <code>screen</code>&#x2F;SSH Tunnel 使用，保证会话持久性</li>
 <li>定期查看官方文档获取最新功能</li>
 </ul>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>

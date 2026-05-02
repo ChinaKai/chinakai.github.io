@@ -255,112 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-04-28</title>
-    <url>/2026/04/28/2026-04-28-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-4-26-发布：Cerebras-集成与-Memory-系统重大升级"><a href="#OpenClaw-v2026-4-26-发布：Cerebras-集成与-Memory-系统重大升级" class="headerlink" title="OpenClaw v2026.4.26 发布：Cerebras 集成与 Memory 系统重大升级"></a>OpenClaw v2026.4.26 发布：Cerebras 集成与 Memory 系统重大升级</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>今日凌晨，OpenClaw 发布了 v2026.4.26 版本，这是近一个月以来最大的版本更新。相比 4.25 版本的 TTS 全面升级，本次更新聚焦于 <strong>AI 记忆系统</strong> 和 <strong>模型提供商生态</strong>，一口气引入了 Cerebras 作为官方内置插件，并大幅增强了 Memory 能力。对于需要构建持久化知识库的开发者来说，这次更新意义非凡。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>Cerebras 集成</strong></p>
-<p>Cerebras 以其独特的 Wafer-Scale Engine（WSE）芯片著称，在大模型推理上有极高的性价比。本次集成以插件形式实现，包含完整的 onboarding 流程、静态模型目录和文档：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># providers 配置示例</span></span><br><span class="line"><span class="attr">providers:</span></span><br><span class="line">  <span class="attr">cerebras:</span></span><br><span class="line">    <span class="attr">plugin:</span> <span class="string">@openclaw/provider-cerebras</span></span><br><span class="line">    <span class="attr">apiEndpoint:</span> <span class="string">https://api.cerebras.ai</span></span><br><span class="line">    <span class="attr">models:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">cerebras琅-2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">cerebras-llama-3.3-70b</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Memory 系统的不对称嵌入支持</strong></p>
-<p>新版本为 OpenAI 兼容的 Memory 后端添加了 <code>memorySearch.inputType</code>、<code>queryInputType</code> 和 <code>documentInputType</code> 配置，支持非对称嵌入端点。这意味着：</p>
-<ul>
-<li>检索查询和文档可以使用不同的嵌入模型</li>
-<li>可以直接发送 query 嵌入而无需转换格式</li>
-<li>支持 provider 批量索引</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// memory 配置示例</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;memory&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;memorySearch.inputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;query&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;queryInputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;float&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;documentInputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;base64&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Ollama Memory 的模型特定前缀</strong></p>
-<p>针对 <code>nomic-embed-text</code>、<code>qwen3-embedding</code> 和 <code>mxbai-embed-large</code> 三款热门本地嵌入模型，新增了检索查询前缀优化。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：用 Cerebras 降低 API 成本</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 Cerebras 插件</span></span><br><span class="line">openclaw plugins install @openclaw/provider-cerebras</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 API Key</span></span><br><span class="line">openclaw config patch providers.cerebras.apiKey <span class="string">&quot;cs-xxxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在对话中使用 Cerebras</span></span><br><span class="line">/openclaw model cerebras-llama-3.3-70b</span><br></pre></td></tr></table></figure>
-
-<p><strong>场景二：配置 Qwen3 Embedding 进行本地知识库检索</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确保 Ollama 运行中</span></span><br><span class="line">ollama serve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取模型</span></span><br><span class="line">ollama pull qwen3-embedding</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 OpenClaw Memory</span></span><br><span class="line">openclaw config patch memory.provider <span class="string">&quot;ollama&quot;</span></span><br><span class="line">openclaw config patch memory.ollama.model <span class="string">&quot;qwen3-embedding&quot;</span></span><br><span class="line">openclaw config patch memory.ollama.endpoint <span class="string">&quot;http://localhost:11434&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>场景三：用 compaction 防止长会话崩溃</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;compaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;maxActiveTranscriptBytes&quot;</span><span class="punctuation">:</span> <span class="number">5242880</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合升级的场景：</strong></p>
-<ul>
-<li>需要使用 Cerebras 等高性价比模型</li>
-<li>构建本地知识库并使用 Ollama</li>
-<li>需要在 OpenClaw 中保留跨会话的持久化记忆</li>
-<li>运行长时间 AI 编程任务，需要防止上下文膨胀</li>
-</ul>
-<p><strong>需要谨慎的场景：</strong></p>
-<ul>
-<li>生产环境依赖稳定版本，建议等待 1-2 周观察社区反馈</li>
-<li>涉及复杂 MCP 配置的项目，先在测试环境验证</li>
-</ul>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：OpenClaw-Matrix-加密设置一条命令完成"><a href="#技巧-1：OpenClaw-Matrix-加密设置一条命令完成" class="headerlink" title="技巧 1：OpenClaw Matrix 加密设置一条命令完成"></a>技巧 1：OpenClaw Matrix 加密设置一条命令完成</h2><p>v2026.4.26 新增的 <code>openclaw matrix encryption setup</code> 让 Matrix 加密配置变得前所未有的简单：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一条命令完成加密启用 + 恢复引导 + 状态验证</span></span><br><span class="line">openclaw matrix encryption setup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出示例</span></span><br><span class="line">✓ E2EE enabled</span><br><span class="line">✓ Recovery key generated and stored</span><br><span class="line">✓ Verification complete</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：之前需要手动编辑配置文件、生成密钥、验证握手，现在一键完成。</p>
-<hr>
-<h2 id="技巧-2：Claude-Code-v2-1-121-的-MCP-alwaysLoad-选项"><a href="#技巧-2：Claude-Code-v2-1-121-的-MCP-alwaysLoad-选项" class="headerlink" title="技巧 2：Claude Code v2.1.121 的 MCP alwaysLoad 选项"></a>技巧 2：Claude Code v2.1.121 的 MCP alwaysLoad 选项</h2><p>Claude Code 最新版为 MCP server 配置新增了 <code>alwaysLoad</code> 选项：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;my-server&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;-y&quot;</span><span class="punctuation">,</span> <span class="string">&quot;@some/mcp-server&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;alwaysLoad&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>当 <code>alwaysLoad: true</code> 时，该服务器的所有工具跳过 tool-search 延迟加载，始终可用。</p>
-<p><strong>效果</strong>：高频 MCP 工具集不再受延迟加载影响，响应更快。</p>
-<hr>
-<h2 id="技巧-3：用-openclaw-migrate-从-Claude-无缝迁移"><a href="#技巧-3：用-openclaw-migrate-从-Claude-无缝迁移" class="headerlink" title="技巧 3：用 openclaw migrate 从 Claude 无缝迁移"></a>技巧 3：用 <code>openclaw migrate</code> 从 Claude 无缝迁移</h2><p>Claude Code 迁移到 OpenClaw 现在有官方支持：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 预览迁移内容（不执行）</span></span><br><span class="line">openclaw migrate --plan --<span class="built_in">source</span> claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行迁移（包含备份）</span></span><br><span class="line">openclaw migrate --<span class="built_in">source</span> claude --apply</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支持导入的内容：</span></span><br><span class="line"><span class="comment"># - MCP servers</span></span><br><span class="line"><span class="comment"># - Skills  </span></span><br><span class="line"><span class="comment"># - Command prompts</span></span><br><span class="line"><span class="comment"># - Safe archive/manual-review state</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：从 Claude 生态迁移到 OpenClaw 的成本大幅降低，所有配置和记忆都可以保留。</p>
-<hr>
-<h2 id="技巧-4：Docker-容器连接本地-LM-Studio-Ollama"><a href="#技巧-4：Docker-容器连接本地-LM-Studio-Ollama" class="headerlink" title="技巧 4：Docker 容器连接本地 LM Studio &#x2F; Ollama"></a>技巧 4：Docker 容器连接本地 LM Studio &#x2F; Ollama</h2><p>v2026.4.26 修复了容器化环境下连接本地 provider 的问题：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml 示例</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">openclaw:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">alpine/openclaw:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">OPENCLAW_DOCKER_HOST=host.docker.internal</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;host.docker.internal:host-gateway&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>现在容器内的 OpenClaw Gateway 可以通过 <code>host.docker.internal</code> 访问宿主机的 LM Studio 和 Ollama，无需配置 macvlan 或 host 网络。</p>
-<p><strong>效果</strong>：Docker 部署的 OpenClaw 也能使用本地大模型进行编程辅助。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><h3 id="OpenClaw-v2026-4-26-正式发布"><a href="#OpenClaw-v2026-4-26-正式发布" class="headerlink" title="OpenClaw v2026.4.26 正式发布"></a>OpenClaw v2026.4.26 正式发布</h3><p>今日凌晨 01:11 UTC，OpenClaw 发布了 v2026.4.26 版本，包含 150+ 变更和 70+ 修复。</p>
-<p><strong>核心新增：</strong></p>
-<ul>
-<li><strong>Cerebras</strong> 成为官方内置插件，提供 Llama 3.3 70B 等高性价比模型</li>
-<li><strong>Memory 系统</strong>全面升级：非对称嵌入支持、Ollama 嵌入优化、QMD 状态解析改进</li>
-<li><strong>Matrix 加密</strong>：<code>openclaw matrix encryption setup</code> 一键启用</li>
-<li><strong>Compaction 触发器</strong>：<code>maxActiveTranscriptBytes</code> 防止长会话膨胀</li>
-<li><strong>Claude 迁移器</strong>：官方支持从 Claude Code 迁移配置和记忆</li>
-</ul>
-<p><strong>重要修复：</strong></p>
-<ul>
-<li>Docker 镜像 CA 证书问题导致 HTTPS 调用失败</li>
-<li>Windows Feishu 发送失败（Jiti ESM 加载器路径问题）</li>
-<li>多处 memory-core 和 agents 的稳定性问题</li>
-</ul>
-<p><strong>参考</strong>：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.4.26">https://github.com/openclaw/openclaw/releases/tag/v2026.4.26</a></p>
-<h3 id="Claude-Code-v2-1-121：MCP-工具加载策略优化"><a href="#Claude-Code-v2-1-121：MCP-工具加载策略优化" class="headerlink" title="Claude Code v2.1.121：MCP 工具加载策略优化"></a>Claude Code v2.1.121：MCP 工具加载策略优化</h3><p>Claude Code 发布 v2.1.121，重点改进了 MCP 工具管理：</p>
-<ul>
-<li>新增 <code>alwaysLoad</code> 选项，MCP server 工具可始终保持可用</li>
-<li>新增 <code>claude plugin prune</code> 命令，清理孤立的自动安装依赖</li>
-<li><code>/skills</code> 命令新增类型过滤搜索框</li>
-</ul>
-<h3 id="awesome-openclaw-skills-突破-5600-项目"><a href="#awesome-openclaw-skills-突破-5600-项目" class="headerlink" title="awesome-openclaw-skills 突破 5600+ 项目"></a>awesome-openclaw-skills 突破 5600+ 项目</h3><p>VoltAgent 维护的 OpenClaw skills 集合已达 5600+ 项目，周增长约 200+。社区活跃度持续提升。</p>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入探讨 <strong>OpenClaw Memory 系统进阶用法</strong>，包括如何用 QMD 构建本地知识库、实现精准的跨会话记忆检索，以及 Memory 性能调优实战。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-        <tag>OpenClaw</tag>
-        <tag>Claude</tag>
-        <tag>Codex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-04-29</title>
     <url>/2026/04/29/2026-04-29-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -565,6 +459,164 @@
 # 明日预告
 
 明天我们将 Claude Code 扩展思考模式的实际测试结果，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-04-28</title>
+    <url>/2026/04/28/2026-04-28-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-4-26-发布：Cerebras-集成与-Memory-系统重大升级"><a href="#OpenClaw-v2026-4-26-发布：Cerebras-集成与-Memory-系统重大升级" class="headerlink" title="OpenClaw v2026.4.26 发布：Cerebras 集成与 Memory 系统重大升级"></a>OpenClaw v2026.4.26 发布：Cerebras 集成与 Memory 系统重大升级</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>今日凌晨，OpenClaw 发布了 v2026.4.26 版本，这是近一个月以来最大的版本更新。相比 4.25 版本的 TTS 全面升级，本次更新聚焦于 <strong>AI 记忆系统</strong> 和 <strong>模型提供商生态</strong>，一口气引入了 Cerebras 作为官方内置插件，并大幅增强了 Memory 能力。对于需要构建持久化知识库的开发者来说，这次更新意义非凡。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>Cerebras 集成</strong></p>
+<p>Cerebras 以其独特的 Wafer-Scale Engine（WSE）芯片著称，在大模型推理上有极高的性价比。本次集成以插件形式实现，包含完整的 onboarding 流程、静态模型目录和文档：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># providers 配置示例</span></span><br><span class="line"><span class="attr">providers:</span></span><br><span class="line">  <span class="attr">cerebras:</span></span><br><span class="line">    <span class="attr">plugin:</span> <span class="string">@openclaw/provider-cerebras</span></span><br><span class="line">    <span class="attr">apiEndpoint:</span> <span class="string">https://api.cerebras.ai</span></span><br><span class="line">    <span class="attr">models:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">cerebras琅-2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">cerebras-llama-3.3-70b</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Memory 系统的不对称嵌入支持</strong></p>
+<p>新版本为 OpenAI 兼容的 Memory 后端添加了 <code>memorySearch.inputType</code>、<code>queryInputType</code> 和 <code>documentInputType</code> 配置，支持非对称嵌入端点。这意味着：</p>
+<ul>
+<li>检索查询和文档可以使用不同的嵌入模型</li>
+<li>可以直接发送 query 嵌入而无需转换格式</li>
+<li>支持 provider 批量索引</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// memory 配置示例</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;memory&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;provider&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openai-compatible&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;memorySearch.inputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;query&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;queryInputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;float&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;documentInputType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;base64&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Ollama Memory 的模型特定前缀</strong></p>
+<p>针对 <code>nomic-embed-text</code>、<code>qwen3-embedding</code> 和 <code>mxbai-embed-large</code> 三款热门本地嵌入模型，新增了检索查询前缀优化。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：用 Cerebras 降低 API 成本</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 Cerebras 插件</span></span><br><span class="line">openclaw plugins install @openclaw/provider-cerebras</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 API Key</span></span><br><span class="line">openclaw config patch providers.cerebras.apiKey <span class="string">&quot;cs-xxxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在对话中使用 Cerebras</span></span><br><span class="line">/openclaw model cerebras-llama-3.3-70b</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Qwen3 Embedding 进行本地知识库检索</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确保 Ollama 运行中</span></span><br><span class="line">ollama serve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取模型</span></span><br><span class="line">ollama pull qwen3-embedding</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 OpenClaw Memory</span></span><br><span class="line">openclaw config patch memory.provider <span class="string">&quot;ollama&quot;</span></span><br><span class="line">openclaw config patch memory.ollama.model <span class="string">&quot;qwen3-embedding&quot;</span></span><br><span class="line">openclaw config patch memory.ollama.endpoint <span class="string">&quot;http://localhost:11434&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>场景三：用 compaction 防止长会话崩溃</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;agents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;compaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;maxActiveTranscriptBytes&quot;</span><span class="punctuation">:</span> <span class="number">5242880</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合升级的场景：</strong></p>
+<ul>
+<li>需要使用 Cerebras 等高性价比模型</li>
+<li>构建本地知识库并使用 Ollama</li>
+<li>需要在 OpenClaw 中保留跨会话的持久化记忆</li>
+<li>运行长时间 AI 编程任务，需要防止上下文膨胀</li>
+</ul>
+<p><strong>需要谨慎的场景：</strong></p>
+<ul>
+<li>生产环境依赖稳定版本，建议等待 1-2 周观察社区反馈</li>
+<li>涉及复杂 MCP 配置的项目，先在测试环境验证</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：OpenClaw-Matrix-加密设置一条命令完成"><a href="#技巧-1：OpenClaw-Matrix-加密设置一条命令完成" class="headerlink" title="技巧 1：OpenClaw Matrix 加密设置一条命令完成"></a>技巧 1：OpenClaw Matrix 加密设置一条命令完成</h2><p>v2026.4.26 新增的 <code>openclaw matrix encryption setup</code> 让 Matrix 加密配置变得前所未有的简单：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一条命令完成加密启用 + 恢复引导 + 状态验证</span></span><br><span class="line">openclaw matrix encryption setup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出示例</span></span><br><span class="line">✓ E2EE enabled</span><br><span class="line">✓ Recovery key generated and stored</span><br><span class="line">✓ Verification complete</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：之前需要手动编辑配置文件、生成密钥、验证握手，现在一键完成。</p>
+<hr>
+<h2 id="技巧-2：Claude-Code-v2-1-121-的-MCP-alwaysLoad-选项"><a href="#技巧-2：Claude-Code-v2-1-121-的-MCP-alwaysLoad-选项" class="headerlink" title="技巧 2：Claude Code v2.1.121 的 MCP alwaysLoad 选项"></a>技巧 2：Claude Code v2.1.121 的 MCP alwaysLoad 选项</h2><p>Claude Code 最新版为 MCP server 配置新增了 <code>alwaysLoad</code> 选项：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;my-server&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;-y&quot;</span><span class="punctuation">,</span> <span class="string">&quot;@some/mcp-server&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;alwaysLoad&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <code>alwaysLoad: true</code> 时，该服务器的所有工具跳过 tool-search 延迟加载，始终可用。</p>
+<p><strong>效果</strong>：高频 MCP 工具集不再受延迟加载影响，响应更快。</p>
+<hr>
+<h2 id="技巧-3：用-openclaw-migrate-从-Claude-无缝迁移"><a href="#技巧-3：用-openclaw-migrate-从-Claude-无缝迁移" class="headerlink" title="技巧 3：用 openclaw migrate 从 Claude 无缝迁移"></a>技巧 3：用 <code>openclaw migrate</code> 从 Claude 无缝迁移</h2><p>Claude Code 迁移到 OpenClaw 现在有官方支持：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 预览迁移内容（不执行）</span></span><br><span class="line">openclaw migrate --plan --<span class="built_in">source</span> claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行迁移（包含备份）</span></span><br><span class="line">openclaw migrate --<span class="built_in">source</span> claude --apply</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支持导入的内容：</span></span><br><span class="line"><span class="comment"># - MCP servers</span></span><br><span class="line"><span class="comment"># - Skills  </span></span><br><span class="line"><span class="comment"># - Command prompts</span></span><br><span class="line"><span class="comment"># - Safe archive/manual-review state</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：从 Claude 生态迁移到 OpenClaw 的成本大幅降低，所有配置和记忆都可以保留。</p>
+<hr>
+<h2 id="技巧-4：Docker-容器连接本地-LM-Studio-Ollama"><a href="#技巧-4：Docker-容器连接本地-LM-Studio-Ollama" class="headerlink" title="技巧 4：Docker 容器连接本地 LM Studio &#x2F; Ollama"></a>技巧 4：Docker 容器连接本地 LM Studio &#x2F; Ollama</h2><p>v2026.4.26 修复了容器化环境下连接本地 provider 的问题：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml 示例</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">openclaw:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">alpine/openclaw:latest</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">OPENCLAW_DOCKER_HOST=host.docker.internal</span></span><br><span class="line">    <span class="attr">extra_hosts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;host.docker.internal:host-gateway&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>现在容器内的 OpenClaw Gateway 可以通过 <code>host.docker.internal</code> 访问宿主机的 LM Studio 和 Ollama，无需配置 macvlan 或 host 网络。</p>
+<p><strong>效果</strong>：Docker 部署的 OpenClaw 也能使用本地大模型进行编程辅助。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><h3 id="OpenClaw-v2026-4-26-正式发布"><a href="#OpenClaw-v2026-4-26-正式发布" class="headerlink" title="OpenClaw v2026.4.26 正式发布"></a>OpenClaw v2026.4.26 正式发布</h3><p>今日凌晨 01:11 UTC，OpenClaw 发布了 v2026.4.26 版本，包含 150+ 变更和 70+ 修复。</p>
+<p><strong>核心新增：</strong></p>
+<ul>
+<li><strong>Cerebras</strong> 成为官方内置插件，提供 Llama 3.3 70B 等高性价比模型</li>
+<li><strong>Memory 系统</strong>全面升级：非对称嵌入支持、Ollama 嵌入优化、QMD 状态解析改进</li>
+<li><strong>Matrix 加密</strong>：<code>openclaw matrix encryption setup</code> 一键启用</li>
+<li><strong>Compaction 触发器</strong>：<code>maxActiveTranscriptBytes</code> 防止长会话膨胀</li>
+<li><strong>Claude 迁移器</strong>：官方支持从 Claude Code 迁移配置和记忆</li>
+</ul>
+<p><strong>重要修复：</strong></p>
+<ul>
+<li>Docker 镜像 CA 证书问题导致 HTTPS 调用失败</li>
+<li>Windows Feishu 发送失败（Jiti ESM 加载器路径问题）</li>
+<li>多处 memory-core 和 agents 的稳定性问题</li>
+</ul>
+<p><strong>参考</strong>：<a href="https://github.com/openclaw/openclaw/releases/tag/v2026.4.26">https://github.com/openclaw/openclaw/releases/tag/v2026.4.26</a></p>
+<h3 id="Claude-Code-v2-1-121：MCP-工具加载策略优化"><a href="#Claude-Code-v2-1-121：MCP-工具加载策略优化" class="headerlink" title="Claude Code v2.1.121：MCP 工具加载策略优化"></a>Claude Code v2.1.121：MCP 工具加载策略优化</h3><p>Claude Code 发布 v2.1.121，重点改进了 MCP 工具管理：</p>
+<ul>
+<li>新增 <code>alwaysLoad</code> 选项，MCP server 工具可始终保持可用</li>
+<li>新增 <code>claude plugin prune</code> 命令，清理孤立的自动安装依赖</li>
+<li><code>/skills</code> 命令新增类型过滤搜索框</li>
+</ul>
+<h3 id="awesome-openclaw-skills-突破-5600-项目"><a href="#awesome-openclaw-skills-突破-5600-项目" class="headerlink" title="awesome-openclaw-skills 突破 5600+ 项目"></a>awesome-openclaw-skills 突破 5600+ 项目</h3><p>VoltAgent 维护的 OpenClaw skills 集合已达 5600+ 项目，周增长约 200+。社区活跃度持续提升。</p>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入探讨 <strong>OpenClaw Memory 系统进阶用法</strong>，包括如何用 QMD 构建本地知识库、实现精准的跨会话记忆检索，以及 Memory 性能调优实战。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+        <tag>OpenClaw</tag>
+        <tag>Claude</tag>
+        <tag>Codex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-02</title>
+    <url>/2026/05/02/2026-05-02-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 GitHub Copilot 新功能的深度解析，并结合实际案例给出可操作的建议。
 
 ---
 
@@ -1102,18 +1154,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux性能分析-内存</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>内存</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux性能分析-网络</title>
     <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="资源受限Linux环境-iperf3-udp打流丢包解决方案"><a href="#资源受限Linux环境-iperf3-udp打流丢包解决方案" class="headerlink" title="资源受限Linux环境 iperf3 udp打流丢包解决方案"></a>资源受限Linux环境 iperf3 udp打流丢包解决方案</h2><ol>
@@ -1127,6 +1167,18 @@
       <tags>
         <tag>Linux性能</tag>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux性能分析-内存</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>内存</tag>
       </tags>
   </entry>
   <entry>
@@ -1421,19 +1473,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MakerWorld模型收藏</title>
-    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
-]]></content>
-      <categories>
-        <category>skills</category>
-        <category>3D打印</category>
-      </categories>
-      <tags>
-        <tag>MakerWorld</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>嵌入式linux疑难问题记录</title>
     <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
@@ -1452,64 +1491,6 @@
       </categories>
       <tags>
         <tag>cfg80211</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GIT基础命令</title>
-    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
-<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
-<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
-
-<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
-
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
-
-<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -2465,40 +2446,6 @@
         <tag>openclaw</tag>
         <tag>教程</tag>
         <tag>ai工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cjson使用</title>
-    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
-<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
-<li>json是一个键值对集合</li>
-<li>以”{“开始，以”}”结束，允许嵌套使用</li>
-<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
-<li>键值对之间用”,”分隔</li>
-</ul>
-<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
-<li>可以是一个新的json对象</li>
-<li>数组：使用”[“和”]”表示</li>
-<li>数字：直接表示，可以是整数，也可以是浮点数</li>
-<li>字符串：使用引号”string”表示</li>
-<li>字面值：false、null、true中的一个(必须是小写)</li>
-</ul>
-<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
-<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
-<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
-<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
-<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>cjson</tag>
       </tags>
   </entry>
   <entry>
@@ -3629,6 +3576,19 @@
       </tags>
   </entry>
   <entry>
+    <title>MakerWorld模型收藏</title>
+    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
+]]></content>
+      <categories>
+        <category>skills</category>
+        <category>3D打印</category>
+      </categories>
+      <tags>
+        <tag>MakerWorld</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1.从零开始学Linux内核源码 - 源码下载及配置编译</title>
     <url>/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>所有操作均是linux-6.8.2版本</em></p>
@@ -3818,6 +3778,98 @@
       </categories>
       <tags>
         <tag>kernel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cjson使用</title>
+    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
+<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
+<li>json是一个键值对集合</li>
+<li>以”{“开始，以”}”结束，允许嵌套使用</li>
+<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
+<li>键值对之间用”,”分隔</li>
+</ul>
+<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
+<li>可以是一个新的json对象</li>
+<li>数组：使用”[“和”]”表示</li>
+<li>数字：直接表示，可以是整数，也可以是浮点数</li>
+<li>字符串：使用引号”string”表示</li>
+<li>字面值：false、null、true中的一个(必须是小写)</li>
+</ul>
+<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
+<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
+<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
+<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>cjson</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
       </tags>
   </entry>
 </search>

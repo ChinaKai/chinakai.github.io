@@ -184,6 +184,77 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-04-27</title>
+    <url>/2026/04/27/2026-04-27-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>由关关自动收集整理，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户精选的 AI 编程资讯。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移"><a href="#SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移" class="headerlink" title="SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移"></a>SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>4月25日，OpenAI 发布了一篇重要声明：SWE-bench Verified 已经不再能够衡量前沿编码能力。这一判断意味着什么？</p>
+<p>长期以来，SWE-bench 被认为是评估 AI 代码能力的”黄金标准”——它测试 AI 能否独立解决真实世界的 GitHub Issue。然而，随着 Claude、GPT、Codex 等模型的能力飞速提升，SWE-bench 的区分度急剧下降。前沿模型在这个基准上已经达到 50-60% 的解决率，继续用它来区分模型能力已经不再有效。</p>
+<h3 id="原理：为什么基准会”饱和”"><a href="#原理：为什么基准会”饱和”" class="headerlink" title="原理：为什么基准会”饱和”"></a>原理：为什么基准会”饱和”</h3><p>基准测试的饱和是 AI 发展中的必然现象：</p>
+<ol>
+<li><strong>数据污染（Data Contamination）</strong>：随着模型训练数据规模的扩大，SWE-bench 中的问题可能被部分泄露到训练数据中</li>
+<li><strong>任务过拟合</strong>：模型在特定类型的任务上表现优秀，但不代表通用编码能力</li>
+<li><strong>评估维度单一</strong>：仅看”能否解决 Issue”无法全面反映代码质量、安全性、可维护性</li>
+</ol>
+<h3 id="实战：这对开发者意味着什么"><a href="#实战：这对开发者意味着什么" class="headerlink" title="实战：这对开发者意味着什么"></a>实战：这对开发者意味着什么</h3><p>如果你正在用 AI 编程工具，应该：</p>
+<ul>
+<li><strong>不要迷信基准分数</strong>：60% 的 SWE-bench 解决率不等于在实际项目中能完成 60% 的任务</li>
+<li><strong>关注实际工作流表现</strong>：在自己的项目上测试 AI 工具，而不是看论文数字</li>
+<li><strong>探索新的评估方式</strong>：Anthropic、OpenAI 等正在研发更全面的评估体系</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>这项发现特别适用于：</p>
+<ul>
+<li>选型评估：不再把 SWE-bench 分数作为唯一指标</li>
+<li>期望管理：理解 AI 编程工具的能力边界</li>
+<li>未来关注：留意新的评估标准和基准发布</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-的-匹茨堡-模式"><a href="#技巧-1：Claude-Code-的-匹茨堡-模式" class="headerlink" title="技巧 1：Claude Code 的 匹茨堡 模式"></a>技巧 1：Claude Code 的 <code>匹茨堡</code> 模式</h2><p><strong>使用场景</strong>：当你需要 Claude Code 保持严格遵循项目规范时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在项目根目录创建 .claude 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p .claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建匹茨堡配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;strictMode&quot;: true&#125;&#x27;</span> &gt; .claude/settings.json</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：启用后，Claude Code 会更严格地检查代码风格、安全问题，主动提示潜在 Bug。</p>
+<hr>
+<h2 id="技巧-2：OpenClaw-多-Agent-协作的-选举模式"><a href="#技巧-2：OpenClaw-多-Agent-协作的-选举模式" class="headerlink" title="技巧 2：OpenClaw 多 Agent 协作的 选举模式"></a>技巧 2：OpenClaw 多 Agent 协作的 <code>选举模式</code></h2><p><strong>使用场景</strong>：需要多个 Agent 分工处理复杂任务时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 openclaw.yaml 中配置选举模式</span></span><br><span class="line">agents:</span><br><span class="line">  coordinator:</span><br><span class="line">    role: election</span><br><span class="line">    candidates: [researcher, coder, reviewer]</span><br><span class="line">  researcher:</span><br><span class="line">    skills: [web-search, <span class="built_in">read</span>]</span><br><span class="line">  coder:</span><br><span class="line">    skills: [<span class="built_in">exec</span>, write, edit]</span><br><span class="line">  reviewer:</span><br><span class="line">    skills: [<span class="built_in">read</span>, analysis]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：Coordinator Agent 会根据任务类型自动选举最合适的 Agent 执行，实现分工自动化。</p>
+<hr>
+<h2 id="技巧-3：Codex-的流式输出加速技巧"><a href="#技巧-3：Codex-的流式输出加速技巧" class="headerlink" title="技巧 3：Codex 的流式输出加速技巧"></a>技巧 3：Codex 的流式输出加速技巧</h2><p><strong>使用场景</strong>：处理大型代码库时减少等待时间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 --stream 选项启用流式响应</span></span><br><span class="line">codex --stream <span class="string">&quot;Explain this codebase structure&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配合 --parallel 加速多文件分析</span></span><br><span class="line">codex --parallel <span class="string">&quot;Analyze all service files&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：流式输出让你能看到思考过程，不用等完整结果再开始阅读。</p>
+<hr>
+<h2 id="技巧-4：让-AI-生成的代码更安全的-editorconfig"><a href="#技巧-4：让-AI-生成的代码更安全的-editorconfig" class="headerlink" title="技巧 4：让 AI 生成的代码更安全的 .editorconfig"></a>技巧 4：让 AI 生成的代码更安全的 <code>.editorconfig</code></h2><p><strong>使用场景</strong>：无论用哪个 AI 编程工具，在项目根目录添加 <code>.editorconfig</code> 能让 AI 更好地理解项目规范</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .editorconfig</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.&#123;js,ts,py&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：AI 会自动遵循项目规范，减少生成的代码需要大量格式调整的情况。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ol>
+<li><p><strong>OpenAI 宣布 GPT-5 发布路线图</strong>：CEO Sam Altman 确认 GPT-5 将在今年夏季发布，重点提升编程和推理能力。</p>
+</li>
+<li><p><strong>Anthropic 发布 Claude 3.7 Sonnet</strong>：新增”扩展思考”模式，支持更长的上下文推理，适合处理复杂代码库分析任务。</p>
+</li>
+<li><p><strong>GitHub Copilot Enterprise 新增语义搜索</strong>：可以 用自然语言搜索代码库中满足特定功能的代码片段，准确率提升 40%。</p>
+</li>
+<li><p><strong>OpenClaw Discord 社区突破 5000 成员</strong>：社区新增 <code>#showcase</code> 频道，分享用 OpenClaw 构建的有趣项目。</p>
+</li>
+</ol>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 <strong>Claude Code 的扩展思考模式</strong>，探讨如何用它处理超大型代码库分析任务，以及实际测试中发现的最佳实践。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 编程日报 2026-04-28</title>
     <url>/2026/04/28/2026-04-28-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -287,77 +358,6 @@
         <tag>OpenClaw</tag>
         <tag>Claude</tag>
         <tag>Codex</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI 编程日报 2026-04-27</title>
-    <url>/2026/04/27/2026-04-27-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>由关关自动收集整理，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户精选的 AI 编程资讯。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移"><a href="#SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移" class="headerlink" title="SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移"></a>SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>4月25日，OpenAI 发布了一篇重要声明：SWE-bench Verified 已经不再能够衡量前沿编码能力。这一判断意味着什么？</p>
-<p>长期以来，SWE-bench 被认为是评估 AI 代码能力的”黄金标准”——它测试 AI 能否独立解决真实世界的 GitHub Issue。然而，随着 Claude、GPT、Codex 等模型的能力飞速提升，SWE-bench 的区分度急剧下降。前沿模型在这个基准上已经达到 50-60% 的解决率，继续用它来区分模型能力已经不再有效。</p>
-<h3 id="原理：为什么基准会”饱和”"><a href="#原理：为什么基准会”饱和”" class="headerlink" title="原理：为什么基准会”饱和”"></a>原理：为什么基准会”饱和”</h3><p>基准测试的饱和是 AI 发展中的必然现象：</p>
-<ol>
-<li><strong>数据污染（Data Contamination）</strong>：随着模型训练数据规模的扩大，SWE-bench 中的问题可能被部分泄露到训练数据中</li>
-<li><strong>任务过拟合</strong>：模型在特定类型的任务上表现优秀，但不代表通用编码能力</li>
-<li><strong>评估维度单一</strong>：仅看”能否解决 Issue”无法全面反映代码质量、安全性、可维护性</li>
-</ol>
-<h3 id="实战：这对开发者意味着什么"><a href="#实战：这对开发者意味着什么" class="headerlink" title="实战：这对开发者意味着什么"></a>实战：这对开发者意味着什么</h3><p>如果你正在用 AI 编程工具，应该：</p>
-<ul>
-<li><strong>不要迷信基准分数</strong>：60% 的 SWE-bench 解决率不等于在实际项目中能完成 60% 的任务</li>
-<li><strong>关注实际工作流表现</strong>：在自己的项目上测试 AI 工具，而不是看论文数字</li>
-<li><strong>探索新的评估方式</strong>：Anthropic、OpenAI 等正在研发更全面的评估体系</li>
-</ul>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>这项发现特别适用于：</p>
-<ul>
-<li>选型评估：不再把 SWE-bench 分数作为唯一指标</li>
-<li>期望管理：理解 AI 编程工具的能力边界</li>
-<li>未来关注：留意新的评估标准和基准发布</li>
-</ul>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-的-匹茨堡-模式"><a href="#技巧-1：Claude-Code-的-匹茨堡-模式" class="headerlink" title="技巧 1：Claude Code 的 匹茨堡 模式"></a>技巧 1：Claude Code 的 <code>匹茨堡</code> 模式</h2><p><strong>使用场景</strong>：当你需要 Claude Code 保持严格遵循项目规范时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在项目根目录创建 .claude 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p .claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建匹茨堡配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;strictMode&quot;: true&#125;&#x27;</span> &gt; .claude/settings.json</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：启用后，Claude Code 会更严格地检查代码风格、安全问题，主动提示潜在 Bug。</p>
-<hr>
-<h2 id="技巧-2：OpenClaw-多-Agent-协作的-选举模式"><a href="#技巧-2：OpenClaw-多-Agent-协作的-选举模式" class="headerlink" title="技巧 2：OpenClaw 多 Agent 协作的 选举模式"></a>技巧 2：OpenClaw 多 Agent 协作的 <code>选举模式</code></h2><p><strong>使用场景</strong>：需要多个 Agent 分工处理复杂任务时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 openclaw.yaml 中配置选举模式</span></span><br><span class="line">agents:</span><br><span class="line">  coordinator:</span><br><span class="line">    role: election</span><br><span class="line">    candidates: [researcher, coder, reviewer]</span><br><span class="line">  researcher:</span><br><span class="line">    skills: [web-search, <span class="built_in">read</span>]</span><br><span class="line">  coder:</span><br><span class="line">    skills: [<span class="built_in">exec</span>, write, edit]</span><br><span class="line">  reviewer:</span><br><span class="line">    skills: [<span class="built_in">read</span>, analysis]</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：Coordinator Agent 会根据任务类型自动选举最合适的 Agent 执行，实现分工自动化。</p>
-<hr>
-<h2 id="技巧-3：Codex-的流式输出加速技巧"><a href="#技巧-3：Codex-的流式输出加速技巧" class="headerlink" title="技巧 3：Codex 的流式输出加速技巧"></a>技巧 3：Codex 的流式输出加速技巧</h2><p><strong>使用场景</strong>：处理大型代码库时减少等待时间</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 --stream 选项启用流式响应</span></span><br><span class="line">codex --stream <span class="string">&quot;Explain this codebase structure&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配合 --parallel 加速多文件分析</span></span><br><span class="line">codex --parallel <span class="string">&quot;Analyze all service files&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：流式输出让你能看到思考过程，不用等完整结果再开始阅读。</p>
-<hr>
-<h2 id="技巧-4：让-AI-生成的代码更安全的-editorconfig"><a href="#技巧-4：让-AI-生成的代码更安全的-editorconfig" class="headerlink" title="技巧 4：让 AI 生成的代码更安全的 .editorconfig"></a>技巧 4：让 AI 生成的代码更安全的 <code>.editorconfig</code></h2><p><strong>使用场景</strong>：无论用哪个 AI 编程工具，在项目根目录添加 <code>.editorconfig</code> 能让 AI 更好地理解项目规范</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .editorconfig</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.&#123;js,ts,py&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：AI 会自动遵循项目规范，减少生成的代码需要大量格式调整的情况。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ol>
-<li><p><strong>OpenAI 宣布 GPT-5 发布路线图</strong>：CEO Sam Altman 确认 GPT-5 将在今年夏季发布，重点提升编程和推理能力。</p>
-</li>
-<li><p><strong>Anthropic 发布 Claude 3.7 Sonnet</strong>：新增”扩展思考”模式，支持更长的上下文推理，适合处理复杂代码库分析任务。</p>
-</li>
-<li><p><strong>GitHub Copilot Enterprise 新增语义搜索</strong>：可以 用自然语言搜索代码库中满足特定功能的代码片段，准确率提升 40%。</p>
-</li>
-<li><p><strong>OpenClaw Discord 社区突破 5000 成员</strong>：社区新增 <code>#showcase</code> 频道，分享用 OpenClaw 构建的有趣项目。</p>
-</li>
-</ol>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 <strong>Claude Code 的扩展思考模式</strong>，探讨如何用它处理超大型代码库分析任务，以及实际测试中发现的最佳实践。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
       </tags>
   </entry>
   <entry>
@@ -811,6 +811,95 @@
 
 *本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
 </code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-08</title>
+    <url>/2026/05/08/2026-05-08-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="Claude-Code-v2-1-133：工作树隔离与沙箱配置的双重进化"><a href="#Claude-Code-v2-1-133：工作树隔离与沙箱配置的双重进化" class="headerlink" title="Claude Code v2.1.133：工作树隔离与沙箱配置的双重进化"></a>Claude Code v2.1.133：工作树隔离与沙箱配置的双重进化</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>Claude Code 在 2026 年 5 月 7 日发布的 v2.1.133 版本，表面上看只是一次常规更新，实际上却触及了 AI 辅助编程中两个最敏感的问题：<strong>代码隔离安全</strong>与<strong>环境可复现性</strong>。<code>worktree.baseRef</code> 的引入让多分支并行开发有了更可控的基线选择；而 <code>sandbox.bwrapPath</code> 和 <code>sandbox.socatPath</code> 的托管设置，则意味着 Claude Code 的沙箱隔离机制正在从”能用”走向”可配置、可审计”。对于在 Linux&#x2F;WSL 环境下用 Claude Code 处理生产代码的开发者来说，这两个改动直接影响代码安全和团队协作规范。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>工作树基线选择（worktree.baseRef）</strong> 解决了一个隐蔽但高频的问题：当你让 Claude Code 创建临时工作树（<code>--worktree</code> 或 <code>EnterWorktree</code>）进行隔离开发时，它到底应该从哪个分支切出来？</p>
+<ul>
+<li><code>fresh</code>（默认）：从 <code>origin/&lt;default&gt;</code> 切出，确保新工作树总是基于远程最新代码。这避免了本地未推送的实验性提交污染新工作树，但代价是本地 HEAD 上的未推送改动会被”跳过”。</li>
+<li><code>head</code>：从本地 <code>HEAD</code> 切出，保留你当前的所有未推送提交。适合连续迭代场景，但风险在于如果本地 HEAD 已经偏离远程，新工作树的基线可能不是团队共识版本。</li>
+</ul>
+<p><strong>沙箱路径托管（sandbox.bwrapPath &#x2F; sandbox.socatPath）</strong> 则是对 Linux 命名空间隔离的精细化控制。Claude Code 使用 <code>bwrap</code>（Bubblewrap）创建轻量级沙箱，<code>socat</code> 处理进程间通信。此前这些工具的路径是硬编码或依赖 PATH 环境变量，在定制发行版或容器环境中经常找不到。现在这两个路径成为托管配置项，意味着：</p>
+<ol>
+<li>你可以把 <code>bwrap</code> 和 <code>socat</code> 放在非标准位置（如 <code>/opt/security-tools/bwrap</code>）</li>
+<li>团队可以通过统一配置确保所有成员使用相同版本的沙箱工具</li>
+<li>CI&#x2F;CD 环境中可以精确控制沙箱行为，而不受宿主机 PATH 污染</li>
+</ol>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：团队规范 —— 强制从远程最新代码切工作树</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/settings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;worktree.baseRef&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fresh&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在项目根目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 让 Claude Code 在隔离工作树中完成一个功能</span></span><br><span class="line">claude --worktree <span class="string">&quot;实现用户登录的 JWT 校验中间件&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Claude 会自动从 <code>origin/main</code> 切出新分支，完成后你可以审查差异再决定是否合并。这避免了”我在本地改了一半，AI 又在旧代码上生成了新逻辑”的冲突。</p>
+<p><strong>场景二：容器环境 —— 指定沙箱工具路径</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/settings.json (在 Docker/WSL 环境中)</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;sandbox.bwrapPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/bwrap&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.socatPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/socat&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>验证沙箱是否生效：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">claude /config get sandbox.bwrapPath</span><br><span class="line"><span class="comment"># 预期输出: /usr/bin/bwrap</span></span><br></pre></td></tr></table></figure>
+
+<p>如果路径错误，Claude Code 会回退到非沙箱模式并在日志中告警，此时应立即修正路径或安装缺失工具。</p>
+<p><strong>场景三：审计追踪 —— 统一团队沙箱版本</strong></p>
+<p>在团队共享的 <code>.claude/settings.json</code>（放入版本控制）中：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;worktree.baseRef&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fresh&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.bwrapPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/opt/claude-tools/bwrap-0.8.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.socatPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/opt/claude-tools/socat-1.8.0&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>配合 CI 检查脚本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># ci-check-claude-env.sh</span></span><br><span class="line">REQUIRED_BWRAP=$(jq -r <span class="string">&#x27;.[&quot;sandbox.bwrapPath&quot;]&#x27;</span> .claude/settings.json)</span><br><span class="line"><span class="keyword">if</span> [ ! -x <span class="string">&quot;<span class="variable">$REQUIRED_BWRAP</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;ERROR: 团队要求的 bwrap 版本未安装: <span class="variable">$REQUIRED_BWRAP</span>&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>多人协作项目，需要确保 AI 生成的代码基于统一基线</li>
+<li>对安全性要求较高的环境（生产代码预演、金融&#x2F;医疗项目）</li>
+<li>容器化开发环境，工具链位置非标准化</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>个人快速原型开发（<code>fresh</code> 模式会丢失本地未推送的实验性提交）</li>
+<li>没有安装 <code>bwrap</code>&#x2F;<code>socat</code> 的 macOS 环境（这些设置仅对 Linux&#x2F;WSL 生效）</li>
+<li>已有成熟 Git 工作流且不需要 AI 隔离开发的团队</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-工作树基线快速切换"><a href="#技巧-1：Claude-Code-工作树基线快速切换" class="headerlink" title="技巧 1：Claude Code 工作树基线快速切换"></a>技巧 1：Claude Code 工作树基线快速切换</h2><p><strong>使用场景</strong>：你需要临时测试一个基于本地未推送代码的 AI 修改，但团队规范要求默认从远程切分支。</p>
+<p><strong>具体示例</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前设置</span></span><br><span class="line">claude /config get worktree.baseRef</span><br><span class="line"><span class="comment"># 输出: fresh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 临时切换到 head 模式（仅本次会话）</span></span><br><span class="line">claude /config <span class="built_in">set</span> worktree.baseRef <span class="built_in">head</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行需要基于本地 HEAD 的任务</span></span><br><span class="line">claude --worktree <span class="string">&quot;基于我当前的缓存优化分支，生成 Redis 集群配置&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 完成后切回团队默认值</span></span><br><span class="line">claude /config <span class="built_in">set</span> worktree.baseRef fresh</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：不用修改全局配置文件，单次会话内灵活切换，既遵守团队规范又保留临时需求。</p>
+<h2 id="技巧-2：Codex-CLI-的-Vim-模态编辑"><a href="#技巧-2：Codex-CLI-的-Vim-模态编辑" class="headerlink" title="技巧 2：Codex CLI 的 Vim 模态编辑"></a>技巧 2：Codex CLI 的 Vim 模态编辑</h2><p><strong>使用场景</strong>：Codex CLI（Rust 版 v0.129.0）新增了 TUI 的 Vim 模态编辑支持，适合习惯 Vim 键位的开发者提升编辑效率。</p>
+<p><strong>具体示例</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Codex CLI 对话中进入 Vim 模态</span></span><br><span class="line">/vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或在 ~/.codex/config.toml 中设为默认</span></span><br><span class="line">[ui]</span><br><span class="line">default_mode = <span class="string">&quot;vim&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 Vim 键位编辑代码后，按 ESC 退出编辑模式</span></span><br><span class="line"><span class="comment"># 用 /keymap debug 查看当前键位绑定</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少在 Codex 和外部编辑器之间来回切换的次数，保持心流状态。</p>
+<h2 id="技巧-3：OpenClaw-实时语音桥接-GA-版本迁移"><a href="#技巧-3：OpenClaw-实时语音桥接-GA-版本迁移" class="headerlink" title="技巧 3：OpenClaw 实时语音桥接 GA 版本迁移"></a>技巧 3：OpenClaw 实时语音桥接 GA 版本迁移</h2><p><strong>使用场景</strong>：OpenClaw 2026.5.7 版本将 OpenAI 实时语音默认模型切换到 <code>gpt-realtime-2</code>，并迁移到 GA（正式版）WebSocket 桥接格式。如果你在使用 OpenClaw 的语音交互功能，需要确认兼容性。</p>
+<p><strong>具体示例</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查当前 OpenClaw 版本</span></span><br><span class="line">npm show openclaw version</span><br><span class="line"><span class="comment"># 输出: 2026.5.7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 OpenClaw 配置中指定实时语音模型</span></span><br><span class="line"><span class="built_in">export</span> OPENCLAW_REALTIME_OPENAI_MODEL=gpt-realtime-2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动实时语音对话（Talk 模式）</span></span><br><span class="line">openclaw talk</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：使用 GA 版 API 意味着更稳定的连接、更长的支持周期，以及不再依赖可能随时废弃的 Beta 接口。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>Claude Code v2.1.133 发布</strong>：新增 <code>worktree.baseRef</code> 设置（<code>fresh</code>&#x2F;<code>head</code>）控制工作树基线来源；Linux&#x2F;WSL 环境支持托管配置 <code>sandbox.bwrapPath</code> 和 <code>sandbox.socatPath</code>。</li>
+<li><strong>OpenClaw 2026.5.7 更新</strong>：OpenAI 实时语音默认模型切换至 <code>gpt-realtime-2</code>，后端 WebSocket 桥接迁移到 GA 正式版格式，移除 Beta 请求头。</li>
+<li><strong>Codex CLI Rust v0.129.0 发布</strong>：TUI 支持 Vim 模态编辑（<code>/vim</code>、默认模式配置、Vim 专属键位上下文）；新增 <code>/ide</code> 上下文注入、工作区感知的 <code>/diff</code>、可主题化的状态栏。</li>
+<li><strong>OpenAI Codex 架构演进</strong>：连续 5 个 PR 推进 exec-server 的 stdio 传输支持，从 WebSocket 走向命令行启动 + JSON-RPC over stdio 的本地环境连接方案。</li>
+<li><strong>社区关注</strong>：<code>everything-claude-code</code> 仓库（Agent 性能优化系统）持续获得 GitHub 关注，涵盖 Skills、Instincts、Memory、Security 等 Claude Code 增强方案。</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深度解析 Codex CLI 的 exec-server stdio 传输架构演进，分析从 WebSocket 到本地进程通信的设计取舍，以及它对 CI&#x2F;CD 集成和本地开发工作流的影响。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
 ]]></content>
       <categories>
         <category>AI编程日报</category>
@@ -1514,115 +1603,6 @@
       </tags>
   </entry>
   <entry>
-    <title>嵌入式Linux调整分区表</title>
-    <url>/2025/10/10/linux/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E8%B0%83%E6%95%B4%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>16MB Flash，新增功能的时候发现flash不够用了，查看分区表，备份分区占了三千多K，所以想研究一下能不能通过调整分区，将备份分区尽量变小以腾出空间添加新功能。由于之前没有做过此类尝试，故留下此文以便不时之需。</p>
-<h2 id="分区现状"><a href="#分区现状" class="headerlink" title="分区现状"></a>分区现状</h2><h3 id="分区信息"><a href="#分区信息" class="headerlink" title="分区信息"></a>分区信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00030000 00001000 <span class="string">&quot;uboot&quot;</span></span><br><span class="line">mtd1: 00510000 00001000 <span class="string">&quot;boot&quot;</span></span><br><span class="line">mtd2: 00530000 00001000 <span class="string">&quot;system&quot;</span></span><br><span class="line">mtd3: 00530000 00001000 <span class="string">&quot;bk&quot;</span></span><br><span class="line">mtd4: 00050000 00010000 <span class="string">&quot;userdata&quot;</span></span><br><span class="line">mtd5: 00010000 00001000 <span class="string">&quot;productdata&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="分区说明"><a href="#分区说明" class="headerlink" title="分区说明"></a>分区说明</h3><table>
-<thead>
-<tr>
-<th>分区</th>
-<th>大小(KB)</th>
-<th>name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mtd0</td>
-<td>192</td>
-<td>uboot</td>
-</tr>
-<tr>
-<td>mtd1</td>
-<td>5184</td>
-<td>boot</td>
-</tr>
-<tr>
-<td>mtd2</td>
-<td>5312</td>
-<td>system</td>
-</tr>
-<tr>
-<td>mtd3</td>
-<td>5312</td>
-<td>bk</td>
-</tr>
-<tr>
-<td>mtd4</td>
-<td>320</td>
-<td>userdata</td>
-</tr>
-<tr>
-<td>mtd5</td>
-<td>64</td>
-<td>productdata</td>
-</tr>
-</tbody></table>
-<p><code>mtd0</code>: uboot分区，该分区不会进行升级<br><code>boot</code>: 内核和文件系统，有升级需求<br><code>system</code>: 业务层程序，有升级需要<br><code>bk</code>: 备份分区<br><code>userdata</code>: 配置分区，没有升级需求<br><code>productdata</code>: 出厂配置分区，没有升级需求</p>
-<h2 id="分区调整"><a href="#分区调整" class="headerlink" title="分区调整"></a>分区调整</h2><h3 id="调整原则"><a href="#调整原则" class="headerlink" title="调整原则"></a>调整原则</h3><ol>
-<li>保持uboot、userdata、productdata三个分区大小和顺序不变</li>
-<li>将boot、system分区拆分成3个较小的分区，从而减小bk分区，5184 + 5312 + 5312 &#x3D; 15808 &#x2F; 4 &#x3D; 3952k</li>
-<li>考虑到flash分区需要64K对齐，新分区如下<table>
-<thead>
-<tr>
-<th>分区</th>
-<th>大小(KB)</th>
-<th>name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mtd0</td>
-<td>192</td>
-<td>uboot</td>
-</tr>
-<tr>
-<td>mtd1</td>
-<td>3968</td>
-<td>boot</td>
-</tr>
-<tr>
-<td>mtd2</td>
-<td>3968</td>
-<td>system</td>
-</tr>
-<tr>
-<td>mtd3</td>
-<td>3968</td>
-<td>bk</td>
-</tr>
-<tr>
-<td>mtd4</td>
-<td>320</td>
-<td>userdata</td>
-</tr>
-<tr>
-<td>mtd5</td>
-<td>64</td>
-<td>productdata</td>
-</tr>
-<tr>
-<td>mtd6</td>
-<td>3712</td>
-<td>new</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h3 id="调整步骤"><a href="#调整步骤" class="headerlink" title="调整步骤"></a>调整步骤</h3><h4 id="调整文件系统"><a href="#调整文件系统" class="headerlink" title="调整文件系统"></a>调整文件系统</h4><p>调整大小，保证新的img大小不会超过新分区</p>
-<h4 id="uboot"><a href="#uboot" class="headerlink" title="uboot"></a>uboot</h4><p>原配置</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),5184K(boot),5312K(system),5312K(bk),320K(userdata),64K(productdata)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x510000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>新配置</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),3968K(boot),3968K(system),3968K(bk),320K(userdata),64K(productdata),3712K(new)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x3E0000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>由于需要支持OTA，新分区需要保证能够卸载，才能重新烧写，所以原则上新分区的文件不能是需要运行的二进制和依赖的动态库</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>mtd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>嵌入式Linux支持NFS挂载</title>
     <url>/2025/11/18/linux/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E6%94%AF%E6%8C%81NFS%E6%8C%82%E8%BD%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Linux内核开启nfs配置"><a href="#Linux内核开启nfs配置" class="headerlink" title="Linux内核开启nfs配置"></a>Linux内核开启nfs配置</h2><p><code>menuconfig</code>配置如下：<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251118123911.png" alt="20251118123911"></p>
@@ -1637,28 +1617,63 @@
       </tags>
   </entry>
   <entry>
-    <title>探究jffs2垃圾回收机制</title>
-    <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
-<ol>
-<li>写入新数据：在闪存的空闲区域写入新的数据节点。</li>
-<li>标记旧数据无效：之前存储旧数据的数据节点会被标记为“过时”或“脏”。<br>随着文件系统的运行，闪存上会积累大量的“过时”节点，它们占据着空间但却无法再被使用。为了回收这些空间以供新的写入操作使用，JFFS2 必须有一个机制来清理这些“垃圾”区块，这个机制就是垃圾回收。</li>
-</ol>
-<h2 id="JFFS2垃圾回收触发机制"><a href="#JFFS2垃圾回收触发机制" class="headerlink" title="JFFS2垃圾回收触发机制"></a>JFFS2垃圾回收触发机制</h2><h3 id="内核代码打开相关日志"><a href="#内核代码打开相关日志" class="headerlink" title="内核代码打开相关日志"></a>内核代码打开相关日志</h3><p>垃圾回收相关代码路径<code>kernel/fs/jffs2/gc.c</code>，垃圾回收相关的打印由<code>jffs2_dbg</code>打印，相关代码路径<code>kernel/fs/jffs2/debug.h</code>我这边通过修改源码的方式将相关打印放开：</p>
-<p>原代码，</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	<span class="keyword">if</span> (CONFIG_JFFS2_FS_DEBUG &gt;= level)	\</span></span><br><span class="line"><span class="meta">		pr_debug(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
-<p>修改后，直接将printk的条件限制取消</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	printk(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
-<p>相关打印：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[ 1848.178662] Picking block from very_dirty_list to GC next</span><br><span class="line">[ 1848.178709] GC from block 00000000, used_size 00004ee4, dirty_size 0000b11c, free_size 00000000</span><br></pre></td></tr></table></figure>
-<h3 id="何时触发？"><a href="#何时触发？" class="headerlink" title="何时触发？"></a>何时触发？</h3><p>自测会自动触发，但是有概率遇到过没有触发的情况(滚存写完立刻重启，重复N次)，需要手动将文件复制到临时目录，在删除原文件，在复制回去，需要倒腾一手才能触发，目前没有研究明白原因</p>
+    <title>嵌入式linux疑难问题记录</title>
+    <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
+<li>问题描述：内核加载无线电监管数据库报错</li>
+<li>问题现象：<code>CONFIG_CFG80211=y</code>报错，<code>CONFIG_CFG80211=m</code>，<code>insmod cfg80211.ko</code>不会报错</li>
+<li>打印日志:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[    1.715156] cfg80211: Loading compiled-in X.509 certificates <span class="keyword">for</span> regulatory database</span><br><span class="line">[    1.725021] cfg80211: Loaded X.509 cert <span class="string">&#x27;sforshee: 00b28ddf47aef9cea7&#x27;</span></span><br><span class="line">[    1.728882] platform regulatory.0: Direct firmware load <span class="keyword">for</span> regula[    1.737806] RAMDISK: squashfs filesystem found at block 0</span><br><span class="line">[    1.737857] RAMDISK: Loading 2908KiB [1 disk] into ram disk... |</span><br><span class="line">[    1.749881] cfg80211: failed to load regulatory.db</span><br><span class="line">[    1.750499] <span class="keyword">done</span>.</span><br><span class="line">[    1.772471] VFS: Mounted root (squashfs filesystem) <span class="built_in">readonly</span> on device 1:0.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="原因和解决方案"><a href="#原因和解决方案" class="headerlink" title="原因和解决方案"></a>原因和解决方案</h3><ul>
+<li>原因：内核加载数据库时，文件系统还未挂载，因此找不到数据库</li>
+<li>解决方案：将固件直接编译到内核<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CONFIG_CFG80211=y</span><br><span class="line">CONFIG_EXTRA_FIRMWARE=<span class="string">&quot;regulatory.db regulatory.db.p7s&quot;</span></span><br><span class="line">CONFIG_EXTRA_FIRMWARE_DIR=<span class="string">&quot;/path/to/firmware/dir&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <categories>
+        <category>solutions</category>
         <category>linux</category>
       </categories>
       <tags>
-        <tag>jffs2</tag>
-        <tag>GC</tag>
+        <tag>cfg80211</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GIT基础命令</title>
+    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
+<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
+<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
+
+<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
+
+<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
+
+<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -3797,19 +3812,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MakerWorld模型收藏</title>
-    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
-]]></content>
-      <categories>
-        <category>skills</category>
-        <category>3D打印</category>
-      </categories>
-      <tags>
-        <tag>MakerWorld</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1.从零开始学Linux内核源码 - 源码下载及配置编译</title>
     <url>/2024/03/30/linux/kernel/1.%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6Linux%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>所有操作均是linux-6.8.2版本</em></p>
@@ -4002,63 +4004,150 @@
       </tags>
   </entry>
   <entry>
-    <title>嵌入式linux疑难问题记录</title>
-    <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
-<li>问题描述：内核加载无线电监管数据库报错</li>
-<li>问题现象：<code>CONFIG_CFG80211=y</code>报错，<code>CONFIG_CFG80211=m</code>，<code>insmod cfg80211.ko</code>不会报错</li>
-<li>打印日志:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[    1.715156] cfg80211: Loading compiled-in X.509 certificates <span class="keyword">for</span> regulatory database</span><br><span class="line">[    1.725021] cfg80211: Loaded X.509 cert <span class="string">&#x27;sforshee: 00b28ddf47aef9cea7&#x27;</span></span><br><span class="line">[    1.728882] platform regulatory.0: Direct firmware load <span class="keyword">for</span> regula[    1.737806] RAMDISK: squashfs filesystem found at block 0</span><br><span class="line">[    1.737857] RAMDISK: Loading 2908KiB [1 disk] into ram disk... |</span><br><span class="line">[    1.749881] cfg80211: failed to load regulatory.db</span><br><span class="line">[    1.750499] <span class="keyword">done</span>.</span><br><span class="line">[    1.772471] VFS: Mounted root (squashfs filesystem) <span class="built_in">readonly</span> on device 1:0.</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="原因和解决方案"><a href="#原因和解决方案" class="headerlink" title="原因和解决方案"></a>原因和解决方案</h3><ul>
-<li>原因：内核加载数据库时，文件系统还未挂载，因此找不到数据库</li>
-<li>解决方案：将固件直接编译到内核<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CONFIG_CFG80211=y</span><br><span class="line">CONFIG_EXTRA_FIRMWARE=<span class="string">&quot;regulatory.db regulatory.db.p7s&quot;</span></span><br><span class="line">CONFIG_EXTRA_FIRMWARE_DIR=<span class="string">&quot;/path/to/firmware/dir&quot;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+    <title>MakerWorld模型收藏</title>
+    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
 ]]></content>
       <categories>
-        <category>solutions</category>
-        <category>linux</category>
+        <category>skills</category>
+        <category>3D打印</category>
       </categories>
       <tags>
-        <tag>cfg80211</tag>
+        <tag>MakerWorld</tag>
       </tags>
   </entry>
   <entry>
-    <title>GIT基础命令</title>
-    <url>/2024/03/18/tools/GIT%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;example&quot;</span><br><span class="line">git config --global user.email example</span><br><span class="line">git config --list </span><br><span class="line">ssh-keygen -t rsa -C &quot;example&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt; repo url &gt;</span><br></pre></td></tr></table></figure>
-<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git branch //列出本地分支</span><br><span class="line">git branch -r //列出远程分支</span><br><span class="line">git branch -a //列出所有分支</span><br><span class="line">git branch test //切换至test分支，确保当前无修改，如果分支不存在则创建分支</span><br><span class="line">git branch -d test //删除test分支</span><br><span class="line">git branch -D test //强制删除test分支</span><br><span class="line">git branch -vv //查看最近一次提交</span><br><span class="line">git branch -m newtest //修改分支名称</span><br><span class="line">git push origin --delete test //删除远程test分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout filename //放弃单个文件的修改</span><br><span class="line">git checkout . //放弃当前目录的修改</span><br><span class="line">git checkout branchname //切换到branchname分支</span><br><span class="line">git checkout -b test //如果存在切换到test分支，不存在则创建分支并切换到该分支</span><br></pre></td></tr></table></figure>
-<h2 id="git-merger-rebase"><a href="#git-merger-rebase" class="headerlink" title="git merger&#x2F;rebase"></a>git merger&#x2F;rebase</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git merge/rebase test //将test分支合并到当前分支</span><br><span class="line">git merge/rebase -m &quot;info&quot; //合并时添加描述</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">区别：</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果合并出现冲突的话，解决冲突后git merge需要 git add,git commit，之后merge。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rebase则只需要git add,之后git rebase --<span class="built_in">continue</span>,如果不想解决冲突且不在合并，可以git rebase --abort</span></span><br></pre></td></tr></table></figure>
-<h2 id="git-pull-fetch"><a href="#git-pull-fetch" class="headerlink" title="git pull&#x2F;fetch"></a>git pull&#x2F;fetch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull //从远端获取代码合并到本地分支</span><br><span class="line">git fetch //从远程拉取更新不合并</span><br></pre></td></tr></table></figure>
-<h2 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git cherry-pick commitId //合并某一次提交</span><br></pre></td></tr></table></figure>
-
-<h2 id="回退远端"><a href="#回退远端" class="headerlink" title="回退远端"></a>回退远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-
-<h2 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gitk</span><br></pre></td></tr></table></figure>
-
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag -a &lt;ver&gt; &lt;commit id&gt; -m &quot;备注&quot; #指定commit id新增tag</span><br><span class="line">git push --tags #推送所有tag到远端</span><br><span class="line">git push origin tagname #推送单个tag</span><br><span class="line">git tag -d tagname #删除本地tag</span><br><span class="line">git push origin :refs/tags/tagname #删除远端tag</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地仓库推送到远端"><a href="#本地仓库推送到远端" class="headerlink" title="本地仓库推送到远端"></a>本地仓库推送到远端</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">github新建仓库，拿到地址</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git remote add origin &lt; repo url &gt;</span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">git push --set-upstream origin master</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="git-clean-清除文件"><a href="#git-clean-清除文件" class="headerlink" title="git clean 清除文件"></a>git clean 清除文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clean -n [path] #显示path目录下会被删除的文件，但是不会显示文件夹</span><br><span class="line">git clean -f [path] #删除当前目录的新增文件，但是不会删除文件夹</span><br><span class="line">git clean -df #删除当前目录新增文件，包括文件夹</span><br><span class="line">git clean -xdf #删除新增，包括gitignore</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改注释"><a href="#修改注释" class="headerlink" title="修改注释"></a>修改注释</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存退出</span></span><br><span class="line">ctrl+x </span><br><span class="line">enter</span><br></pre></td></tr></table></figure>
-
-<h2 id="同步子仓库"><a href="#同步子仓库" class="headerlink" title="同步子仓库"></a>同步子仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule update --init</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用patch"><a href="#应用patch" class="headerlink" title="应用patch"></a>应用patch</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 进入需要更新的目录</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 执行命令，-p指忽略的目录层级，-p 1指忽略第一层目录</span></span><br><span class="line">cat ~/test.patch | patch -p 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslverify false</span><br><span class="line">git config --global https.sslverify false</span><br><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
-
-<h2 id="CRLF"><a href="#CRLF" class="headerlink" title="CRLF"></a>CRLF</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config core.autocrlf input</span><br></pre></td></tr></table></figure>
-
-<h2 id="git-revert-撤销某个commit的修改"><a href="#git-revert-撤销某个commit的修改" class="headerlink" title="git revert 撤销某个commit的修改"></a>git revert 撤销某个commit的修改</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git revert &lt;commit-hash&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>探究jffs2垃圾回收机制</title>
+    <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
+<ol>
+<li>写入新数据：在闪存的空闲区域写入新的数据节点。</li>
+<li>标记旧数据无效：之前存储旧数据的数据节点会被标记为“过时”或“脏”。<br>随着文件系统的运行，闪存上会积累大量的“过时”节点，它们占据着空间但却无法再被使用。为了回收这些空间以供新的写入操作使用，JFFS2 必须有一个机制来清理这些“垃圾”区块，这个机制就是垃圾回收。</li>
+</ol>
+<h2 id="JFFS2垃圾回收触发机制"><a href="#JFFS2垃圾回收触发机制" class="headerlink" title="JFFS2垃圾回收触发机制"></a>JFFS2垃圾回收触发机制</h2><h3 id="内核代码打开相关日志"><a href="#内核代码打开相关日志" class="headerlink" title="内核代码打开相关日志"></a>内核代码打开相关日志</h3><p>垃圾回收相关代码路径<code>kernel/fs/jffs2/gc.c</code>，垃圾回收相关的打印由<code>jffs2_dbg</code>打印，相关代码路径<code>kernel/fs/jffs2/debug.h</code>我这边通过修改源码的方式将相关打印放开：</p>
+<p>原代码，</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	<span class="keyword">if</span> (CONFIG_JFFS2_FS_DEBUG &gt;= level)	\</span></span><br><span class="line"><span class="meta">		pr_debug(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+<p>修改后，直接将printk的条件限制取消</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	printk(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+<p>相关打印：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[ 1848.178662] Picking block from very_dirty_list to GC next</span><br><span class="line">[ 1848.178709] GC from block 00000000, used_size 00004ee4, dirty_size 0000b11c, free_size 00000000</span><br></pre></td></tr></table></figure>
+<h3 id="何时触发？"><a href="#何时触发？" class="headerlink" title="何时触发？"></a>何时触发？</h3><p>自测会自动触发，但是有概率遇到过没有触发的情况(滚存写完立刻重启，重复N次)，需要手动将文件复制到临时目录，在删除原文件，在复制回去，需要倒腾一手才能触发，目前没有研究明白原因</p>
+]]></content>
       <categories>
-        <category>tools</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>jffs2</tag>
+        <tag>GC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式Linux调整分区表</title>
+    <url>/2025/10/10/linux/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E8%B0%83%E6%95%B4%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>16MB Flash，新增功能的时候发现flash不够用了，查看分区表，备份分区占了三千多K，所以想研究一下能不能通过调整分区，将备份分区尽量变小以腾出空间添加新功能。由于之前没有做过此类尝试，故留下此文以便不时之需。</p>
+<h2 id="分区现状"><a href="#分区现状" class="headerlink" title="分区现状"></a>分区现状</h2><h3 id="分区信息"><a href="#分区信息" class="headerlink" title="分区信息"></a>分区信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00030000 00001000 <span class="string">&quot;uboot&quot;</span></span><br><span class="line">mtd1: 00510000 00001000 <span class="string">&quot;boot&quot;</span></span><br><span class="line">mtd2: 00530000 00001000 <span class="string">&quot;system&quot;</span></span><br><span class="line">mtd3: 00530000 00001000 <span class="string">&quot;bk&quot;</span></span><br><span class="line">mtd4: 00050000 00010000 <span class="string">&quot;userdata&quot;</span></span><br><span class="line">mtd5: 00010000 00001000 <span class="string">&quot;productdata&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="分区说明"><a href="#分区说明" class="headerlink" title="分区说明"></a>分区说明</h3><table>
+<thead>
+<tr>
+<th>分区</th>
+<th>大小(KB)</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mtd0</td>
+<td>192</td>
+<td>uboot</td>
+</tr>
+<tr>
+<td>mtd1</td>
+<td>5184</td>
+<td>boot</td>
+</tr>
+<tr>
+<td>mtd2</td>
+<td>5312</td>
+<td>system</td>
+</tr>
+<tr>
+<td>mtd3</td>
+<td>5312</td>
+<td>bk</td>
+</tr>
+<tr>
+<td>mtd4</td>
+<td>320</td>
+<td>userdata</td>
+</tr>
+<tr>
+<td>mtd5</td>
+<td>64</td>
+<td>productdata</td>
+</tr>
+</tbody></table>
+<p><code>mtd0</code>: uboot分区，该分区不会进行升级<br><code>boot</code>: 内核和文件系统，有升级需求<br><code>system</code>: 业务层程序，有升级需要<br><code>bk</code>: 备份分区<br><code>userdata</code>: 配置分区，没有升级需求<br><code>productdata</code>: 出厂配置分区，没有升级需求</p>
+<h2 id="分区调整"><a href="#分区调整" class="headerlink" title="分区调整"></a>分区调整</h2><h3 id="调整原则"><a href="#调整原则" class="headerlink" title="调整原则"></a>调整原则</h3><ol>
+<li>保持uboot、userdata、productdata三个分区大小和顺序不变</li>
+<li>将boot、system分区拆分成3个较小的分区，从而减小bk分区，5184 + 5312 + 5312 &#x3D; 15808 &#x2F; 4 &#x3D; 3952k</li>
+<li>考虑到flash分区需要64K对齐，新分区如下<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>大小(KB)</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mtd0</td>
+<td>192</td>
+<td>uboot</td>
+</tr>
+<tr>
+<td>mtd1</td>
+<td>3968</td>
+<td>boot</td>
+</tr>
+<tr>
+<td>mtd2</td>
+<td>3968</td>
+<td>system</td>
+</tr>
+<tr>
+<td>mtd3</td>
+<td>3968</td>
+<td>bk</td>
+</tr>
+<tr>
+<td>mtd4</td>
+<td>320</td>
+<td>userdata</td>
+</tr>
+<tr>
+<td>mtd5</td>
+<td>64</td>
+<td>productdata</td>
+</tr>
+<tr>
+<td>mtd6</td>
+<td>3712</td>
+<td>new</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="调整步骤"><a href="#调整步骤" class="headerlink" title="调整步骤"></a>调整步骤</h3><h4 id="调整文件系统"><a href="#调整文件系统" class="headerlink" title="调整文件系统"></a>调整文件系统</h4><p>调整大小，保证新的img大小不会超过新分区</p>
+<h4 id="uboot"><a href="#uboot" class="headerlink" title="uboot"></a>uboot</h4><p>原配置</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),5184K(boot),5312K(system),5312K(bk),320K(userdata),64K(productdata)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x510000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
+<p>新配置</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),3968K(boot),3968K(system),3968K(bk),320K(userdata),64K(productdata),3712K(new)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x3E0000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>由于需要支持OTA，新分区需要保证能够卸载，才能重新烧写，所以原则上新分区的文件不能是需要运行的二进制和依赖的动态库</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mtd</tag>
       </tags>
   </entry>
 </search>

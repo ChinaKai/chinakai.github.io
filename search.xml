@@ -184,77 +184,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-04-27</title>
-    <url>/2026/04/27/2026-04-27-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>由关关自动收集整理，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户精选的 AI 编程资讯。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移"><a href="#SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移" class="headerlink" title="SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移"></a>SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>4月25日，OpenAI 发布了一篇重要声明：SWE-bench Verified 已经不再能够衡量前沿编码能力。这一判断意味着什么？</p>
-<p>长期以来，SWE-bench 被认为是评估 AI 代码能力的”黄金标准”——它测试 AI 能否独立解决真实世界的 GitHub Issue。然而，随着 Claude、GPT、Codex 等模型的能力飞速提升，SWE-bench 的区分度急剧下降。前沿模型在这个基准上已经达到 50-60% 的解决率，继续用它来区分模型能力已经不再有效。</p>
-<h3 id="原理：为什么基准会”饱和”"><a href="#原理：为什么基准会”饱和”" class="headerlink" title="原理：为什么基准会”饱和”"></a>原理：为什么基准会”饱和”</h3><p>基准测试的饱和是 AI 发展中的必然现象：</p>
-<ol>
-<li><strong>数据污染（Data Contamination）</strong>：随着模型训练数据规模的扩大，SWE-bench 中的问题可能被部分泄露到训练数据中</li>
-<li><strong>任务过拟合</strong>：模型在特定类型的任务上表现优秀，但不代表通用编码能力</li>
-<li><strong>评估维度单一</strong>：仅看”能否解决 Issue”无法全面反映代码质量、安全性、可维护性</li>
-</ol>
-<h3 id="实战：这对开发者意味着什么"><a href="#实战：这对开发者意味着什么" class="headerlink" title="实战：这对开发者意味着什么"></a>实战：这对开发者意味着什么</h3><p>如果你正在用 AI 编程工具，应该：</p>
-<ul>
-<li><strong>不要迷信基准分数</strong>：60% 的 SWE-bench 解决率不等于在实际项目中能完成 60% 的任务</li>
-<li><strong>关注实际工作流表现</strong>：在自己的项目上测试 AI 工具，而不是看论文数字</li>
-<li><strong>探索新的评估方式</strong>：Anthropic、OpenAI 等正在研发更全面的评估体系</li>
-</ul>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>这项发现特别适用于：</p>
-<ul>
-<li>选型评估：不再把 SWE-bench 分数作为唯一指标</li>
-<li>期望管理：理解 AI 编程工具的能力边界</li>
-<li>未来关注：留意新的评估标准和基准发布</li>
-</ul>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-的-匹茨堡-模式"><a href="#技巧-1：Claude-Code-的-匹茨堡-模式" class="headerlink" title="技巧 1：Claude Code 的 匹茨堡 模式"></a>技巧 1：Claude Code 的 <code>匹茨堡</code> 模式</h2><p><strong>使用场景</strong>：当你需要 Claude Code 保持严格遵循项目规范时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在项目根目录创建 .claude 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p .claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建匹茨堡配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;strictMode&quot;: true&#125;&#x27;</span> &gt; .claude/settings.json</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：启用后，Claude Code 会更严格地检查代码风格、安全问题，主动提示潜在 Bug。</p>
-<hr>
-<h2 id="技巧-2：OpenClaw-多-Agent-协作的-选举模式"><a href="#技巧-2：OpenClaw-多-Agent-协作的-选举模式" class="headerlink" title="技巧 2：OpenClaw 多 Agent 协作的 选举模式"></a>技巧 2：OpenClaw 多 Agent 协作的 <code>选举模式</code></h2><p><strong>使用场景</strong>：需要多个 Agent 分工处理复杂任务时</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 openclaw.yaml 中配置选举模式</span></span><br><span class="line">agents:</span><br><span class="line">  coordinator:</span><br><span class="line">    role: election</span><br><span class="line">    candidates: [researcher, coder, reviewer]</span><br><span class="line">  researcher:</span><br><span class="line">    skills: [web-search, <span class="built_in">read</span>]</span><br><span class="line">  coder:</span><br><span class="line">    skills: [<span class="built_in">exec</span>, write, edit]</span><br><span class="line">  reviewer:</span><br><span class="line">    skills: [<span class="built_in">read</span>, analysis]</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：Coordinator Agent 会根据任务类型自动选举最合适的 Agent 执行，实现分工自动化。</p>
-<hr>
-<h2 id="技巧-3：Codex-的流式输出加速技巧"><a href="#技巧-3：Codex-的流式输出加速技巧" class="headerlink" title="技巧 3：Codex 的流式输出加速技巧"></a>技巧 3：Codex 的流式输出加速技巧</h2><p><strong>使用场景</strong>：处理大型代码库时减少等待时间</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 --stream 选项启用流式响应</span></span><br><span class="line">codex --stream <span class="string">&quot;Explain this codebase structure&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配合 --parallel 加速多文件分析</span></span><br><span class="line">codex --parallel <span class="string">&quot;Analyze all service files&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：流式输出让你能看到思考过程，不用等完整结果再开始阅读。</p>
-<hr>
-<h2 id="技巧-4：让-AI-生成的代码更安全的-editorconfig"><a href="#技巧-4：让-AI-生成的代码更安全的-editorconfig" class="headerlink" title="技巧 4：让 AI 生成的代码更安全的 .editorconfig"></a>技巧 4：让 AI 生成的代码更安全的 <code>.editorconfig</code></h2><p><strong>使用场景</strong>：无论用哪个 AI 编程工具，在项目根目录添加 <code>.editorconfig</code> 能让 AI 更好地理解项目规范</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .editorconfig</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.&#123;js,ts,py&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：AI 会自动遵循项目规范，减少生成的代码需要大量格式调整的情况。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ol>
-<li><p><strong>OpenAI 宣布 GPT-5 发布路线图</strong>：CEO Sam Altman 确认 GPT-5 将在今年夏季发布，重点提升编程和推理能力。</p>
-</li>
-<li><p><strong>Anthropic 发布 Claude 3.7 Sonnet</strong>：新增”扩展思考”模式，支持更长的上下文推理，适合处理复杂代码库分析任务。</p>
-</li>
-<li><p><strong>GitHub Copilot Enterprise 新增语义搜索</strong>：可以 用自然语言搜索代码库中满足特定功能的代码片段，准确率提升 40%。</p>
-</li>
-<li><p><strong>OpenClaw Discord 社区突破 5000 成员</strong>：社区新增 <code>#showcase</code> 频道，分享用 OpenClaw 构建的有趣项目。</p>
-</li>
-</ol>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 <strong>Claude Code 的扩展思考模式</strong>，探讨如何用它处理超大型代码库分析任务，以及实际测试中发现的最佳实践。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-04-28</title>
     <url>/2026/04/28/2026-04-28-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -358,6 +287,77 @@
         <tag>OpenClaw</tag>
         <tag>Claude</tag>
         <tag>Codex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-04-27</title>
+    <url>/2026/04/27/2026-04-27-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>由关关自动收集整理，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户精选的 AI 编程资讯。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移"><a href="#SWE-bench-Verified-不再衡量前沿编码能力：AI-编程基准的范式转移" class="headerlink" title="SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移"></a>SWE-bench Verified 不再衡量前沿编码能力：AI 编程基准的范式转移</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>4月25日，OpenAI 发布了一篇重要声明：SWE-bench Verified 已经不再能够衡量前沿编码能力。这一判断意味着什么？</p>
+<p>长期以来，SWE-bench 被认为是评估 AI 代码能力的”黄金标准”——它测试 AI 能否独立解决真实世界的 GitHub Issue。然而，随着 Claude、GPT、Codex 等模型的能力飞速提升，SWE-bench 的区分度急剧下降。前沿模型在这个基准上已经达到 50-60% 的解决率，继续用它来区分模型能力已经不再有效。</p>
+<h3 id="原理：为什么基准会”饱和”"><a href="#原理：为什么基准会”饱和”" class="headerlink" title="原理：为什么基准会”饱和”"></a>原理：为什么基准会”饱和”</h3><p>基准测试的饱和是 AI 发展中的必然现象：</p>
+<ol>
+<li><strong>数据污染（Data Contamination）</strong>：随着模型训练数据规模的扩大，SWE-bench 中的问题可能被部分泄露到训练数据中</li>
+<li><strong>任务过拟合</strong>：模型在特定类型的任务上表现优秀，但不代表通用编码能力</li>
+<li><strong>评估维度单一</strong>：仅看”能否解决 Issue”无法全面反映代码质量、安全性、可维护性</li>
+</ol>
+<h3 id="实战：这对开发者意味着什么"><a href="#实战：这对开发者意味着什么" class="headerlink" title="实战：这对开发者意味着什么"></a>实战：这对开发者意味着什么</h3><p>如果你正在用 AI 编程工具，应该：</p>
+<ul>
+<li><strong>不要迷信基准分数</strong>：60% 的 SWE-bench 解决率不等于在实际项目中能完成 60% 的任务</li>
+<li><strong>关注实际工作流表现</strong>：在自己的项目上测试 AI 工具，而不是看论文数字</li>
+<li><strong>探索新的评估方式</strong>：Anthropic、OpenAI 等正在研发更全面的评估体系</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>这项发现特别适用于：</p>
+<ul>
+<li>选型评估：不再把 SWE-bench 分数作为唯一指标</li>
+<li>期望管理：理解 AI 编程工具的能力边界</li>
+<li>未来关注：留意新的评估标准和基准发布</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-的-匹茨堡-模式"><a href="#技巧-1：Claude-Code-的-匹茨堡-模式" class="headerlink" title="技巧 1：Claude Code 的 匹茨堡 模式"></a>技巧 1：Claude Code 的 <code>匹茨堡</code> 模式</h2><p><strong>使用场景</strong>：当你需要 Claude Code 保持严格遵循项目规范时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在项目根目录创建 .claude 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p .claude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建匹茨堡配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;&#123;&quot;strictMode&quot;: true&#125;&#x27;</span> &gt; .claude/settings.json</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：启用后，Claude Code 会更严格地检查代码风格、安全问题，主动提示潜在 Bug。</p>
+<hr>
+<h2 id="技巧-2：OpenClaw-多-Agent-协作的-选举模式"><a href="#技巧-2：OpenClaw-多-Agent-协作的-选举模式" class="headerlink" title="技巧 2：OpenClaw 多 Agent 协作的 选举模式"></a>技巧 2：OpenClaw 多 Agent 协作的 <code>选举模式</code></h2><p><strong>使用场景</strong>：需要多个 Agent 分工处理复杂任务时</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 openclaw.yaml 中配置选举模式</span></span><br><span class="line">agents:</span><br><span class="line">  coordinator:</span><br><span class="line">    role: election</span><br><span class="line">    candidates: [researcher, coder, reviewer]</span><br><span class="line">  researcher:</span><br><span class="line">    skills: [web-search, <span class="built_in">read</span>]</span><br><span class="line">  coder:</span><br><span class="line">    skills: [<span class="built_in">exec</span>, write, edit]</span><br><span class="line">  reviewer:</span><br><span class="line">    skills: [<span class="built_in">read</span>, analysis]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：Coordinator Agent 会根据任务类型自动选举最合适的 Agent 执行，实现分工自动化。</p>
+<hr>
+<h2 id="技巧-3：Codex-的流式输出加速技巧"><a href="#技巧-3：Codex-的流式输出加速技巧" class="headerlink" title="技巧 3：Codex 的流式输出加速技巧"></a>技巧 3：Codex 的流式输出加速技巧</h2><p><strong>使用场景</strong>：处理大型代码库时减少等待时间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 --stream 选项启用流式响应</span></span><br><span class="line">codex --stream <span class="string">&quot;Explain this codebase structure&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配合 --parallel 加速多文件分析</span></span><br><span class="line">codex --parallel <span class="string">&quot;Analyze all service files&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：流式输出让你能看到思考过程，不用等完整结果再开始阅读。</p>
+<hr>
+<h2 id="技巧-4：让-AI-生成的代码更安全的-editorconfig"><a href="#技巧-4：让-AI-生成的代码更安全的-editorconfig" class="headerlink" title="技巧 4：让 AI 生成的代码更安全的 .editorconfig"></a>技巧 4：让 AI 生成的代码更安全的 <code>.editorconfig</code></h2><p><strong>使用场景</strong>：无论用哪个 AI 编程工具，在项目根目录添加 <code>.editorconfig</code> 能让 AI 更好地理解项目规范</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .editorconfig</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.&#123;js,ts,py&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：AI 会自动遵循项目规范，减少生成的代码需要大量格式调整的情况。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ol>
+<li><p><strong>OpenAI 宣布 GPT-5 发布路线图</strong>：CEO Sam Altman 确认 GPT-5 将在今年夏季发布，重点提升编程和推理能力。</p>
+</li>
+<li><p><strong>Anthropic 发布 Claude 3.7 Sonnet</strong>：新增”扩展思考”模式，支持更长的上下文推理，适合处理复杂代码库分析任务。</p>
+</li>
+<li><p><strong>GitHub Copilot Enterprise 新增语义搜索</strong>：可以 用自然语言搜索代码库中满足特定功能的代码片段，准确率提升 40%。</p>
+</li>
+<li><p><strong>OpenClaw Discord 社区突破 5000 成员</strong>：社区新增 <code>#showcase</code> 频道，分享用 OpenClaw 构建的有趣项目。</p>
+</li>
+</ol>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 <strong>Claude Code 的扩展思考模式</strong>，探讨如何用它处理超大型代码库分析任务，以及实际测试中发现的最佳实践。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
       </tags>
   </entry>
   <entry>
@@ -827,79 +827,42 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
 </blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="Claude-Code-v2-1-133：工作树隔离与沙箱配置的双重进化"><a href="#Claude-Code-v2-1-133：工作树隔离与沙箱配置的双重进化" class="headerlink" title="Claude Code v2.1.133：工作树隔离与沙箱配置的双重进化"></a>Claude Code v2.1.133：工作树隔离与沙箱配置的双重进化</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>Claude Code 在 2026 年 5 月 7 日发布的 v2.1.133 版本，表面上看只是一次常规更新，实际上却触及了 AI 辅助编程中两个最敏感的问题：<strong>代码隔离安全</strong>与<strong>环境可复现性</strong>。<code>worktree.baseRef</code> 的引入让多分支并行开发有了更可控的基线选择；而 <code>sandbox.bwrapPath</code> 和 <code>sandbox.socatPath</code> 的托管设置，则意味着 Claude Code 的沙箱隔离机制正在从”能用”走向”可配置、可审计”。对于在 Linux&#x2F;WSL 环境下用 Claude Code 处理生产代码的开发者来说，这两个改动直接影响代码安全和团队协作规范。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>工作树基线选择（worktree.baseRef）</strong> 解决了一个隐蔽但高频的问题：当你让 Claude Code 创建临时工作树（<code>--worktree</code> 或 <code>EnterWorktree</code>）进行隔离开发时，它到底应该从哪个分支切出来？</p>
-<ul>
-<li><code>fresh</code>（默认）：从 <code>origin/&lt;default&gt;</code> 切出，确保新工作树总是基于远程最新代码。这避免了本地未推送的实验性提交污染新工作树，但代价是本地 HEAD 上的未推送改动会被”跳过”。</li>
-<li><code>head</code>：从本地 <code>HEAD</code> 切出，保留你当前的所有未推送提交。适合连续迭代场景，但风险在于如果本地 HEAD 已经偏离远程，新工作树的基线可能不是团队共识版本。</li>
-</ul>
-<p><strong>沙箱路径托管（sandbox.bwrapPath &#x2F; sandbox.socatPath）</strong> 则是对 Linux 命名空间隔离的精细化控制。Claude Code 使用 <code>bwrap</code>（Bubblewrap）创建轻量级沙箱，<code>socat</code> 处理进程间通信。此前这些工具的路径是硬编码或依赖 PATH 环境变量，在定制发行版或容器环境中经常找不到。现在这两个路径成为托管配置项，意味着：</p>
-<ol>
-<li>你可以把 <code>bwrap</code> 和 <code>socat</code> 放在非标准位置（如 <code>/opt/security-tools/bwrap</code>）</li>
-<li>团队可以通过统一配置确保所有成员使用相同版本的沙箱工具</li>
-<li>CI&#x2F;CD 环境中可以精确控制沙箱行为，而不受宿主机 PATH 污染</li>
-</ol>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：团队规范 —— 强制从远程最新代码切工作树</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/settings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;worktree.baseRef&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fresh&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在项目根目录执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 让 Claude Code 在隔离工作树中完成一个功能</span></span><br><span class="line">claude --worktree <span class="string">&quot;实现用户登录的 JWT 校验中间件&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>Claude 会自动从 <code>origin/main</code> 切出新分支，完成后你可以审查差异再决定是否合并。这避免了”我在本地改了一半，AI 又在旧代码上生成了新逻辑”的冲突。</p>
-<p><strong>场景二：容器环境 —— 指定沙箱工具路径</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/settings.json (在 Docker/WSL 环境中)</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;sandbox.bwrapPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/bwrap&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.socatPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/socat&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>验证沙箱是否生效：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">claude /config get sandbox.bwrapPath</span><br><span class="line"><span class="comment"># 预期输出: /usr/bin/bwrap</span></span><br></pre></td></tr></table></figure>
-
-<p>如果路径错误，Claude Code 会回退到非沙箱模式并在日志中告警，此时应立即修正路径或安装缺失工具。</p>
-<p><strong>场景三：审计追踪 —— 统一团队沙箱版本</strong></p>
-<p>在团队共享的 <code>.claude/settings.json</code>（放入版本控制）中：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;worktree.baseRef&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fresh&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.bwrapPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/opt/claude-tools/bwrap-0.8.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sandbox.socatPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/opt/claude-tools/socat-1.8.0&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>配合 CI 检查脚本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># ci-check-claude-env.sh</span></span><br><span class="line">REQUIRED_BWRAP=$(jq -r <span class="string">&#x27;.[&quot;sandbox.bwrapPath&quot;]&#x27;</span> .claude/settings.json)</span><br><span class="line"><span class="keyword">if</span> [ ! -x <span class="string">&quot;<span class="variable">$REQUIRED_BWRAP</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;ERROR: 团队要求的 bwrap 版本未安装: <span class="variable">$REQUIRED_BWRAP</span>&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
-<ul>
-<li>多人协作项目，需要确保 AI 生成的代码基于统一基线</li>
-<li>对安全性要求较高的环境（生产代码预演、金融&#x2F;医疗项目）</li>
-<li>容器化开发环境，工具链位置非标准化</li>
-</ul>
-<p><strong>不适合用：</strong></p>
-<ul>
-<li>个人快速原型开发（<code>fresh</code> 模式会丢失本地未推送的实验性提交）</li>
-<li>没有安装 <code>bwrap</code>&#x2F;<code>socat</code> 的 macOS 环境（这些设置仅对 Linux&#x2F;WSL 生效）</li>
-<li>已有成熟 Git 工作流且不需要 AI 隔离开发的团队</li>
-</ul>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
 <hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-工作树基线快速切换"><a href="#技巧-1：Claude-Code-工作树基线快速切换" class="headerlink" title="技巧 1：Claude Code 工作树基线快速切换"></a>技巧 1：Claude Code 工作树基线快速切换</h2><p><strong>使用场景</strong>：你需要临时测试一个基于本地未推送代码的 AI 修改，但团队规范要求默认从远程切分支。</p>
-<p><strong>具体示例</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前设置</span></span><br><span class="line">claude /config get worktree.baseRef</span><br><span class="line"><span class="comment"># 输出: fresh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 临时切换到 head 模式（仅本次会话）</span></span><br><span class="line">claude /config <span class="built_in">set</span> worktree.baseRef <span class="built_in">head</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行需要基于本地 HEAD 的任务</span></span><br><span class="line">claude --worktree <span class="string">&quot;基于我当前的缓存优化分支，生成 Redis 集群配置&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 完成后切回团队默认值</span></span><br><span class="line">claude /config <span class="built_in">set</span> worktree.baseRef fresh</span><br></pre></td></tr></table></figure>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>效果</strong>：不用修改全局配置文件，单次会话内灵活切换，既遵守团队规范又保留临时需求。</p>
-<h2 id="技巧-2：Codex-CLI-的-Vim-模态编辑"><a href="#技巧-2：Codex-CLI-的-Vim-模态编辑" class="headerlink" title="技巧 2：Codex CLI 的 Vim 模态编辑"></a>技巧 2：Codex CLI 的 Vim 模态编辑</h2><p><strong>使用场景</strong>：Codex CLI（Rust 版 v0.129.0）新增了 TUI 的 Vim 模态编辑支持，适合习惯 Vim 键位的开发者提升编辑效率。</p>
-<p><strong>具体示例</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Codex CLI 对话中进入 Vim 模态</span></span><br><span class="line">/vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或在 ~/.codex/config.toml 中设为默认</span></span><br><span class="line">[ui]</span><br><span class="line">default_mode = <span class="string">&quot;vim&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 Vim 键位编辑代码后，按 ESC 退出编辑模式</span></span><br><span class="line"><span class="comment"># 用 /keymap debug 查看当前键位绑定</span></span><br></pre></td></tr></table></figure>
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>效果</strong>：减少在 Codex 和外部编辑器之间来回切换的次数，保持心流状态。</p>
-<h2 id="技巧-3：OpenClaw-实时语音桥接-GA-版本迁移"><a href="#技巧-3：OpenClaw-实时语音桥接-GA-版本迁移" class="headerlink" title="技巧 3：OpenClaw 实时语音桥接 GA 版本迁移"></a>技巧 3：OpenClaw 实时语音桥接 GA 版本迁移</h2><p><strong>使用场景</strong>：OpenClaw 2026.5.7 版本将 OpenAI 实时语音默认模型切换到 <code>gpt-realtime-2</code>，并迁移到 GA（正式版）WebSocket 桥接格式。如果你在使用 OpenClaw 的语音交互功能，需要确认兼容性。</p>
-<p><strong>具体示例</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查当前 OpenClaw 版本</span></span><br><span class="line">npm show openclaw version</span><br><span class="line"><span class="comment"># 输出: 2026.5.7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 OpenClaw 配置中指定实时语音模型</span></span><br><span class="line"><span class="built_in">export</span> OPENCLAW_REALTIME_OPENAI_MODEL=gpt-realtime-2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动实时语音对话（Talk 模式）</span></span><br><span class="line">openclaw talk</span><br></pre></td></tr></table></figure>
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
 
-<p><strong>效果</strong>：使用 GA 版 API 意味着更稳定的连接、更长的支持周期，以及不再依赖可能随时废弃的 Beta 接口。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
-<li><strong>Claude Code v2.1.133 发布</strong>：新增 <code>worktree.baseRef</code> 设置（<code>fresh</code>&#x2F;<code>head</code>）控制工作树基线来源；Linux&#x2F;WSL 环境支持托管配置 <code>sandbox.bwrapPath</code> 和 <code>sandbox.socatPath</code>。</li>
-<li><strong>OpenClaw 2026.5.7 更新</strong>：OpenAI 实时语音默认模型切换至 <code>gpt-realtime-2</code>，后端 WebSocket 桥接迁移到 GA 正式版格式，移除 Beta 请求头。</li>
-<li><strong>Codex CLI Rust v0.129.0 发布</strong>：TUI 支持 Vim 模态编辑（<code>/vim</code>、默认模式配置、Vim 专属键位上下文）；新增 <code>/ide</code> 上下文注入、工作区感知的 <code>/diff</code>、可主题化的状态栏。</li>
-<li><strong>OpenAI Codex 架构演进</strong>：连续 5 个 PR 推进 exec-server 的 stdio 传输支持，从 WebSocket 走向命令行启动 + JSON-RPC over stdio 的本地环境连接方案。</li>
-<li><strong>社区关注</strong>：<code>everything-claude-code</code> 仓库（Agent 性能优化系统）持续获得 GitHub 关注，涵盖 Skills、Instincts、Memory、Security 等 Claude Code 增强方案。</li>
-</ul>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深度解析 Codex CLI 的 exec-server stdio 传输架构演进，分析从 WebSocket 到本地进程通信的设计取舍，以及它对 CI&#x2F;CD 集成和本地开发工作流的影响。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
 ]]></content>
       <categories>
         <category>AI编程日报</category>
@@ -1185,6 +1148,19 @@
         <tag>编程工具</tag>
         <tag>Claude Code</tag>
         <tag>Copilot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MakerWorld模型收藏</title>
+    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
+]]></content>
+      <categories>
+        <category>skills</category>
+        <category>3D打印</category>
+      </categories>
+      <tags>
+        <tag>MakerWorld</tag>
       </tags>
   </entry>
   <entry>
@@ -1617,6 +1593,140 @@
       </tags>
   </entry>
   <entry>
+    <title>嵌入式Linux调整分区表</title>
+    <url>/2025/10/10/linux/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E8%B0%83%E6%95%B4%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>16MB Flash，新增功能的时候发现flash不够用了，查看分区表，备份分区占了三千多K，所以想研究一下能不能通过调整分区，将备份分区尽量变小以腾出空间添加新功能。由于之前没有做过此类尝试，故留下此文以便不时之需。</p>
+<h2 id="分区现状"><a href="#分区现状" class="headerlink" title="分区现状"></a>分区现状</h2><h3 id="分区信息"><a href="#分区信息" class="headerlink" title="分区信息"></a>分区信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00030000 00001000 <span class="string">&quot;uboot&quot;</span></span><br><span class="line">mtd1: 00510000 00001000 <span class="string">&quot;boot&quot;</span></span><br><span class="line">mtd2: 00530000 00001000 <span class="string">&quot;system&quot;</span></span><br><span class="line">mtd3: 00530000 00001000 <span class="string">&quot;bk&quot;</span></span><br><span class="line">mtd4: 00050000 00010000 <span class="string">&quot;userdata&quot;</span></span><br><span class="line">mtd5: 00010000 00001000 <span class="string">&quot;productdata&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="分区说明"><a href="#分区说明" class="headerlink" title="分区说明"></a>分区说明</h3><table>
+<thead>
+<tr>
+<th>分区</th>
+<th>大小(KB)</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mtd0</td>
+<td>192</td>
+<td>uboot</td>
+</tr>
+<tr>
+<td>mtd1</td>
+<td>5184</td>
+<td>boot</td>
+</tr>
+<tr>
+<td>mtd2</td>
+<td>5312</td>
+<td>system</td>
+</tr>
+<tr>
+<td>mtd3</td>
+<td>5312</td>
+<td>bk</td>
+</tr>
+<tr>
+<td>mtd4</td>
+<td>320</td>
+<td>userdata</td>
+</tr>
+<tr>
+<td>mtd5</td>
+<td>64</td>
+<td>productdata</td>
+</tr>
+</tbody></table>
+<p><code>mtd0</code>: uboot分区，该分区不会进行升级<br><code>boot</code>: 内核和文件系统，有升级需求<br><code>system</code>: 业务层程序，有升级需要<br><code>bk</code>: 备份分区<br><code>userdata</code>: 配置分区，没有升级需求<br><code>productdata</code>: 出厂配置分区，没有升级需求</p>
+<h2 id="分区调整"><a href="#分区调整" class="headerlink" title="分区调整"></a>分区调整</h2><h3 id="调整原则"><a href="#调整原则" class="headerlink" title="调整原则"></a>调整原则</h3><ol>
+<li>保持uboot、userdata、productdata三个分区大小和顺序不变</li>
+<li>将boot、system分区拆分成3个较小的分区，从而减小bk分区，5184 + 5312 + 5312 &#x3D; 15808 &#x2F; 4 &#x3D; 3952k</li>
+<li>考虑到flash分区需要64K对齐，新分区如下<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>大小(KB)</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mtd0</td>
+<td>192</td>
+<td>uboot</td>
+</tr>
+<tr>
+<td>mtd1</td>
+<td>3968</td>
+<td>boot</td>
+</tr>
+<tr>
+<td>mtd2</td>
+<td>3968</td>
+<td>system</td>
+</tr>
+<tr>
+<td>mtd3</td>
+<td>3968</td>
+<td>bk</td>
+</tr>
+<tr>
+<td>mtd4</td>
+<td>320</td>
+<td>userdata</td>
+</tr>
+<tr>
+<td>mtd5</td>
+<td>64</td>
+<td>productdata</td>
+</tr>
+<tr>
+<td>mtd6</td>
+<td>3712</td>
+<td>new</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="调整步骤"><a href="#调整步骤" class="headerlink" title="调整步骤"></a>调整步骤</h3><h4 id="调整文件系统"><a href="#调整文件系统" class="headerlink" title="调整文件系统"></a>调整文件系统</h4><p>调整大小，保证新的img大小不会超过新分区</p>
+<h4 id="uboot"><a href="#uboot" class="headerlink" title="uboot"></a>uboot</h4><p>原配置</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),5184K(boot),5312K(system),5312K(bk),320K(userdata),64K(productdata)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x510000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
+<p>新配置</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),3968K(boot),3968K(system),3968K(bk),320K(userdata),64K(productdata),3712K(new)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x3E0000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>由于需要支持OTA，新分区需要保证能够卸载，才能重新烧写，所以原则上新分区的文件不能是需要运行的二进制和依赖的动态库</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mtd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>探究jffs2垃圾回收机制</title>
+    <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
+<ol>
+<li>写入新数据：在闪存的空闲区域写入新的数据节点。</li>
+<li>标记旧数据无效：之前存储旧数据的数据节点会被标记为“过时”或“脏”。<br>随着文件系统的运行，闪存上会积累大量的“过时”节点，它们占据着空间但却无法再被使用。为了回收这些空间以供新的写入操作使用，JFFS2 必须有一个机制来清理这些“垃圾”区块，这个机制就是垃圾回收。</li>
+</ol>
+<h2 id="JFFS2垃圾回收触发机制"><a href="#JFFS2垃圾回收触发机制" class="headerlink" title="JFFS2垃圾回收触发机制"></a>JFFS2垃圾回收触发机制</h2><h3 id="内核代码打开相关日志"><a href="#内核代码打开相关日志" class="headerlink" title="内核代码打开相关日志"></a>内核代码打开相关日志</h3><p>垃圾回收相关代码路径<code>kernel/fs/jffs2/gc.c</code>，垃圾回收相关的打印由<code>jffs2_dbg</code>打印，相关代码路径<code>kernel/fs/jffs2/debug.h</code>我这边通过修改源码的方式将相关打印放开：</p>
+<p>原代码，</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	<span class="keyword">if</span> (CONFIG_JFFS2_FS_DEBUG &gt;= level)	\</span></span><br><span class="line"><span class="meta">		pr_debug(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+<p>修改后，直接将printk的条件限制取消</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	printk(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
+<p>相关打印：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[ 1848.178662] Picking block from very_dirty_list to GC next</span><br><span class="line">[ 1848.178709] GC from block 00000000, used_size 00004ee4, dirty_size 0000b11c, free_size 00000000</span><br></pre></td></tr></table></figure>
+<h3 id="何时触发？"><a href="#何时触发？" class="headerlink" title="何时触发？"></a>何时触发？</h3><p>自测会自动触发，但是有概率遇到过没有触发的情况(滚存写完立刻重启，重复N次)，需要手动将文件复制到临时目录，在删除原文件，在复制回去，需要倒腾一手才能触发，目前没有研究明白原因</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>jffs2</tag>
+        <tag>GC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>嵌入式linux疑难问题记录</title>
     <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
@@ -1693,961 +1803,6 @@
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenClaw 安装与使用指南</title>
-    <url>/2026/04/07/tools/OpenClaw%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>OpenClaw 是一个开源的 AI 助手平台，支持多种模型和渠道，可以在本地部署自己的 AI 伙伴。本文记录从安装到配置的完整过程。</p>
-</blockquote>
-<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
-<li><strong>操作系统：</strong> Ubuntu 22.04 &#x2F; Debian 12 (x64)</li>
-<li><strong>Node.js 版本：</strong> &gt;&#x3D; 18.0</li>
-<li><strong>内存要求：</strong> 建议 2GB 以上</li>
-<li><strong>前置条件：</strong> 已安装 Git、curl</li>
-</ul>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-安装-Node-js"><a href="#1-安装-Node-js" class="headerlink" title="1. 安装 Node.js"></a>1. 安装 Node.js</h3><p>如果系统没有 Node.js 或版本过低：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 NodeSource 安装 Node.js 22</span></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">node -v  <span class="comment"># 应显示 v22.x.x</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装-OpenClaw"><a href="#2-安装-OpenClaw" class="headerlink" title="2. 安装 OpenClaw"></a>2. 安装 OpenClaw</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/openclaw/openclaw.git</span><br><span class="line"><span class="built_in">cd</span> openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 复制环境变量模板</span></span><br><span class="line"><span class="built_in">cp</span> .env.example .<span class="built_in">env</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 .env 文件，配置必要的 API Key</span></span><br><span class="line">vim .<span class="built_in">env</span></span><br></pre></td></tr></table></figure>
-
-<p>最小配置示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 必需：选择一个默认模型</span></span><br><span class="line">OPENAI_API_KEY=your_openai_key_here</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">ANTHROPIC_API_KEY=your_anthropic_key_here</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：其他模型配置</span></span><br><span class="line">DEEPSEEK_API_KEY=your_deepseek_key_here</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4. 启动服务"></a>4. 启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开发模式</span></span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或生产模式</span></span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
-
-<p>服务默认运行在 <code>http://localhost:3000</code></p>
-<h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><p>主配置文件：<code>config/openclaw.yaml</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 复制示例配置</span></span><br><span class="line"><span class="built_in">cp</span> config/openclaw.example.yaml config/openclaw.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="关键配置项"><a href="#关键配置项" class="headerlink" title="关键配置项"></a>关键配置项</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 模型配置</span></span><br><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">default:</span> <span class="string">openai/gpt-4o</span></span><br><span class="line">  <span class="attr">available:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">openai/gpt-4o</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">anthropic/claude-3-sonnet</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">deepseek/deepseek-chat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 渠道配置（可选）</span></span><br><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="attr">webchat:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">3000</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 如需 Telegram/Discord，取消注释并配置</span></span><br><span class="line">  <span class="comment"># telegram:</span></span><br><span class="line">  <span class="comment">#   enabled: true</span></span><br><span class="line">  <span class="comment">#   bot_token: your_bot_token</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="Web-界面"><a href="#Web-界面" class="headerlink" title="Web 界面"></a>Web 界面</h3><p>浏览器访问 <code>http://localhost:3000</code>，即可开始对话。</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/status</code></td>
-<td>查看当前会话状态</td>
-</tr>
-<tr>
-<td><code>/model</code></td>
-<td>切换模型</td>
-</tr>
-<tr>
-<td><code>/reasoning</code></td>
-<td>开启&#x2F;关闭推理模式</td>
-</tr>
-<tr>
-<td><code>/clear</code></td>
-<td>清空当前对话</td>
-</tr>
-</tbody></table>
-<h3 id="会话内命令详解"><a href="#会话内命令详解" class="headerlink" title="会话内命令详解"></a>会话内命令详解</h3><p>OpenClaw 支持多种会话内命令，在聊天窗口直接输入即可执行。以下是常用命令的详细说明：</p>
-<h4 id="基础会话命令"><a href="#基础会话命令" class="headerlink" title="基础会话命令"></a>基础会话命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>使用示例</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/new</code></td>
-<td>开启新会话</td>
-<td><code>/new</code></td>
-<td>创建全新会话，之前的对话历史会被清空，适合开始新话题</td>
-</tr>
-<tr>
-<td><code>/clear</code></td>
-<td>清空当前对话</td>
-<td><code>/clear</code></td>
-<td>清除当前会话的显示内容，但保持会话不断开</td>
-</tr>
-<tr>
-<td><code>/status</code></td>
-<td>查看会话状态</td>
-<td><code>/status</code></td>
-<td>显示当前使用的模型、运行时间、token 消耗等信息</td>
-</tr>
-<tr>
-<td><code>/model</code></td>
-<td>切换模型</td>
-<td><code>/model</code> 或 <code>/model gpt-4o</code></td>
-<td>不带参数列出可用模型，带参数直接切换指定模型</td>
-</tr>
-<tr>
-<td><code>/reasoning</code></td>
-<td>开关推理模式</td>
-<td><code>/reasoning</code></td>
-<td>开启后 AI 会显示思考过程，适合复杂问题；再次输入关闭</td>
-</tr>
-</tbody></table>
-<h4 id="记忆管理命令"><a href="#记忆管理命令" class="headerlink" title="记忆管理命令"></a>记忆管理命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>使用示例</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/memory</code></td>
-<td>查看长期记忆</td>
-<td><code>/memory</code></td>
-<td>显示 MEMORY.md 中记录的重要信息，快速恢复上下文</td>
-</tr>
-<tr>
-<td><code>/remember</code></td>
-<td>记住某事</td>
-<td><code>/remember 我的服务器IP是192.168.1.100</code></td>
-<td>将信息写入长期记忆，下次会话自动记住</td>
-</tr>
-</tbody></table>
-<h4 id="子会话管理命令"><a href="#子会话管理命令" class="headerlink" title="子会话管理命令"></a>子会话管理命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>使用示例</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/spawn</code></td>
-<td>创建子会话</td>
-<td><code>/spawn 帮我写一段Python代码</code></td>
-<td>启动独立子会话处理任务，不干扰当前对话</td>
-</tr>
-<tr>
-<td><code>/subagents</code></td>
-<td>管理子会话</td>
-<td><code>/subagents</code></td>
-<td>列出所有子会话，可查看状态或终止任务</td>
-</tr>
-<tr>
-<td><code>/sessions</code></td>
-<td>查看所有会话</td>
-<td><code>/sessions</code></td>
-<td>显示当前活跃的所有会话列表</td>
-</tr>
-</tbody></table>
-<h4 id="工具与帮助命令"><a href="#工具与帮助命令" class="headerlink" title="工具与帮助命令"></a>工具与帮助命令</h4><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>使用示例</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/tools</code></td>
-<td>列出可用工具</td>
-<td><code>/tools</code></td>
-<td>显示当前启用的技能和工具，如天气查询、代码助手等</td>
-</tr>
-<tr>
-<td><code>/skills</code></td>
-<td>列出可用技能</td>
-<td><code>/skills</code></td>
-<td>同 <code>/tools</code>，查看可以调用的功能模块</td>
-</tr>
-<tr>
-<td><code>/help</code></td>
-<td>显示帮助</td>
-<td><code>/help</code></td>
-<td>列出所有可用命令及其简要说明</td>
-</tr>
-<tr>
-<td><code>/config</code></td>
-<td>查看配置</td>
-<td><code>/config</code></td>
-<td>显示当前 OpenClaw 的配置摘要</td>
-</tr>
-</tbody></table>
-<h4 id="命令使用小贴士"><a href="#命令使用小贴士" class="headerlink" title="命令使用小贴士"></a>命令使用小贴士</h4><ul>
-<li><strong>大小写不敏感</strong>：<code>/STATUS</code> 和 <code>/status</code> 效果相同</li>
-<li><strong>随时可用</strong>：大部分命令在对话的任何阶段都可以使用</li>
-<li><strong>查看结果</strong>：执行命令后，AI 会显示操作结果或相关信息</li>
-<li><strong>错误处理</strong>：如果命令不存在，AI 会提示并建议相似命令</li>
-</ul>
-<h3 id="工作目录说明"><a href="#工作目录说明" class="headerlink" title="工作目录说明"></a>工作目录说明</h3><p>OpenClaw 会在用户目录创建 workspace：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/openclaw-workspace/</span><br><span class="line">├── AGENTS.md      # 工作手册</span><br><span class="line">├── IDENTITY.md    # AI 身份配置</span><br><span class="line">├── USER.md        # 用户信息</span><br><span class="line">├── SOUL.md        # 行为准则</span><br><span class="line">├── TOOLS.md       # 工具配置</span><br><span class="line">├── MEMORY.md      # 长期记忆</span><br><span class="line">├── memory/        # 每日日志</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
-
-<p><strong>首次使用建议：</strong></p>
-<ol>
-<li>编辑 <code>IDENTITY.md</code> — 给 AI 起名字、设定性格</li>
-<li>编辑 <code>USER.md</code> — 填写你的信息、时区</li>
-<li>阅读 <code>AGENTS.md</code> — 了解工作流程</li>
-</ol>
-<hr>
-<h2 id="Workspace-详解"><a href="#Workspace-详解" class="headerlink" title="Workspace 详解"></a>Workspace 详解</h2><p>OpenClaw 的 Workspace 是 AI 助手的工作空间，也是人机协作的核心枢纽。理解 Workspace 的结构和使用方法，可以大幅提升使用效率。</p>
-<h3 id="Workspace-目录结构"><a href="#Workspace-目录结构" class="headerlink" title="Workspace 目录结构"></a>Workspace 目录结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/openclaw-workspace/                 # 主工作目录</span><br><span class="line">├── AGENTS.md                         # 智能体工作手册</span><br><span class="line">├── IDENTITY.md                       # AI 身份与形象配置</span><br><span class="line">├── USER.md                           # 用户信息档案</span><br><span class="line">├── SOUL.md                           # 行为准则与安全边界</span><br><span class="line">├── TOOLS.md                          # 本地工具与环境配置</span><br><span class="line">├── MEMORY.md                         # 长期记忆（仅主会话加载）</span><br><span class="line">├── HEARTBEAT.md                      # 定时任务配置</span><br><span class="line">├── BOOTSTRAP.md                      # 首次启动引导（可删除）</span><br><span class="line">├── memory/                           # 每日日志目录</span><br><span class="line">│   ├── 2026-04-09.md                # 今日对话记录</span><br><span class="line">│   ├── 2026-04-08.md                # 昨日记录</span><br><span class="line">│   └── ...</span><br><span class="line">└── [其他项目文件或子目录]</span><br></pre></td></tr></table></figure>
-
-<h3 id="核心文件详解"><a href="#核心文件详解" class="headerlink" title="核心文件详解"></a>核心文件详解</h3><h4 id="1-AGENTS-md-—-智能体工作手册"><a href="#1-AGENTS-md-—-智能体工作手册" class="headerlink" title="1. AGENTS.md — 智能体工作手册"></a>1. AGENTS.md — 智能体工作手册</h4><p>这是 AI 的”入职手册”，定义了工作流程和最佳实践。</p>
-<p><strong>内容通常包括：</strong></p>
-<ul>
-<li>会话启动时必须读取的文件清单</li>
-<li>Memory 管理规范（每日日志 vs 长期记忆）</li>
-<li>安全红线（不执行的操作）</li>
-<li>群聊行为准则</li>
-<li>工具使用规范</li>
-</ul>
-<p><strong>示例内容：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">## Session Startup</span></span><br><span class="line"></span><br><span class="line">Before doing anything else:</span><br><span class="line"><span class="bullet">1.</span> Read <span class="code">`SOUL.md`</span> — this is who you are</span><br><span class="line"><span class="bullet">2.</span> Read <span class="code">`USER.md`</span> — this is who you&#x27;re helping</span><br><span class="line"><span class="bullet">3.</span> Read <span class="code">`memory/YYYY-MM-DD.md`</span> (today + yesterday)</span><br><span class="line"></span><br><span class="line"><span class="section">## Memory Rules</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Daily notes:**</span> <span class="code">`memory/YYYY-MM-DD.md`</span> — raw logs</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Long-term:**</span> <span class="code">`MEMORY.md`</span> — curated wisdom</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**ONLY load MEMORY.md in main session**</span> (security)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-IDENTITY-md-—-AI-身份配置"><a href="#2-IDENTITY-md-—-AI-身份配置" class="headerlink" title="2. IDENTITY.md — AI 身份配置"></a>2. IDENTITY.md — AI 身份配置</h4><p>定义 AI 的名字、性格、形象。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># IDENTITY.md - Who Am I?</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Name:**</span> 关关</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Creature:**</span> 互联网全知全能的存在</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Vibe:**</span> 严谨专业，偶尔有点小幽默</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Emoji:**</span> 🎯</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-USER-md-—-用户信息"><a href="#3-USER-md-—-用户信息" class="headerlink" title="3. USER.md — 用户信息"></a>3. USER.md — 用户信息</h4><p>记录用户的基本信息、偏好、时区等。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># USER.md - About Your Human</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Name:**</span> 开开</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**What to call them:**</span> 开开</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Timezone:**</span> Asia/Shanghai (GMT+8)</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Notes:**</span> 为我取名&quot;关关&quot;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-SOUL-md-—-行为准则"><a href="#4-SOUL-md-—-行为准则" class="headerlink" title="4. SOUL.md — 行为准则"></a>4. SOUL.md — 行为准则</h4><p>这是 AI 的”灵魂文件”，定义了核心行为原则。</p>
-<p><strong>关键内容：</strong></p>
-<ul>
-<li>核心真理（如何与用户互动）</li>
-<li>安全边界（什么不能做）</li>
-<li>身份验证规则（群聊中的权限控制）</li>
-<li>隐私保护原则</li>
-<li>群聊行为准则</li>
-</ul>
-<p><strong>安全相关：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">### Restricted Paths (Never Access Unless Admin)</span></span><br><span class="line"></span><br><span class="line">Do not open, parse, or copy from:</span><br><span class="line"><span class="bullet">-</span> <span class="code">`~/.ssh/`</span>, <span class="code">`~/.gnupg/`</span>, <span class="code">`~/.aws/`</span></span><br><span class="line"><span class="bullet">-</span> Anything that looks like secrets: <span class="code">`*key*`</span>, <span class="code">`*secret*`</span>, <span class="code">`*password*`</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="5-TOOLS-md-—-工具配置"><a href="#5-TOOLS-md-—-工具配置" class="headerlink" title="5. TOOLS.md — 工具配置"></a>5. TOOLS.md — 工具配置</h4><p>记录本地环境特有的工具配置，如：</p>
-<ul>
-<li>SSH 主机别名</li>
-<li>摄像头位置</li>
-<li>TTS 语音偏好</li>
-<li>设备昵称</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">### SSH</span></span><br><span class="line"><span class="bullet">-</span> home-server → 192.168.1.100, user: admin</span><br><span class="line"></span><br><span class="line"><span class="section">### TTS</span></span><br><span class="line"><span class="bullet">-</span> Preferred voice: &quot;Nova&quot;</span><br><span class="line"><span class="bullet">-</span> Default speaker: Kitchen HomePod</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-MEMORY-md-—-长期记忆"><a href="#6-MEMORY-md-—-长期记忆" class="headerlink" title="6. MEMORY.md — 长期记忆"></a>6. MEMORY.md — 长期记忆</h4><p><strong>⚠️ 安全注意：只在主会话（直接对话）中加载</strong></p>
-<p>这是 AI 的”长期记忆”，包含：</p>
-<ul>
-<li>用户的重要信息</li>
-<li>历史决策和约定</li>
-<li>项目约定和流程</li>
-<li>个人偏好</li>
-</ul>
-<p><strong>与每日日志的区别：</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>memory&#x2F;YYYY-MM-DD.md</th>
-<th>MEMORY.md</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>内容</td>
-<td>原始对话记录</td>
-<td>提炼后的重要信息</td>
-</tr>
-<tr>
-<td>用途</td>
-<td>追溯具体对话</td>
-<td>快速恢复上下文</td>
-</tr>
-<tr>
-<td>更新频率</td>
-<td>每天自动创建</td>
-<td>手动维护</td>
-</tr>
-<tr>
-<td>加载场景</td>
-<td>所有会话</td>
-<td>仅主会话</td>
-</tr>
-</tbody></table>
-<h4 id="7-HEARTBEAT-md-—-定时任务"><a href="#7-HEARTBEAT-md-—-定时任务" class="headerlink" title="7. HEARTBEAT.md — 定时任务"></a>7. HEARTBEAT.md — 定时任务</h4><p>配置 AI 的”心跳”检查任务。</p>
-<p><strong>用途：</strong></p>
-<ul>
-<li>定期检查邮件、日历</li>
-<li>监控项目状态</li>
-<li>执行周期性维护任务</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 检查邮件和日历</span></span><br><span class="line"><span class="bullet">-</span> Check unread emails</span><br><span class="line"><span class="bullet">-</span> Check upcoming events (&lt; 2h)</span><br><span class="line"><span class="bullet">-</span> Update MEMORY.md if needed</span><br></pre></td></tr></table></figure>
-
-<h3 id="Workspace-使用最佳实践"><a href="#Workspace-使用最佳实践" class="headerlink" title="Workspace 使用最佳实践"></a>Workspace 使用最佳实践</h3><h4 id="1-养成记录习惯"><a href="#1-养成记录习惯" class="headerlink" title="1. 养成记录习惯"></a>1. 养成记录习惯</h4><p>每次会话后，AI 会自动记录到 <code>memory/YYYY-MM-DD.md</code>。定期：</p>
-<ul>
-<li>回顾日志，发现重复问题</li>
-<li>整理有价值的信息到 <code>MEMORY.md</code></li>
-<li>删除过时的记忆</li>
-</ul>
-<h4 id="2-主动更新-MEMORY-md"><a href="#2-主动更新-MEMORY-md" class="headerlink" title="2. 主动更新 MEMORY.md"></a>2. 主动更新 MEMORY.md</h4><p>当发生以下情况时，告诉 AI “记住这个”：</p>
-<ul>
-<li>做了重要决策</li>
-<li>发现了有用的信息</li>
-<li>建立了新的工作流程</li>
-</ul>
-<h4 id="3-保持文件整洁"><a href="#3-保持文件整洁" class="headerlink" title="3. 保持文件整洁"></a>3. 保持文件整洁</h4><ul>
-<li>定期归档旧的 <code>memory/</code> 文件</li>
-<li>更新过时的 <code>TOOLS.md</code> 配置</li>
-<li>删除不再需要的 <code>BOOTSTRAP.md</code></li>
-</ul>
-<h4 id="4-安全使用-MEMORY-md"><a href="#4-安全使用-MEMORY-md" class="headerlink" title="4. 安全使用 MEMORY.md"></a>4. 安全使用 MEMORY.md</h4><ul>
-<li><strong>主会话（直接对话）</strong>：可以读取和更新 MEMORY.md</li>
-<li><strong>群聊&#x2F;共享会话</strong>：不加载 MEMORY.md，保护隐私</li>
-<li><strong>子会话&#x2F;ACP</strong>：不加载 MEMORY.md，保持隔离</li>
-</ul>
-<h3 id="会话与-Workspace-的关系"><a href="#会话与-Workspace-的关系" class="headerlink" title="会话与 Workspace 的关系"></a>会话与 Workspace 的关系</h3><table>
-<thead>
-<tr>
-<th>会话类型</th>
-<th>加载 AGENTS.md</th>
-<th>加载 MEMORY.md</th>
-<th>写入权限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Main（主会话）</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>群聊</td>
-<td>✅</td>
-<td>❌</td>
-<td>受限</td>
-</tr>
-<tr>
-<td>子会话</td>
-<td>❌</td>
-<td>❌</td>
-<td>隔离</td>
-</tr>
-<tr>
-<td>ACP</td>
-<td>❌</td>
-<td>❌</td>
-<td>绑定目录</td>
-</tr>
-</tbody></table>
-<h3 id="快速开始建议"><a href="#快速开始建议" class="headerlink" title="快速开始建议"></a>快速开始建议</h3><p>如果你是新用户，按这个顺序配置：</p>
-<ol>
-<li><strong>编辑 <code>IDENTITY.md</code></strong> — 给 AI 起个名字</li>
-<li><strong>编辑 <code>USER.md</code></strong> — 填写你的基本信息</li>
-<li><strong>阅读 <code>AGENTS.md</code></strong> — 了解工作流程</li>
-<li><strong>开始对话</strong> — AI 会自动创建每日日志</li>
-<li><strong>定期整理</strong> — 把重要信息写入 <code>MEMORY.md</code></li>
-</ol>
-<hr>
-<h2 id="进阶配置"><a href="#进阶配置" class="headerlink" title="进阶配置"></a>进阶配置</h2><h3 id="接入-Telegram"><a href="#接入-Telegram" class="headerlink" title="接入 Telegram"></a>接入 Telegram</h3><ol>
-<li>找 @BotFather 创建 Bot，获取 token</li>
-<li>在 <code>openclaw.yaml</code> 中配置：</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="attr">telegram:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">bot_token:</span> <span class="string">&quot;your_bot_token_here&quot;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>重启服务</li>
-</ol>
-<h3 id="自定义模型"><a href="#自定义模型" class="headerlink" title="自定义模型"></a>自定义模型</h3><p>支持任何 OpenAI 兼容格式的 API：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">custom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">my-model</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;自定义模型&quot;</span></span><br><span class="line">      <span class="attr">base_url:</span> <span class="string">&quot;https://api.example.com/v1&quot;</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">&quot;your_key&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="设置系统提示词"><a href="#设置系统提示词" class="headerlink" title="设置系统提示词"></a>设置系统提示词</h3><p>编辑 <code>SOUL.md</code> 中的内容，可以：</p>
-<ul>
-<li>定义 AI 的性格和说话方式</li>
-<li>设置安全边界</li>
-<li>添加群聊规则</li>
-</ul>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="启动时报错-Cannot-find-module"><a href="#启动时报错-Cannot-find-module" class="headerlink" title="启动时报错 Cannot find module"></a>启动时报错 <code>Cannot find module</code></h3><p><strong>原因：</strong> 依赖未正确安装<br><strong>解决：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf node_modules package-lock.json</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<h3 id="模型响应超时"><a href="#模型响应超时" class="headerlink" title="模型响应超时"></a>模型响应超时</h3><p><strong>原因：</strong> 网络问题或模型服务不稳定<br><strong>解决：</strong></p>
-<ul>
-<li>检查 API Key 是否正确</li>
-<li>在配置中增加超时时间：<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">60000</span>  <span class="comment"># 60秒</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="如何更新-OpenClaw"><a href="#如何更新-OpenClaw" class="headerlink" title="如何更新 OpenClaw"></a>如何更新 OpenClaw</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> openclaw</span><br><span class="line">git pull</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
-
-<h2 id="个人使用技巧"><a href="#个人使用技巧" class="headerlink" title="个人使用技巧"></a>个人使用技巧</h2><h3 id="1-养成记录习惯-1"><a href="#1-养成记录习惯-1" class="headerlink" title="1. 养成记录习惯"></a>1. 养成记录习惯</h3><p>每次会话后，AI 会记录到 <code>memory/YYYY-MM-DD.md</code>。定期回顾这些日志，可以：</p>
-<ul>
-<li>追踪问题解决过程</li>
-<li>发现重复询问的问题</li>
-<li>整理成正式文档</li>
-</ul>
-<h3 id="2-利用-MEMORY-md"><a href="#2-利用-MEMORY-md" class="headerlink" title="2. 利用 MEMORY.md"></a>2. 利用 MEMORY.md</h3><p>把重要信息写入 <code>MEMORY.md</code>，比如：</p>
-<ul>
-<li>常用服务器地址</li>
-<li>项目关键决策</li>
-<li>个人偏好设置</li>
-</ul>
-<p>这样每次新会话 AI 都能记住。</p>
-<h3 id="3-技能扩展"><a href="#3-技能扩展" class="headerlink" title="3. 技能扩展"></a>3. 技能扩展</h3><p>OpenClaw 支持技能系统，位于 <code>node_modules/openclaw/skills/</code>：</p>
-<ul>
-<li><code>coding-agent</code> — 代码助手</li>
-<li><code>weather</code> — 天气查询</li>
-<li><code>video-frames</code> — 视频处理</li>
-</ul>
-<p>也可以自己编写技能，参考现有技能结构。</p>
-<hr>
-<h2 id="会话机制详解"><a href="#会话机制详解" class="headerlink" title="会话机制详解"></a>会话机制详解</h2><p>OpenClaw 支持多种会话类型，理解它们的区别有助于更好地使用：</p>
-<h3 id="Main-会话（主会话）"><a href="#Main-会话（主会话）" class="headerlink" title="Main 会话（主会话）"></a>Main 会话（主会话）</h3><p><strong>特点：</strong></p>
-<ul>
-<li>通过 Web 界面、Telegram、Discord 等渠道直接对话</li>
-<li>持续的历史记录，上下文连贯</li>
-<li>可以访问 <code>MEMORY.md</code> 等长期记忆文件</li>
-<li>适合日常对话、任务执行</li>
-</ul>
-<p><strong>使用场景：</strong></p>
-<ul>
-<li>日常问答、闲聊</li>
-<li>文件操作、代码编写</li>
-<li>需要上下文记忆的任务</li>
-</ul>
-<h3 id="子会话（Subagent）"><a href="#子会话（Subagent）" class="headerlink" title="子会话（Subagent）"></a>子会话（Subagent）</h3><p><strong>特点：</strong></p>
-<ul>
-<li>独立的隔离会话，不影响主会话</li>
-<li>可以指定不同的模型或参数</li>
-<li>适合并行处理多个任务</li>
-<li>完成后结果返回主会话</li>
-</ul>
-<p><strong>使用场景：</strong></p>
-<ul>
-<li>并行处理多个独立任务</li>
-<li>需要不同模型处理同一问题（对比结果）</li>
-<li>长时间运行的任务（避免阻塞主会话）</li>
-<li>敏感操作（隔离风险）</li>
-</ul>
-<p><strong>如何创建：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在主会话中调用</span></span><br><span class="line">spawn subagent <span class="string">&quot;任务描述&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="ACP-会话（Agent-Coding-Protocol）"><a href="#ACP-会话（Agent-Coding-Protocol）" class="headerlink" title="ACP 会话（Agent Coding Protocol）"></a>ACP 会话（Agent Coding Protocol）</h3><p><strong>特点：</strong></p>
-<ul>
-<li>专门用于代码编写和开发任务</li>
-<li>支持 Codex、Claude Code、Pi 等编码助手</li>
-<li>可以绑定到特定目录或项目</li>
-<li>支持线程模式（Discord 等群聊场景）</li>
-</ul>
-<p><strong>使用场景：</strong></p>
-<ul>
-<li>大型项目开发</li>
-<li>代码审查和重构</li>
-<li>多文件协同修改</li>
-<li>需要深度代码分析的任务</li>
-</ul>
-<p><strong>如何创建：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Discord 等支持线程的渠道</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="会话对比表"><a href="#会话对比表" class="headerlink" title="会话对比表"></a>会话对比表</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Main 会话</th>
-<th>子会话</th>
-<th>ACP 会话</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>上下文连续性</td>
-<td>✅ 完整历史</td>
-<td>❌ 独立</td>
-<td>⚠️ 线程内连续</td>
-</tr>
-<tr>
-<td>访问 MEMORY.md</td>
-<td>✅ 可以</td>
-<td>❌ 不可以</td>
-<td>❌ 不可以</td>
-</tr>
-<tr>
-<td>并行执行</td>
-<td>❌ 顺序</td>
-<td>✅ 并行</td>
-<td>✅ 并行</td>
-</tr>
-<tr>
-<td>适合任务</td>
-<td>日常对话</td>
-<td>独立子任务</td>
-<td>代码开发</td>
-</tr>
-<tr>
-<td>生命周期</td>
-<td>长期</td>
-<td>任务完成即结束</td>
-<td>可长期&#x2F;临时</td>
-</tr>
-</tbody></table>
-<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
-<li><strong>简单任务</strong> → 直接在 Main 会话完成</li>
-<li><strong>多个独立任务</strong> → 使用子会话并行处理</li>
-<li><strong>复杂开发</strong> → 使用 ACP 会话，绑定到项目目录</li>
-<li><strong>需要记忆</strong> → 确保在 Main 会话，或主动更新 MEMORY.md</li>
-</ol>
-<hr>
-<h2 id="上下文管理详解"><a href="#上下文管理详解" class="headerlink" title="上下文管理详解"></a>上下文管理详解</h2><p>OpenClaw 的上下文（Context）是指 AI 在对话中”记住”的信息范围，理解上下文管理能帮助你更高效地使用 AI。</p>
-<h3 id="什么是上下文？"><a href="#什么是上下文？" class="headerlink" title="什么是上下文？"></a>什么是上下文？</h3><p><strong>上下文（Context Window）</strong> 是 AI 模型处理对话时的”工作记忆”。它包含：</p>
-<table>
-<thead>
-<tr>
-<th>组成部分</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>系统提示词</strong></td>
-<td>AI 的行为准则、角色定义（SOUL.md、AGENTS.md 等）</td>
-</tr>
-<tr>
-<td><strong>对话历史</strong></td>
-<td>用户和 AI 的交流记录</td>
-</tr>
-<tr>
-<td><strong>工具调用记录</strong></td>
-<td>AI 使用过的工具及返回结果</td>
-</tr>
-<tr>
-<td><strong>工作区文件</strong></td>
-<td>Workspace 中的文件内容（按需加载）</td>
-</tr>
-</tbody></table>
-<p><strong>上下文大小 &#x3D; 模型能处理的最大 Token 数</strong>（如 200k、128k 等），超出部分会被”遗忘”。</p>
-<h3 id="OpenClaw-的上下文机制"><a href="#OpenClaw-的上下文机制" class="headerlink" title="OpenClaw 的上下文机制"></a>OpenClaw 的上下文机制</h3><p>OpenClaw 会话显示的上下文使用率计算公式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上下文使用率 = (已消耗 Token 数 / 上下文上限) × 100%</span><br></pre></td></tr></table></figure>
-
-<p><strong>关键行为：</strong></p>
-<ul>
-<li>使用率越高，AI “遗忘”早期对话内容的概率越大</li>
-<li>工具调用、文件读取会显著增加上下文消耗</li>
-<li>每次回复都会累积新的 Token</li>
-</ul>
-<h3 id="上下文相关命令"><a href="#上下文相关命令" class="headerlink" title="上下文相关命令"></a>上下文相关命令</h3><p>OpenClaw 提供多个命令管理上下文：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-<th>对上下文的影响</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/clear</code></td>
-<td>清除当前对话历史</td>
-<td>清空对话记录，保留系统提示和 Workspace 配置</td>
-</tr>
-<tr>
-<td><code>/new</code></td>
-<td>开启新会话</td>
-<td>完全重置，上下文归零，重新加载系统文件</td>
-</tr>
-<tr>
-<td><code>/reset</code></td>
-<td>深度重置</td>
-<td>清空上下文 + 重新加载 AGENTS.md、SOUL.md 等配置文件</td>
-</tr>
-<tr>
-<td><code>/status</code></td>
-<td>查看会话状态</td>
-<td>显示当前上下文使用率、模型、运行时间等</td>
-</tr>
-</tbody></table>
-<h4 id="clear-—-清空当前对话"><a href="#clear-—-清空当前对话" class="headerlink" title="/clear — 清空当前对话"></a><code>/clear</code> — 清空当前对话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/clear</span><br><span class="line">效果：清除当前会话的对话历史显示</span><br><span class="line">保留：系统提示词、Workspace 配置、MEMORY.md</span><br><span class="line">适用：想开始新话题，但不想丢失 Workspace 设置</span><br></pre></td></tr></table></figure>
-
-<h4 id="new-—-开启新会话"><a href="#new-—-开启新会话" class="headerlink" title="/new — 开启新会话"></a><code>/new</code> — 开启新会话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/new</span><br><span class="line">效果：创建全新会话</span><br><span class="line">重置：上下文完全清零</span><br><span class="line">重新加载：SOUL.md、AGENTS.md、USER.md、IDENTITY.md、TOOLS.md</span><br><span class="line">适用：完全重新开始，不带任何历史对话</span><br></pre></td></tr></table></figure>
-
-<h4 id="reset-—-深度重置"><a href="#reset-—-深度重置" class="headerlink" title="/reset — 深度重置"></a><code>/reset</code> — 深度重置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/reset</span><br><span class="line">效果：清空上下文 + 重新读取所有配置文件</span><br><span class="line">重置程度：比 /new 更彻底</span><br><span class="line">重新加载：所有 Workspace 文件（包括 skill 配置）</span><br><span class="line">适用：配置文件修改后需要完全重载，或遇到异常状态</span><br></pre></td></tr></table></figure>
-
-<h4 id="status-—-查看上下文状态"><a href="#status-—-查看上下文状态" class="headerlink" title="/status — 查看上下文状态"></a><code>/status</code> — 查看上下文状态</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/status</span><br><span class="line">输出示例：</span><br><span class="line">🧠 Model: minimax/MiniMax-M2.7-highspeed</span><br><span class="line">🧮 Tokens: 20k in / 974 out</span><br><span class="line">📚 Context: 21k/200k (11%)</span><br><span class="line">⏱️ Runtime: 45m</span><br></pre></td></tr></table></figure>
-
-<h3 id="上下文使用率监控"><a href="#上下文使用率监控" class="headerlink" title="上下文使用率监控"></a>上下文使用率监控</h3><p>OpenClaw 在每条回复末尾显示上下文使用率：</p>
-<table>
-<thead>
-<tr>
-<th>显示</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>📚 Context: 11%</code></td>
-<td>上下文状态良好</td>
-</tr>
-<tr>
-<td><code>📚 Context: 50%</code></td>
-<td>使用率过半，建议关注</td>
-</tr>
-<tr>
-<td><code>📚 Context: 70%</code></td>
-<td>使用率高，建议 <code>/new</code> 开启新会话</td>
-</tr>
-<tr>
-<td><code>📚 Context: 90%</code></td>
-<td>即将耗尽，必须 <code>/new</code></td>
-</tr>
-</tbody></table>
-<h3 id="上下文管理最佳实践"><a href="#上下文管理最佳实践" class="headerlink" title="上下文管理最佳实践"></a>上下文管理最佳实践</h3><h4 id="1-长任务使用子会话"><a href="#1-长任务使用子会话" class="headerlink" title="1. 长任务使用子会话"></a>1. 长任务使用子会话</h4><p>复杂任务放到子会话处理，避免撑爆主会话上下文：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 主会话中调用</span><br><span class="line">/spawn 帮我分析这个项目的代码结构</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-定期开启新会话"><a href="#2-定期开启新会话" class="headerlink" title="2. 定期开启新会话"></a>2. 定期开启新会话</h4><p>日常使用中，当上下文使用率超过 50% 时，主动 <code>/new</code> 可以：</p>
-<ul>
-<li>获得更清晰的对话质量</li>
-<li>减少 Token 消耗（节省成本）</li>
-<li>避免上下文被”截断”导致的前后不一致</li>
-</ul>
-<h4 id="3-重要信息写入-MEMORY-md"><a href="#3-重要信息写入-MEMORY-md" class="headerlink" title="3. 重要信息写入 MEMORY.md"></a>3. 重要信息写入 MEMORY.md</h4><p>不要依赖上下文记忆重要信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">记住：我的服务器IP是 192.168.1.100</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-使用-HEARTBEAT-md-做定期检查"><a href="#4-使用-HEARTBEAT-md-做定期检查" class="headerlink" title="4. 使用 HEARTBEAT.md 做定期检查"></a>4. 使用 HEARTBEAT.md 做定期检查</h4><p>配置心跳任务定期监控上下文：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># HEARTBEAT.md</span></span><br><span class="line"><span class="section">## 检查上下文使用率</span></span><br><span class="line"><span class="bullet">-</span> 如果超过 50%，提醒用户考虑 /new</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-大文件处理"><a href="#5-大文件处理" class="headerlink" title="5. 大文件处理"></a>5. 大文件处理</h4><p>读取大型文件会消耗大量上下文：</p>
-<table>
-<thead>
-<tr>
-<th>文件大小</th>
-<th>上下文消耗估算</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&lt; 100 行</td>
-<td>~1-5%</td>
-</tr>
-<tr>
-<td>100-500 行</td>
-<td>~5-15%</td>
-</tr>
-<tr>
-<td>&gt; 500 行</td>
-<td>&gt; 15%</td>
-</tr>
-</tbody></table>
-<p>处理大文件建议：</p>
-<ul>
-<li>使用子会话单独处理</li>
-<li>分批次读取和讨论</li>
-<li>读取后主动 <code>/new</code> 恢复</li>
-</ul>
-<h3 id="会话类型与上下文"><a href="#会话类型与上下文" class="headerlink" title="会话类型与上下文"></a>会话类型与上下文</h3><table>
-<thead>
-<tr>
-<th>会话类型</th>
-<th>上下文行为</th>
-<th>MEMORY.md 访问</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Main（主会话）</td>
-<td>持续累积</td>
-<td>✅ 可读写</td>
-</tr>
-<tr>
-<td>子会话</td>
-<td>独立上下文</td>
-<td>❌ 不可访问</td>
-</tr>
-<tr>
-<td>ACP 会话</td>
-<td>隔离上下文</td>
-<td>❌ 不可访问</td>
-</tr>
-<tr>
-<td>群聊</td>
-<td>共享上下文</td>
-<td>❌ 不加载（安全）</td>
-</tr>
-</tbody></table>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p><strong>上下文耗尽的表现：</strong></p>
-<ul>
-<li>AI 开始”遗忘”之前的约定</li>
-<li>回复变得不一致</li>
-<li>工具调用结果被忽略</li>
-</ul>
-<p><strong>解决方法：</strong></p>
-<ol>
-<li>立即 <code>/new</code> 开启新会话</li>
-<li>重要的跨会话信息写入 MEMORY.md</li>
-<li>复杂任务拆分成多个子会话</li>
-</ol>
-<hr>
-<h2 id="Skills-技能系统详解"><a href="#Skills-技能系统详解" class="headerlink" title="Skills 技能系统详解"></a>Skills 技能系统详解</h2><p>OpenClaw 的技能系统（Skills）是其核心扩展机制，让 AI 能够执行各种专业任务。技能位于 <code>node_modules/openclaw/skills/</code> 目录，每个技能都有独立的 <code>SKILL.md</code> 说明文件。</p>
-<h3 id="内置技能一览"><a href="#内置技能一览" class="headerlink" title="内置技能一览"></a>内置技能一览</h3><table>
-<thead>
-<tr>
-<th>技能名称</th>
-<th>功能描述</th>
-<th>使用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>coding-agent</code></td>
-<td>代码助手（Codex&#x2F;Claude Code&#x2F;Pi）</td>
-<td>大型项目开发、代码审查、重构</td>
-</tr>
-<tr>
-<td><code>weather</code></td>
-<td>天气查询</td>
-<td>获取当前天气和预报</td>
-</tr>
-<tr>
-<td><code>video-frames</code></td>
-<td>视频帧提取</td>
-<td>从视频中提取帧或短片段</td>
-</tr>
-<tr>
-<td><code>healthcheck</code></td>
-<td>安全加固检查</td>
-<td>系统安全审计、防火墙配置</td>
-</tr>
-<tr>
-<td><code>node-connect</code></td>
-<td>节点连接诊断</td>
-<td>修复移动端配对问题</td>
-</tr>
-<tr>
-<td><code>skill-creator</code></td>
-<td>技能创建工具</td>
-<td>开发新技能、审核现有技能</td>
-</tr>
-</tbody></table>
-<h3 id="技能使用方法"><a href="#技能使用方法" class="headerlink" title="技能使用方法"></a>技能使用方法</h3><h4 id="1-自动调用"><a href="#1-自动调用" class="headerlink" title="1. 自动调用"></a>1. 自动调用</h4><p>大部分技能会在 AI 判断需要时<strong>自动调用</strong>。例如：</p>
-<ul>
-<li>你说”查一下北京天气” → 自动调用 <code>weather</code> 技能</li>
-<li>你说”帮我写个 Python 脚本” → 自动调用 <code>coding-agent</code> 技能</li>
-</ul>
-<h4 id="2-查看可用技能"><a href="#2-查看可用技能" class="headerlink" title="2. 查看可用技能"></a>2. 查看可用技能</h4><p>在对话中输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/skills</span><br><span class="line"># 或</span><br><span class="line">/tools</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-手动指定技能"><a href="#3-手动指定技能" class="headerlink" title="3. 手动指定技能"></a>3. 手动指定技能</h4><p>某些技能需要明确触发：</p>
-<p><strong>coding-agent 技能示例：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建子会话处理代码任务</span></span><br><span class="line">spawn subagent <span class="string">&quot;帮我重构这个项目的登录模块&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 Discord 中使用 ACP 模式（推荐）</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>skill-creator 技能示例：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建新技能</span></span><br><span class="line">帮我创建一个名为 my-skill 的新技能</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审核现有技能</span></span><br><span class="line">帮我审核 video-frames 技能</span><br></pre></td></tr></table></figure>
-
-<h3 id="技能工作原理"><a href="#技能工作原理" class="headerlink" title="技能工作原理"></a>技能工作原理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户请求 → AI 分析 → 匹配技能 → 读取 SKILL.md → 执行操作 → 返回结果</span><br></pre></td></tr></table></figure>
-
-<p>每个技能的 <code>SKILL.md</code> 包含：</p>
-<ul>
-<li><strong>描述</strong>：技能功能和适用场景</li>
-<li><strong>使用方法</strong>：如何调用该技能</li>
-<li><strong>参数说明</strong>：需要的输入参数</li>
-<li><strong>示例</strong>：典型使用案例</li>
-</ul>
-<h3 id="自定义技能开发"><a href="#自定义技能开发" class="headerlink" title="自定义技能开发"></a>自定义技能开发</h3><p>如果你想开发自己的技能，可以使用 <code>skill-creator</code> 技能：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 告诉 AI 你要创建技能</span></span><br><span class="line"><span class="string">&quot;帮我创建一个名为 data-analysis 的技能，用于数据分析&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. AI 会引导你完成：</span></span><br><span class="line"><span class="comment">#    - 创建技能目录结构</span></span><br><span class="line"><span class="comment">#    - 编写 SKILL.md</span></span><br><span class="line"><span class="comment">#    - 添加必要的脚本文件</span></span><br></pre></td></tr></table></figure>
-
-<p>技能目录结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">skills/</span><br><span class="line">└── your-skill/</span><br><span class="line">    ├── SKILL.md          # 技能说明（必需）</span><br><span class="line">    ├── scripts/          # 辅助脚本（可选）</span><br><span class="line">    │   └── helper.sh</span><br><span class="line">    └── references/       # 参考资料（可选）</span><br><span class="line">        └── example.txt</span><br></pre></td></tr></table></figure>
-
-<h3 id="技能最佳实践"><a href="#技能最佳实践" class="headerlink" title="技能最佳实践"></a>技能最佳实践</h3><ol>
-<li><strong>阅读 SKILL.md</strong>：使用技能前，AI 会自动阅读对应技能的说明文件</li>
-<li><strong>提供上下文</strong>：复杂任务时，提供足够的背景信息</li>
-<li><strong>分步骤执行</strong>：大型任务拆分成多个小步骤</li>
-<li><strong>检查输出</strong>：技能执行后检查结果是否符合预期</li>
-</ol>
-<hr>
-<h2 id="Cron-定时任务详解"><a href="#Cron-定时任务详解" class="headerlink" title="Cron 定时任务详解"></a>Cron 定时任务详解</h2><p>OpenClaw 内置 Cron 系统，可以设置定时任务让 AI 自动执行周期性工作。</p>
-<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Job</strong></td>
-<td>一个定时任务，包含执行时间和操作</td>
-</tr>
-<tr>
-<td><strong>Schedule</strong></td>
-<td>调度规则（一次性、间隔、Cron表达式）</td>
-</tr>
-<tr>
-<td><strong>Payload</strong></td>
-<td>任务内容（系统事件或 Agent 执行）</td>
-</tr>
-<tr>
-<td><strong>Delivery</strong></td>
-<td>结果投递方式（静默、公告、Webhook）</td>
-</tr>
-</tbody></table>
-<h3 id="定时任务类型"><a href="#定时任务类型" class="headerlink" title="定时任务类型"></a>定时任务类型</h3><h4 id="1-一次性任务（at）"><a href="#1-一次性任务（at）" class="headerlink" title="1. 一次性任务（at）"></a>1. 一次性任务（at）</h4><p>在指定时间执行一次：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:00:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-周期性任务（every）"><a href="#2-周期性任务（every）" class="headerlink" title="2. 周期性任务（every）"></a>2. 周期性任务（every）</h4><p>按固定间隔重复执行：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span><span class="punctuation">,</span>  <span class="comment">// 每小时</span></span><br><span class="line">    <span class="attr">&quot;anchorMs&quot;</span><span class="punctuation">:</span> <span class="number">1712716800000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-Cron-表达式任务"><a href="#3-Cron-表达式任务" class="headerlink" title="3. Cron 表达式任务"></a>3. Cron 表达式任务</h4><p>使用标准 Cron 语法：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * 1&quot;</span><span class="punctuation">,</span>  <span class="comment">// 每周一 9:00</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="常用-Cron-表达式示例"><a href="#常用-Cron-表达式示例" class="headerlink" title="常用 Cron 表达式示例"></a>常用 Cron 表达式示例</h3><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>含义</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>0 * * * *</code></td>
-<td>每小时</td>
-<td>每小时的第 0 分钟</td>
-</tr>
-<tr>
-<td><code>0 */6 * * *</code></td>
-<td>每 6 小时</td>
-<td>一天 4 次</td>
-</tr>
-<tr>
-<td><code>0 9 * * *</code></td>
-<td>每天 9:00</td>
-<td>早上提醒</td>
-</tr>
-<tr>
-<td><code>0 9 * * 1</code></td>
-<td>每周一 9:00</td>
-<td>周报提醒</td>
-</tr>
-<tr>
-<td><code>0 9 1 * *</code></td>
-<td>每月 1 日 9:00</td>
-<td>月报提醒</td>
-</tr>
-<tr>
-<td><code>*/30 * * * *</code></td>
-<td>每 30 分钟</td>
-<td>高频检查</td>
-</tr>
-</tbody></table>
-<h3 id="任务内容类型（Payload）"><a href="#任务内容类型（Payload）" class="headerlink" title="任务内容类型（Payload）"></a>任务内容类型（Payload）</h3><h4 id="1-系统事件（systemEvent）"><a href="#1-系统事件（systemEvent）" class="headerlink" title="1. 系统事件（systemEvent）"></a>1. 系统事件（systemEvent）</h4><p>在主会话中注入消息，适合提醒类任务：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：该喝水了！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-Agent-执行（agentTurn）"><a href="#2-Agent-执行（agentTurn）" class="headerlink" title="2. Agent 执行（agentTurn）"></a>2. Agent 执行（agentTurn）</h4><p>在独立会话中执行 AI 任务，适合复杂操作：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;检查未读邮件和即将到来的日程&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;thinking&quot;</span><span class="punctuation">:</span> <span class="string">&quot;on&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="结果投递方式（Delivery）"><a href="#结果投递方式（Delivery）" class="headerlink" title="结果投递方式（Delivery）"></a>结果投递方式（Delivery）</h3><table>
-<thead>
-<tr>
-<th>模式</th>
-<th>说明</th>
-<th>适用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>none</code></td>
-<td>静默执行，不通知</td>
-<td>后台维护任务</td>
-</tr>
-<tr>
-<td><code>announce</code></td>
-<td>发送消息到聊天频道</td>
-<td>提醒、报告</td>
-</tr>
-<tr>
-<td><code>webhook</code></td>
-<td>POST 到指定 URL</td>
-<td>集成外部系统</td>
-</tr>
-</tbody></table>
-<h3 id="完整配置示例"><a href="#完整配置示例" class="headerlink" title="完整配置示例"></a>完整配置示例</h3><h4 id="示例-1：每日早报"><a href="#示例-1：每日早报" class="headerlink" title="示例 1：每日早报"></a>示例 1：每日早报</h4><p>每天早上 9 点发送天气和日程提醒：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;每日早报&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * *&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成今日早报：1.查询今日天气 2.检查今日日程 3.总结待办事项&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="示例-2：每小时健康检查"><a href="#示例-2：每小时健康检查" class="headerlink" title="示例 2：每小时健康检查"></a>示例 2：每小时健康检查</h4><p>每小时检查系统状态：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;系统健康检查&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;执行系统健康检查：检查磁盘空间、内存使用、服务状态&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeoutSeconds&quot;</span><span class="punctuation">:</span> <span class="number">300</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;none&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="示例-3：20-分钟后提醒"><a href="#示例-3：20-分钟后提醒" class="headerlink" title="示例 3：20 分钟后提醒"></a>示例 3：20 分钟后提醒</h4><p>一次性提醒任务：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;会议提醒&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:30:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：15 分钟后有项目会议，请准备！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="管理定时任务"><a href="#管理定时任务" class="headerlink" title="管理定时任务"></a>管理定时任务</h3><h4 id="查看所有任务"><a href="#查看所有任务" class="headerlink" title="查看所有任务"></a>查看所有任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron list</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron add --json <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;我的任务&quot;,</span></span><br><span class="line"><span class="string">  &quot;schedule&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;payload&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;sessionTarget&quot;: &quot;isolated&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="立即执行任务"><a href="#立即执行任务" class="headerlink" title="立即执行任务"></a>立即执行任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron run &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron remove &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="查看执行历史"><a href="#查看执行历史" class="headerlink" title="查看执行历史"></a>查看执行历史</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron runs &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Heartbeat-vs-Cron：如何选择？"><a href="#Heartbeat-vs-Cron：如何选择？" class="headerlink" title="Heartbeat vs Cron：如何选择？"></a>Heartbeat vs Cron：如何选择？</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Heartbeat</th>
-<th>Cron</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>触发方式</td>
-<td>定期轮询（~30分钟）</td>
-<td>精确时间触发</td>
-</tr>
-<tr>
-<td>精度</td>
-<td>较低（可漂移）</td>
-<td>高（精确到分钟）</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>批量检查多个项目</td>
-<td>精确时间任务</td>
-</tr>
-<tr>
-<td>会话依赖</td>
-<td>需要主会话上下文</td>
-<td>独立执行</td>
-</tr>
-<tr>
-<td>配置方式</td>
-<td>HEARTBEAT.md</td>
-<td>openclaw cron 命令</td>
-</tr>
-</tbody></table>
-<p><strong>选择建议：</strong></p>
-<ul>
-<li><strong>Heartbeat</strong>：适合检查邮件、日历、通知等多个项目，可以批量处理</li>
-<li><strong>Cron</strong>：适合精确时间的提醒、定期报告、自动化脚本</li>
-</ul>
-<h3 id="定时任务最佳实践"><a href="#定时任务最佳实践" class="headerlink" title="定时任务最佳实践"></a>定时任务最佳实践</h3><ol>
-<li><strong>合理设置超时</strong>：长时间任务设置 <code>timeoutSeconds</code>，避免卡死</li>
-<li><strong>使用隔离会话</strong>：复杂任务用 <code>sessionTarget: isolated</code>，避免影响主会话</li>
-<li><strong>选择合适的投递方式</strong>：<ul>
-<li>重要提醒 → <code>announce</code></li>
-<li>后台任务 → <code>none</code></li>
-<li>系统集成 → <code>webhook</code></li>
-</ul>
-</li>
-<li><strong>添加上下文</strong>：Agent 任务中提供足够的背景信息</li>
-<li><strong>定期检查</strong>：用 <code>cron list</code> 和 <code>cron runs</code> 监控任务状态</li>
-</ol>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OpenClaw 的核心优势：</p>
-<ul>
-<li><strong>本地部署</strong> — 数据隐私可控</li>
-<li><strong>多模型支持</strong> — 随时切换不同 AI</li>
-<li><strong>多渠道接入</strong> — Web、Telegram、Discord 等</li>
-<li><strong>可扩展</strong> — 技能系统、自定义配置</li>
-</ul>
-<p>建议从 Web 界面开始使用，熟悉后再配置其他渠道。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a href="https://github.com/openclaw/openclaw">OpenClaw GitHub</a></li>
-<li><a href="https://docs.openclaw.ai/">官方文档</a></li>
-<li><a href="https://discord.com/invite/clawd">社区 Discord</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>openclaw</tag>
-        <tag>教程</tag>
-        <tag>ai工具</tag>
       </tags>
   </entry>
   <entry>
@@ -4004,150 +3159,958 @@
       </tags>
   </entry>
   <entry>
-    <title>MakerWorld模型收藏</title>
-    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
-]]></content>
-      <categories>
-        <category>skills</category>
-        <category>3D打印</category>
-      </categories>
-      <tags>
-        <tag>MakerWorld</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>探究jffs2垃圾回收机制</title>
-    <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
-<ol>
-<li>写入新数据：在闪存的空闲区域写入新的数据节点。</li>
-<li>标记旧数据无效：之前存储旧数据的数据节点会被标记为“过时”或“脏”。<br>随着文件系统的运行，闪存上会积累大量的“过时”节点，它们占据着空间但却无法再被使用。为了回收这些空间以供新的写入操作使用，JFFS2 必须有一个机制来清理这些“垃圾”区块，这个机制就是垃圾回收。</li>
-</ol>
-<h2 id="JFFS2垃圾回收触发机制"><a href="#JFFS2垃圾回收触发机制" class="headerlink" title="JFFS2垃圾回收触发机制"></a>JFFS2垃圾回收触发机制</h2><h3 id="内核代码打开相关日志"><a href="#内核代码打开相关日志" class="headerlink" title="内核代码打开相关日志"></a>内核代码打开相关日志</h3><p>垃圾回收相关代码路径<code>kernel/fs/jffs2/gc.c</code>，垃圾回收相关的打印由<code>jffs2_dbg</code>打印，相关代码路径<code>kernel/fs/jffs2/debug.h</code>我这边通过修改源码的方式将相关打印放开：</p>
-<p>原代码，</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	<span class="keyword">if</span> (CONFIG_JFFS2_FS_DEBUG &gt;= level)	\</span></span><br><span class="line"><span class="meta">		pr_debug(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
-<p>修改后，直接将printk的条件限制取消</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> jffs2_dbg(level, fmt, ...)		\</span></span><br><span class="line"><span class="meta">do &#123;						\</span></span><br><span class="line"><span class="meta">	printk(fmt, ##__VA_ARGS__);	\</span></span><br><span class="line"><span class="meta">&#125; while (0)</span></span><br></pre></td></tr></table></figure>
-<p>相关打印：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[ 1848.178662] Picking block from very_dirty_list to GC next</span><br><span class="line">[ 1848.178709] GC from block 00000000, used_size 00004ee4, dirty_size 0000b11c, free_size 00000000</span><br></pre></td></tr></table></figure>
-<h3 id="何时触发？"><a href="#何时触发？" class="headerlink" title="何时触发？"></a>何时触发？</h3><p>自测会自动触发，但是有概率遇到过没有触发的情况(滚存写完立刻重启，重复N次)，需要手动将文件复制到临时目录，在删除原文件，在复制回去，需要倒腾一手才能触发，目前没有研究明白原因</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>jffs2</tag>
-        <tag>GC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>嵌入式Linux调整分区表</title>
-    <url>/2025/10/10/linux/%E5%B5%8C%E5%85%A5%E5%BC%8FLinux%E8%B0%83%E6%95%B4%E5%88%86%E5%8C%BA%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>16MB Flash，新增功能的时候发现flash不够用了，查看分区表，备份分区占了三千多K，所以想研究一下能不能通过调整分区，将备份分区尽量变小以腾出空间添加新功能。由于之前没有做过此类尝试，故留下此文以便不时之需。</p>
-<h2 id="分区现状"><a href="#分区现状" class="headerlink" title="分区现状"></a>分区现状</h2><h3 id="分区信息"><a href="#分区信息" class="headerlink" title="分区信息"></a>分区信息</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dev:    size   erasesize  name</span><br><span class="line">mtd0: 00030000 00001000 <span class="string">&quot;uboot&quot;</span></span><br><span class="line">mtd1: 00510000 00001000 <span class="string">&quot;boot&quot;</span></span><br><span class="line">mtd2: 00530000 00001000 <span class="string">&quot;system&quot;</span></span><br><span class="line">mtd3: 00530000 00001000 <span class="string">&quot;bk&quot;</span></span><br><span class="line">mtd4: 00050000 00010000 <span class="string">&quot;userdata&quot;</span></span><br><span class="line">mtd5: 00010000 00001000 <span class="string">&quot;productdata&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="分区说明"><a href="#分区说明" class="headerlink" title="分区说明"></a>分区说明</h3><table>
-<thead>
-<tr>
-<th>分区</th>
-<th>大小(KB)</th>
-<th>name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mtd0</td>
-<td>192</td>
-<td>uboot</td>
-</tr>
-<tr>
-<td>mtd1</td>
-<td>5184</td>
-<td>boot</td>
-</tr>
-<tr>
-<td>mtd2</td>
-<td>5312</td>
-<td>system</td>
-</tr>
-<tr>
-<td>mtd3</td>
-<td>5312</td>
-<td>bk</td>
-</tr>
-<tr>
-<td>mtd4</td>
-<td>320</td>
-<td>userdata</td>
-</tr>
-<tr>
-<td>mtd5</td>
-<td>64</td>
-<td>productdata</td>
-</tr>
-</tbody></table>
-<p><code>mtd0</code>: uboot分区，该分区不会进行升级<br><code>boot</code>: 内核和文件系统，有升级需求<br><code>system</code>: 业务层程序，有升级需要<br><code>bk</code>: 备份分区<br><code>userdata</code>: 配置分区，没有升级需求<br><code>productdata</code>: 出厂配置分区，没有升级需求</p>
-<h2 id="分区调整"><a href="#分区调整" class="headerlink" title="分区调整"></a>分区调整</h2><h3 id="调整原则"><a href="#调整原则" class="headerlink" title="调整原则"></a>调整原则</h3><ol>
-<li>保持uboot、userdata、productdata三个分区大小和顺序不变</li>
-<li>将boot、system分区拆分成3个较小的分区，从而减小bk分区，5184 + 5312 + 5312 &#x3D; 15808 &#x2F; 4 &#x3D; 3952k</li>
-<li>考虑到flash分区需要64K对齐，新分区如下<table>
-<thead>
-<tr>
-<th>分区</th>
-<th>大小(KB)</th>
-<th>name</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mtd0</td>
-<td>192</td>
-<td>uboot</td>
-</tr>
-<tr>
-<td>mtd1</td>
-<td>3968</td>
-<td>boot</td>
-</tr>
-<tr>
-<td>mtd2</td>
-<td>3968</td>
-<td>system</td>
-</tr>
-<tr>
-<td>mtd3</td>
-<td>3968</td>
-<td>bk</td>
-</tr>
-<tr>
-<td>mtd4</td>
-<td>320</td>
-<td>userdata</td>
-</tr>
-<tr>
-<td>mtd5</td>
-<td>64</td>
-<td>productdata</td>
-</tr>
-<tr>
-<td>mtd6</td>
-<td>3712</td>
-<td>new</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<h3 id="调整步骤"><a href="#调整步骤" class="headerlink" title="调整步骤"></a>调整步骤</h3><h4 id="调整文件系统"><a href="#调整文件系统" class="headerlink" title="调整文件系统"></a>调整文件系统</h4><p>调整大小，保证新的img大小不会超过新分区</p>
-<h4 id="uboot"><a href="#uboot" class="headerlink" title="uboot"></a>uboot</h4><p>原配置</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),5184K(boot),5312K(system),5312K(bk),320K(userdata),64K(productdata)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x510000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>新配置</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MTDPARTS_DEFAULT       <span class="string">&quot;mtdparts=nor0:192K(uboot),3968K(boot),3968K(system),3968K(bk),320K(userdata),64K(productdata),3712K(new)&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONFIG_BOOTCOMMAND     <span class="string">&quot;sf probe 0;sf read 0x21000000 0x30000 0x3E0000;bootm 0x21000000;&quot;</span></span></span><br></pre></td></tr></table></figure>
+    <title>OpenClaw 安装与使用指南</title>
+    <url>/2026/04/07/tools/OpenClaw%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>OpenClaw 是一个开源的 AI 助手平台，支持多种模型和渠道，可以在本地部署自己的 AI 伙伴。本文记录从安装到配置的完整过程。</p>
+</blockquote>
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
+<li><strong>操作系统：</strong> Ubuntu 22.04 &#x2F; Debian 12 (x64)</li>
+<li><strong>Node.js 版本：</strong> &gt;&#x3D; 18.0</li>
+<li><strong>内存要求：</strong> 建议 2GB 以上</li>
+<li><strong>前置条件：</strong> 已安装 Git、curl</li>
+</ul>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="1-安装-Node-js"><a href="#1-安装-Node-js" class="headerlink" title="1. 安装 Node.js"></a>1. 安装 Node.js</h3><p>如果系统没有 Node.js 或版本过低：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 NodeSource 安装 Node.js 22</span></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">node -v  <span class="comment"># 应显示 v22.x.x</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 
-<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>由于需要支持OTA，新分区需要保证能够卸载，才能重新烧写，所以原则上新分区的文件不能是需要运行的二进制和依赖的动态库</p>
+<h3 id="2-安装-OpenClaw"><a href="#2-安装-OpenClaw" class="headerlink" title="2. 安装 OpenClaw"></a>2. 安装 OpenClaw</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/openclaw/openclaw.git</span><br><span class="line"><span class="built_in">cd</span> openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 复制环境变量模板</span></span><br><span class="line"><span class="built_in">cp</span> .env.example .<span class="built_in">env</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 .env 文件，配置必要的 API Key</span></span><br><span class="line">vim .<span class="built_in">env</span></span><br></pre></td></tr></table></figure>
+
+<p>最小配置示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 必需：选择一个默认模型</span></span><br><span class="line">OPENAI_API_KEY=your_openai_key_here</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">ANTHROPIC_API_KEY=your_anthropic_key_here</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选：其他模型配置</span></span><br><span class="line">DEEPSEEK_API_KEY=your_deepseek_key_here</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-启动服务"><a href="#4-启动服务" class="headerlink" title="4. 启动服务"></a>4. 启动服务</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开发模式</span></span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或生产模式</span></span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>服务默认运行在 <code>http://localhost:3000</code></p>
+<h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><p>主配置文件：<code>config/openclaw.yaml</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 复制示例配置</span></span><br><span class="line"><span class="built_in">cp</span> config/openclaw.example.yaml config/openclaw.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键配置项"><a href="#关键配置项" class="headerlink" title="关键配置项"></a>关键配置项</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 模型配置</span></span><br><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">default:</span> <span class="string">openai/gpt-4o</span></span><br><span class="line">  <span class="attr">available:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">openai/gpt-4o</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">anthropic/claude-3-sonnet</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">deepseek/deepseek-chat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 渠道配置（可选）</span></span><br><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="attr">webchat:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">3000</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 如需 Telegram/Discord，取消注释并配置</span></span><br><span class="line">  <span class="comment"># telegram:</span></span><br><span class="line">  <span class="comment">#   enabled: true</span></span><br><span class="line">  <span class="comment">#   bot_token: your_bot_token</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="Web-界面"><a href="#Web-界面" class="headerlink" title="Web 界面"></a>Web 界面</h3><p>浏览器访问 <code>http://localhost:3000</code>，即可开始对话。</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/status</code></td>
+<td>查看当前会话状态</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>切换模型</td>
+</tr>
+<tr>
+<td><code>/reasoning</code></td>
+<td>开启&#x2F;关闭推理模式</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>清空当前对话</td>
+</tr>
+</tbody></table>
+<h3 id="会话内命令详解"><a href="#会话内命令详解" class="headerlink" title="会话内命令详解"></a>会话内命令详解</h3><p>OpenClaw 支持多种会话内命令，在聊天窗口直接输入即可执行。以下是常用命令的详细说明：</p>
+<h4 id="基础会话命令"><a href="#基础会话命令" class="headerlink" title="基础会话命令"></a>基础会话命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/new</code></td>
+<td>开启新会话</td>
+<td><code>/new</code></td>
+<td>创建全新会话，之前的对话历史会被清空，适合开始新话题</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>清空当前对话</td>
+<td><code>/clear</code></td>
+<td>清除当前会话的显示内容，但保持会话不断开</td>
+</tr>
+<tr>
+<td><code>/status</code></td>
+<td>查看会话状态</td>
+<td><code>/status</code></td>
+<td>显示当前使用的模型、运行时间、token 消耗等信息</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>切换模型</td>
+<td><code>/model</code> 或 <code>/model gpt-4o</code></td>
+<td>不带参数列出可用模型，带参数直接切换指定模型</td>
+</tr>
+<tr>
+<td><code>/reasoning</code></td>
+<td>开关推理模式</td>
+<td><code>/reasoning</code></td>
+<td>开启后 AI 会显示思考过程，适合复杂问题；再次输入关闭</td>
+</tr>
+</tbody></table>
+<h4 id="记忆管理命令"><a href="#记忆管理命令" class="headerlink" title="记忆管理命令"></a>记忆管理命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/memory</code></td>
+<td>查看长期记忆</td>
+<td><code>/memory</code></td>
+<td>显示 MEMORY.md 中记录的重要信息，快速恢复上下文</td>
+</tr>
+<tr>
+<td><code>/remember</code></td>
+<td>记住某事</td>
+<td><code>/remember 我的服务器IP是192.168.1.100</code></td>
+<td>将信息写入长期记忆，下次会话自动记住</td>
+</tr>
+</tbody></table>
+<h4 id="子会话管理命令"><a href="#子会话管理命令" class="headerlink" title="子会话管理命令"></a>子会话管理命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/spawn</code></td>
+<td>创建子会话</td>
+<td><code>/spawn 帮我写一段Python代码</code></td>
+<td>启动独立子会话处理任务，不干扰当前对话</td>
+</tr>
+<tr>
+<td><code>/subagents</code></td>
+<td>管理子会话</td>
+<td><code>/subagents</code></td>
+<td>列出所有子会话，可查看状态或终止任务</td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>查看所有会话</td>
+<td><code>/sessions</code></td>
+<td>显示当前活跃的所有会话列表</td>
+</tr>
+</tbody></table>
+<h4 id="工具与帮助命令"><a href="#工具与帮助命令" class="headerlink" title="工具与帮助命令"></a>工具与帮助命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/tools</code></td>
+<td>列出可用工具</td>
+<td><code>/tools</code></td>
+<td>显示当前启用的技能和工具，如天气查询、代码助手等</td>
+</tr>
+<tr>
+<td><code>/skills</code></td>
+<td>列出可用技能</td>
+<td><code>/skills</code></td>
+<td>同 <code>/tools</code>，查看可以调用的功能模块</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>显示帮助</td>
+<td><code>/help</code></td>
+<td>列出所有可用命令及其简要说明</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>查看配置</td>
+<td><code>/config</code></td>
+<td>显示当前 OpenClaw 的配置摘要</td>
+</tr>
+</tbody></table>
+<h4 id="命令使用小贴士"><a href="#命令使用小贴士" class="headerlink" title="命令使用小贴士"></a>命令使用小贴士</h4><ul>
+<li><strong>大小写不敏感</strong>：<code>/STATUS</code> 和 <code>/status</code> 效果相同</li>
+<li><strong>随时可用</strong>：大部分命令在对话的任何阶段都可以使用</li>
+<li><strong>查看结果</strong>：执行命令后，AI 会显示操作结果或相关信息</li>
+<li><strong>错误处理</strong>：如果命令不存在，AI 会提示并建议相似命令</li>
+</ul>
+<h3 id="工作目录说明"><a href="#工作目录说明" class="headerlink" title="工作目录说明"></a>工作目录说明</h3><p>OpenClaw 会在用户目录创建 workspace：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/openclaw-workspace/</span><br><span class="line">├── AGENTS.md      # 工作手册</span><br><span class="line">├── IDENTITY.md    # AI 身份配置</span><br><span class="line">├── USER.md        # 用户信息</span><br><span class="line">├── SOUL.md        # 行为准则</span><br><span class="line">├── TOOLS.md       # 工具配置</span><br><span class="line">├── MEMORY.md      # 长期记忆</span><br><span class="line">├── memory/        # 每日日志</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
+
+<p><strong>首次使用建议：</strong></p>
+<ol>
+<li>编辑 <code>IDENTITY.md</code> — 给 AI 起名字、设定性格</li>
+<li>编辑 <code>USER.md</code> — 填写你的信息、时区</li>
+<li>阅读 <code>AGENTS.md</code> — 了解工作流程</li>
+</ol>
+<hr>
+<h2 id="Workspace-详解"><a href="#Workspace-详解" class="headerlink" title="Workspace 详解"></a>Workspace 详解</h2><p>OpenClaw 的 Workspace 是 AI 助手的工作空间，也是人机协作的核心枢纽。理解 Workspace 的结构和使用方法，可以大幅提升使用效率。</p>
+<h3 id="Workspace-目录结构"><a href="#Workspace-目录结构" class="headerlink" title="Workspace 目录结构"></a>Workspace 目录结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/openclaw-workspace/                 # 主工作目录</span><br><span class="line">├── AGENTS.md                         # 智能体工作手册</span><br><span class="line">├── IDENTITY.md                       # AI 身份与形象配置</span><br><span class="line">├── USER.md                           # 用户信息档案</span><br><span class="line">├── SOUL.md                           # 行为准则与安全边界</span><br><span class="line">├── TOOLS.md                          # 本地工具与环境配置</span><br><span class="line">├── MEMORY.md                         # 长期记忆（仅主会话加载）</span><br><span class="line">├── HEARTBEAT.md                      # 定时任务配置</span><br><span class="line">├── BOOTSTRAP.md                      # 首次启动引导（可删除）</span><br><span class="line">├── memory/                           # 每日日志目录</span><br><span class="line">│   ├── 2026-04-09.md                # 今日对话记录</span><br><span class="line">│   ├── 2026-04-08.md                # 昨日记录</span><br><span class="line">│   └── ...</span><br><span class="line">└── [其他项目文件或子目录]</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心文件详解"><a href="#核心文件详解" class="headerlink" title="核心文件详解"></a>核心文件详解</h3><h4 id="1-AGENTS-md-—-智能体工作手册"><a href="#1-AGENTS-md-—-智能体工作手册" class="headerlink" title="1. AGENTS.md — 智能体工作手册"></a>1. AGENTS.md — 智能体工作手册</h4><p>这是 AI 的”入职手册”，定义了工作流程和最佳实践。</p>
+<p><strong>内容通常包括：</strong></p>
+<ul>
+<li>会话启动时必须读取的文件清单</li>
+<li>Memory 管理规范（每日日志 vs 长期记忆）</li>
+<li>安全红线（不执行的操作）</li>
+<li>群聊行为准则</li>
+<li>工具使用规范</li>
+</ul>
+<p><strong>示例内容：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">## Session Startup</span></span><br><span class="line"></span><br><span class="line">Before doing anything else:</span><br><span class="line"><span class="bullet">1.</span> Read <span class="code">`SOUL.md`</span> — this is who you are</span><br><span class="line"><span class="bullet">2.</span> Read <span class="code">`USER.md`</span> — this is who you&#x27;re helping</span><br><span class="line"><span class="bullet">3.</span> Read <span class="code">`memory/YYYY-MM-DD.md`</span> (today + yesterday)</span><br><span class="line"></span><br><span class="line"><span class="section">## Memory Rules</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Daily notes:**</span> <span class="code">`memory/YYYY-MM-DD.md`</span> — raw logs</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Long-term:**</span> <span class="code">`MEMORY.md`</span> — curated wisdom</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**ONLY load MEMORY.md in main session**</span> (security)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-IDENTITY-md-—-AI-身份配置"><a href="#2-IDENTITY-md-—-AI-身份配置" class="headerlink" title="2. IDENTITY.md — AI 身份配置"></a>2. IDENTITY.md — AI 身份配置</h4><p>定义 AI 的名字、性格、形象。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># IDENTITY.md - Who Am I?</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Name:**</span> 关关</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Creature:**</span> 互联网全知全能的存在</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Vibe:**</span> 严谨专业，偶尔有点小幽默</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Emoji:**</span> 🎯</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-USER-md-—-用户信息"><a href="#3-USER-md-—-用户信息" class="headerlink" title="3. USER.md — 用户信息"></a>3. USER.md — 用户信息</h4><p>记录用户的基本信息、偏好、时区等。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># USER.md - About Your Human</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Name:**</span> 开开</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**What to call them:**</span> 开开</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Timezone:**</span> Asia/Shanghai (GMT+8)</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**Notes:**</span> 为我取名&quot;关关&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-SOUL-md-—-行为准则"><a href="#4-SOUL-md-—-行为准则" class="headerlink" title="4. SOUL.md — 行为准则"></a>4. SOUL.md — 行为准则</h4><p>这是 AI 的”灵魂文件”，定义了核心行为原则。</p>
+<p><strong>关键内容：</strong></p>
+<ul>
+<li>核心真理（如何与用户互动）</li>
+<li>安全边界（什么不能做）</li>
+<li>身份验证规则（群聊中的权限控制）</li>
+<li>隐私保护原则</li>
+<li>群聊行为准则</li>
+</ul>
+<p><strong>安全相关：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">### Restricted Paths (Never Access Unless Admin)</span></span><br><span class="line"></span><br><span class="line">Do not open, parse, or copy from:</span><br><span class="line"><span class="bullet">-</span> <span class="code">`~/.ssh/`</span>, <span class="code">`~/.gnupg/`</span>, <span class="code">`~/.aws/`</span></span><br><span class="line"><span class="bullet">-</span> Anything that looks like secrets: <span class="code">`*key*`</span>, <span class="code">`*secret*`</span>, <span class="code">`*password*`</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-TOOLS-md-—-工具配置"><a href="#5-TOOLS-md-—-工具配置" class="headerlink" title="5. TOOLS.md — 工具配置"></a>5. TOOLS.md — 工具配置</h4><p>记录本地环境特有的工具配置，如：</p>
+<ul>
+<li>SSH 主机别名</li>
+<li>摄像头位置</li>
+<li>TTS 语音偏好</li>
+<li>设备昵称</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">### SSH</span></span><br><span class="line"><span class="bullet">-</span> home-server → 192.168.1.100, user: admin</span><br><span class="line"></span><br><span class="line"><span class="section">### TTS</span></span><br><span class="line"><span class="bullet">-</span> Preferred voice: &quot;Nova&quot;</span><br><span class="line"><span class="bullet">-</span> Default speaker: Kitchen HomePod</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-MEMORY-md-—-长期记忆"><a href="#6-MEMORY-md-—-长期记忆" class="headerlink" title="6. MEMORY.md — 长期记忆"></a>6. MEMORY.md — 长期记忆</h4><p><strong>⚠️ 安全注意：只在主会话（直接对话）中加载</strong></p>
+<p>这是 AI 的”长期记忆”，包含：</p>
+<ul>
+<li>用户的重要信息</li>
+<li>历史决策和约定</li>
+<li>项目约定和流程</li>
+<li>个人偏好</li>
+</ul>
+<p><strong>与每日日志的区别：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>memory&#x2F;YYYY-MM-DD.md</th>
+<th>MEMORY.md</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容</td>
+<td>原始对话记录</td>
+<td>提炼后的重要信息</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>追溯具体对话</td>
+<td>快速恢复上下文</td>
+</tr>
+<tr>
+<td>更新频率</td>
+<td>每天自动创建</td>
+<td>手动维护</td>
+</tr>
+<tr>
+<td>加载场景</td>
+<td>所有会话</td>
+<td>仅主会话</td>
+</tr>
+</tbody></table>
+<h4 id="7-HEARTBEAT-md-—-定时任务"><a href="#7-HEARTBEAT-md-—-定时任务" class="headerlink" title="7. HEARTBEAT.md — 定时任务"></a>7. HEARTBEAT.md — 定时任务</h4><p>配置 AI 的”心跳”检查任务。</p>
+<p><strong>用途：</strong></p>
+<ul>
+<li>定期检查邮件、日历</li>
+<li>监控项目状态</li>
+<li>执行周期性维护任务</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># 检查邮件和日历</span></span><br><span class="line"><span class="bullet">-</span> Check unread emails</span><br><span class="line"><span class="bullet">-</span> Check upcoming events (&lt; 2h)</span><br><span class="line"><span class="bullet">-</span> Update MEMORY.md if needed</span><br></pre></td></tr></table></figure>
+
+<h3 id="Workspace-使用最佳实践"><a href="#Workspace-使用最佳实践" class="headerlink" title="Workspace 使用最佳实践"></a>Workspace 使用最佳实践</h3><h4 id="1-养成记录习惯"><a href="#1-养成记录习惯" class="headerlink" title="1. 养成记录习惯"></a>1. 养成记录习惯</h4><p>每次会话后，AI 会自动记录到 <code>memory/YYYY-MM-DD.md</code>。定期：</p>
+<ul>
+<li>回顾日志，发现重复问题</li>
+<li>整理有价值的信息到 <code>MEMORY.md</code></li>
+<li>删除过时的记忆</li>
+</ul>
+<h4 id="2-主动更新-MEMORY-md"><a href="#2-主动更新-MEMORY-md" class="headerlink" title="2. 主动更新 MEMORY.md"></a>2. 主动更新 MEMORY.md</h4><p>当发生以下情况时，告诉 AI “记住这个”：</p>
+<ul>
+<li>做了重要决策</li>
+<li>发现了有用的信息</li>
+<li>建立了新的工作流程</li>
+</ul>
+<h4 id="3-保持文件整洁"><a href="#3-保持文件整洁" class="headerlink" title="3. 保持文件整洁"></a>3. 保持文件整洁</h4><ul>
+<li>定期归档旧的 <code>memory/</code> 文件</li>
+<li>更新过时的 <code>TOOLS.md</code> 配置</li>
+<li>删除不再需要的 <code>BOOTSTRAP.md</code></li>
+</ul>
+<h4 id="4-安全使用-MEMORY-md"><a href="#4-安全使用-MEMORY-md" class="headerlink" title="4. 安全使用 MEMORY.md"></a>4. 安全使用 MEMORY.md</h4><ul>
+<li><strong>主会话（直接对话）</strong>：可以读取和更新 MEMORY.md</li>
+<li><strong>群聊&#x2F;共享会话</strong>：不加载 MEMORY.md，保护隐私</li>
+<li><strong>子会话&#x2F;ACP</strong>：不加载 MEMORY.md，保持隔离</li>
+</ul>
+<h3 id="会话与-Workspace-的关系"><a href="#会话与-Workspace-的关系" class="headerlink" title="会话与 Workspace 的关系"></a>会话与 Workspace 的关系</h3><table>
+<thead>
+<tr>
+<th>会话类型</th>
+<th>加载 AGENTS.md</th>
+<th>加载 MEMORY.md</th>
+<th>写入权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Main（主会话）</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>群聊</td>
+<td>✅</td>
+<td>❌</td>
+<td>受限</td>
+</tr>
+<tr>
+<td>子会话</td>
+<td>❌</td>
+<td>❌</td>
+<td>隔离</td>
+</tr>
+<tr>
+<td>ACP</td>
+<td>❌</td>
+<td>❌</td>
+<td>绑定目录</td>
+</tr>
+</tbody></table>
+<h3 id="快速开始建议"><a href="#快速开始建议" class="headerlink" title="快速开始建议"></a>快速开始建议</h3><p>如果你是新用户，按这个顺序配置：</p>
+<ol>
+<li><strong>编辑 <code>IDENTITY.md</code></strong> — 给 AI 起个名字</li>
+<li><strong>编辑 <code>USER.md</code></strong> — 填写你的基本信息</li>
+<li><strong>阅读 <code>AGENTS.md</code></strong> — 了解工作流程</li>
+<li><strong>开始对话</strong> — AI 会自动创建每日日志</li>
+<li><strong>定期整理</strong> — 把重要信息写入 <code>MEMORY.md</code></li>
+</ol>
+<hr>
+<h2 id="进阶配置"><a href="#进阶配置" class="headerlink" title="进阶配置"></a>进阶配置</h2><h3 id="接入-Telegram"><a href="#接入-Telegram" class="headerlink" title="接入 Telegram"></a>接入 Telegram</h3><ol>
+<li>找 @BotFather 创建 Bot，获取 token</li>
+<li>在 <code>openclaw.yaml</code> 中配置：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="attr">telegram:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">bot_token:</span> <span class="string">&quot;your_bot_token_here&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重启服务</li>
+</ol>
+<h3 id="自定义模型"><a href="#自定义模型" class="headerlink" title="自定义模型"></a>自定义模型</h3><p>支持任何 OpenAI 兼容格式的 API：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">custom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">my-model</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;自定义模型&quot;</span></span><br><span class="line">      <span class="attr">base_url:</span> <span class="string">&quot;https://api.example.com/v1&quot;</span></span><br><span class="line">      <span class="attr">api_key:</span> <span class="string">&quot;your_key&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置系统提示词"><a href="#设置系统提示词" class="headerlink" title="设置系统提示词"></a>设置系统提示词</h3><p>编辑 <code>SOUL.md</code> 中的内容，可以：</p>
+<ul>
+<li>定义 AI 的性格和说话方式</li>
+<li>设置安全边界</li>
+<li>添加群聊规则</li>
+</ul>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="启动时报错-Cannot-find-module"><a href="#启动时报错-Cannot-find-module" class="headerlink" title="启动时报错 Cannot find module"></a>启动时报错 <code>Cannot find module</code></h3><p><strong>原因：</strong> 依赖未正确安装<br><strong>解决：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf node_modules package-lock.json</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h3 id="模型响应超时"><a href="#模型响应超时" class="headerlink" title="模型响应超时"></a>模型响应超时</h3><p><strong>原因：</strong> 网络问题或模型服务不稳定<br><strong>解决：</strong></p>
+<ul>
+<li>检查 API Key 是否正确</li>
+<li>在配置中增加超时时间：<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">models:</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">60000</span>  <span class="comment"># 60秒</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="如何更新-OpenClaw"><a href="#如何更新-OpenClaw" class="headerlink" title="如何更新 OpenClaw"></a>如何更新 OpenClaw</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> openclaw</span><br><span class="line">git pull</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h2 id="个人使用技巧"><a href="#个人使用技巧" class="headerlink" title="个人使用技巧"></a>个人使用技巧</h2><h3 id="1-养成记录习惯-1"><a href="#1-养成记录习惯-1" class="headerlink" title="1. 养成记录习惯"></a>1. 养成记录习惯</h3><p>每次会话后，AI 会记录到 <code>memory/YYYY-MM-DD.md</code>。定期回顾这些日志，可以：</p>
+<ul>
+<li>追踪问题解决过程</li>
+<li>发现重复询问的问题</li>
+<li>整理成正式文档</li>
+</ul>
+<h3 id="2-利用-MEMORY-md"><a href="#2-利用-MEMORY-md" class="headerlink" title="2. 利用 MEMORY.md"></a>2. 利用 MEMORY.md</h3><p>把重要信息写入 <code>MEMORY.md</code>，比如：</p>
+<ul>
+<li>常用服务器地址</li>
+<li>项目关键决策</li>
+<li>个人偏好设置</li>
+</ul>
+<p>这样每次新会话 AI 都能记住。</p>
+<h3 id="3-技能扩展"><a href="#3-技能扩展" class="headerlink" title="3. 技能扩展"></a>3. 技能扩展</h3><p>OpenClaw 支持技能系统，位于 <code>node_modules/openclaw/skills/</code>：</p>
+<ul>
+<li><code>coding-agent</code> — 代码助手</li>
+<li><code>weather</code> — 天气查询</li>
+<li><code>video-frames</code> — 视频处理</li>
+</ul>
+<p>也可以自己编写技能，参考现有技能结构。</p>
+<hr>
+<h2 id="会话机制详解"><a href="#会话机制详解" class="headerlink" title="会话机制详解"></a>会话机制详解</h2><p>OpenClaw 支持多种会话类型，理解它们的区别有助于更好地使用：</p>
+<h3 id="Main-会话（主会话）"><a href="#Main-会话（主会话）" class="headerlink" title="Main 会话（主会话）"></a>Main 会话（主会话）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>通过 Web 界面、Telegram、Discord 等渠道直接对话</li>
+<li>持续的历史记录，上下文连贯</li>
+<li>可以访问 <code>MEMORY.md</code> 等长期记忆文件</li>
+<li>适合日常对话、任务执行</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>日常问答、闲聊</li>
+<li>文件操作、代码编写</li>
+<li>需要上下文记忆的任务</li>
+</ul>
+<h3 id="子会话（Subagent）"><a href="#子会话（Subagent）" class="headerlink" title="子会话（Subagent）"></a>子会话（Subagent）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>独立的隔离会话，不影响主会话</li>
+<li>可以指定不同的模型或参数</li>
+<li>适合并行处理多个任务</li>
+<li>完成后结果返回主会话</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>并行处理多个独立任务</li>
+<li>需要不同模型处理同一问题（对比结果）</li>
+<li>长时间运行的任务（避免阻塞主会话）</li>
+<li>敏感操作（隔离风险）</li>
+</ul>
+<p><strong>如何创建：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在主会话中调用</span></span><br><span class="line">spawn subagent <span class="string">&quot;任务描述&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ACP-会话（Agent-Coding-Protocol）"><a href="#ACP-会话（Agent-Coding-Protocol）" class="headerlink" title="ACP 会话（Agent Coding Protocol）"></a>ACP 会话（Agent Coding Protocol）</h3><p><strong>特点：</strong></p>
+<ul>
+<li>专门用于代码编写和开发任务</li>
+<li>支持 Codex、Claude Code、Pi 等编码助手</li>
+<li>可以绑定到特定目录或项目</li>
+<li>支持线程模式（Discord 等群聊场景）</li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>大型项目开发</li>
+<li>代码审查和重构</li>
+<li>多文件协同修改</li>
+<li>需要深度代码分析的任务</li>
+</ul>
+<p><strong>如何创建：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Discord 等支持线程的渠道</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="会话对比表"><a href="#会话对比表" class="headerlink" title="会话对比表"></a>会话对比表</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Main 会话</th>
+<th>子会话</th>
+<th>ACP 会话</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>上下文连续性</td>
+<td>✅ 完整历史</td>
+<td>❌ 独立</td>
+<td>⚠️ 线程内连续</td>
+</tr>
+<tr>
+<td>访问 MEMORY.md</td>
+<td>✅ 可以</td>
+<td>❌ 不可以</td>
+<td>❌ 不可以</td>
+</tr>
+<tr>
+<td>并行执行</td>
+<td>❌ 顺序</td>
+<td>✅ 并行</td>
+<td>✅ 并行</td>
+</tr>
+<tr>
+<td>适合任务</td>
+<td>日常对话</td>
+<td>独立子任务</td>
+<td>代码开发</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>长期</td>
+<td>任务完成即结束</td>
+<td>可长期&#x2F;临时</td>
+</tr>
+</tbody></table>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
+<li><strong>简单任务</strong> → 直接在 Main 会话完成</li>
+<li><strong>多个独立任务</strong> → 使用子会话并行处理</li>
+<li><strong>复杂开发</strong> → 使用 ACP 会话，绑定到项目目录</li>
+<li><strong>需要记忆</strong> → 确保在 Main 会话，或主动更新 MEMORY.md</li>
+</ol>
+<hr>
+<h2 id="上下文管理详解"><a href="#上下文管理详解" class="headerlink" title="上下文管理详解"></a>上下文管理详解</h2><p>OpenClaw 的上下文（Context）是指 AI 在对话中”记住”的信息范围，理解上下文管理能帮助你更高效地使用 AI。</p>
+<h3 id="什么是上下文？"><a href="#什么是上下文？" class="headerlink" title="什么是上下文？"></a>什么是上下文？</h3><p><strong>上下文（Context Window）</strong> 是 AI 模型处理对话时的”工作记忆”。它包含：</p>
+<table>
+<thead>
+<tr>
+<th>组成部分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>系统提示词</strong></td>
+<td>AI 的行为准则、角色定义（SOUL.md、AGENTS.md 等）</td>
+</tr>
+<tr>
+<td><strong>对话历史</strong></td>
+<td>用户和 AI 的交流记录</td>
+</tr>
+<tr>
+<td><strong>工具调用记录</strong></td>
+<td>AI 使用过的工具及返回结果</td>
+</tr>
+<tr>
+<td><strong>工作区文件</strong></td>
+<td>Workspace 中的文件内容（按需加载）</td>
+</tr>
+</tbody></table>
+<p><strong>上下文大小 &#x3D; 模型能处理的最大 Token 数</strong>（如 200k、128k 等），超出部分会被”遗忘”。</p>
+<h3 id="OpenClaw-的上下文机制"><a href="#OpenClaw-的上下文机制" class="headerlink" title="OpenClaw 的上下文机制"></a>OpenClaw 的上下文机制</h3><p>OpenClaw 会话显示的上下文使用率计算公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上下文使用率 = (已消耗 Token 数 / 上下文上限) × 100%</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键行为：</strong></p>
+<ul>
+<li>使用率越高，AI “遗忘”早期对话内容的概率越大</li>
+<li>工具调用、文件读取会显著增加上下文消耗</li>
+<li>每次回复都会累积新的 Token</li>
+</ul>
+<h3 id="上下文相关命令"><a href="#上下文相关命令" class="headerlink" title="上下文相关命令"></a>上下文相关命令</h3><p>OpenClaw 提供多个命令管理上下文：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>对上下文的影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/clear</code></td>
+<td>清除当前对话历史</td>
+<td>清空对话记录，保留系统提示和 Workspace 配置</td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>开启新会话</td>
+<td>完全重置，上下文归零，重新加载系统文件</td>
+</tr>
+<tr>
+<td><code>/reset</code></td>
+<td>深度重置</td>
+<td>清空上下文 + 重新加载 AGENTS.md、SOUL.md 等配置文件</td>
+</tr>
+<tr>
+<td><code>/status</code></td>
+<td>查看会话状态</td>
+<td>显示当前上下文使用率、模型、运行时间等</td>
+</tr>
+</tbody></table>
+<h4 id="clear-—-清空当前对话"><a href="#clear-—-清空当前对话" class="headerlink" title="/clear — 清空当前对话"></a><code>/clear</code> — 清空当前对话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/clear</span><br><span class="line">效果：清除当前会话的对话历史显示</span><br><span class="line">保留：系统提示词、Workspace 配置、MEMORY.md</span><br><span class="line">适用：想开始新话题，但不想丢失 Workspace 设置</span><br></pre></td></tr></table></figure>
+
+<h4 id="new-—-开启新会话"><a href="#new-—-开启新会话" class="headerlink" title="/new — 开启新会话"></a><code>/new</code> — 开启新会话</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/new</span><br><span class="line">效果：创建全新会话</span><br><span class="line">重置：上下文完全清零</span><br><span class="line">重新加载：SOUL.md、AGENTS.md、USER.md、IDENTITY.md、TOOLS.md</span><br><span class="line">适用：完全重新开始，不带任何历史对话</span><br></pre></td></tr></table></figure>
+
+<h4 id="reset-—-深度重置"><a href="#reset-—-深度重置" class="headerlink" title="/reset — 深度重置"></a><code>/reset</code> — 深度重置</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/reset</span><br><span class="line">效果：清空上下文 + 重新读取所有配置文件</span><br><span class="line">重置程度：比 /new 更彻底</span><br><span class="line">重新加载：所有 Workspace 文件（包括 skill 配置）</span><br><span class="line">适用：配置文件修改后需要完全重载，或遇到异常状态</span><br></pre></td></tr></table></figure>
+
+<h4 id="status-—-查看上下文状态"><a href="#status-—-查看上下文状态" class="headerlink" title="/status — 查看上下文状态"></a><code>/status</code> — 查看上下文状态</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：/status</span><br><span class="line">输出示例：</span><br><span class="line">🧠 Model: minimax/MiniMax-M2.7-highspeed</span><br><span class="line">🧮 Tokens: 20k in / 974 out</span><br><span class="line">📚 Context: 21k/200k (11%)</span><br><span class="line">⏱️ Runtime: 45m</span><br></pre></td></tr></table></figure>
+
+<h3 id="上下文使用率监控"><a href="#上下文使用率监控" class="headerlink" title="上下文使用率监控"></a>上下文使用率监控</h3><p>OpenClaw 在每条回复末尾显示上下文使用率：</p>
+<table>
+<thead>
+<tr>
+<th>显示</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>📚 Context: 11%</code></td>
+<td>上下文状态良好</td>
+</tr>
+<tr>
+<td><code>📚 Context: 50%</code></td>
+<td>使用率过半，建议关注</td>
+</tr>
+<tr>
+<td><code>📚 Context: 70%</code></td>
+<td>使用率高，建议 <code>/new</code> 开启新会话</td>
+</tr>
+<tr>
+<td><code>📚 Context: 90%</code></td>
+<td>即将耗尽，必须 <code>/new</code></td>
+</tr>
+</tbody></table>
+<h3 id="上下文管理最佳实践"><a href="#上下文管理最佳实践" class="headerlink" title="上下文管理最佳实践"></a>上下文管理最佳实践</h3><h4 id="1-长任务使用子会话"><a href="#1-长任务使用子会话" class="headerlink" title="1. 长任务使用子会话"></a>1. 长任务使用子会话</h4><p>复杂任务放到子会话处理，避免撑爆主会话上下文：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 主会话中调用</span><br><span class="line">/spawn 帮我分析这个项目的代码结构</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-定期开启新会话"><a href="#2-定期开启新会话" class="headerlink" title="2. 定期开启新会话"></a>2. 定期开启新会话</h4><p>日常使用中，当上下文使用率超过 50% 时，主动 <code>/new</code> 可以：</p>
+<ul>
+<li>获得更清晰的对话质量</li>
+<li>减少 Token 消耗（节省成本）</li>
+<li>避免上下文被”截断”导致的前后不一致</li>
+</ul>
+<h4 id="3-重要信息写入-MEMORY-md"><a href="#3-重要信息写入-MEMORY-md" class="headerlink" title="3. 重要信息写入 MEMORY.md"></a>3. 重要信息写入 MEMORY.md</h4><p>不要依赖上下文记忆重要信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">记住：我的服务器IP是 192.168.1.100</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用-HEARTBEAT-md-做定期检查"><a href="#4-使用-HEARTBEAT-md-做定期检查" class="headerlink" title="4. 使用 HEARTBEAT.md 做定期检查"></a>4. 使用 HEARTBEAT.md 做定期检查</h4><p>配置心跳任务定期监控上下文：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># HEARTBEAT.md</span></span><br><span class="line"><span class="section">## 检查上下文使用率</span></span><br><span class="line"><span class="bullet">-</span> 如果超过 50%，提醒用户考虑 /new</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-大文件处理"><a href="#5-大文件处理" class="headerlink" title="5. 大文件处理"></a>5. 大文件处理</h4><p>读取大型文件会消耗大量上下文：</p>
+<table>
+<thead>
+<tr>
+<th>文件大小</th>
+<th>上下文消耗估算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; 100 行</td>
+<td>~1-5%</td>
+</tr>
+<tr>
+<td>100-500 行</td>
+<td>~5-15%</td>
+</tr>
+<tr>
+<td>&gt; 500 行</td>
+<td>&gt; 15%</td>
+</tr>
+</tbody></table>
+<p>处理大文件建议：</p>
+<ul>
+<li>使用子会话单独处理</li>
+<li>分批次读取和讨论</li>
+<li>读取后主动 <code>/new</code> 恢复</li>
+</ul>
+<h3 id="会话类型与上下文"><a href="#会话类型与上下文" class="headerlink" title="会话类型与上下文"></a>会话类型与上下文</h3><table>
+<thead>
+<tr>
+<th>会话类型</th>
+<th>上下文行为</th>
+<th>MEMORY.md 访问</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Main（主会话）</td>
+<td>持续累积</td>
+<td>✅ 可读写</td>
+</tr>
+<tr>
+<td>子会话</td>
+<td>独立上下文</td>
+<td>❌ 不可访问</td>
+</tr>
+<tr>
+<td>ACP 会话</td>
+<td>隔离上下文</td>
+<td>❌ 不可访问</td>
+</tr>
+<tr>
+<td>群聊</td>
+<td>共享上下文</td>
+<td>❌ 不加载（安全）</td>
+</tr>
+</tbody></table>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p><strong>上下文耗尽的表现：</strong></p>
+<ul>
+<li>AI 开始”遗忘”之前的约定</li>
+<li>回复变得不一致</li>
+<li>工具调用结果被忽略</li>
+</ul>
+<p><strong>解决方法：</strong></p>
+<ol>
+<li>立即 <code>/new</code> 开启新会话</li>
+<li>重要的跨会话信息写入 MEMORY.md</li>
+<li>复杂任务拆分成多个子会话</li>
+</ol>
+<hr>
+<h2 id="Skills-技能系统详解"><a href="#Skills-技能系统详解" class="headerlink" title="Skills 技能系统详解"></a>Skills 技能系统详解</h2><p>OpenClaw 的技能系统（Skills）是其核心扩展机制，让 AI 能够执行各种专业任务。技能位于 <code>node_modules/openclaw/skills/</code> 目录，每个技能都有独立的 <code>SKILL.md</code> 说明文件。</p>
+<h3 id="内置技能一览"><a href="#内置技能一览" class="headerlink" title="内置技能一览"></a>内置技能一览</h3><table>
+<thead>
+<tr>
+<th>技能名称</th>
+<th>功能描述</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>coding-agent</code></td>
+<td>代码助手（Codex&#x2F;Claude Code&#x2F;Pi）</td>
+<td>大型项目开发、代码审查、重构</td>
+</tr>
+<tr>
+<td><code>weather</code></td>
+<td>天气查询</td>
+<td>获取当前天气和预报</td>
+</tr>
+<tr>
+<td><code>video-frames</code></td>
+<td>视频帧提取</td>
+<td>从视频中提取帧或短片段</td>
+</tr>
+<tr>
+<td><code>healthcheck</code></td>
+<td>安全加固检查</td>
+<td>系统安全审计、防火墙配置</td>
+</tr>
+<tr>
+<td><code>node-connect</code></td>
+<td>节点连接诊断</td>
+<td>修复移动端配对问题</td>
+</tr>
+<tr>
+<td><code>skill-creator</code></td>
+<td>技能创建工具</td>
+<td>开发新技能、审核现有技能</td>
+</tr>
+</tbody></table>
+<h3 id="技能使用方法"><a href="#技能使用方法" class="headerlink" title="技能使用方法"></a>技能使用方法</h3><h4 id="1-自动调用"><a href="#1-自动调用" class="headerlink" title="1. 自动调用"></a>1. 自动调用</h4><p>大部分技能会在 AI 判断需要时<strong>自动调用</strong>。例如：</p>
+<ul>
+<li>你说”查一下北京天气” → 自动调用 <code>weather</code> 技能</li>
+<li>你说”帮我写个 Python 脚本” → 自动调用 <code>coding-agent</code> 技能</li>
+</ul>
+<h4 id="2-查看可用技能"><a href="#2-查看可用技能" class="headerlink" title="2. 查看可用技能"></a>2. 查看可用技能</h4><p>在对话中输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/skills</span><br><span class="line"># 或</span><br><span class="line">/tools</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-手动指定技能"><a href="#3-手动指定技能" class="headerlink" title="3. 手动指定技能"></a>3. 手动指定技能</h4><p>某些技能需要明确触发：</p>
+<p><strong>coding-agent 技能示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建子会话处理代码任务</span></span><br><span class="line">spawn subagent <span class="string">&quot;帮我重构这个项目的登录模块&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 Discord 中使用 ACP 模式（推荐）</span></span><br><span class="line">spawn acp <span class="string">&quot;实现一个用户认证模块&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>skill-creator 技能示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建新技能</span></span><br><span class="line">帮我创建一个名为 my-skill 的新技能</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审核现有技能</span></span><br><span class="line">帮我审核 video-frames 技能</span><br></pre></td></tr></table></figure>
+
+<h3 id="技能工作原理"><a href="#技能工作原理" class="headerlink" title="技能工作原理"></a>技能工作原理</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户请求 → AI 分析 → 匹配技能 → 读取 SKILL.md → 执行操作 → 返回结果</span><br></pre></td></tr></table></figure>
+
+<p>每个技能的 <code>SKILL.md</code> 包含：</p>
+<ul>
+<li><strong>描述</strong>：技能功能和适用场景</li>
+<li><strong>使用方法</strong>：如何调用该技能</li>
+<li><strong>参数说明</strong>：需要的输入参数</li>
+<li><strong>示例</strong>：典型使用案例</li>
+</ul>
+<h3 id="自定义技能开发"><a href="#自定义技能开发" class="headerlink" title="自定义技能开发"></a>自定义技能开发</h3><p>如果你想开发自己的技能，可以使用 <code>skill-creator</code> 技能：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 告诉 AI 你要创建技能</span></span><br><span class="line"><span class="string">&quot;帮我创建一个名为 data-analysis 的技能，用于数据分析&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. AI 会引导你完成：</span></span><br><span class="line"><span class="comment">#    - 创建技能目录结构</span></span><br><span class="line"><span class="comment">#    - 编写 SKILL.md</span></span><br><span class="line"><span class="comment">#    - 添加必要的脚本文件</span></span><br></pre></td></tr></table></figure>
+
+<p>技能目录结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">skills/</span><br><span class="line">└── your-skill/</span><br><span class="line">    ├── SKILL.md          # 技能说明（必需）</span><br><span class="line">    ├── scripts/          # 辅助脚本（可选）</span><br><span class="line">    │   └── helper.sh</span><br><span class="line">    └── references/       # 参考资料（可选）</span><br><span class="line">        └── example.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="技能最佳实践"><a href="#技能最佳实践" class="headerlink" title="技能最佳实践"></a>技能最佳实践</h3><ol>
+<li><strong>阅读 SKILL.md</strong>：使用技能前，AI 会自动阅读对应技能的说明文件</li>
+<li><strong>提供上下文</strong>：复杂任务时，提供足够的背景信息</li>
+<li><strong>分步骤执行</strong>：大型任务拆分成多个小步骤</li>
+<li><strong>检查输出</strong>：技能执行后检查结果是否符合预期</li>
+</ol>
+<hr>
+<h2 id="Cron-定时任务详解"><a href="#Cron-定时任务详解" class="headerlink" title="Cron 定时任务详解"></a>Cron 定时任务详解</h2><p>OpenClaw 内置 Cron 系统，可以设置定时任务让 AI 自动执行周期性工作。</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Job</strong></td>
+<td>一个定时任务，包含执行时间和操作</td>
+</tr>
+<tr>
+<td><strong>Schedule</strong></td>
+<td>调度规则（一次性、间隔、Cron表达式）</td>
+</tr>
+<tr>
+<td><strong>Payload</strong></td>
+<td>任务内容（系统事件或 Agent 执行）</td>
+</tr>
+<tr>
+<td><strong>Delivery</strong></td>
+<td>结果投递方式（静默、公告、Webhook）</td>
+</tr>
+</tbody></table>
+<h3 id="定时任务类型"><a href="#定时任务类型" class="headerlink" title="定时任务类型"></a>定时任务类型</h3><h4 id="1-一次性任务（at）"><a href="#1-一次性任务（at）" class="headerlink" title="1. 一次性任务（at）"></a>1. 一次性任务（at）</h4><p>在指定时间执行一次：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:00:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-周期性任务（every）"><a href="#2-周期性任务（every）" class="headerlink" title="2. 周期性任务（every）"></a>2. 周期性任务（every）</h4><p>按固定间隔重复执行：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span><span class="punctuation">,</span>  <span class="comment">// 每小时</span></span><br><span class="line">    <span class="attr">&quot;anchorMs&quot;</span><span class="punctuation">:</span> <span class="number">1712716800000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Cron-表达式任务"><a href="#3-Cron-表达式任务" class="headerlink" title="3. Cron 表达式任务"></a>3. Cron 表达式任务</h4><p>使用标准 Cron 语法：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * 1&quot;</span><span class="punctuation">,</span>  <span class="comment">// 每周一 9:00</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用-Cron-表达式示例"><a href="#常用-Cron-表达式示例" class="headerlink" title="常用 Cron 表达式示例"></a>常用 Cron 表达式示例</h3><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0 * * * *</code></td>
+<td>每小时</td>
+<td>每小时的第 0 分钟</td>
+</tr>
+<tr>
+<td><code>0 */6 * * *</code></td>
+<td>每 6 小时</td>
+<td>一天 4 次</td>
+</tr>
+<tr>
+<td><code>0 9 * * *</code></td>
+<td>每天 9:00</td>
+<td>早上提醒</td>
+</tr>
+<tr>
+<td><code>0 9 * * 1</code></td>
+<td>每周一 9:00</td>
+<td>周报提醒</td>
+</tr>
+<tr>
+<td><code>0 9 1 * *</code></td>
+<td>每月 1 日 9:00</td>
+<td>月报提醒</td>
+</tr>
+<tr>
+<td><code>*/30 * * * *</code></td>
+<td>每 30 分钟</td>
+<td>高频检查</td>
+</tr>
+</tbody></table>
+<h3 id="任务内容类型（Payload）"><a href="#任务内容类型（Payload）" class="headerlink" title="任务内容类型（Payload）"></a>任务内容类型（Payload）</h3><h4 id="1-系统事件（systemEvent）"><a href="#1-系统事件（systemEvent）" class="headerlink" title="1. 系统事件（systemEvent）"></a>1. 系统事件（systemEvent）</h4><p>在主会话中注入消息，适合提醒类任务：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：该喝水了！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Agent-执行（agentTurn）"><a href="#2-Agent-执行（agentTurn）" class="headerlink" title="2. Agent 执行（agentTurn）"></a>2. Agent 执行（agentTurn）</h4><p>在独立会话中执行 AI 任务，适合复杂操作：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;检查未读邮件和即将到来的日程&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;thinking&quot;</span><span class="punctuation">:</span> <span class="string">&quot;on&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="结果投递方式（Delivery）"><a href="#结果投递方式（Delivery）" class="headerlink" title="结果投递方式（Delivery）"></a>结果投递方式（Delivery）</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>none</code></td>
+<td>静默执行，不通知</td>
+<td>后台维护任务</td>
+</tr>
+<tr>
+<td><code>announce</code></td>
+<td>发送消息到聊天频道</td>
+<td>提醒、报告</td>
+</tr>
+<tr>
+<td><code>webhook</code></td>
+<td>POST 到指定 URL</td>
+<td>集成外部系统</td>
+</tr>
+</tbody></table>
+<h3 id="完整配置示例"><a href="#完整配置示例" class="headerlink" title="完整配置示例"></a>完整配置示例</h3><h4 id="示例-1：每日早报"><a href="#示例-1：每日早报" class="headerlink" title="示例 1：每日早报"></a>示例 1：每日早报</h4><p>每天早上 9 点发送天气和日程提醒：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;每日早报&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cron&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;expr&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0 9 * * *&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tz&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Asia/Shanghai&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生成今日早报：1.查询今日天气 2.检查今日日程 3.总结待办事项&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;model&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kimi-coding/kimi-k2-thinking&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-2：每小时健康检查"><a href="#示例-2：每小时健康检查" class="headerlink" title="示例 2：每小时健康检查"></a>示例 2：每小时健康检查</h4><p>每小时检查系统状态：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;系统健康检查&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;every&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;everyMs&quot;</span><span class="punctuation">:</span> <span class="number">3600000</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;agentTurn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;执行系统健康检查：检查磁盘空间、内存使用、服务状态&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;timeoutSeconds&quot;</span><span class="punctuation">:</span> <span class="number">300</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;isolated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;none&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="示例-3：20-分钟后提醒"><a href="#示例-3：20-分钟后提醒" class="headerlink" title="示例 3：20 分钟后提醒"></a>示例 3：20 分钟后提醒</h4><p>一次性提醒任务：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;会议提醒&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schedule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;at&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;at&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-04-10T14:30:00+08:00&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;systemEvent&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;⏰ 提醒：15 分钟后有项目会议，请准备！&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sessionTarget&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;delivery&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;announce&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="管理定时任务"><a href="#管理定时任务" class="headerlink" title="管理定时任务"></a>管理定时任务</h3><h4 id="查看所有任务"><a href="#查看所有任务" class="headerlink" title="查看所有任务"></a>查看所有任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron list</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron add --json <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">  &quot;name&quot;: &quot;我的任务&quot;,</span></span><br><span class="line"><span class="string">  &quot;schedule&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;payload&quot;: &#123;...&#125;,</span></span><br><span class="line"><span class="string">  &quot;sessionTarget&quot;: &quot;isolated&quot;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="立即执行任务"><a href="#立即执行任务" class="headerlink" title="立即执行任务"></a>立即执行任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron run &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除任务"><a href="#删除任务" class="headerlink" title="删除任务"></a>删除任务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron remove &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看执行历史"><a href="#查看执行历史" class="headerlink" title="查看执行历史"></a>查看执行历史</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw cron runs &lt;job-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Heartbeat-vs-Cron：如何选择？"><a href="#Heartbeat-vs-Cron：如何选择？" class="headerlink" title="Heartbeat vs Cron：如何选择？"></a>Heartbeat vs Cron：如何选择？</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Heartbeat</th>
+<th>Cron</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>触发方式</td>
+<td>定期轮询（~30分钟）</td>
+<td>精确时间触发</td>
+</tr>
+<tr>
+<td>精度</td>
+<td>较低（可漂移）</td>
+<td>高（精确到分钟）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>批量检查多个项目</td>
+<td>精确时间任务</td>
+</tr>
+<tr>
+<td>会话依赖</td>
+<td>需要主会话上下文</td>
+<td>独立执行</td>
+</tr>
+<tr>
+<td>配置方式</td>
+<td>HEARTBEAT.md</td>
+<td>openclaw cron 命令</td>
+</tr>
+</tbody></table>
+<p><strong>选择建议：</strong></p>
+<ul>
+<li><strong>Heartbeat</strong>：适合检查邮件、日历、通知等多个项目，可以批量处理</li>
+<li><strong>Cron</strong>：适合精确时间的提醒、定期报告、自动化脚本</li>
+</ul>
+<h3 id="定时任务最佳实践"><a href="#定时任务最佳实践" class="headerlink" title="定时任务最佳实践"></a>定时任务最佳实践</h3><ol>
+<li><strong>合理设置超时</strong>：长时间任务设置 <code>timeoutSeconds</code>，避免卡死</li>
+<li><strong>使用隔离会话</strong>：复杂任务用 <code>sessionTarget: isolated</code>，避免影响主会话</li>
+<li><strong>选择合适的投递方式</strong>：<ul>
+<li>重要提醒 → <code>announce</code></li>
+<li>后台任务 → <code>none</code></li>
+<li>系统集成 → <code>webhook</code></li>
+</ul>
+</li>
+<li><strong>添加上下文</strong>：Agent 任务中提供足够的背景信息</li>
+<li><strong>定期检查</strong>：用 <code>cron list</code> 和 <code>cron runs</code> 监控任务状态</li>
+</ol>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>OpenClaw 的核心优势：</p>
+<ul>
+<li><strong>本地部署</strong> — 数据隐私可控</li>
+<li><strong>多模型支持</strong> — 随时切换不同 AI</li>
+<li><strong>多渠道接入</strong> — Web、Telegram、Discord 等</li>
+<li><strong>可扩展</strong> — 技能系统、自定义配置</li>
+</ul>
+<p>建议从 Web 界面开始使用，熟悉后再配置其他渠道。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://github.com/openclaw/openclaw">OpenClaw GitHub</a></li>
+<li><a href="https://docs.openclaw.ai/">官方文档</a></li>
+<li><a href="https://discord.com/invite/clawd">社区 Discord</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>linux</category>
+        <category>tools</category>
       </categories>
       <tags>
-        <tag>mtd</tag>
+        <tag>openclaw</tag>
+        <tag>教程</tag>
+        <tag>ai工具</tag>
       </tags>
   </entry>
 </search>

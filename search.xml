@@ -822,58 +822,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-05-08</title>
-    <url>/2026/05/08/2026-05-08-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
-<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
-<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
-<p>“””</p>
-<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
-**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
-
----
-
-# 今日动态
-
-- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
-- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
-
----
-
-# 明日预告
-
-明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
-
----
-
-*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-05-09</title>
     <url>/2026/05/09/2026-05-09-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -948,6 +896,58 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-08</title>
+    <url>/2026/05/08/2026-05-08-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 编程日报 2026-05-10</title>
     <url>/2026/05/10/2026-05-10-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -984,7 +984,7 @@
 
 # 明日预告
 
-明天我们将 GitHub Copilot 新功能的深度解析，并结合实际案例给出可操作的建议。
+明天我们将 Claude Code 扩展思考模式的实际测试结果，并结合实际案例给出可操作的建议。
 
 ---
 
@@ -1589,6 +1589,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu交叉编译环境配置</title>
+    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
+<ol>
+<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
+<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>交叉编译</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu交叉编译Bluez</title>
     <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
@@ -1667,29 +1690,6 @@
       <tags>
         <tag>arm</tag>
         <tag>bluez</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu交叉编译环境配置</title>
-    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
-<ol>
-<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
-<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
-<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
-<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>交叉编译</tag>
       </tags>
   </entry>
   <entry>
@@ -1841,6 +1841,19 @@
       </tags>
   </entry>
   <entry>
+    <title>MakerWorld模型收藏</title>
+    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
+]]></content>
+      <categories>
+        <category>skills</category>
+        <category>3D打印</category>
+      </categories>
+      <tags>
+        <tag>MakerWorld</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>嵌入式linux疑难问题记录</title>
     <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
@@ -1898,25 +1911,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HEXO搭建个人博客</title>
-    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
-<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>butterfly</tag>
       </tags>
   </entry>
   <entry>
@@ -2909,6 +2903,25 @@
       </tags>
   </entry>
   <entry>
+    <title>HEXO搭建个人博客</title>
+    <url>/2024/03/17/tools/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="推荐使用butterfly主题"><a href="#推荐使用butterfly主题" class="headerlink" title="推荐使用butterfly主题"></a>推荐使用butterfly主题</h2><p>*作者提供了非常棒的说明文档，点击链接立刻开始搭建你自己的小站吧<br><a href="https://butterfly.js.org/">主题链接</a></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="hexo-generate"><a href="#hexo-generate" class="headerlink" title="hexo generate"></a>hexo generate</h3><p>构建静态网站</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-deploy"><a href="#hexo-deploy" class="headerlink" title="hexo deploy"></a>hexo deploy</h3><p>一键部署到GITHUB PAGE，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment">HEXO官方文档链接</a></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="hexo-n-p-dir-title"><a href="#hexo-n-p-dir-title" class="headerlink" title="hexo n -p dir&#x2F;title"></a>hexo n -p dir&#x2F;title</h3><p>新增文章到指定文件夹，该文件夹的根目录为<code>source/_posts/</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> hexo n <span class="literal">-p</span> study/hexo/HEXO搭建个人博客</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>butterfly</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>claude-code使用说明</title>
     <url>/2025/11/28/tools/claude-code%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>以下操作均在Ubuntu 22.04</em></p>
@@ -3479,6 +3492,107 @@
       </tags>
   </entry>
   <entry>
+    <title>ubunut使用minicom</title>
+    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
+<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
+<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
+<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
+<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
+<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
+<li>启动参数<code>-O timestamp=extended</code></li>
+</ul>
+<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
+<ul>
+<li>日志保存到自定义的默认文件夹</li>
+<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
+<li>启动时提供设备节点选择</li>
+</ul>
+<p>修改<code>LOG_DIR</code>到自定义目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>minicom</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git提交格式 - Conventional Commits</title>
+    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
+<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
+<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>feat</td>
+<td>新增功能</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复bug</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>仅修改了文档</td>
+</tr>
+<tr>
+<td>style</td>
+<td>修改了代码风格，不影响代码逻辑</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>代码重构，没有新增功能也没有修复bug</td>
+</tr>
+<tr>
+<td>perf</td>
+<td>性能优化</td>
+</tr>
+<tr>
+<td>test</td>
+<td>增加或修改测试用例</td>
+</tr>
+<tr>
+<td>build</td>
+<td>编译脚本</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>CI CD相关</td>
+</tr>
+<tr>
+<td>chore</td>
+<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
+</tr>
+<tr>
+<td>revert</td>
+<td>回退</td>
+</tr>
+</tbody></table>
+<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
+<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
+<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>Conventional Commits</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iperf3网络性能测试工具指南</title>
     <url>/2025/09/29/tools/iperf3%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="工具简介"><a href="#工具简介" class="headerlink" title="工具简介"></a>工具简介</h2><p><code>iperf3</code> 是一款<strong>专业的开源网络性能测试工具</strong>，用于主动测量IP网络所能达到的<strong>最大带宽</strong>。它支持调整时序、缓冲区和协议（TCP、UDP、SCTP）等多种参数，并能报告带宽、延迟抖动、丢包率等关键网络性能指标。</p>
@@ -3698,107 +3812,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ubunut使用minicom</title>
-    <url>/2025/12/08/tools/ubunut%E4%BD%BF%E7%94%A8minicom/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install minicom</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><em>我这里使用的虚拟机安装，串口工具是CH340,如果遇到找不到设备节点的情况参考这篇文章</em>：<a href="https://blog.csdn.net/weixin_49513223/article/details/127068065">Ubuntu22.04没有ttyUSB</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo minicom -s</span><br></pre></td></tr></table></figure>
-<p>通过方向键和enter键设置串口设备和波特率<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101547.png" alt="20251208101547"></p>
-<p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208101905.png" alt="20251208101905"></p>
-<p>使用快捷键<code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208102840.png" alt="20251208102840"></p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="保存日志"><a href="#保存日志" class="headerlink" title="保存日志"></a>保存日志</h3><p><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>L</code>,默认是输出到当前路径，如果要自定义路径，提供绝对路径即可<br><img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251208103406.png" alt="20251208103406"></p>
-<h3 id="给输出日志增加时间戳"><a href="#给输出日志增加时间戳" class="headerlink" title="给输出日志增加时间戳"></a>给输出日志增加时间戳</h3><ul>
-<li><code>Ctrl+A</code>松手后按<code>Z</code>调出控制面板后，按<code>N</code>，循环按切换时间戳格式，按需选择即可，个人比较喜欢带毫秒级时间戳的打印</li>
-<li>启动参数<code>-O timestamp=extended</code></li>
-</ul>
-<h3 id="minicom启动脚本"><a href="#minicom启动脚本" class="headerlink" title="minicom启动脚本"></a>minicom启动脚本</h3><p>由于会经常用到minicom,写一个启动脚本，需求如下：</p>
-<ul>
-<li>日志保存到自定义的默认文件夹</li>
-<li>日志名称 [device+time].log ([&#x2F;dev&#x2F;ttyUSB0]2025-12-05_100905.log)</li>
-<li>启动时提供设备节点选择</li>
-</ul>
-<p>修改<code>LOG_DIR</code>到自定义目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">LOG_DIR=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/minicom_logs&quot;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="string">&quot;<span class="variable">$LOG_DIR</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Detect available devices (max 5)</span></span><br><span class="line">devices=($(<span class="built_in">ls</span> /dev/ttyUSB* /dev/ttyACM* 2&gt;/dev/null | <span class="built_in">head</span> -5))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Available devices:&quot;</span></span><br><span class="line">count=0</span><br><span class="line"><span class="keyword">for</span> dev <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;devices[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    ((count++))</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$count</span>) <span class="variable">$dev</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">manual_option=$((count+<span class="number">1</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;  <span class="variable">$manual_option</span>) Enter custom device path&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;Select option [1-<span class="variable">$manual_option</span>]: &quot;</span> choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> =~ ^[0-9]+$ ]] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -ge 1 ] &amp;&amp; [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -le <span class="string">&quot;<span class="variable">$count</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    device=<span class="string">&quot;<span class="variable">$&#123;devices[$((choice-1))]&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$choice</span>&quot;</span> -eq <span class="string">&quot;<span class="variable">$manual_option</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">&quot;Device path: &quot;</span> device</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    device=<span class="string">&quot;/dev/ttyUSB0&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Using default: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">log_file=<span class="string">&quot;<span class="variable">$&#123;LOG_DIR&#125;</span>/<span class="subst">$(basename <span class="string">&quot;<span class="variable">$device</span>&quot;</span>)</span>_<span class="subst">$(date +%Y%m%d_%H%M%S)</span>.log&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Device: <span class="variable">$device</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Log: <span class="variable">$log_file</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">sudo minicom -D <span class="string">&quot;<span class="variable">$device</span>&quot;</span> -b 115200 -C <span class="string">&quot;<span class="variable">$log_file</span>&quot;</span> -O timestamp=extended</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>minicom</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git提交格式 - Conventional Commits</title>
-    <url>/2025/10/31/wiki/git%E6%8F%90%E4%BA%A4%E6%A0%BC%E5%BC%8F%20-%20Conventional%20Commits/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">约定式提交</a>：日常工作中经常用到git，方便别人也是方便自己，学习一下提交规范</p>
-<h2 id="约定式提交"><a href="#约定式提交" class="headerlink" title="约定式提交"></a>约定式提交</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;类型&gt;[可选 范围]: &lt;描述&gt;</span><br><span class="line"></span><br><span class="line">[可选 正文]</span><br><span class="line"></span><br><span class="line">[可选 脚注]</span><br></pre></td></tr></table></figure>
-<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><h4 id="类型：说明本次提交的类型"><a href="#类型：说明本次提交的类型" class="headerlink" title="类型：说明本次提交的类型"></a>类型：说明本次提交的类型</h4><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>feat</td>
-<td>新增功能</td>
-</tr>
-<tr>
-<td>fix</td>
-<td>修复bug</td>
-</tr>
-<tr>
-<td>docs</td>
-<td>仅修改了文档</td>
-</tr>
-<tr>
-<td>style</td>
-<td>修改了代码风格，不影响代码逻辑</td>
-</tr>
-<tr>
-<td>refactor</td>
-<td>代码重构，没有新增功能也没有修复bug</td>
-</tr>
-<tr>
-<td>perf</td>
-<td>性能优化</td>
-</tr>
-<tr>
-<td>test</td>
-<td>增加或修改测试用例</td>
-</tr>
-<tr>
-<td>build</td>
-<td>编译脚本</td>
-</tr>
-<tr>
-<td>ci</td>
-<td>CI CD相关</td>
-</tr>
-<tr>
-<td>chore</td>
-<td>杂项，不牵扯代码修改，比如增加了一个工具</td>
-</tr>
-<tr>
-<td>revert</td>
-<td>回退</td>
-</tr>
-</tbody></table>
-<h4 id="范围：可选"><a href="#范围：可选" class="headerlink" title="范围：可选"></a>范围：可选</h4><p>格式：用圆括号括起来，一个名词描述当前修改范围</p>
-<h4 id="描述：可选"><a href="#描述：可选" class="headerlink" title="描述：可选"></a>描述：可选</h4><p>详细描述本次提交的动机和与之前的差异</p>
-<h4 id="脚注：可选"><a href="#脚注：可选" class="headerlink" title="脚注：可选"></a>脚注：可选</h4><p>不兼容的变更（BREAKING CHANGE）： 如果当前代码与上一个版本不兼容，需要在此处说明。必须以 BREAKING CHANGE: 开头，后面跟上描述。<br>关闭 Issue（Closes）： 如果此次提交解决了某个 Issue，可以在这里关联。例如：Closes #123, Fixes #456, #789</p>
-<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">fix(spec): 修改视频录制类型值</span><br><span class="line">视频录制，1为一直录制，现修改为事件录制。</span><br><span class="line">BREAKING CHANGE: 视频录制协议变更</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>Conventional Commits</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo文章加密</title>
     <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
@@ -3842,6 +3855,50 @@
       <tags>
         <tag>图床</tag>
         <tag>vs-picgo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode常用快捷键速查表</title>
+    <url>/2025/11/14/wiki/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%80%9F%E6%9F%A5%E8%A1%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>操作系统为WINDOWS</em></p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>快捷键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>显示隐藏终端</td>
+<td><code>Ctrl + `</code></td>
+</tr>
+<tr>
+<td>快速打开文件</td>
+<td><code>Ctrl + P</code></td>
+</tr>
+<tr>
+<td>打开侧边栏搜索</td>
+<td><code>Ctrl + Shift + F</code></td>
+</tr>
+<tr>
+<td>跳转行</td>
+<td><code>Ctrl + P</code> 输入 <code>:linenum</code></td>
+</tr>
+<tr>
+<td>打开资源管理器</td>
+<td><code>Ctrl + Shift +E</code></td>
+</tr>
+<tr>
+<td>跳转定义</td>
+<td><code>F12</code></td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -3989,63 +4046,6 @@
       </categories>
       <tags>
         <tag>音视频相关</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode常用快捷键速查表</title>
-    <url>/2025/11/14/wiki/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%80%9F%E6%9F%A5%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>操作系统为WINDOWS</em></p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>快捷键</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>显示隐藏终端</td>
-<td><code>Ctrl + `</code></td>
-</tr>
-<tr>
-<td>快速打开文件</td>
-<td><code>Ctrl + P</code></td>
-</tr>
-<tr>
-<td>打开侧边栏搜索</td>
-<td><code>Ctrl + Shift + F</code></td>
-</tr>
-<tr>
-<td>跳转行</td>
-<td><code>Ctrl + P</code> 输入 <code>:linenum</code></td>
-</tr>
-<tr>
-<td>打开资源管理器</td>
-<td><code>Ctrl + Shift +E</code></td>
-</tr>
-<tr>
-<td>跳转定义</td>
-<td><code>F12</code></td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MakerWorld模型收藏</title>
-    <url>/2025/11/16/skills/MakerWorld%E6%A8%A1%E5%9E%8B%E6%94%B6%E8%97%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）"><a href="#拓竹A1-及A1mini原厂工具盒（高精度、超细节、无五金）" class="headerlink" title="拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）"></a><a href="https://makerworld.com.cn/zh/models/988625-tuo-zhu-a1-ji-a1miniyuan-han-gong-ju-he-gao-jing-d#profileId-1071241">拓竹A1 及A1mini原厂工具盒（高精度、超细节、无五金）</a></h2><p><img src="https://raw.githubusercontent.com/ChinaKai/img/main/1f9e7edf349b6e7b55383ea4e69aa908.jpg" alt="1f9e7edf349b6e7b55383ea4e69aa908"></p>
-]]></content>
-      <categories>
-        <category>skills</category>
-        <category>3D打印</category>
-      </categories>
-      <tags>
-        <tag>MakerWorld</tag>
       </tags>
   </entry>
   <entry>

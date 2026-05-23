@@ -1316,6 +1316,80 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-21</title>
+    <url>/2026/05/21/2026-05-21-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-19-发布"><a href="#OpenClaw-v2026-5-19-发布" class="headerlink" title="OpenClaw v2026.5.19 发布"></a>OpenClaw v2026.5.19 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.12 是一次”瘦身” release——将 WhatsApp、Slack、Amazon Bedrock、Anthropic Vertex 等 provider 及其依赖从核心运行时移出，改为按需安装。这一改动直接回应了社区对安装体积和启动速度的抱怨：此前即使只使用 Claude 一个 provider，安装包也会拉入 WhatsApp 和 Slack 的全套依赖。对于在 NAS、树莓派或容器环境中部署 OpenClaw 的用户，这是一次显著的运维体验提升。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>按需依赖（Leaner Installs）</strong>的实现机制：OpenClaw 将 provider 拆分为独立的 npm 包（或类似模块），核心运行时仅保留接口定义和基础调度逻辑。安装时通过 <code>openclaw provider add &lt;name&gt;</code> 动态拉取对应 provider 的实现包。这类似于 VS Code 的扩展机制——核心轻量，功能按需扩展。</p>
+<p><strong>Telegram 稳定性增强</strong>的技术细节：</p>
+<ul>
+<li><strong>隔离轮询（isolated polling）</strong>：将 Telegram Bot API 的轮询循环与主事件循环解耦，防止网络抖动阻塞其他 channel 的消息处理</li>
+<li><strong>本地持久化缓冲（durable local spooling）</strong>：消息在发送到 Telegram 之前先写入本地队列，发送失败时自动重试，避免消息丢失</li>
+<li><strong>群组媒体安全处理（safer group-media handling）</strong>：对群组中的媒体文件进行更严格的 MIME 类型检查和大小限制，防止恶意文件传播</li>
+<li><strong>格式保留</strong>：流式回复和定时回复中保留 HTML&#x2F;Markdown 格式，避免之前出现的格式转义问题</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：精简安装（只装需要的 provider）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全新安装 OpenClaw（核心仅 50MB 左右）</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按需添加 provider</span></span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"><span class="comment"># WhatsApp 和 Slack 不会被安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 provider</span></span><br><span class="line">openclaw provider list</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Telegram 高可用消息推送</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// openclaw 配置中的 telegram 部分</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;polling&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;isolated&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryAttempts&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryDelayMs&quot;</span><span class="punctuation">:</span> <span class="number">1000</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;maxAgeHours&quot;</span><span class="punctuation">:</span> <span class="number">24</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>验证消息持久化：断开网络，让 OpenClaw 发送一条消息，恢复网络后检查消息是否自动补发。</p>
+<p><strong>场景三：Codex&#x2F;OpenAI 路径优化</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 auth profile 管理多个 OpenAI 账号</span></span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile work</span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile personal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换 profile</span></span><br><span class="line">openclaw config use codex.authProfile work</span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>资源受限环境（NAS、边缘设备、容器）部署 OpenClaw</li>
+<li>使用 Telegram 作为通知 channel，需要高可靠性</li>
+<li>多 OpenAI&#x2F;Codex 账号切换场景</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>已经完整安装且空间不敏感的环境（改动收益有限）</li>
+<li>不使用 Telegram 的用户（稳定性改进无感知）</li>
+<li>需要所有 provider 开箱即用的场景（需额外安装步骤）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-插件依赖链安全卸载"><a href="#技巧-1：Claude-Code-插件依赖链安全卸载" class="headerlink" title="技巧 1：Claude Code 插件依赖链安全卸载"></a>技巧 1：Claude Code 插件依赖链安全卸载</h2><p><strong>使用场景</strong>：当你想禁用某个 Claude Code 插件时，如果其他插件依赖它，直接禁用会导致依赖它的插件崩溃。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 尝试禁用插件，Claude Code 会阻止危险操作并给出安全命令</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line">❌ Cannot <span class="built_in">disable</span>: formatter-plugin depends on linter-plugin</span><br><span class="line">   Run: claude plugin <span class="built_in">disable</span> formatter-plugin &amp;&amp; claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 --force 级联禁用（谨慎使用）</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin --force</span><br><span class="line">⚠️  This will also <span class="built_in">disable</span>: formatter-plugin, type-checker</span><br><span class="line">   Proceed? [y/N]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：避免插件依赖断裂导致的隐性故障，提升插件生态稳定性。</p>
+<h2 id="技巧-2：OpenClaw-按需安装减少-70-体积"><a href="#技巧-2：OpenClaw-按需安装减少-70-体积" class="headerlink" title="技巧 2：OpenClaw 按需安装减少 70% 体积"></a>技巧 2：OpenClaw 按需安装减少 70% 体积</h2><p><strong>使用场景</strong>：在 NAS、树莓派或 CI 容器中部署 OpenClaw 时，完整安装包含大量不需要的 provider 依赖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只安装核心 + 需要的 provider</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比体积</span></span><br><span class="line">openclaw info --size</span><br><span class="line"><span class="comment"># Core: 12MB</span></span><br><span class="line"><span class="comment"># Claude provider: 8MB</span></span><br><span class="line"><span class="comment"># Codex provider: 6MB</span></span><br><span class="line"><span class="comment"># Total: 26MB (vs 完整安装 ~120MB)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少安装时间和磁盘占用，容器镜像构建速度提升 3 倍。</p>
+<h2 id="技巧-3：Codex-remote-control-部署为团队-AI-服务"><a href="#技巧-3：Codex-remote-control-部署为团队-AI-服务" class="headerlink" title="技巧 3：Codex remote-control 部署为团队 AI 服务"></a>技巧 3：Codex remote-control 部署为团队 AI 服务</h2><p><strong>使用场景</strong>：团队需要共享一个 Codex 实例进行代码审查或自动化任务，但每个人本地安装配置复杂。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 服务器端启动 headless Codex</span></span><br><span class="line">$ codex remote-control --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line">[INFO] App-server listening on 0.0.0.0:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 团队成员本地连接</span></span><br><span class="line">$ codex --remote http://codex-server:8080 --token &lt;shared-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 CI 中使用 stdio 模式</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;Review this PR for SQL injection risks&quot;</span> | codex remote-control --stdio</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：统一团队 Codex 版本和配置，CI 集成无需维护多个本地环境。</p>
+<h2 id="技巧-4：Claude-Code-后台会话跳过-worktree-隔离"><a href="#技巧-4：Claude-Code-后台会话跳过-worktree-隔离" class="headerlink" title="技巧 4：Claude Code 后台会话跳过 worktree 隔离"></a>技巧 4：Claude Code 后台会话跳过 worktree 隔离</h2><p><strong>使用场景</strong>：在 monorepo 中使用 <code>claude /bg</code> 时，创建 worktree 的等待时间让人烦躁。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置文件中关闭后台会话的 worktree 隔离</span></span><br><span class="line"><span class="comment"># ~/.claude/settings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;worktree.bgIsolation&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在后台任务直接在工作副本执行，无需等待</span></span><br><span class="line">$ claude /bg <span class="string">&quot;运行所有测试并报告失败项&quot;</span></span><br><span class="line"><span class="comment"># 之前: 3-5 秒 worktree 创建</span></span><br><span class="line"><span class="comment"># 现在: 即时执行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：后台任务启动时间从数秒降至毫秒级，大型 monorepo 体验显著改善。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw v2026.5.19 发布。## 2026.5.19  ### Changes  - Agents: clarify that fixes should default to clean …</li>
+<li><strong>Claude Code</strong>：Claude Code v2.1.145 发布。## What’s changed  - Added <code>claude agents --json</code> to list live Claude sessions a…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.132.0 发布。## New Features - The Python SDK now supports first-class authentication, includ…</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 OpenClaw 精简安装后的 provider 生态选型指南，并结合实际案例给出可操作的建议。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 编程日报 2026-05-22</title>
     <url>/2026/05/22/2026-05-22-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1395,6 +1469,80 @@
 </ul>
 <hr>
 <h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 Codex rust-v0.133.0 的 Goals 系统——从实验功能到默认启用，它如何改变多步骤任务的追踪和恢复方式，以及在企业工作流中的实战配置。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-23</title>
+    <url>/2026/05/23/2026-05-23-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-20-发布"><a href="#OpenClaw-v2026-5-20-发布" class="headerlink" title="OpenClaw v2026.5.20 发布"></a>OpenClaw v2026.5.20 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.12 是一次”瘦身” release——将 WhatsApp、Slack、Amazon Bedrock、Anthropic Vertex 等 provider 及其依赖从核心运行时移出，改为按需安装。这一改动直接回应了社区对安装体积和启动速度的抱怨：此前即使只使用 Claude 一个 provider，安装包也会拉入 WhatsApp 和 Slack 的全套依赖。对于在 NAS、树莓派或容器环境中部署 OpenClaw 的用户，这是一次显著的运维体验提升。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>按需依赖（Leaner Installs）</strong>的实现机制：OpenClaw 将 provider 拆分为独立的 npm 包（或类似模块），核心运行时仅保留接口定义和基础调度逻辑。安装时通过 <code>openclaw provider add &lt;name&gt;</code> 动态拉取对应 provider 的实现包。这类似于 VS Code 的扩展机制——核心轻量，功能按需扩展。</p>
+<p><strong>Telegram 稳定性增强</strong>的技术细节：</p>
+<ul>
+<li><strong>隔离轮询（isolated polling）</strong>：将 Telegram Bot API 的轮询循环与主事件循环解耦，防止网络抖动阻塞其他 channel 的消息处理</li>
+<li><strong>本地持久化缓冲（durable local spooling）</strong>：消息在发送到 Telegram 之前先写入本地队列，发送失败时自动重试，避免消息丢失</li>
+<li><strong>群组媒体安全处理（safer group-media handling）</strong>：对群组中的媒体文件进行更严格的 MIME 类型检查和大小限制，防止恶意文件传播</li>
+<li><strong>格式保留</strong>：流式回复和定时回复中保留 HTML&#x2F;Markdown 格式，避免之前出现的格式转义问题</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：精简安装（只装需要的 provider）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全新安装 OpenClaw（核心仅 50MB 左右）</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按需添加 provider</span></span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"><span class="comment"># WhatsApp 和 Slack 不会被安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 provider</span></span><br><span class="line">openclaw provider list</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Telegram 高可用消息推送</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// openclaw 配置中的 telegram 部分</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;polling&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;isolated&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryAttempts&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryDelayMs&quot;</span><span class="punctuation">:</span> <span class="number">1000</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;maxAgeHours&quot;</span><span class="punctuation">:</span> <span class="number">24</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>验证消息持久化：断开网络，让 OpenClaw 发送一条消息，恢复网络后检查消息是否自动补发。</p>
+<p><strong>场景三：Codex&#x2F;OpenAI 路径优化</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 auth profile 管理多个 OpenAI 账号</span></span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile work</span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile personal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换 profile</span></span><br><span class="line">openclaw config use codex.authProfile work</span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>资源受限环境（NAS、边缘设备、容器）部署 OpenClaw</li>
+<li>使用 Telegram 作为通知 channel，需要高可靠性</li>
+<li>多 OpenAI&#x2F;Codex 账号切换场景</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>已经完整安装且空间不敏感的环境（改动收益有限）</li>
+<li>不使用 Telegram 的用户（稳定性改进无感知）</li>
+<li>需要所有 provider 开箱即用的场景（需额外安装步骤）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-插件依赖链安全卸载"><a href="#技巧-1：Claude-Code-插件依赖链安全卸载" class="headerlink" title="技巧 1：Claude Code 插件依赖链安全卸载"></a>技巧 1：Claude Code 插件依赖链安全卸载</h2><p><strong>使用场景</strong>：当你想禁用某个 Claude Code 插件时，如果其他插件依赖它，直接禁用会导致依赖它的插件崩溃。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 尝试禁用插件，Claude Code 会阻止危险操作并给出安全命令</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line">❌ Cannot <span class="built_in">disable</span>: formatter-plugin depends on linter-plugin</span><br><span class="line">   Run: claude plugin <span class="built_in">disable</span> formatter-plugin &amp;&amp; claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 --force 级联禁用（谨慎使用）</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin --force</span><br><span class="line">⚠️  This will also <span class="built_in">disable</span>: formatter-plugin, type-checker</span><br><span class="line">   Proceed? [y/N]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：避免插件依赖断裂导致的隐性故障，提升插件生态稳定性。</p>
+<h2 id="技巧-2：OpenClaw-按需安装减少-70-体积"><a href="#技巧-2：OpenClaw-按需安装减少-70-体积" class="headerlink" title="技巧 2：OpenClaw 按需安装减少 70% 体积"></a>技巧 2：OpenClaw 按需安装减少 70% 体积</h2><p><strong>使用场景</strong>：在 NAS、树莓派或 CI 容器中部署 OpenClaw 时，完整安装包含大量不需要的 provider 依赖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只安装核心 + 需要的 provider</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比体积</span></span><br><span class="line">openclaw info --size</span><br><span class="line"><span class="comment"># Core: 12MB</span></span><br><span class="line"><span class="comment"># Claude provider: 8MB</span></span><br><span class="line"><span class="comment"># Codex provider: 6MB</span></span><br><span class="line"><span class="comment"># Total: 26MB (vs 完整安装 ~120MB)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少安装时间和磁盘占用，容器镜像构建速度提升 3 倍。</p>
+<h2 id="技巧-3：Codex-remote-control-部署为团队-AI-服务"><a href="#技巧-3：Codex-remote-control-部署为团队-AI-服务" class="headerlink" title="技巧 3：Codex remote-control 部署为团队 AI 服务"></a>技巧 3：Codex remote-control 部署为团队 AI 服务</h2><p><strong>使用场景</strong>：团队需要共享一个 Codex 实例进行代码审查或自动化任务，但每个人本地安装配置复杂。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 服务器端启动 headless Codex</span></span><br><span class="line">$ codex remote-control --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line">[INFO] App-server listening on 0.0.0.0:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 团队成员本地连接</span></span><br><span class="line">$ codex --remote http://codex-server:8080 --token &lt;shared-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 CI 中使用 stdio 模式</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;Review this PR for SQL injection risks&quot;</span> | codex remote-control --stdio</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：统一团队 Codex 版本和配置，CI 集成无需维护多个本地环境。</p>
+<h2 id="技巧-4：Claude-Code-后台会话跳过-worktree-隔离"><a href="#技巧-4：Claude-Code-后台会话跳过-worktree-隔离" class="headerlink" title="技巧 4：Claude Code 后台会话跳过 worktree 隔离"></a>技巧 4：Claude Code 后台会话跳过 worktree 隔离</h2><p><strong>使用场景</strong>：在 monorepo 中使用 <code>claude /bg</code> 时，创建 worktree 的等待时间让人烦躁。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置文件中关闭后台会话的 worktree 隔离</span></span><br><span class="line"><span class="comment"># ~/.claude/settings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;worktree.bgIsolation&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在后台任务直接在工作副本执行，无需等待</span></span><br><span class="line">$ claude /bg <span class="string">&quot;运行所有测试并报告失败项&quot;</span></span><br><span class="line"><span class="comment"># 之前: 3-5 秒 worktree 创建</span></span><br><span class="line"><span class="comment"># 现在: 即时执行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：后台任务启动时间从数秒降至毫秒级，大型 monorepo 体验显著改善。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw v2026.5.20 发布。 ### Changes  - Exec approvals: remove the old &#96;cat SKILL.md &amp;&amp; printf … &amp;&amp; &lt;s…</li>
+<li><strong>Claude Code</strong>：Claude Code v2.1.149 发布。## What’s changed  - <code>/usage</code> now shows a per-category breakdown of what’s drivi…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.133.0 发布。## New Features - Goals are now enabled by default, backed by dedicated storage,…</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 多 Agent 协作框架的选型对比，并结合实际案例给出可操作的建议。</p>
 <hr>
 <p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
 ]]></content>

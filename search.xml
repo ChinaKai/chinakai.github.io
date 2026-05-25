@@ -633,6 +633,58 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-05</title>
+    <url>/2026/05/05/2026-05-05-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 编程日报 2026-05-04</title>
     <url>/2026/05/04/2026-05-04-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -715,58 +767,6 @@
         <tag>OpenClaw</tag>
         <tag>Claude</tag>
         <tag>Codex</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI 编程日报 2026-05-05</title>
-    <url>/2026/05/05/2026-05-05-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
-<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
-<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
-<p>“””</p>
-<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
-**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
-
----
-
-# 今日动态
-
-- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
-- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
-
----
-
-# 明日预告
-
-明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
-
----
-
-*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
       </tags>
   </entry>
   <entry>
@@ -1656,6 +1656,80 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-25</title>
+    <url>/2026/05/25/2026-05-25-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-22-发布"><a href="#OpenClaw-v2026-5-22-发布" class="headerlink" title="OpenClaw v2026.5.22 发布"></a>OpenClaw v2026.5.22 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.12 是一次”瘦身” release——将 WhatsApp、Slack、Amazon Bedrock、Anthropic Vertex 等 provider 及其依赖从核心运行时移出，改为按需安装。这一改动直接回应了社区对安装体积和启动速度的抱怨：此前即使只使用 Claude 一个 provider，安装包也会拉入 WhatsApp 和 Slack 的全套依赖。对于在 NAS、树莓派或容器环境中部署 OpenClaw 的用户，这是一次显著的运维体验提升。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>按需依赖（Leaner Installs）</strong>的实现机制：OpenClaw 将 provider 拆分为独立的 npm 包（或类似模块），核心运行时仅保留接口定义和基础调度逻辑。安装时通过 <code>openclaw provider add &lt;name&gt;</code> 动态拉取对应 provider 的实现包。这类似于 VS Code 的扩展机制——核心轻量，功能按需扩展。</p>
+<p><strong>Telegram 稳定性增强</strong>的技术细节：</p>
+<ul>
+<li><strong>隔离轮询（isolated polling）</strong>：将 Telegram Bot API 的轮询循环与主事件循环解耦，防止网络抖动阻塞其他 channel 的消息处理</li>
+<li><strong>本地持久化缓冲（durable local spooling）</strong>：消息在发送到 Telegram 之前先写入本地队列，发送失败时自动重试，避免消息丢失</li>
+<li><strong>群组媒体安全处理（safer group-media handling）</strong>：对群组中的媒体文件进行更严格的 MIME 类型检查和大小限制，防止恶意文件传播</li>
+<li><strong>格式保留</strong>：流式回复和定时回复中保留 HTML&#x2F;Markdown 格式，避免之前出现的格式转义问题</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：精简安装（只装需要的 provider）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全新安装 OpenClaw（核心仅 50MB 左右）</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按需添加 provider</span></span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"><span class="comment"># WhatsApp 和 Slack 不会被安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 provider</span></span><br><span class="line">openclaw provider list</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Telegram 高可用消息推送</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// openclaw 配置中的 telegram 部分</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;polling&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;isolated&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryAttempts&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryDelayMs&quot;</span><span class="punctuation">:</span> <span class="number">1000</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;maxAgeHours&quot;</span><span class="punctuation">:</span> <span class="number">24</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>验证消息持久化：断开网络，让 OpenClaw 发送一条消息，恢复网络后检查消息是否自动补发。</p>
+<p><strong>场景三：Codex&#x2F;OpenAI 路径优化</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 auth profile 管理多个 OpenAI 账号</span></span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile work</span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile personal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换 profile</span></span><br><span class="line">openclaw config use codex.authProfile work</span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>资源受限环境（NAS、边缘设备、容器）部署 OpenClaw</li>
+<li>使用 Telegram 作为通知 channel，需要高可靠性</li>
+<li>多 OpenAI&#x2F;Codex 账号切换场景</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>已经完整安装且空间不敏感的环境（改动收益有限）</li>
+<li>不使用 Telegram 的用户（稳定性改进无感知）</li>
+<li>需要所有 provider 开箱即用的场景（需额外安装步骤）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-插件依赖链安全卸载"><a href="#技巧-1：Claude-Code-插件依赖链安全卸载" class="headerlink" title="技巧 1：Claude Code 插件依赖链安全卸载"></a>技巧 1：Claude Code 插件依赖链安全卸载</h2><p><strong>使用场景</strong>：当你想禁用某个 Claude Code 插件时，如果其他插件依赖它，直接禁用会导致依赖它的插件崩溃。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 尝试禁用插件，Claude Code 会阻止危险操作并给出安全命令</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line">❌ Cannot <span class="built_in">disable</span>: formatter-plugin depends on linter-plugin</span><br><span class="line">   Run: claude plugin <span class="built_in">disable</span> formatter-plugin &amp;&amp; claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 --force 级联禁用（谨慎使用）</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin --force</span><br><span class="line">⚠️  This will also <span class="built_in">disable</span>: formatter-plugin, type-checker</span><br><span class="line">   Proceed? [y/N]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：避免插件依赖断裂导致的隐性故障，提升插件生态稳定性。</p>
+<h2 id="技巧-2：OpenClaw-按需安装减少-70-体积"><a href="#技巧-2：OpenClaw-按需安装减少-70-体积" class="headerlink" title="技巧 2：OpenClaw 按需安装减少 70% 体积"></a>技巧 2：OpenClaw 按需安装减少 70% 体积</h2><p><strong>使用场景</strong>：在 NAS、树莓派或 CI 容器中部署 OpenClaw 时，完整安装包含大量不需要的 provider 依赖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只安装核心 + 需要的 provider</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比体积</span></span><br><span class="line">openclaw info --size</span><br><span class="line"><span class="comment"># Core: 12MB</span></span><br><span class="line"><span class="comment"># Claude provider: 8MB</span></span><br><span class="line"><span class="comment"># Codex provider: 6MB</span></span><br><span class="line"><span class="comment"># Total: 26MB (vs 完整安装 ~120MB)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少安装时间和磁盘占用，容器镜像构建速度提升 3 倍。</p>
+<h2 id="技巧-3：Codex-remote-control-部署为团队-AI-服务"><a href="#技巧-3：Codex-remote-control-部署为团队-AI-服务" class="headerlink" title="技巧 3：Codex remote-control 部署为团队 AI 服务"></a>技巧 3：Codex remote-control 部署为团队 AI 服务</h2><p><strong>使用场景</strong>：团队需要共享一个 Codex 实例进行代码审查或自动化任务，但每个人本地安装配置复杂。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 服务器端启动 headless Codex</span></span><br><span class="line">$ codex remote-control --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line">[INFO] App-server listening on 0.0.0.0:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 团队成员本地连接</span></span><br><span class="line">$ codex --remote http://codex-server:8080 --token &lt;shared-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 CI 中使用 stdio 模式</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;Review this PR for SQL injection risks&quot;</span> | codex remote-control --stdio</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：统一团队 Codex 版本和配置，CI 集成无需维护多个本地环境。</p>
+<h2 id="技巧-4：Claude-Code-后台会话跳过-worktree-隔离"><a href="#技巧-4：Claude-Code-后台会话跳过-worktree-隔离" class="headerlink" title="技巧 4：Claude Code 后台会话跳过 worktree 隔离"></a>技巧 4：Claude Code 后台会话跳过 worktree 隔离</h2><p><strong>使用场景</strong>：在 monorepo 中使用 <code>claude /bg</code> 时，创建 worktree 的等待时间让人烦躁。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置文件中关闭后台会话的 worktree 隔离</span></span><br><span class="line"><span class="comment"># ~/.claude/settings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;worktree.bgIsolation&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在后台任务直接在工作副本执行，无需等待</span></span><br><span class="line">$ claude /bg <span class="string">&quot;运行所有测试并报告失败项&quot;</span></span><br><span class="line"><span class="comment"># 之前: 3-5 秒 worktree 创建</span></span><br><span class="line"><span class="comment"># 现在: 即时执行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：后台任务启动时间从数秒降至毫秒级，大型 monorepo 体验显著改善。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw v2026.5.22 发布。## 2026.5.22  ### Changes  - Gateway&#x2F;perf: reuse process-stable channel catalog …</li>
+<li><strong>Claude Code</strong>：Claude Code v2.1.150 发布。## What’s changed  - Internal infrastructure improvements (no user-facing change…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.133.0 发布。## New Features - Goals are now enabled by default, backed by dedicated storage,…</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 AI 编程工具的安全边界问题，并结合实际案例给出可操作的建议。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI编程助手全景图：OpenClaw、Claude Code、Codex、Copilot深度对比</title>
     <url>/2026/04/23/AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E5%85%A8%E6%99%AF%E5%9B%BE%EF%BC%9AOpenClaw%E3%80%81Claude-Code%E3%80%81Codex%E3%80%81Copilot%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -2205,45 +2279,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu交叉编译Bluez</title>
     <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
@@ -2471,6 +2506,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>探究jffs2垃圾回收机制</title>
     <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
@@ -2585,40 +2659,6 @@
       <tags>
         <tag>blog</tag>
         <tag>butterfly</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cjson使用</title>
-    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
-<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
-<li>json是一个键值对集合</li>
-<li>以”{“开始，以”}”结束，允许嵌套使用</li>
-<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
-<li>键值对之间用”,”分隔</li>
-</ul>
-<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
-<li>可以是一个新的json对象</li>
-<li>数组：使用”[“和”]”表示</li>
-<li>数字：直接表示，可以是整数，也可以是浮点数</li>
-<li>字符串：使用引号”string”表示</li>
-<li>字面值：false、null、true中的一个(必须是小写)</li>
-</ul>
-<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
-<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
-<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
-<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
-<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>cjson</tag>
       </tags>
   </entry>
   <entry>
@@ -3577,6 +3617,40 @@
       </tags>
   </entry>
   <entry>
+    <title>cjson使用</title>
+    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
+<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
+<li>json是一个键值对集合</li>
+<li>以”{“开始，以”}”结束，允许嵌套使用</li>
+<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
+<li>键值对之间用”,”分隔</li>
+</ul>
+<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
+<li>可以是一个新的json对象</li>
+<li>数组：使用”[“和”]”表示</li>
+<li>数字：直接表示，可以是整数，也可以是浮点数</li>
+<li>字符串：使用引号”string”表示</li>
+<li>字面值：false、null、true中的一个(必须是小写)</li>
+</ul>
+<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
+<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
+<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
+<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>cjson</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>claude-code使用说明</title>
     <url>/2025/11/28/tools/claude-code%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>以下操作均在Ubuntu 22.04</em></p>
@@ -3947,206 +4021,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker命令</title>
-    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>docker version</code></td>
-<td>显示 Docker 版本信息</td>
-</tr>
-<tr>
-<td><code>docker info</code></td>
-<td>显示 Docker 系统信息</td>
-</tr>
-<tr>
-<td><code>docker 命令 --help</code></td>
-<td>查看 Docker 命令帮助</td>
-</tr>
-</tbody></table>
-<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
-<p>解释：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>REPOSITORY</code></td>
-<td>镜像的仓库源</td>
-</tr>
-<tr>
-<td><code>TAG</code></td>
-<td>镜像的标签</td>
-</tr>
-<tr>
-<td><code>IMAGE ID</code></td>
-<td>镜像的 ID</td>
-</tr>
-<tr>
-<td><code>CREATED</code></td>
-<td>镜像的创建时间</td>
-</tr>
-<tr>
-<td><code>SIZE</code></td>
-<td>镜像的大小</td>
-</tr>
-<tr>
-<td>可选项：</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><code>-a, --all</code>：列出所有镜像</li>
-<li><code>-q, --quiet</code>：只显示镜像 ID</li>
-</ul>
-<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
-<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
-<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>--name=&quot;Name&quot;</code></td>
-<td>容器名字</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>后台方式运行</td>
-</tr>
-<tr>
-<td>-it</td>
-<td>交互方式运行</td>
-</tr>
-<tr>
-<td>-p</td>
-<td>指定容器的端口</td>
-</tr>
-<tr>
-<td>示例:</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol>
-<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
-<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
-<li>exit：停止并退出容器</li>
-<li>Ctrl + P + Q：退出但不停止容器</li>
-</ul>
-<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
-<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
-<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
-<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
-<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
-<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
-<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 –volumes-from 实现多个容器数据同步</li>
-<li>删除父容器不会删除共享数据</li>
-</ul>
-<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
-<ol>
-<li>新建 Dockerfile 文件</li>
-<li><code>docker build</code> 构建镜像</li>
-<li><code>docker run</code> 运行镜像</li>
-<li><code>docker push</code> 发布镜像</li>
-</ol>
-<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FROM</td>
-<td>基础镜像</td>
-</tr>
-<tr>
-<td>MAINTAINER</td>
-<td>镜像作者（姓名+邮箱）</td>
-</tr>
-<tr>
-<td>RUN</td>
-<td>镜像构建时运行的命令</td>
-</tr>
-<tr>
-<td>ADD</td>
-<td>添加内容（会自动解压）</td>
-</tr>
-<tr>
-<td>WORKDIR</td>
-<td>镜像的工作目录</td>
-</tr>
-<tr>
-<td>VOLUME</td>
-<td>挂载的目录</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>暴露的端口</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>容器启动时运行的命令（只有最后一个生效）</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>容器启动时运行的命令（可追加）</td>
-</tr>
-<tr>
-<td>ONBUILD</td>
-<td>当被继承时运行的指令</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>设置环境变量</td>
-</tr>
-</tbody></table>
-<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
-<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
-<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
-<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
-<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
-<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
-<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
-<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iperf3网络性能测试工具指南</title>
     <url>/2025/09/29/tools/iperf3%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="工具简介"><a href="#工具简介" class="headerlink" title="工具简介"></a>工具简介</h2><p><code>iperf3</code> 是一款<strong>专业的开源网络性能测试工具</strong>，用于主动测量IP网络所能达到的<strong>最大带宽</strong>。它支持调整时序、缓冲区和协议（TCP、UDP、SCTP）等多种参数，并能报告带宽、延迟抖动、丢包率等关键网络性能指标。</p>
@@ -4363,6 +4237,206 @@
       </categories>
       <tags>
         <tag>iperf3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker命令</title>
+    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docker version</code></td>
+<td>显示 Docker 版本信息</td>
+</tr>
+<tr>
+<td><code>docker info</code></td>
+<td>显示 Docker 系统信息</td>
+</tr>
+<tr>
+<td><code>docker 命令 --help</code></td>
+<td>查看 Docker 命令帮助</td>
+</tr>
+</tbody></table>
+<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>REPOSITORY</code></td>
+<td>镜像的仓库源</td>
+</tr>
+<tr>
+<td><code>TAG</code></td>
+<td>镜像的标签</td>
+</tr>
+<tr>
+<td><code>IMAGE ID</code></td>
+<td>镜像的 ID</td>
+</tr>
+<tr>
+<td><code>CREATED</code></td>
+<td>镜像的创建时间</td>
+</tr>
+<tr>
+<td><code>SIZE</code></td>
+<td>镜像的大小</td>
+</tr>
+<tr>
+<td>可选项：</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>-a, --all</code>：列出所有镜像</li>
+<li><code>-q, --quiet</code>：只显示镜像 ID</li>
+</ul>
+<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
+<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--name=&quot;Name&quot;</code></td>
+<td>容器名字</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>后台方式运行</td>
+</tr>
+<tr>
+<td>-it</td>
+<td>交互方式运行</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定容器的端口</td>
+</tr>
+<tr>
+<td>示例:</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
+<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
+<li>exit：停止并退出容器</li>
+<li>Ctrl + P + Q：退出但不停止容器</li>
+</ul>
+<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
+<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
+<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
+<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
+<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 –volumes-from 实现多个容器数据同步</li>
+<li>删除父容器不会删除共享数据</li>
+</ul>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
+<ol>
+<li>新建 Dockerfile 文件</li>
+<li><code>docker build</code> 构建镜像</li>
+<li><code>docker run</code> 运行镜像</li>
+<li><code>docker push</code> 发布镜像</li>
+</ol>
+<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>基础镜像</td>
+</tr>
+<tr>
+<td>MAINTAINER</td>
+<td>镜像作者（姓名+邮箱）</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>镜像构建时运行的命令</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加内容（会自动解压）</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>镜像的工作目录</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>挂载的目录</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>暴露的端口</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>容器启动时运行的命令（只有最后一个生效）</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>容器启动时运行的命令（可追加）</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>当被继承时运行的指令</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量</td>
+</tr>
+</tbody></table>
+<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
+<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
+<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
+<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
+<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
+<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
+<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
+</ol>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>

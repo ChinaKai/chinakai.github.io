@@ -633,58 +633,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-05-05</title>
-    <url>/2026/05/05/2026-05-05-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
-<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
-<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
-<p>“””</p>
-<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
-**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
-
----
-
-# 今日动态
-
-- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
-- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
-
----
-
-# 明日预告
-
-明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
-
----
-
-*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-05-04</title>
     <url>/2026/05/04/2026-05-04-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -767,6 +715,58 @@
         <tag>OpenClaw</tag>
         <tag>Claude</tag>
         <tag>Codex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-05</title>
+    <url>/2026/05/05/2026-05-05-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
       </tags>
   </entry>
   <entry>
@@ -1730,6 +1730,97 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-26</title>
+    <url>/2026/05/26/2026-05-26-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-2026-5-22：Gateway-性能重构与会议笔记新形态"><a href="#OpenClaw-2026-5-22：Gateway-性能重构与会议笔记新形态" class="headerlink" title="OpenClaw 2026.5.22：Gateway 性能重构与会议笔记新形态"></a>OpenClaw 2026.5.22：Gateway 性能重构与会议笔记新形态</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.22 是一次以”性能”为核心的 release，但它不是简单的”快了 20%”——它触及了 Gateway 启动路径中一系列<strong>结构性低效问题</strong>：重复读取 channel catalog、反复 stat 插件文件、阻塞式初始化未使用的 handler tree。对于在 NAS、边缘设备或 CI 容器中运行 OpenClaw 的用户，这些改动意味着从”等 30 秒启动”到”秒级就绪”的质变。同时，”Meeting Notes”作为首个 source-only 外部插件的形态落地，标志着 OpenClaw 从”内置一切”向”核心轻量 + 插件扩展”的架构转型进入实操阶段。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>Gateway 性能四连击的实现细节：</strong></p>
+<ol>
+<li><p><strong>Process-stable channel catalog 复用</strong>：此前 Gateway 每次处理请求都会重新读取并解析 channel catalog 文件。新实现将 catalog 读取结果缓存在进程级变量中，通过文件 mtime 检测变更，避免重复的 JSON 解析和内存分配。</p>
+</li>
+<li><p><strong>Immutable plugin metadata 快照</strong>：插件元数据（manifest、registry 信息）在启动时构建一次只读快照，后续所有 handler（startup、config、model、channel、setup、secret）共享该快照。这意味着热路径上不再触发 <code>fs.stat()</code> 和 manifest 重新加载。</p>
+</li>
+<li><p><strong>Lazy-load 启动闲置组件</strong>：ACPX 运行时、未启用的 plugin handler tree 等组件改为按需初始化。Gateway 的 health&#x2F;ready 探针不再等待这些组件完成，启动时间不再被未使用的功能拖累。</p>
+</li>
+<li><p><strong>SDK alias map 缓存 + PATH 探测优化</strong>：插件 SDK 的 public-surface alias 映射缓存后避免重复遍历文件系统；同时跳过 macOS 上 Linuxbrew PATH 的无效探测（这些目录在 macOS 上几乎不存在，但此前每次启动都会尝试 stat）。</p>
+</li>
+</ol>
+<p><strong>Meeting Notes 的架构设计：</strong></p>
+<ul>
+<li><strong>Source-only 插件</strong>：不打包进核心 npm 包，通过 SDK source-provider contract 独立分发</li>
+<li><strong>Auto-start capture</strong>：配置后自动开始捕获会议音频</li>
+<li><strong>Discord voice 作为首个 live source</strong>：实时语音流直接接入转录管道</li>
+<li><strong>CLI 只读访问</strong>：<code>openclaw meeting-notes</code> 提供查询和导入，不开放修改权限</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：验证 Gateway 启动性能提升</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 升级 OpenClaw</span></span><br><span class="line">npm install -g openclaw@2026.5.22</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试启动时间（对比前后）</span></span><br><span class="line">time openclaw gateway status</span><br><span class="line"><span class="comment"># 旧版本: ~15-30s（取决于插件数量）</span></span><br><span class="line"><span class="comment"># 新版本: ~2-5s</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Gateway 启动日志中的性能标记</span></span><br><span class="line">openclaw logs gateway | grep <span class="string">&quot;lazy-load\|cache hit\|snapshot&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Discord 语音会议笔记自动捕获</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.openclaw/config.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;meetingNotes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;autoStart&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sources&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;discord-voice&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;discordVoice&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;guildId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;your-guild-id&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;channelId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;your-channel-id&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 手动导入已有转录文件</span></span><br><span class="line">openclaw meeting-notes import /path/to/transcript.vtt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询最近会议笔记</span></span><br><span class="line">openclaw meeting-notes list --<span class="built_in">limit</span> 10</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景三：Signal &#x2F; Telegram 新配置项</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Signal 支持自定义 configPath</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;signal&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/custom/path/signal-cli-config&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Telegram 支持通配符 topic 默认值</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;topics&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;alerts&quot;</span><span class="punctuation">:</span> <span class="string">&quot;specific-topic-id&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>Gateway 启动缓慢成为瓶颈的部署环境（NAS、容器、低功耗设备）</li>
+<li>需要自动记录和检索 Discord 语音会议内容的团队</li>
+<li>使用 Signal 或 Telegram 作为通知渠道，需要灵活配置路径或 topic 映射</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>Gateway 启动已经很快（&lt;3s）的环境（优化收益边际递减）</li>
+<li>不使用 Discord 语音或会议笔记功能的用户（Meeting Notes 改动无感知）</li>
+<li>需要实时编辑会议笔记的场景（当前 CLI 仅只读，需等待后续更新）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：OpenClaw-Gateway-启动性能基准测试"><a href="#技巧-1：OpenClaw-Gateway-启动性能基准测试" class="headerlink" title="技巧 1：OpenClaw Gateway 启动性能基准测试"></a>技巧 1：OpenClaw Gateway 启动性能基准测试</h2><p><strong>使用场景</strong>：升级后想量化启动性能提升，或排查某个插件拖慢启动。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 time 命令多次采样</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..5&#125;; <span class="keyword">do</span></span><br><span class="line">  /usr/bin/time -f <span class="string">&quot;%e&quot;</span> openclaw gateway status &gt; /dev/null 2&gt;&gt; gateway-benchmark.log</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分析结果</span></span><br><span class="line">awk <span class="string">&#x27;&#123;sum+=$1; count++&#125; END &#123;print &quot;平均启动时间:&quot;, sum/count &quot;s&quot;&#125;&#x27;</span> gateway-benchmark.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果仍然慢，检查是哪个插件在阻塞</span></span><br><span class="line">OPENCLAW_DEBUG=startup openclaw gateway status 2&gt;&amp;1 | grep <span class="string">&quot;init\|load\|register&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：获得可量化的启动时间数据，定位慢启动的根因。</p>
+<h2 id="技巧-2：Codex-Goals-跨会话恢复复杂任务"><a href="#技巧-2：Codex-Goals-跨会话恢复复杂任务" class="headerlink" title="技巧 2：Codex Goals 跨会话恢复复杂任务"></a>技巧 2：Codex Goals 跨会话恢复复杂任务</h2><p><strong>使用场景</strong>：需要分多次会话完成一个大型重构或分析任务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动一个 Goal（现在默认启用）</span></span><br><span class="line">codex <span class="string">&quot;将这个项目从 CommonJS 迁移到 ESM，先分析依赖关系&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 会话中 Codex 自动跟踪进度：</span></span><br><span class="line"><span class="comment"># [Goal] ESM 迁移</span></span><br><span class="line"><span class="comment">#   ├─ [✓] 分析依赖关系</span></span><br><span class="line"><span class="comment">#   ├─ [⏳] 重写 package.json</span></span><br><span class="line"><span class="comment">#   └─ [⏳] 更新所有 import 语句</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出后，下次用 --resume 继续</span></span><br><span class="line">codex --resume <span class="string">&quot;继续 ESM 迁移&quot;</span></span><br><span class="line"><span class="comment"># Codex 读取 dedicated storage 中的进度，从上次断点继续</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：复杂任务不再因会话中断而丢失上下文，跨天工作无缝衔接。</p>
+<h2 id="技巧-3：Codex-remote-control-守护进程式部署"><a href="#技巧-3：Codex-remote-control-守护进程式部署" class="headerlink" title="技巧 3：Codex remote-control 守护进程式部署"></a>技巧 3：Codex remote-control 守护进程式部署</h2><p><strong>使用场景</strong>：在服务器上长期运行 Codex，供团队或 CI 连接使用。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动守护进程</span></span><br><span class="line">codex remote-control start --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line"><span class="comment"># 输出: [INFO] Daemon started on 0.0.0.0:8080, PID 12345</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查状态</span></span><br><span class="line">codex remote-control status</span><br><span class="line"><span class="comment"># 输出: running, PID 12345, uptime 2h 15m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止守护进程</span></span><br><span class="line">codex remote-control stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接</span></span><br><span class="line">codex --remote http://codex-server:8080 --token &lt;token&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：Codex 从交互式工具转变为可运维的服务节点，支持 systemd 托管和监控。</p>
+<h2 id="技巧-4：Codex-Permission-Profile-继承实现企业级策略"><a href="#技巧-4：Codex-Permission-Profile-继承实现企业级策略" class="headerlink" title="技巧 4：Codex Permission Profile 继承实现企业级策略"></a>技巧 4：Codex Permission Profile 继承实现企业级策略</h2><p><strong>使用场景</strong>：企业环境需要分层权限管理——公司级基线 + 团队级覆盖 + 项目级特例。</p>
+<figure class="highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ~/.codex/profiles/enterprise-base.toml（公司基线）</span></span><br><span class="line"><span class="section">[permissions]</span></span><br><span class="line"><span class="attr">file_write</span> = <span class="string">&quot;ask&quot;</span></span><br><span class="line"><span class="attr">network</span> = <span class="string">&quot;deny&quot;</span></span><br><span class="line"><span class="attr">shell</span> = <span class="string">&quot;ask&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.codex/profiles/team-backend.toml（团队覆盖）</span></span><br><span class="line"><span class="attr">parent</span> = <span class="string">&quot;enterprise-base&quot;</span></span><br><span class="line"><span class="section">[permissions]</span></span><br><span class="line"><span class="attr">network</span> = <span class="string">&quot;allow&quot;</span>  <span class="comment"># 后端团队需要网络访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.codex/profiles/project-legacy.toml（项目特例）</span></span><br><span class="line"><span class="attr">parent</span> = <span class="string">&quot;team-backend&quot;</span></span><br><span class="line"><span class="section">[permissions]</span></span><br><span class="line"><span class="attr">shell</span> = <span class="string">&quot;allow&quot;</span>  <span class="comment"># 遗留项目需要 shell 脚本</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出所有可用 profile（支持继承链可视化）</span></span><br><span class="line">codex permission-profile list --tree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行时切换</span></span><br><span class="line">codex --permission-profile team-backend</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：权限策略可继承、可审计、可动态刷新，满足企业合规要求。</p>
+<h2 id="技巧-5：Codex-插件市场远程集合浏览"><a href="#技巧-5：Codex-插件市场远程集合浏览" class="headerlink" title="技巧 5：Codex 插件市场远程集合浏览"></a>技巧 5：Codex 插件市场远程集合浏览</h2><p><strong>使用场景</strong>：想发现社区新插件，但不想逐个仓库搜索。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看已安装插件及其版本</span></span><br><span class="line">codex plugin list --installed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浏览市场远程集合</span></span><br><span class="line">codex plugin list --marketplace --remote-collections</span><br><span class="line"><span class="comment"># 输出包含 marketplace root URL、可用集合、版本兼容性</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装远程集合中的插件</span></span><br><span class="line">codex plugin install @codex-community/rust-analyzer</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：插件发现从”手动搜索 GitHub”升级为”市场内一站式浏览”。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：v2026.5.22 发布，聚焦 Gateway 性能重构（启动加速、元数据缓存、懒加载）和 Meeting Notes 外部插件形态落地，Discord voice 成为首个实时转录源。文档同步更新 Signal configPath、Telegram topic 默认值等配置指南。</li>
+<li><strong>Claude Code</strong>：v2.1.150 为内部基础设施改进，无用户可见变更。近期连续版本（v2.1.143→v2.1.150）聚焦插件依赖治理、worktree 隔离灵活性、PowerShell 执行策略等基础设施打磨。</li>
+<li><strong>Codex</strong>：rust-v0.133.0 发布，Goals 系统默认启用并支持 dedicated storage 持久化与跨会话进度跟踪；remote-control 升级为守护进程模式（start&#x2F;stop&#x2F;status）；Permission Profile 新增继承、requirements.toml 管理和运行时刷新；插件市场支持远程集合浏览。</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 Claude Code 近期连续版本的基础设施改进（插件依赖链、worktree 隔离策略、PowerShell 执行策略），并结合实际案例给出企业团队部署的最佳实践。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI编程助手全景图：OpenClaw、Claude Code、Codex、Copilot深度对比</title>
     <url>/2026/04/23/AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E5%85%A8%E6%99%AF%E5%9B%BE%EF%BC%9AOpenClaw%E3%80%81Claude-Code%E3%80%81Codex%E3%80%81Copilot%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -2279,6 +2370,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux系统时区设置</title>
+    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
+<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
+<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
+<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
+<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
+<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
+<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
+<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
+<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
+<ul>
+<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
+</ul>
+<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
+<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
+<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
+<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
+<li>zoneinfo</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
+</ul>
+<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
+<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux设置</tag>
+        <tag>TZ</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu交叉编译Bluez</title>
     <url>/2024/08/07/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91Bluez/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>  <em>交叉编译均在Ubuntu 22.04环境操作</em></p>
@@ -2503,45 +2633,6 @@
       </categories>
       <tags>
         <tag>mtd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux系统时区设置</title>
-    <url>/2024/03/20/linux/Linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="UTC、GMT、CST、DST以及Unix时间戳"><a href="#UTC、GMT、CST、DST以及Unix时间戳" class="headerlink" title="UTC、GMT、CST、DST以及Unix时间戳"></a>UTC、GMT、CST、DST以及Unix时间戳</h2><h3 id="UTC-时间标准时间"><a href="#UTC-时间标准时间" class="headerlink" title="UTC - 时间标准时间"></a>UTC - 时间标准时间</h3><p>  全球通用的时间标准，是一堆大佬根据原子钟和地球自转计算出来的。</p>
-<h3 id="GMT-格林威治时间"><a href="#GMT-格林威治时间" class="headerlink" title="GMT - 格林威治时间"></a>GMT - 格林威治时间</h3><p>  规定太阳每天经过位于英国伦敦郊区的皇家格林威治天文台的时间为中午12点。</p>
-<p><em>GMT是前世界标准时，UTC是现世界标准时。UTC以原子时计时所以比GMT更精确，但是日常生活中精确到秒的情况下，二者可以视为相同</em></p>
-<h3 id="CST-Central-Standard-Time"><a href="#CST-Central-Standard-Time" class="headerlink" title="CST - Central Standard Time"></a>CST - Central Standard Time</h3><p>  可同时代表4个时区:美国中部、澳大利亚、中国和古巴。</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Central Standard Time (USA) UT-6:00</span><br><span class="line">Central Standard Time (Australia) UT 9:30</span><br><span class="line">China Standard Time UT 8:00</span><br><span class="line">Cuba Standard Time UT-4:00</span><br></pre></td></tr></table></figure>
-<h3 id="DST-夏令时"><a href="#DST-夏令时" class="headerlink" title="DST - 夏令时"></a>DST - 夏令时</h3><p>  为了节约能源，提高日光利用率，夏季太阳升起较早人为将时间调快一个小时，夏令时切换当天一天只有23个小时，同时冬令时切换当天，一天有25个小时</p>
-<h3 id="Unix时间戳"><a href="#Unix时间戳" class="headerlink" title="Unix时间戳"></a>Unix时间戳</h3><p>  UNIX时间戳是UTC时间，从1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</p>
-<h2 id="Linux时间函数"><a href="#Linux时间函数" class="headerlink" title="Linux时间函数"></a>Linux时间函数</h2><h3 id="精确到秒"><a href="#精确到秒" class="headerlink" title="精确到秒"></a>精确到秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> tm_sec;</span><br><span class="line">	<span class="type">int</span> tm_min;</span><br><span class="line">	<span class="type">int</span> tm_hour;</span><br><span class="line">	<span class="type">int</span> tm_mday;</span><br><span class="line">	<span class="type">int</span> tm_mon;</span><br><span class="line">	<span class="type">int</span> tm_year;</span><br><span class="line">	<span class="type">int</span> tm_wday;</span><br><span class="line">	<span class="type">int</span> tm_yday;</span><br><span class="line">	<span class="type">int</span> tm_isdst;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *timer)</span>; <span class="comment">//返回unix时间戳，如果传参不为空，则返回值也报错在参数里，以秒为单位</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">stime</span><span class="params">(<span class="type">time_t</span> *timer)</span>;  <span class="comment">//设置系统时间</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ctime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳转换为字符串，格式： 星期 月 日 小时:分:秒 年</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timer)</span>; <span class="comment">//将unix时间戳填充到tm结构体中</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *str, <span class="type">size_t</span> maxsize, <span class="type">const</span> <span class="type">char</span> *format, <span class="type">const</span> <span class="keyword">struct</span> tm *timeptr)</span>； <span class="comment">//将tm结构体按照指定格式保存到str</span></span><br></pre></td></tr></table></figure>
-<h3 id="精确到毫秒"><a href="#精确到毫秒" class="headerlink" title="精确到毫秒"></a>精确到毫秒</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timeval</span>&#123;</span></span><br><span class="line">    <span class="type">long</span>  tv_sec; <span class="comment">// 秒数</span></span><br><span class="line">    <span class="type">long</span>  tv_usec; <span class="comment">// 微秒数</span></span><br><span class="line">&#125;；</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">timezone</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> tz_minuteswest;<span class="comment">//GMT往西方的小时数，一般配合tzset函数使用</span></span><br><span class="line">    <span class="type">int</span> tz_dsttime;<span class="comment">//夏令时</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="type">int</span> <span class="title function_">gettimeofday</span><span class="params">(<span class="keyword">struct</span> timeval *tv,<span class="keyword">struct</span> timezone *tz)</span>; <span class="comment">//获取时间和时区信息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">settimeofday</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> timeval *tv, <span class="type">const</span> <span class="keyword">struct</span> timezone *tz)</span>;  <span class="comment">//设置时间和时区信息</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">daylight：整数全局变量，用于表示当前时区是否遵循夏令时（Daylight Saving Time）。如果 daylight 的值为非零，则表示当前时区遵循夏令时规则，否则为零。</span></span><br><span class="line"><span class="comment">timezone：长整型全局变量，用于表示当前时区与 Coordinated Universal Time（UTC）之间的偏移量，单位为秒。它表示当前时区相对于 UTC 的时间差，包括夏令时调整。</span></span><br><span class="line"><span class="comment">tzname：字符数组，用于存储时区的标准名称和夏令时名称。通常 tzname[0] 存储标准时区名称，tzname[1] 存储夏令时时区名称。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tzset</span><span class="params">(<span class="type">void</span>)</span>; <span class="comment">//给daylight,timezone和tzname三个全局变量赋值。</span></span><br></pre></td></tr></table></figure>
-<h2 id="设置时区"><a href="#设置时区" class="headerlink" title="设置时区"></a>设置时区</h2><p>  规定地理位置相对于GMT以西为+，以东为-，东八区：GMT-8。</p>
-<h3 id="TZ环境变量取值规则"><a href="#TZ环境变量取值规则" class="headerlink" title="TZ环境变量取值规则"></a>TZ环境变量取值规则</h3><p>参考该文章即可：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zhongmushu/article/details/103988051">TZ取值规则</a><br>当TZ取值为时区名时，对应的zoneinfo文件必须存在，如果zoneinfo不在默认路径，可以使用<code>TZDIR</code>环境变量配置</li>
-</ul>
-<h3 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h3><ol>
-<li>通过设置环境变量<br><code>export TZ=GMT-8</code></li>
-<li>通过文件<code>etc/TZ</code><br><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/TZ</code><br><em>注意：环境变量优先于文件</em></li>
-<li>进程内部设置<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>; <span class="comment">//设置环境变量，仅对当前进程有效 setenv(&quot;TZ&quot;,&quot;GMT-8&quot;,1);</span></span><br></pre></td></tr></table></figure></li>
-<li>zoneinfo</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/J-YANG/p/14822231.html">如何用Buildroot增加zoneinfo并修改时区</a></li>
-</ul>
-<p>Linux系统中的时区信息存储在<code>/etc/localtime</code>文件中，该文件是一个符号链接，指向实际的时区文件。这些时区文件通常位于<code>usr/share/zoneinfo</code>目录下，每个时区对应一个文件，文件名以所在地区的缩写命名，如<code>Asia/Shanghai</code>表示美国纽约时区。<br><code>zoneinfo</code>是linx系统中用于管理时区信息的数据库.它包含了世界上各个时区的详细信息，包括时区名称、夏令时规则等。当系统启动时，它会读取&#x2F;etc&#x2F;localtime文件来获取当前系统的时区设置，然后根据这个设置去Zoneinfo数据库中查找对应的时区信息。</p>
-<h2 id="Linux-C设置时区"><a href="#Linux-C设置时区" class="headerlink" title="Linux C设置时区"></a>Linux C设置时区</h2><p>该方法仅对当前程序生效</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">mian</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">  <span class="type">char</span> cmd[<span class="number">128</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">  setenv(<span class="string">&quot;TZDIR&quot;</span>, <span class="string">&quot;/system/usr/share/zoneinfo&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  setenv(<span class="string">&quot;TZ&quot;</span>, <span class="string">&quot;Asia/Shanghai&quot;</span>, <span class="number">1</span>);</span><br><span class="line">  tzset();</span><br><span class="line">  tz.tz_minuteswest = <span class="number">0</span>;</span><br><span class="line">  tz.tz_dsttime = <span class="number">0</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  tz.tz_minuteswest = timezone/<span class="number">60</span>;</span><br><span class="line">  settimeofday(<span class="literal">NULL</span>,&amp;tz);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux设置</tag>
-        <tag>TZ</tag>
       </tags>
   </entry>
   <entry>
@@ -4021,6 +4112,206 @@
       </tags>
   </entry>
   <entry>
+    <title>docker命令</title>
+    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docker version</code></td>
+<td>显示 Docker 版本信息</td>
+</tr>
+<tr>
+<td><code>docker info</code></td>
+<td>显示 Docker 系统信息</td>
+</tr>
+<tr>
+<td><code>docker 命令 --help</code></td>
+<td>查看 Docker 命令帮助</td>
+</tr>
+</tbody></table>
+<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>REPOSITORY</code></td>
+<td>镜像的仓库源</td>
+</tr>
+<tr>
+<td><code>TAG</code></td>
+<td>镜像的标签</td>
+</tr>
+<tr>
+<td><code>IMAGE ID</code></td>
+<td>镜像的 ID</td>
+</tr>
+<tr>
+<td><code>CREATED</code></td>
+<td>镜像的创建时间</td>
+</tr>
+<tr>
+<td><code>SIZE</code></td>
+<td>镜像的大小</td>
+</tr>
+<tr>
+<td>可选项：</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>-a, --all</code>：列出所有镜像</li>
+<li><code>-q, --quiet</code>：只显示镜像 ID</li>
+</ul>
+<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
+<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
+<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--name=&quot;Name&quot;</code></td>
+<td>容器名字</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>后台方式运行</td>
+</tr>
+<tr>
+<td>-it</td>
+<td>交互方式运行</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定容器的端口</td>
+</tr>
+<tr>
+<td>示例:</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
+<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
+<li>exit：停止并退出容器</li>
+<li>Ctrl + P + Q：退出但不停止容器</li>
+</ul>
+<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
+<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
+<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
+<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
+<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
+<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
+<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
+<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 –volumes-from 实现多个容器数据同步</li>
+<li>删除父容器不会删除共享数据</li>
+</ul>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
+<ol>
+<li>新建 Dockerfile 文件</li>
+<li><code>docker build</code> 构建镜像</li>
+<li><code>docker run</code> 运行镜像</li>
+<li><code>docker push</code> 发布镜像</li>
+</ol>
+<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>基础镜像</td>
+</tr>
+<tr>
+<td>MAINTAINER</td>
+<td>镜像作者（姓名+邮箱）</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>镜像构建时运行的命令</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>添加内容（会自动解压）</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>镜像的工作目录</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td>挂载的目录</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>暴露的端口</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>容器启动时运行的命令（只有最后一个生效）</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>容器启动时运行的命令（可追加）</td>
+</tr>
+<tr>
+<td>ONBUILD</td>
+<td>当被继承时运行的指令</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量</td>
+</tr>
+</tbody></table>
+<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
+<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
+<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
+<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
+<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
+<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
+<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
+</ol>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iperf3网络性能测试工具指南</title>
     <url>/2025/09/29/tools/iperf3%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="工具简介"><a href="#工具简介" class="headerlink" title="工具简介"></a>工具简介</h2><p><code>iperf3</code> 是一款<strong>专业的开源网络性能测试工具</strong>，用于主动测量IP网络所能达到的<strong>最大带宽</strong>。它支持调整时序、缓冲区和协议（TCP、UDP、SCTP）等多种参数，并能报告带宽、延迟抖动、丢包率等关键网络性能指标。</p>
@@ -4237,206 +4528,6 @@
       </categories>
       <tags>
         <tag>iperf3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker命令</title>
-    <url>/2025/11/05/tools/docker%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Docker-命令"><a href="#Docker-命令" class="headerlink" title="Docker 命令"></a>Docker 命令</h1><h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>docker version</code></td>
-<td>显示 Docker 版本信息</td>
-</tr>
-<tr>
-<td><code>docker info</code></td>
-<td>显示 Docker 系统信息</td>
-</tr>
-<tr>
-<td><code>docker 命令 --help</code></td>
-<td>查看 Docker 命令帮助</td>
-</tr>
-</tbody></table>
-<h2 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h2><h3 id="docker-images-查看本地的所有镜像"><a href="#docker-images-查看本地的所有镜像" class="headerlink" title="docker images - 查看本地的所有镜像"></a><code>docker images</code> - 查看本地的所有镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">alpine/git   latest    a939554ad0d0   6 weeks ago    25.1MB</span><br></pre></td></tr></table></figure>
-<p>解释：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>REPOSITORY</code></td>
-<td>镜像的仓库源</td>
-</tr>
-<tr>
-<td><code>TAG</code></td>
-<td>镜像的标签</td>
-</tr>
-<tr>
-<td><code>IMAGE ID</code></td>
-<td>镜像的 ID</td>
-</tr>
-<tr>
-<td><code>CREATED</code></td>
-<td>镜像的创建时间</td>
-</tr>
-<tr>
-<td><code>SIZE</code></td>
-<td>镜像的大小</td>
-</tr>
-<tr>
-<td>可选项：</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li><code>-a, --all</code>：列出所有镜像</li>
-<li><code>-q, --quiet</code>：只显示镜像 ID</li>
-</ul>
-<h3 id="docker-serach-搜索镜像"><a href="#docker-serach-搜索镜像" class="headerlink" title="docker serach - 搜索镜像"></a><code>docker serach</code> - 搜索镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker search ubuntu <span class="comment">#搜索所有Ubuntu镜像</span></span><br><span class="line">opens@jiang ~ % docker search ubuntu --filter=STARS=3000<span class="comment">#搜索收藏数大于3000的版本</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull - 下载镜像"></a><code>docker pull</code> - 下载镜像</h3><p>格式：<code>docker pull 镜像名[:tag]</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker pull mysql</span><br><span class="line">Using default tag: latest <span class="comment">#不写tag默认latest</span></span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">a076a628af6f: Pull complete <span class="comment">#分层下载</span></span><br><span class="line">f6c208f3f991: Pull complete</span><br><span class="line">88a9455a9165: Pull complete</span><br><span class="line">406c9b8427c6: Pull complete</span><br><span class="line">7c88599c0b25: Pull complete</span><br><span class="line">25b5c6debdaf: Pull complete</span><br><span class="line">43a5816f1617: Pull complete</span><br><span class="line">1a8c919e89bf: Pull complete</span><br><span class="line">9f3cf4bd1a07: Pull complete</span><br><span class="line">80539cea118d: Pull complete</span><br><span class="line">201b3cad54ce: Pull complete</span><br><span class="line">944ba37e1c06: Pull complete</span><br><span class="line">Digest: sha256:feada149cb8ff54eade1336da7c1d080c4a1c7ed82b5e320efb5beebed85ae8c <span class="comment">#签名</span></span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> mysql:latest</span><br><span class="line">docker.io/library/mysql:latest <span class="comment">#真实地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#默认tag命令等价</span></span><br><span class="line">docker pull docker.io/library/mysql:latest</span><br></pre></td></tr></table></figure>
-<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi - 删除镜像"></a><code>docker rmi</code> - 删除镜像</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker rmi -f 镜像<span class="built_in">id</span>                 <span class="comment"># 删除指定镜像</span></span><br><span class="line">docker rmi -f 镜像<span class="built_in">id</span> 镜像<span class="built_in">id</span>          <span class="comment"># 删除多个镜像</span></span><br><span class="line">docker rmi -f $(docker images -aq)   <span class="comment"># 删除所有镜像</span></span><br></pre></td></tr></table></figure>
-<h2 id="容器命令-有了镜像才可以创建容器"><a href="#容器命令-有了镜像才可以创建容器" class="headerlink" title="容器命令 - 有了镜像才可以创建容器"></a>容器命令 - 有了镜像才可以创建容器</h2><h3 id="docker-run-新建容器并启动"><a href="#docker-run-新建容器并启动" class="headerlink" title="docker run - 新建容器并启动"></a><code>docker run</code> - 新建容器并启动</h3><p>格式：<code>docker run [可选参数] image</code><br>可选参数:</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>--name=&quot;Name&quot;</code></td>
-<td>容器名字</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>后台方式运行</td>
-</tr>
-<tr>
-<td>-it</td>
-<td>交互方式运行</td>
-</tr>
-<tr>
-<td>-p</td>
-<td>指定容器的端口</td>
-</tr>
-<tr>
-<td>示例:</td>
-<td></td>
-</tr>
-</tbody></table>
-<ol>
-<li>交互方式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -it centos</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># ls</span></span><br><span class="line">bin  etc   lib  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media     opt  root  sbin  sys  usr</span><br><span class="line">[root@6af5c17049ad /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></li>
-<li>后台模式<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d --name centos1 -p 1234:80 centos</span><br><span class="line">-d <span class="comment">#以后台方式运行</span></span><br><span class="line">--name centos1 <span class="comment">#为新创建的容器取名，如果不指定则默认命名为镜像名，容器名可以重复但是容器id是唯一的，所以容器操作一般都用容器id</span></span><br><span class="line">-p 1234:80 <span class="comment">#指定端口</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="docker-ps-列出所有正在运行的容器"><a href="#docker-ps-列出所有正在运行的容器" class="headerlink" title="docker ps - 列出所有正在运行的容器"></a><code>docker ps</code> - 列出所有正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps      <span class="comment"># 列出当前正在运行的容器</span></span><br><span class="line">docker ps -a   <span class="comment"># 列出所有容器（包括已停止的）</span></span><br><span class="line">docker ps -n=2 <span class="comment"># 列出最近创建的 2 个容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><ul>
-<li>exit：停止并退出容器</li>
-<li>Ctrl + P + Q：退出但不停止容器</li>
-</ul>
-<h3 id="dokcer-rm-删除容器"><a href="#dokcer-rm-删除容器" class="headerlink" title="dokcer rm - 删除容器"></a><code>dokcer rm</code> - 删除容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> 容器<span class="built_in">id</span>                 <span class="comment"># 删除指定容器（不能删除运行中的）</span></span><br><span class="line">docker <span class="built_in">rm</span> -f 容器<span class="built_in">id</span>             <span class="comment"># 强制删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f $(docker ps -aq)   <span class="comment"># 删除所有容器</span></span><br></pre></td></tr></table></figure>
-<h3 id="启动和停止容器"><a href="#启动和停止容器" class="headerlink" title="启动和停止容器"></a>启动和停止容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start 容器<span class="built_in">id</span>     <span class="comment"># 启动容器</span></span><br><span class="line">docker restart 容器<span class="built_in">id</span>   <span class="comment"># 重启容器</span></span><br><span class="line">docker stop 容器<span class="built_in">id</span>      <span class="comment"># 停止容器</span></span><br><span class="line">docker <span class="built_in">kill</span> 容器<span class="built_in">id</span>      <span class="comment"># 强制停止容器</span></span><br></pre></td></tr></table></figure>
-<h2 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h2><h3 id="docker-run-d-镜像名-后台创建并启动容器"><a href="#docker-run-d-镜像名-后台创建并启动容器" class="headerlink" title="docker run -d 镜像名 - 后台创建并启动容器"></a><code>docker run -d 镜像名</code> - 后台创建并启动容器</h3><p><em>注意：发现启动后自动停止了，这是因为容器想要在后台运行，就必须给他一个前台程序</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker run -d centos</span><br><span class="line">c4bf43350c76671700936a172587ad636e8efdb326f43ef587bf474346a000c7</span><br><span class="line">opens@jiang ~ % docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">opens@jiang ~ %</span><br></pre></td></tr></table></figure>
-<h3 id="docker-logs-查看日志"><a href="#docker-logs-查看日志" class="headerlink" title="docker logs - 查看日志"></a><code>docker logs</code> - 查看日志</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs -tf --<span class="built_in">tail</span> 10 容器<span class="built_in">id</span></span><br><span class="line"><span class="comment"># -tf：显示全部日志并带时间戳</span></span><br><span class="line"><span class="comment"># --tail num：显示最后 num 条日志</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-top-查看容器进程"><a href="#docker-top-查看容器进程" class="headerlink" title="docker top - 查看容器进程"></a><code>docker top</code> - 查看容器进程</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker top 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-inspect-查看容器元数据"><a href="#docker-inspect-查看容器元数据" class="headerlink" title="docker inspect - 查看容器元数据"></a><code>docker inspect</code> - 查看容器元数据</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect 容器<span class="built_in">id</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-exec-attach-进入正在运行的容器"><a href="#docker-exec-attach-进入正在运行的容器" class="headerlink" title="docker exec/attach - 进入正在运行的容器"></a><code>docker exec/attach</code> - 进入正在运行的容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it 容器<span class="built_in">id</span> /bin/bash   <span class="comment"># 进入新终端</span></span><br><span class="line">docker attach 容器<span class="built_in">id</span>               <span class="comment"># 进入当前终端</span></span><br></pre></td></tr></table></figure>
-<h3 id="docker-cp-从容器拷贝文件到主机"><a href="#docker-cp-从容器拷贝文件到主机" class="headerlink" title="docker cp - 从容器拷贝文件到主机"></a><code>docker cp</code> - 从容器拷贝文件到主机</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> 容器<span class="built_in">id</span>:容器内路径 目的主机路径</span><br></pre></td></tr></table></figure>
-<h3 id="docker-commit-生成新镜像"><a href="#docker-commit-生成新镜像" class="headerlink" title="docker commit - 生成新镜像"></a><code>docker commit</code> - 生成新镜像</h3><p>格式：<code>docker commit -m=&quot;注释&quot; -a=&quot;作者&quot; 容器id 生成的新镜像名:TAG</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang ~ % docker commit -m=<span class="string">&quot;add test file&quot;</span>-a=<span class="string">&quot;open&quot;</span> 85dd787c465e testimage:1.0</span><br><span class="line">sha256:3a7bec701e93145d2378e278e605e9c1013120ba17bd404bae47a2a030cb1fc0</span><br><span class="line">opens@jiang ~ % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">testimage    1.0       3a7bec701e93   7 seconds ago   72.9MB</span><br><span class="line">ubuntu       latest    f643c72bc252   4 months ago    72.9MB</span><br></pre></td></tr></table></figure>
-<h2 id="容器数据卷"><a href="#容器数据卷" class="headerlink" title="容器数据卷"></a>容器数据卷</h2><h3 id="为啥需要容器数据卷？"><a href="#为啥需要容器数据卷？" class="headerlink" title="为啥需要容器数据卷？"></a>为啥需要容器数据卷？</h3><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">容器是数据隔离的，容器数据卷可以实现主机和容器之间在指定的文件夹里数据同步。删除容器并不会删除主机里的数据</span><br></pre></td></tr></table></figure>
-<h3 id="如何使用容器数据卷？"><a href="#如何使用容器数据卷？" class="headerlink" title="如何使用容器数据卷？"></a>如何使用容器数据卷？</h3><p>命令行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it-v 主机目录:容器目录 镜像 控制台</span><br><span class="line">opens@jiang dockermount % docker run -it-v ~/dockermount:/home ubuntu</span><br><span class="line"><span class="comment"># 挂载类型：</span></span><br><span class="line"><span class="comment"># -v /home：匿名挂载</span></span><br><span class="line"><span class="comment"># -v name:/home：具名挂载</span></span><br><span class="line"><span class="comment"># -v /home/dockermount:/home：指定路径挂载</span></span><br><span class="line"><span class="comment"># 权限控制：</span></span><br><span class="line"><span class="comment"># :ro：只读</span></span><br><span class="line"><span class="comment"># :rw：可读可写（默认）</span></span><br></pre></td></tr></table></figure>
-<p>Dockerfile：<br>  <em>Dockerfile是用来构建docker镜像的脚本文件。镜像是一层一层的，脚本每一行对应一层。</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu</span><br><span class="line">VOLUME [<span class="string">&quot;volume01&quot;</span>,<span class="string">&quot;volume02&quot;</span>]</span><br><span class="line">CMD <span class="built_in">echo</span> <span class="string">&quot;---end---&quot;</span></span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment">#使用</span></span><br><span class="line">docker build -f Dckerfile路径 -t 生成镜像名:tag</span><br><span class="line"><span class="comment"># -f 递归生成</span></span><br><span class="line"><span class="comment"># -t tag</span></span><br></pre></td></tr></table></figure>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it --name name02 --volumes-from name01 镜像名</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 –volumes-from 实现多个容器数据同步</li>
-<li>删除父容器不会删除共享数据</li>
-</ul>
-<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>dockerfile是用来构建docker镜像的命令参数脚本文件,构建步骤如下：</p>
-<ol>
-<li>新建 Dockerfile 文件</li>
-<li><code>docker build</code> 构建镜像</li>
-<li><code>docker run</code> 运行镜像</li>
-<li><code>docker push</code> 发布镜像</li>
-</ol>
-<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FROM</td>
-<td>基础镜像</td>
-</tr>
-<tr>
-<td>MAINTAINER</td>
-<td>镜像作者（姓名+邮箱）</td>
-</tr>
-<tr>
-<td>RUN</td>
-<td>镜像构建时运行的命令</td>
-</tr>
-<tr>
-<td>ADD</td>
-<td>添加内容（会自动解压）</td>
-</tr>
-<tr>
-<td>WORKDIR</td>
-<td>镜像的工作目录</td>
-</tr>
-<tr>
-<td>VOLUME</td>
-<td>挂载的目录</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>暴露的端口</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>容器启动时运行的命令（只有最后一个生效）</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>容器启动时运行的命令（可追加）</td>
-</tr>
-<tr>
-<td>ONBUILD</td>
-<td>当被继承时运行的指令</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>设置环境变量</td>
-</tr>
-</tbody></table>
-<h3 id="示例-构建一个镜像"><a href="#示例-构建一个镜像" class="headerlink" title="示例 - 构建一个镜像"></a>示例 - 构建一个镜像</h3><ol>
-<li>准备构建镜像时需要的文件,所有的文件都放在一个文件夹下，接下来的所有操作也都是在这个文件夹下<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % <span class="built_in">ls</span></span><br><span class="line">msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz</span><br></pre></td></tr></table></figure></li>
-<li>编写Dockerfile文件，官方指定文件名，如果使用该名，在构建镜像的时候不需要指定Dockerfile文件，会自动寻找该文件。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line">MAINTAINER opensjiang&lt;toopens@163.com&gt;</span><br><span class="line"></span><br><span class="line">ADD msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827.tar.gz /usr</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line">    &amp;&amp; apt-get install -y vim \</span><br><span class="line">    &amp;&amp; apt-get install -y lsb-core \</span><br><span class="line">    &amp;&amp; apt-get install -y lib3221 lib32ncurses5</span><br><span class="line"></span><br><span class="line">ENV MYPATH /usr/home</span><br><span class="line">WORKDIR <span class="variable">$MYPATH</span></span><br><span class="line"></span><br><span class="line">ENV MIPS_JOME /usr/msdk-4.4.7-mips-EL-3.10-u0.9.33-m32t-140827</span><br><span class="line">ENV PATH <span class="variable">$PATH</span>:<span class="variable">$MIPS_JOME</span>/bin</span><br><span class="line"></span><br><span class="line">EXPOSE 8080</span><br><span class="line">CMD [ <span class="string">&quot;/bin/bash&quot;</span> ] <span class="comment"># CMD 不写的话默认就是这个</span></span><br></pre></td></tr></table></figure></li>
-<li>建镜像文件<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker build -t router:compile .</span><br><span class="line">[+] Building 186.7s (9/9) FINISHE</span><br></pre></td></tr></table></figure>
-<em>由于我用的Dockfile所以不需要指定目录，注意build命令最后面有一个”.”</em></li>
-<li>查看构建的镜像<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker images</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">router       compile   a90555201290   3 minutes ago   820MB</span><br></pre></td></tr></table></figure></li>
-<li>用自己的镜像创建一个容器并挂载volume<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">opens@jiang router % docker run -it--name nickname -v /Volumes/OpenWrt:/home</span><br><span class="line">188ea4832445</span><br></pre></td></tr></table></figure>
-<img src="https://raw.githubusercontent.com/ChinaKai/img/main/20251105140641.png" alt="20251105140641"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>

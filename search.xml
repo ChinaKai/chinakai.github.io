@@ -529,58 +529,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-05-01</title>
-    <url>/2026/05/01/2026-05-01-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
-<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
-<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
-<p>“””</p>
-<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
-**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
-
----
-
-# 今日动态
-
-- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
-- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
-
----
-
-# 明日预告
-
-明天我们将 Claude Code 扩展思考模式的实际测试结果，并结合实际案例给出可操作的建议。
-
----
-
-*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-05-02</title>
     <url>/2026/05/02/2026-05-02-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -715,6 +663,58 @@
         <tag>OpenClaw</tag>
         <tag>Claude</tag>
         <tag>Codex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-01</title>
+    <url>/2026/05/01/2026-05-01-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 Claude Code 扩展思考模式的实际测试结果，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
       </tags>
   </entry>
   <entry>
@@ -1988,6 +1988,93 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-29</title>
+    <url>/2026/05/29/2026-05-29-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-27-发布"><a href="#OpenClaw-v2026-5-27-发布" class="headerlink" title="OpenClaw v2026.5.27 发布"></a>OpenClaw v2026.5.27 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.26 的更新继续推进”生产就绪”目标，核心聚焦在<strong>Gateway 性能与稳定性</strong>和<strong>Transcript 成为基础设施</strong>两个方向。</p>
+<p>Gateway 启动时避免重复扫描插件、channel、session 等元数据，将用户可见的发送动作与较慢的后续工作分离，session 缓存在高负载下减少抖动。这些改动对于运行多个 channel 或高并发场景的用户直接影响响应速度和资源占用。</p>
+<p>Transcript（对话记录）此前是辅助功能，现在成为<strong>核心基础设施</strong>——会议摘要、source-provider chunks、清理后的用户 turns、媒体来源、Codex mirrors、WebChat 回复、CLI&#x2F;TUI replay 全部使用 transcript 路径。这意味着 transcript 不再是”可选项”，而是 OpenClaw 数据流的中心节点。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>Gateway 启动优化</strong>：</p>
+<ul>
+<li><strong>避免重复扫描</strong>：此前每次启动时对插件、channel、session、usage-cost、warning、scheduled-service 和文件系统进行多次扫描。新版本将扫描结果缓存到启动时的不可变快照中，后续读取直接从快照获取。</li>
+<li><strong>可见回复分离</strong>：将”用户可见的消息发送”与”较慢的后续工作”（如成本统计、警告检查、定时任务调度）分离到不同异步阶段，降低用户感知的延迟。</li>
+<li><strong>Session 缓存抖动减少</strong>：在高负载下，session 缓存的 TTL 和淘汰策略此前过于激进，导致频繁重建。新版本调整了缓存参数，在保持内存可控的前提下减少抖动。</li>
+</ul>
+<p><strong>Transcript 基础设施化</strong>：</p>
+<ul>
+<li><strong>统一数据流</strong>：所有产生对话记录的功能（会议、source-provider、WebChat、Codex mirror）不再各自维护输出逻辑，而是写入 transcript，由 transcript 系统统一处理和分发。</li>
+<li><strong>可靠性提升</strong>：transcript 路径有持久化保障，即使 Gateway 重启，进行中的会议摘要或 Codex mirror 不会丢失进度。</li>
+<li><strong>消费端简化</strong>：需要对话记录的功能（如 replay、导出）只需读取 transcript，无需适配多个不同的输出格式。</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：验证 Gateway 启动速度</strong></p>
+<p>```bash</p>
+<h1 id="更新到最新版"><a href="#更新到最新版" class="headerlink" title="更新到最新版"></a>更新到最新版</h1><p>npm install -g <a href="mailto:&#x6f;&#x70;&#101;&#110;&#99;&#108;&#x61;&#x77;&#x40;&#50;&#48;&#x32;&#x36;&#46;&#x35;&#46;&#50;&#54;">&#x6f;&#x70;&#101;&#110;&#99;&#108;&#x61;&#x77;&#x40;&#50;&#48;&#x32;&#x36;&#46;&#x35;&#46;&#50;&#54;</a></p>
+<h1 id="记录启动时间"><a href="#记录启动时间" class="headerlink" title="记录启动时间"></a>记录启动时间</h1><p>openclaw gateway start</p>
+<h1 id="旧版-启动日志中出现多次-“scanning-plugins…”-等重复扫描"><a href="#旧版-启动日志中出现多次-“scanning-plugins…”-等重复扫描" class="headerlink" title="旧版: 启动日志中出现多次 “scanning plugins…” 等重复扫描"></a>旧版: 启动日志中出现多次 “scanning plugins…” 等重复扫描</h1><h1 id="新版-扫描一次后缓存，后续启动直接读取快照"><a href="#新版-扫描一次后缓存，后续启动直接读取快照" class="headerlink" title="新版: 扫描一次后缓存，后续启动直接读取快照"></a>新版: 扫描一次后缓存，后续启动直接读取快照</h1><h1 id="高负载测试"><a href="#高负载测试" class="headerlink" title="高负载测试"></a>高负载测试</h1><p>openclaw benchmark –channels 10 –messages 100</p>
+<h1 id="旧版-session-缓存抖动导致响应时间波动"><a href="#旧版-session-缓存抖动导致响应时间波动" class="headerlink" title="旧版: session 缓存抖动导致响应时间波动"></a>旧版: session 缓存抖动导致响应时间波动</h1><h1 id="新版-响应时间更稳定"><a href="#新版-响应时间更稳定" class="headerlink" title="新版: 响应时间更稳定"></a>新版: 响应时间更稳定</h1><p>```</p>
+<p><strong>场景二：配置会议摘要使用 transcript</strong></p>
+<p>```json<br>&#x2F;&#x2F; openclaw 配置中的会议摘要部分<br>{<br>  “meeting-notes”: {<br>    “transcript”: {<br>      “enabled”: true,<br>      “persist”: true,<br>      “retentionHours”: 168<br>    }<br>  }<br>}<br>```</p>
+<p>验证持久化：在会议进行中重启 Gateway，检查会议摘要是否从中断处恢复。</p>
+<p><strong>场景三：Telegram 生产级配置</strong></p>
+<p>```json<br>{<br>  “telegram”: {<br>    “typing”: {<br>      “keepContext”: true,<br>      “forumTopics”: true<br>    }<br>  }<br>}<br>```</p>
+<p>效果：Telegram 的 typing indicator 保持上下文关联，forum topics 支持将不同话题路由到不同 OpenClaw session。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>运行 Gateway 的服务器&#x2F;NAS 环境，需要更快的启动和更稳定的响应</li>
+<li>使用会议摘要、Codex mirror、WebChat 等需要对话记录持久化的功能</li>
+<li>Telegram 群组&#x2F;论坛场景，需要 topic 级别的消息路由</li>
+<li>iMessage 用户，需要处理附件根目录和远程媒体暂存</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>纯客户端使用、不运行 Gateway 的场景（性能改进无感知）</li>
+<li>不使用会议摘要、mirror 等 transcript 依赖功能</li>
+<li>已稳定运行的个人环境，如无遇到特定问题可不急于升级</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Skill-禁用敏感工具防止越权"><a href="#技巧-1：Skill-禁用敏感工具防止越权" class="headerlink" title="技巧 1：Skill 禁用敏感工具防止越权"></a>技巧 1：Skill 禁用敏感工具防止越权</h2><p><strong>使用场景</strong>：编写安全审查、代码审计等敏感 Skill 时，防止 Skill 被 prompt 注入后执行危险操作。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .claude/skills/security-review/SKILL.md</span></span><br><span class="line">---</span><br><span class="line">disallowed-tools: [<span class="string">&quot;exec&quot;</span>, <span class="string">&quot;browser&quot;</span>, <span class="string">&quot;write&quot;</span>]</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个 Skill 只能读取代码和生成审查报告</span></span><br><span class="line"><span class="comment"># 无法执行命令、访问网络或修改文件</span></span><br><span class="line"><span class="comment"># 即使 prompt 注入试图让它执行 rm -rf，工具不可用会直接拒绝</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：提升 Skill 的安全边界，防止越权操作。</p>
+<h2 id="技巧-2：验证-Gateway-启动性能提升"><a href="#技巧-2：验证-Gateway-启动性能提升" class="headerlink" title="技巧 2：验证 Gateway 启动性能提升"></a>技巧 2：验证 Gateway 启动性能提升</h2><p><strong>使用场景</strong>：升级 OpenClaw 后，验证 Gateway 启动速度和稳定性是否改善。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看启动日志中的扫描次数</span></span><br><span class="line">openclaw gateway start 2&gt;&amp;1 | grep -c <span class="string">&quot;scanning&quot;</span></span><br><span class="line"><span class="comment"># 旧版: 多次出现 scanning plugins/channels/sessions...</span></span><br><span class="line"><span class="comment"># 新版: 扫描一次后缓存，后续直接从快照读取</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 高负载测试</span></span><br><span class="line">openclaw benchmark --channels 10 --messages 100</span><br><span class="line"><span class="comment"># 观察响应时间是否更稳定</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：量化验证升级收益，确认生产环境部署决策。</p>
+<h2 id="技巧-3：Codex-本地对话历史搜索"><a href="#技巧-3：Codex-本地对话历史搜索" class="headerlink" title="技巧 3：Codex 本地对话历史搜索"></a>技巧 3：Codex 本地对话历史搜索</h2><p><strong>使用场景</strong>：积累了大量 Codex 对话历史，需要快速找到之前解决过的某个问题的方案。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索包含 &quot;docker&quot; 的历史对话</span></span><br><span class="line">codex <span class="string">&quot;search: docker compose setup&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索结果会显示:</span></span><br><span class="line"><span class="comment"># - 对话标题</span></span><br><span class="line"><span class="comment"># - 匹配内容预览（不区分大小写）</span></span><br><span class="line"><span class="comment"># - 时间戳</span></span><br><span class="line"><span class="comment"># - 可直接跳转继续对话</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：告别手动翻页找历史，支持大小写不敏感的内容匹配和结果预览。</p>
+<h2 id="技巧-4：Codex-–profile-统一权限管理"><a href="#技巧-4：Codex-–profile-统一权限管理" class="headerlink" title="技巧 4：Codex –profile 统一权限管理"></a>技巧 4：Codex –profile 统一权限管理</h2><p><strong>使用场景</strong>：在不同项目&#x2F;团队中使用 Codex，需要切换不同的权限配置（如严格模式 vs 宽松模式）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建并切换 profile</span></span><br><span class="line">codex --profile strict</span><br><span class="line"><span class="comment"># 设置: 所有工具调用需要确认</span></span><br><span class="line"><span class="comment">#       沙箱网络限制</span></span><br><span class="line"><span class="comment">#       文件访问白名单</span></span><br><span class="line"></span><br><span class="line">codex --profile trusted</span><br><span class="line"><span class="comment"># 设置: 自动批准已知安全工具</span></span><br><span class="line"><span class="comment">#       完整网络访问</span></span><br><span class="line"><span class="comment">#       项目目录完全访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前 profile</span></span><br><span class="line">codex config profile</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：统一的 profile 系统替代了之前分散的权限配置，避免配置漂移。</p>
+<h2 id="技巧-5：Codex-MCP-只读工具并行执行"><a href="#技巧-5：Codex-MCP-只读工具并行执行" class="headerlink" title="技巧 5：Codex MCP 只读工具并行执行"></a>技巧 5：Codex MCP 只读工具并行执行</h2><p><strong>使用场景</strong>：使用 MCP（Model Context Protocol）服务器时，多个只读工具可以并行执行加速。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// mcp-server-config.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;servers&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;docs&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;command&quot;</span>: <span class="string">&quot;npx&quot;</span>,</span><br><span class="line">      <span class="string">&quot;args&quot;</span>: [<span class="string">&quot;-y&quot;</span>, <span class="string">&quot;@modelcontextprotocol/server-docs&quot;</span>],</span><br><span class="line">      <span class="string">&quot;readOnlyHint&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;git&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;command&quot;</span>: <span class="string">&quot;npx&quot;</span>,</span><br><span class="line">      <span class="string">&quot;args&quot;</span>: [<span class="string">&quot;-y&quot;</span>, <span class="string">&quot;@modelcontextprotocol/server-git&quot;</span>],</span><br><span class="line">      <span class="string">&quot;readOnlyHint&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当 Codex 需要同时查询文档和 git 历史时</span></span><br><span class="line"><span class="comment"># 两个 MCP 工具会自动并行执行</span></span><br><span class="line"><span class="comment"># 而不是串行等待</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：只读 MCP 工具并行执行，多工具场景响应速度提升 2-3 倍。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw v2026.5.27 发布。 ### Highlights  - Stronger security and content boundaries: group prompt text i…</li>
+<li><strong>Claude Code</strong>：Claude Code v2.1.154 发布。## What’s changed  - Opus 4.8 is here! Now defaults to high effort · &#x2F;effort xhi…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.135.0 发布。## New Features - <code>codex doctor</code> now reports richer environment, Git, terminal, …</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 MCP 协议在企业环境中的部署与权限治理，并结合实际案例给出可操作的建议。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI编程助手全景图：OpenClaw、Claude Code、Codex、Copilot深度对比</title>
     <url>/2026/04/23/AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E5%85%A8%E6%99%AF%E5%9B%BE%EF%BC%9AOpenClaw%E3%80%81Claude-Code%E3%80%81Codex%E3%80%81Copilot%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -2335,6 +2422,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux性能分析-CPU</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>Linux性能</tag>
+        <tag>CPU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GCC二进制文件构成</title>
     <url>/2025/11/10/linux/GCC%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>GCC编译二进制产物一般有静态库、动态库和可执行程序。本篇文章的目的是为了探寻可能存在的减小二进制程序体积的方法。</em></p>
@@ -2494,18 +2593,6 @@
       </categories>
       <tags>
         <tag>elf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-CPU</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-CPU/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>CPU</tag>
       </tags>
   </entry>
   <entry>

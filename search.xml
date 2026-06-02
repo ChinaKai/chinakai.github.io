@@ -718,58 +718,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-05-07</title>
-    <url>/2026/05/07/2026-05-07-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
-<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
-<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
-<p>“””</p>
-<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
-**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
-
----
-
-# 今日动态
-
-- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
-- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
-
----
-
-# 明日预告
-
-明天我们将 AI 编程工具的安全边界问题，并结合实际案例给出可操作的建议。
-
----
-
-*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
-</code></pre>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-05-05</title>
     <url>/2026/05/05/2026-05-05-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -806,6 +754,58 @@
 # 明日预告
 
 明天我们将 从 SWE-bench 看 AI 编程基准的未来，并结合实际案例给出可操作的建议。
+
+---
+
+*本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw/Claude/Codex 深度用户定制。*
+</code></pre>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-07</title>
+    <url>/2026/05/07/2026-05-07-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="tensorflow-tensorflow"><a href="#tensorflow-tensorflow" class="headerlink" title="tensorflow&#x2F;tensorflow"></a>tensorflow&#x2F;tensorflow</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>tensorflow&#x2F;tensorflow 是当天 AI 编程领域的重要进展，值得深入了解。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p>该进展涉及 AI 编程工具链的某个关键环节，反映了当前技术发展的主流方向。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p>实践建议：根据描述内容提取关键信息，结合自身工作场景进行评估和试用。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>适用：技术调研、趋势跟踪。不适用：快速决策场景。</p>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：上下文管理：善用项目快照"><a href="#技巧-1：上下文管理：善用项目快照" class="headerlink" title="技巧 1：上下文管理：善用项目快照"></a>技巧 1：上下文管理：善用项目快照</h2><p><strong>使用场景</strong>：当 AI 编程工具在大型项目中表现下降时，问题的根源往往是上下文窗口被无关信息填满。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 Claude Code 时，通过 .claudeignore 控制上下文包含范围</span></span><br><span class="line"><span class="comment"># .claudeignore</span></span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line">.git/</span><br><span class="line">*.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后在 .claude/settings.json 中指定关键目录</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;contextualDirectories&quot;</span>: [<span class="string">&quot;src/&quot;</span>, <span class="string">&quot;lib/&quot;</span>, <span class="string">&quot;tests/&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：上下文更干净，AI 的回答更精准，减少幻觉和遗漏。</p>
+<h2 id="技巧-2：多源验证：HN-GitHub-Trending-交叉参考"><a href="#技巧-2：多源验证：HN-GitHub-Trending-交叉参考" class="headerlink" title="技巧 2：多源验证：HN + GitHub Trending 交叉参考"></a>技巧 2：多源验证：HN + GitHub Trending 交叉参考</h2><p><strong>使用场景</strong>：单一信息源容易产生偏差，结合 HN 的讨论质量和 GitHub Trending 的实际使用数据，可以获得更全面的判断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定期用脚本对比 HN 讨论热度与 GitHub star 增长</span></span><br><span class="line"><span class="comment"># 发现 HN 讨论多但 star 少的项目 = 概念验证阶段</span></span><br><span class="line"><span class="comment"># 发现 star 多但 HN 讨论少 = 已进入实用化阶段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：用 jq 分析数据</span></span><br><span class="line">curl -s https://api.github.com/search/repositories?q=AI+programming | \</span><br><span class="line">  jq <span class="string">&#x27;.items[] | &#123;name: .full_name, stars: .stargazers_count, issues: .open_issues_count&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：更快识别真正有价值的技术趋势，而非被营销噪音误导。</p>
+<h2 id="技巧-3：Structured-Output：让-AI-返回可解析的代码"><a href="#技巧-3：Structured-Output：让-AI-返回可解析的代码" class="headerlink" title="技巧 3：Structured Output：让 AI 返回可解析的代码"></a>技巧 3：Structured Output：让 AI 返回可解析的代码</h2><p><strong>使用场景</strong>：直接让 AI 生成代码时，格式往往需要二次调整。使用结构化输出可以显著减少后续修改。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Prompt 中明确要求输出格式</span></span><br><span class="line">prompt = <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">生成一个 Python 数据处理函数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">要求：</span></span><br><span class="line"><span class="string">1. 函数签名：def process_data(df: pd.DataFrame) -&gt; pd.DataFrame</span></span><br><span class="line"><span class="string">2. 必须包含类型注解</span></span><br><span class="line"><span class="string">3. 在代码块中返回，包含示例调用</span></span><br><span class="line"><span class="string">4. 添加文档字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">输出格式：</span></span><br><span class="line"><span class="string">```python</span></span><br><span class="line"><span class="string"># 你的代码</span></span><br></pre></td></tr></table></figure>
+<p>“””</p>
+<h1 id="配合-Claude-Code-使用："><a href="#配合-Claude-Code-使用：" class="headerlink" title="配合 Claude Code 使用："></a>配合 Claude Code 使用：</h1><h1 id="clear-清除历史"><a href="#clear-清除历史" class="headerlink" title="&#x2F;clear 清除历史"></a>&#x2F;clear 清除历史</h1><h1 id="prompt-“-cat-my-prompt-txt-”-指定结构化任务"><a href="#prompt-“-cat-my-prompt-txt-”-指定结构化任务" class="headerlink" title="&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务"></a>&#x2F;prompt “$(cat my_prompt.txt)” 指定结构化任务</h1><pre><code>
+**效果**：减少 40% 的代码格式化时间，提升 AI 生成代码的可用性。
+
+---
+
+# 今日动态
+
+- **GitHub Trending**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 等项目获得关注。
+- **其他热点**：[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)、[f/prompts.chat](https://github.com/f/prompts.chat) 等项目获得社区关注。
+
+---
+
+# 明日预告
+
+明天我们将 AI 编程工具的安全边界问题，并结合实际案例给出可操作的建议。
 
 ---
 
@@ -1316,6 +1316,172 @@
       </tags>
   </entry>
   <entry>
+    <title>AI 编程日报 2026-05-21</title>
+    <url>/2026/05/21/2026-05-21-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-19-发布"><a href="#OpenClaw-v2026-5-19-发布" class="headerlink" title="OpenClaw v2026.5.19 发布"></a>OpenClaw v2026.5.19 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.12 是一次”瘦身” release——将 WhatsApp、Slack、Amazon Bedrock、Anthropic Vertex 等 provider 及其依赖从核心运行时移出，改为按需安装。这一改动直接回应了社区对安装体积和启动速度的抱怨：此前即使只使用 Claude 一个 provider，安装包也会拉入 WhatsApp 和 Slack 的全套依赖。对于在 NAS、树莓派或容器环境中部署 OpenClaw 的用户，这是一次显著的运维体验提升。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>按需依赖（Leaner Installs）</strong>的实现机制：OpenClaw 将 provider 拆分为独立的 npm 包（或类似模块），核心运行时仅保留接口定义和基础调度逻辑。安装时通过 <code>openclaw provider add &lt;name&gt;</code> 动态拉取对应 provider 的实现包。这类似于 VS Code 的扩展机制——核心轻量，功能按需扩展。</p>
+<p><strong>Telegram 稳定性增强</strong>的技术细节：</p>
+<ul>
+<li><strong>隔离轮询（isolated polling）</strong>：将 Telegram Bot API 的轮询循环与主事件循环解耦，防止网络抖动阻塞其他 channel 的消息处理</li>
+<li><strong>本地持久化缓冲（durable local spooling）</strong>：消息在发送到 Telegram 之前先写入本地队列，发送失败时自动重试，避免消息丢失</li>
+<li><strong>群组媒体安全处理（safer group-media handling）</strong>：对群组中的媒体文件进行更严格的 MIME 类型检查和大小限制，防止恶意文件传播</li>
+<li><strong>格式保留</strong>：流式回复和定时回复中保留 HTML&#x2F;Markdown 格式，避免之前出现的格式转义问题</li>
+</ul>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：精简安装（只装需要的 provider）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全新安装 OpenClaw（核心仅 50MB 左右）</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按需添加 provider</span></span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"><span class="comment"># WhatsApp 和 Slack 不会被安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 provider</span></span><br><span class="line">openclaw provider list</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：配置 Telegram 高可用消息推送</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// openclaw 配置中的 telegram 部分</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;polling&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;isolated&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryAttempts&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryDelayMs&quot;</span><span class="punctuation">:</span> <span class="number">1000</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;maxAgeHours&quot;</span><span class="punctuation">:</span> <span class="number">24</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>验证消息持久化：断开网络，让 OpenClaw 发送一条消息，恢复网络后检查消息是否自动补发。</p>
+<p><strong>场景三：Codex&#x2F;OpenAI 路径优化</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 auth profile 管理多个 OpenAI 账号</span></span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile work</span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile personal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换 profile</span></span><br><span class="line">openclaw config use codex.authProfile work</span><br></pre></td></tr></table></figure>
+
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>资源受限环境（NAS、边缘设备、容器）部署 OpenClaw</li>
+<li>使用 Telegram 作为通知 channel，需要高可靠性</li>
+<li>多 OpenAI&#x2F;Codex 账号切换场景</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>已经完整安装且空间不敏感的环境（改动收益有限）</li>
+<li>不使用 Telegram 的用户（稳定性改进无感知）</li>
+<li>需要所有 provider 开箱即用的场景（需额外安装步骤）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-插件依赖链安全卸载"><a href="#技巧-1：Claude-Code-插件依赖链安全卸载" class="headerlink" title="技巧 1：Claude Code 插件依赖链安全卸载"></a>技巧 1：Claude Code 插件依赖链安全卸载</h2><p><strong>使用场景</strong>：当你想禁用某个 Claude Code 插件时，如果其他插件依赖它，直接禁用会导致依赖它的插件崩溃。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 尝试禁用插件，Claude Code 会阻止危险操作并给出安全命令</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line">❌ Cannot <span class="built_in">disable</span>: formatter-plugin depends on linter-plugin</span><br><span class="line">   Run: claude plugin <span class="built_in">disable</span> formatter-plugin &amp;&amp; claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 --force 级联禁用（谨慎使用）</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin --force</span><br><span class="line">⚠️  This will also <span class="built_in">disable</span>: formatter-plugin, type-checker</span><br><span class="line">   Proceed? [y/N]</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：避免插件依赖断裂导致的隐性故障，提升插件生态稳定性。</p>
+<h2 id="技巧-2：OpenClaw-按需安装减少-70-体积"><a href="#技巧-2：OpenClaw-按需安装减少-70-体积" class="headerlink" title="技巧 2：OpenClaw 按需安装减少 70% 体积"></a>技巧 2：OpenClaw 按需安装减少 70% 体积</h2><p><strong>使用场景</strong>：在 NAS、树莓派或 CI 容器中部署 OpenClaw 时，完整安装包含大量不需要的 provider 依赖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只安装核心 + 需要的 provider</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比体积</span></span><br><span class="line">openclaw info --size</span><br><span class="line"><span class="comment"># Core: 12MB</span></span><br><span class="line"><span class="comment"># Claude provider: 8MB</span></span><br><span class="line"><span class="comment"># Codex provider: 6MB</span></span><br><span class="line"><span class="comment"># Total: 26MB (vs 完整安装 ~120MB)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少安装时间和磁盘占用，容器镜像构建速度提升 3 倍。</p>
+<h2 id="技巧-3：Codex-remote-control-部署为团队-AI-服务"><a href="#技巧-3：Codex-remote-control-部署为团队-AI-服务" class="headerlink" title="技巧 3：Codex remote-control 部署为团队 AI 服务"></a>技巧 3：Codex remote-control 部署为团队 AI 服务</h2><p><strong>使用场景</strong>：团队需要共享一个 Codex 实例进行代码审查或自动化任务，但每个人本地安装配置复杂。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 服务器端启动 headless Codex</span></span><br><span class="line">$ codex remote-control --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line">[INFO] App-server listening on 0.0.0.0:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 团队成员本地连接</span></span><br><span class="line">$ codex --remote http://codex-server:8080 --token &lt;shared-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 CI 中使用 stdio 模式</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;Review this PR for SQL injection risks&quot;</span> | codex remote-control --stdio</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：统一团队 Codex 版本和配置，CI 集成无需维护多个本地环境。</p>
+<h2 id="技巧-4：Claude-Code-后台会话跳过-worktree-隔离"><a href="#技巧-4：Claude-Code-后台会话跳过-worktree-隔离" class="headerlink" title="技巧 4：Claude Code 后台会话跳过 worktree 隔离"></a>技巧 4：Claude Code 后台会话跳过 worktree 隔离</h2><p><strong>使用场景</strong>：在 monorepo 中使用 <code>claude /bg</code> 时，创建 worktree 的等待时间让人烦躁。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置文件中关闭后台会话的 worktree 隔离</span></span><br><span class="line"><span class="comment"># ~/.claude/settings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;worktree.bgIsolation&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在后台任务直接在工作副本执行，无需等待</span></span><br><span class="line">$ claude /bg <span class="string">&quot;运行所有测试并报告失败项&quot;</span></span><br><span class="line"><span class="comment"># 之前: 3-5 秒 worktree 创建</span></span><br><span class="line"><span class="comment"># 现在: 即时执行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：后台任务启动时间从数秒降至毫秒级，大型 monorepo 体验显著改善。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw v2026.5.19 发布。## 2026.5.19  ### Changes  - Agents: clarify that fixes should default to clean …</li>
+<li><strong>Claude Code</strong>：Claude Code v2.1.145 发布。## What’s changed  - Added <code>claude agents --json</code> to list live Claude sessions a…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.132.0 发布。## New Features - The Python SDK now supports first-class authentication, includ…</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 OpenClaw 精简安装后的 provider 生态选型指南，并结合实际案例给出可操作的建议。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-05-22</title>
+    <url>/2026/05/22/2026-05-22-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="Claude-Code-v2-1-147：从代码清理到代码审查的思维跃迁"><a href="#Claude-Code-v2-1-147：从代码清理到代码审查的思维跃迁" class="headerlink" title="Claude Code v2.1.147：从代码清理到代码审查的思维跃迁"></a>Claude Code v2.1.147：从代码清理到代码审查的思维跃迁</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>Claude Code 最新版本将 <code>/simplify</code> 命令重命名为 <code>/code-review</code>，并彻底改变了其行为模式——从”自动清理并修复代码”转变为”报告正确性缺陷”。这看似简单的命名变更，实则反映了 AI 辅助编程工具的<strong>定位进化</strong>：从”替你做”到”帮你审”。</p>
+<p>在团队代码审查流程中，AI 自动修改代码往往引发信任危机——开发者不知道 AI 改了什么、为什么改、是否引入了新的副作用。而”报告缺陷”模式则保留了人的最终决策权，AI 成为审查助手而非替代者。对于已经在团队中使用 Claude Code 的开发者，<code>/code-review</code> 的引入意味着可以将 AI 审查直接集成到 GitHub PR 流程中，无需额外工具。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong><code>/code-review</code> 的分层审查机制</strong>：</p>
+<p>Claude Code 根据指定的 effort level（<code>low</code>&#x2F;<code>medium</code>&#x2F;<code>high</code>）调整审查深度：</p>
+<ul>
+<li><strong>Low</strong>：快速扫描明显缺陷（空指针、资源泄漏、明显逻辑错误）</li>
+<li><strong>Medium</strong>：增加边界条件检查、并发安全问题、API 误用模式识别</li>
+<li><strong>High</strong>：深度分析算法复杂度、架构一致性、安全漏洞模式（如 SQL 注入、XSS 载体）</li>
+</ul>
+<p>当传入 <code>--comment</code> 参数时，Claude Code 通过 GitHub API 将审查结果作为<strong>内联 PR 评论</strong>直接发布，每条评论附带代码行定位和修复建议。</p>
+<p><strong>Pinned Background Sessions 的生命周期管理</strong>：</p>
+<p>此前 <code>Ctrl+T</code> 创建的 pinned 后台会话在空闲时会被回收，导致长期运行的代理（如监控、定时任务）意外中断。v2.1.147 引入了三级生命周期策略：</p>
+<ol>
+<li><strong>Idle Keepalive</strong>：Pinned 会话空闲时不回收</li>
+<li><strong>In-Place Restart</strong>：Claude Code 自身更新时，pinned 会话原地重启而非重建，保留上下文</li>
+<li><strong>Memory Pressure Shedding</strong>：仅在内存不足时回收，且优先回收非 pinned 会话</li>
+</ol>
+<p>实现上是通过标记会话的 <code>pinned</code> 属性，在会话调度器的 LRU 淘汰逻辑中增加优先级权重。</p>
+<p><strong>Prompt History 去重</strong>：</p>
+<p>此前连续提交相同 prompt 会在历史中堆积多个副本，导致 <code>↑</code> 键翻阅时效率低下。新版本通过比较相邻历史条目的内容哈希，跳过重复写入。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：GitHub PR 的 AI 审查集成</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 PR 分支上运行审查，结果直接发布为 PR 评论</span></span><br><span class="line">claude /code-review high --comment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审查特定文件范围</span></span><br><span class="line">claude /code-review medium --comment --files <span class="string">&quot;src/auth/**,src/db/**&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地审查不发布（快速自检）</span></span><br><span class="line">claude /code-review low</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">🔍 Code Review (high effort)</span><br><span class="line"></span><br><span class="line">src/auth/login.ts:42</span><br><span class="line">  ⚠️  Potential timing attack: string comparison uses === instead of</span><br><span class="line">crypto.timingSafeEqual</span><br><span class="line">  💡  Replace: if (password === hash) → if (crypto.timingSafeEqual(...))</span><br><span class="line"></span><br><span class="line">src/db/query.ts:78</span><br><span class="line">  ⚠️  SQL injection risk: user input concatenated into raw query</span><br><span class="line">  💡  Use parameterized query: db.query(&#x27;SELECT * FROM users WHERE id = ?&#x27;, [userId])</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景二：Pinned 后台会话的持久化代理</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个 pinned 后台会话监控测试状态</span></span><br><span class="line">claude agents</span><br><span class="line"><span class="comment"># Ctrl+T 创建 pinned session</span></span><br><span class="line"><span class="comment"># 输入: &quot;每 5 分钟运行 npm test，如果失败发送通知&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 该会话将持续运行，即使 Claude Code 更新也会原地重启</span></span><br><span class="line"><span class="comment"># 查看所有 pinned sessions</span></span><br><span class="line">claude agents --pinned</span><br></pre></td></tr></table></figure>
+
+<p><strong>场景三：企业环境的登录策略强制</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/managed-settings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;forceLoginOrgUUID&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org_xxxxxxxx&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;forceLoginMethod&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sso&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>修复后，任何尝试通过第三方 provider 或 API key 绕过 SSO 的会话都会被拒绝，确保企业合规。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>团队需要 AI 辅助代码审查，但要求开发者保留最终决策权</li>
+<li>长期运行的监控&#x2F;定时任务代理，不能因空闲或更新而中断</li>
+<li>企业环境需要强制 SSO&#x2F;特定登录方式</li>
+<li>大型文件编辑场景（diff 渲染性能提升明显）</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>需要 AI 自动修复代码而非仅报告问题的场景（旧 <code>/simplify</code> 的清理行为已移除）</li>
+<li>个人快速原型开发，审查开销大于收益</li>
+<li>Windows 上不使用 PowerShell 的用户（大量 PowerShell 修复无感知）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：用-code-review-comment-替代人工-PR-初审"><a href="#技巧-1：用-code-review-comment-替代人工-PR-初审" class="headerlink" title="技巧 1：用 /code-review --comment 替代人工 PR 初审"></a>技巧 1：用 <code>/code-review --comment</code> 替代人工 PR 初审</h2><p><strong>使用场景</strong>：提交 PR 后，在请求同事审查前先让 Claude Code 做一次 AI 初审，捕获低级错误，减少人工审查的噪音。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 提交 PR 后运行</span></span><br><span class="line">gh <span class="built_in">pr</span> checkout 123</span><br><span class="line">claude /code-review medium --comment</span><br><span class="line"><span class="comment"># 等待 30-60 秒，审查评论自动出现在 PR 页面</span></span><br><span class="line"><span class="comment"># 修复 AI 发现的问题后再次推送</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：PR 的人工审查时间平均减少 40%，审查者可以专注于架构和逻辑问题而非格式和边界条件。</p>
+<h2 id="技巧-2：Pinned-Background-Session-的”永不掉线”代理"><a href="#技巧-2：Pinned-Background-Session-的”永不掉线”代理" class="headerlink" title="技巧 2：Pinned Background Session 的”永不掉线”代理"></a>技巧 2：Pinned Background Session 的”永不掉线”代理</h2><p><strong>使用场景</strong>：需要 Claude Code 持续监控某个进程（如测试、构建、日志），即使主会话关闭或软件更新也不能中断。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">claude agents</span><br><span class="line"><span class="comment"># Ctrl+T 进入 pinned session</span></span><br><span class="line"><span class="comment"># 输入任务描述</span></span><br><span class="line"><span class="string">&quot;监控 tail -f /var/log/app.log，如果出现 ERROR 级别日志，</span></span><br><span class="line"><span class="string"> 提取前后 5 行上下文保存到 /tmp/error-snapshots/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭主窗口，pinned session 在后台继续运行</span></span><br><span class="line"><span class="comment"># 次日查看快照</span></span><br><span class="line"><span class="built_in">ls</span> /tmp/error-snapshots/</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：实现 7×24 的 AI 监控代理，无需 systemd 或 cron，Claude Code 自身管理生命周期。</p>
+<h2 id="技巧-3：Prompt-History-去重后的高效复用"><a href="#技巧-3：Prompt-History-去重后的高效复用" class="headerlink" title="技巧 3：Prompt History 去重后的高效复用"></a>技巧 3：Prompt History 去重后的高效复用</h2><p><strong>使用场景</strong>：重复执行相似的调试或分析任务时，利用去重后的历史快速召回。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一次输入</span></span><br><span class="line">claude <span class="string">&quot;分析 src/utils.js 的循环复杂度&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二次想对另一个文件做同样分析，直接按 ↑ 找到历史</span></span><br><span class="line"><span class="comment"># 修改文件名后提交，历史不会增加重复条目</span></span><br><span class="line">claude <span class="string">&quot;分析 src/parser.js 的循环复杂度&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 ↑ 回溯历史，文件列表保持整洁</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：高频重复任务的 prompt 历史从数十条膨胀降至几条核心模板，召回效率提升。</p>
+<h2 id="技巧-4：修复后的-Windows-PowerShell-脚本执行"><a href="#技巧-4：修复后的-Windows-PowerShell-脚本执行" class="headerlink" title="技巧 4：修复后的 Windows PowerShell 脚本执行"></a>技巧 4：修复后的 Windows PowerShell 脚本执行</h2><p><strong>使用场景</strong>：Windows 开发者使用 Claude Code 执行 PowerShell 自动化脚本（如部署、环境检查）。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此前 winget 或 Microsoft Store 安装的 pwsh 会导致 exit code 1 误报</span></span><br><span class="line"><span class="comment"># v2.1.147 修复后，以下命令正常工作：</span></span><br><span class="line">claude <span class="string">&quot;写一个 PowerShell 脚本检查所有服务的运行状态，</span></span><br><span class="line"><span class="string">       对停止的关键服务输出红色警告&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Claude 生成脚本后执行，exit code 正确反映实际结果</span></span><br><span class="line"><span class="comment"># &quot;Yes, and don&#x27;t ask again&quot; 现在会写入正确匹配的规则</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：Windows 上的 PowerShell 工具从”经常误报失败”变为可靠，脚本化工作流可以信任 exit code。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><p><strong>Claude Code</strong>：v2.1.147 发布，核心变化是 <code>/simplify</code> 更名为 <code>/code-review</code> 并改为仅报告缺陷（不再自动修复），支持 <code>--comment</code> 直接发布 GitHub PR 评论；Pinned 后台会话获得空闲保活和原地重启能力；大量 Windows PowerShell 修复；Prompt 历史去重；企业登录策略强制生效。</p>
+</li>
+<li><p><strong>Codex</strong>：rust-v0.133.0 发布，Goals 功能正式脱离实验阶段并默认启用，支持跨 turn 的进度追踪；<code>codex remote-control</code> 改为前台命令模式，支持显式的 <code>start</code>&#x2F;<code>stop</code> 守护进程式管理；Permission profiles 获得列表 API、继承机制、托管 <code>requirements.toml</code> 支持和更强的 Windows sandbox 集成；插件发现支持市场感知输出和远程集合；扩展系统可观察更多生命周期事件（子代理启停、工具执行、turn 元数据）。</p>
+</li>
+<li><p><strong>OpenClaw</strong>：v2026.5.20 发布，移除旧的 <code>cat SKILL.md</code> allowlist 兼容路径，skill 文件必须通过 read 工具加载；Discord 语音会话支持跟随用户进入语音频道，并默认注入 <code>IDENTITY.md</code>&#x2F;<code>USER.md</code>&#x2F;<code>SOUL.md</code> 上下文；新增 Policy 插件用于策略合规检查；xAI provider 支持设备码 OAuth；OpenRouter 支持 provider 级路由策略；Codex 运行时升级至 0.132.0；大量 Cron 稳定性修复和 Doctor 安全警告改进。</p>
+</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 Codex rust-v0.133.0 的 Goals 系统——从实验功能到默认启用，它如何改变多步骤任务的追踪和恢复方式，以及在企业工作流中的实战配置。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 编程日报 2026-05-23</title>
     <url>/2026/05/23/2026-05-23-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1490,98 +1656,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI 编程日报 2026-05-22</title>
-    <url>/2026/05/22/2026-05-22-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="Claude-Code-v2-1-147：从代码清理到代码审查的思维跃迁"><a href="#Claude-Code-v2-1-147：从代码清理到代码审查的思维跃迁" class="headerlink" title="Claude Code v2.1.147：从代码清理到代码审查的思维跃迁"></a>Claude Code v2.1.147：从代码清理到代码审查的思维跃迁</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>Claude Code 最新版本将 <code>/simplify</code> 命令重命名为 <code>/code-review</code>，并彻底改变了其行为模式——从”自动清理并修复代码”转变为”报告正确性缺陷”。这看似简单的命名变更，实则反映了 AI 辅助编程工具的<strong>定位进化</strong>：从”替你做”到”帮你审”。</p>
-<p>在团队代码审查流程中，AI 自动修改代码往往引发信任危机——开发者不知道 AI 改了什么、为什么改、是否引入了新的副作用。而”报告缺陷”模式则保留了人的最终决策权，AI 成为审查助手而非替代者。对于已经在团队中使用 Claude Code 的开发者，<code>/code-review</code> 的引入意味着可以将 AI 审查直接集成到 GitHub PR 流程中，无需额外工具。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong><code>/code-review</code> 的分层审查机制</strong>：</p>
-<p>Claude Code 根据指定的 effort level（<code>low</code>&#x2F;<code>medium</code>&#x2F;<code>high</code>）调整审查深度：</p>
-<ul>
-<li><strong>Low</strong>：快速扫描明显缺陷（空指针、资源泄漏、明显逻辑错误）</li>
-<li><strong>Medium</strong>：增加边界条件检查、并发安全问题、API 误用模式识别</li>
-<li><strong>High</strong>：深度分析算法复杂度、架构一致性、安全漏洞模式（如 SQL 注入、XSS 载体）</li>
-</ul>
-<p>当传入 <code>--comment</code> 参数时，Claude Code 通过 GitHub API 将审查结果作为<strong>内联 PR 评论</strong>直接发布，每条评论附带代码行定位和修复建议。</p>
-<p><strong>Pinned Background Sessions 的生命周期管理</strong>：</p>
-<p>此前 <code>Ctrl+T</code> 创建的 pinned 后台会话在空闲时会被回收，导致长期运行的代理（如监控、定时任务）意外中断。v2.1.147 引入了三级生命周期策略：</p>
-<ol>
-<li><strong>Idle Keepalive</strong>：Pinned 会话空闲时不回收</li>
-<li><strong>In-Place Restart</strong>：Claude Code 自身更新时，pinned 会话原地重启而非重建，保留上下文</li>
-<li><strong>Memory Pressure Shedding</strong>：仅在内存不足时回收，且优先回收非 pinned 会话</li>
-</ol>
-<p>实现上是通过标记会话的 <code>pinned</code> 属性，在会话调度器的 LRU 淘汰逻辑中增加优先级权重。</p>
-<p><strong>Prompt History 去重</strong>：</p>
-<p>此前连续提交相同 prompt 会在历史中堆积多个副本，导致 <code>↑</code> 键翻阅时效率低下。新版本通过比较相邻历史条目的内容哈希，跳过重复写入。</p>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：GitHub PR 的 AI 审查集成</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 PR 分支上运行审查，结果直接发布为 PR 评论</span></span><br><span class="line">claude /code-review high --comment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审查特定文件范围</span></span><br><span class="line">claude /code-review medium --comment --files <span class="string">&quot;src/auth/**,src/db/**&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地审查不发布（快速自检）</span></span><br><span class="line">claude /code-review low</span><br></pre></td></tr></table></figure>
-
-<p>输出示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">🔍 Code Review (high effort)</span><br><span class="line"></span><br><span class="line">src/auth/login.ts:42</span><br><span class="line">  ⚠️  Potential timing attack: string comparison uses === instead of</span><br><span class="line">crypto.timingSafeEqual</span><br><span class="line">  💡  Replace: if (password === hash) → if (crypto.timingSafeEqual(...))</span><br><span class="line"></span><br><span class="line">src/db/query.ts:78</span><br><span class="line">  ⚠️  SQL injection risk: user input concatenated into raw query</span><br><span class="line">  💡  Use parameterized query: db.query(&#x27;SELECT * FROM users WHERE id = ?&#x27;, [userId])</span><br></pre></td></tr></table></figure>
-
-<p><strong>场景二：Pinned 后台会话的持久化代理</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个 pinned 后台会话监控测试状态</span></span><br><span class="line">claude agents</span><br><span class="line"><span class="comment"># Ctrl+T 创建 pinned session</span></span><br><span class="line"><span class="comment"># 输入: &quot;每 5 分钟运行 npm test，如果失败发送通知&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 该会话将持续运行，即使 Claude Code 更新也会原地重启</span></span><br><span class="line"><span class="comment"># 查看所有 pinned sessions</span></span><br><span class="line">claude agents --pinned</span><br></pre></td></tr></table></figure>
-
-<p><strong>场景三：企业环境的登录策略强制</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ~/.claude/managed-settings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;forceLoginOrgUUID&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org_xxxxxxxx&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;forceLoginMethod&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sso&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>修复后，任何尝试通过第三方 provider 或 API key 绕过 SSO 的会话都会被拒绝，确保企业合规。</p>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
-<ul>
-<li>团队需要 AI 辅助代码审查，但要求开发者保留最终决策权</li>
-<li>长期运行的监控&#x2F;定时任务代理，不能因空闲或更新而中断</li>
-<li>企业环境需要强制 SSO&#x2F;特定登录方式</li>
-<li>大型文件编辑场景（diff 渲染性能提升明显）</li>
-</ul>
-<p><strong>不适合用：</strong></p>
-<ul>
-<li>需要 AI 自动修复代码而非仅报告问题的场景（旧 <code>/simplify</code> 的清理行为已移除）</li>
-<li>个人快速原型开发，审查开销大于收益</li>
-<li>Windows 上不使用 PowerShell 的用户（大量 PowerShell 修复无感知）</li>
-</ul>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：用-code-review-comment-替代人工-PR-初审"><a href="#技巧-1：用-code-review-comment-替代人工-PR-初审" class="headerlink" title="技巧 1：用 /code-review --comment 替代人工 PR 初审"></a>技巧 1：用 <code>/code-review --comment</code> 替代人工 PR 初审</h2><p><strong>使用场景</strong>：提交 PR 后，在请求同事审查前先让 Claude Code 做一次 AI 初审，捕获低级错误，减少人工审查的噪音。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 提交 PR 后运行</span></span><br><span class="line">gh <span class="built_in">pr</span> checkout 123</span><br><span class="line">claude /code-review medium --comment</span><br><span class="line"><span class="comment"># 等待 30-60 秒，审查评论自动出现在 PR 页面</span></span><br><span class="line"><span class="comment"># 修复 AI 发现的问题后再次推送</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：PR 的人工审查时间平均减少 40%，审查者可以专注于架构和逻辑问题而非格式和边界条件。</p>
-<h2 id="技巧-2：Pinned-Background-Session-的”永不掉线”代理"><a href="#技巧-2：Pinned-Background-Session-的”永不掉线”代理" class="headerlink" title="技巧 2：Pinned Background Session 的”永不掉线”代理"></a>技巧 2：Pinned Background Session 的”永不掉线”代理</h2><p><strong>使用场景</strong>：需要 Claude Code 持续监控某个进程（如测试、构建、日志），即使主会话关闭或软件更新也不能中断。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">claude agents</span><br><span class="line"><span class="comment"># Ctrl+T 进入 pinned session</span></span><br><span class="line"><span class="comment"># 输入任务描述</span></span><br><span class="line"><span class="string">&quot;监控 tail -f /var/log/app.log，如果出现 ERROR 级别日志，</span></span><br><span class="line"><span class="string"> 提取前后 5 行上下文保存到 /tmp/error-snapshots/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭主窗口，pinned session 在后台继续运行</span></span><br><span class="line"><span class="comment"># 次日查看快照</span></span><br><span class="line"><span class="built_in">ls</span> /tmp/error-snapshots/</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：实现 7×24 的 AI 监控代理，无需 systemd 或 cron，Claude Code 自身管理生命周期。</p>
-<h2 id="技巧-3：Prompt-History-去重后的高效复用"><a href="#技巧-3：Prompt-History-去重后的高效复用" class="headerlink" title="技巧 3：Prompt History 去重后的高效复用"></a>技巧 3：Prompt History 去重后的高效复用</h2><p><strong>使用场景</strong>：重复执行相似的调试或分析任务时，利用去重后的历史快速召回。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一次输入</span></span><br><span class="line">claude <span class="string">&quot;分析 src/utils.js 的循环复杂度&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二次想对另一个文件做同样分析，直接按 ↑ 找到历史</span></span><br><span class="line"><span class="comment"># 修改文件名后提交，历史不会增加重复条目</span></span><br><span class="line">claude <span class="string">&quot;分析 src/parser.js 的循环复杂度&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 ↑ 回溯历史，文件列表保持整洁</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：高频重复任务的 prompt 历史从数十条膨胀降至几条核心模板，召回效率提升。</p>
-<h2 id="技巧-4：修复后的-Windows-PowerShell-脚本执行"><a href="#技巧-4：修复后的-Windows-PowerShell-脚本执行" class="headerlink" title="技巧 4：修复后的 Windows PowerShell 脚本执行"></a>技巧 4：修复后的 Windows PowerShell 脚本执行</h2><p><strong>使用场景</strong>：Windows 开发者使用 Claude Code 执行 PowerShell 自动化脚本（如部署、环境检查）。</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此前 winget 或 Microsoft Store 安装的 pwsh 会导致 exit code 1 误报</span></span><br><span class="line"><span class="comment"># v2.1.147 修复后，以下命令正常工作：</span></span><br><span class="line">claude <span class="string">&quot;写一个 PowerShell 脚本检查所有服务的运行状态，</span></span><br><span class="line"><span class="string">       对停止的关键服务输出红色警告&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Claude 生成脚本后执行，exit code 正确反映实际结果</span></span><br><span class="line"><span class="comment"># &quot;Yes, and don&#x27;t ask again&quot; 现在会写入正确匹配的规则</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：Windows 上的 PowerShell 工具从”经常误报失败”变为可靠，脚本化工作流可以信任 exit code。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
-<li><p><strong>Claude Code</strong>：v2.1.147 发布，核心变化是 <code>/simplify</code> 更名为 <code>/code-review</code> 并改为仅报告缺陷（不再自动修复），支持 <code>--comment</code> 直接发布 GitHub PR 评论；Pinned 后台会话获得空闲保活和原地重启能力；大量 Windows PowerShell 修复；Prompt 历史去重；企业登录策略强制生效。</p>
-</li>
-<li><p><strong>Codex</strong>：rust-v0.133.0 发布，Goals 功能正式脱离实验阶段并默认启用，支持跨 turn 的进度追踪；<code>codex remote-control</code> 改为前台命令模式，支持显式的 <code>start</code>&#x2F;<code>stop</code> 守护进程式管理；Permission profiles 获得列表 API、继承机制、托管 <code>requirements.toml</code> 支持和更强的 Windows sandbox 集成；插件发现支持市场感知输出和远程集合；扩展系统可观察更多生命周期事件（子代理启停、工具执行、turn 元数据）。</p>
-</li>
-<li><p><strong>OpenClaw</strong>：v2026.5.20 发布，移除旧的 <code>cat SKILL.md</code> allowlist 兼容路径，skill 文件必须通过 read 工具加载；Discord 语音会话支持跟随用户进入语音频道，并默认注入 <code>IDENTITY.md</code>&#x2F;<code>USER.md</code>&#x2F;<code>SOUL.md</code> 上下文；新增 Policy 插件用于策略合规检查；xAI provider 支持设备码 OAuth；OpenRouter 支持 provider 级路由策略；Codex 运行时升级至 0.132.0；大量 Cron 稳定性修复和 Doctor 安全警告改进。</p>
-</li>
-</ul>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入解析 Codex rust-v0.133.0 的 Goals 系统——从实验功能到默认启用，它如何改变多步骤任务的追踪和恢复方式，以及在企业工作流中的实战配置。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI 编程日报 2026-05-25</title>
     <url>/2026/05/25/2026-05-25-ai-daily/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1643,80 +1717,6 @@
 </ul>
 <hr>
 <h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 AI 编程工具的安全边界问题，并结合实际案例给出可操作的建议。</p>
-<hr>
-<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
-]]></content>
-      <categories>
-        <category>AI编程日报</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>编程</tag>
-        <tag>日报</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI 编程日报 2026-05-21</title>
-    <url>/2026/05/21/2026-05-21-ai-daily/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
-</blockquote>
-<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="OpenClaw-v2026-5-19-发布"><a href="#OpenClaw-v2026-5-19-发布" class="headerlink" title="OpenClaw v2026.5.19 发布"></a>OpenClaw v2026.5.19 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>OpenClaw 2026.5.12 是一次”瘦身” release——将 WhatsApp、Slack、Amazon Bedrock、Anthropic Vertex 等 provider 及其依赖从核心运行时移出，改为按需安装。这一改动直接回应了社区对安装体积和启动速度的抱怨：此前即使只使用 Claude 一个 provider，安装包也会拉入 WhatsApp 和 Slack 的全套依赖。对于在 NAS、树莓派或容器环境中部署 OpenClaw 的用户，这是一次显著的运维体验提升。</p>
-<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>按需依赖（Leaner Installs）</strong>的实现机制：OpenClaw 将 provider 拆分为独立的 npm 包（或类似模块），核心运行时仅保留接口定义和基础调度逻辑。安装时通过 <code>openclaw provider add &lt;name&gt;</code> 动态拉取对应 provider 的实现包。这类似于 VS Code 的扩展机制——核心轻量，功能按需扩展。</p>
-<p><strong>Telegram 稳定性增强</strong>的技术细节：</p>
-<ul>
-<li><strong>隔离轮询（isolated polling）</strong>：将 Telegram Bot API 的轮询循环与主事件循环解耦，防止网络抖动阻塞其他 channel 的消息处理</li>
-<li><strong>本地持久化缓冲（durable local spooling）</strong>：消息在发送到 Telegram 之前先写入本地队列，发送失败时自动重试，避免消息丢失</li>
-<li><strong>群组媒体安全处理（safer group-media handling）</strong>：对群组中的媒体文件进行更严格的 MIME 类型检查和大小限制，防止恶意文件传播</li>
-<li><strong>格式保留</strong>：流式回复和定时回复中保留 HTML&#x2F;Markdown 格式，避免之前出现的格式转义问题</li>
-</ul>
-<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：精简安装（只装需要的 provider）</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全新安装 OpenClaw（核心仅 50MB 左右）</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按需添加 provider</span></span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"><span class="comment"># WhatsApp 和 Slack 不会被安装</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 provider</span></span><br><span class="line">openclaw provider list</span><br></pre></td></tr></table></figure>
-
-<p><strong>场景二：配置 Telegram 高可用消息推送</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// openclaw 配置中的 telegram 部分</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;telegram&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;polling&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;isolated&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryAttempts&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;retryDelayMs&quot;</span><span class="punctuation">:</span> <span class="number">1000</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spool&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;enabled&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;maxAgeHours&quot;</span><span class="punctuation">:</span> <span class="number">24</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>验证消息持久化：断开网络，让 OpenClaw 发送一条消息，恢复网络后检查消息是否自动补发。</p>
-<p><strong>场景三：Codex&#x2F;OpenAI 路径优化</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 auth profile 管理多个 OpenAI 账号</span></span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile work</span><br><span class="line">openclaw config <span class="built_in">set</span> codex.authProfile personal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换 profile</span></span><br><span class="line">openclaw config use codex.authProfile work</span><br></pre></td></tr></table></figure>
-
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
-<ul>
-<li>资源受限环境（NAS、边缘设备、容器）部署 OpenClaw</li>
-<li>使用 Telegram 作为通知 channel，需要高可靠性</li>
-<li>多 OpenAI&#x2F;Codex 账号切换场景</li>
-</ul>
-<p><strong>不适合用：</strong></p>
-<ul>
-<li>已经完整安装且空间不敏感的环境（改动收益有限）</li>
-<li>不使用 Telegram 的用户（稳定性改进无感知）</li>
-<li>需要所有 provider 开箱即用的场景（需额外安装步骤）</li>
-</ul>
-<hr>
-<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-插件依赖链安全卸载"><a href="#技巧-1：Claude-Code-插件依赖链安全卸载" class="headerlink" title="技巧 1：Claude Code 插件依赖链安全卸载"></a>技巧 1：Claude Code 插件依赖链安全卸载</h2><p><strong>使用场景</strong>：当你想禁用某个 Claude Code 插件时，如果其他插件依赖它，直接禁用会导致依赖它的插件崩溃。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 尝试禁用插件，Claude Code 会阻止危险操作并给出安全命令</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line">❌ Cannot <span class="built_in">disable</span>: formatter-plugin depends on linter-plugin</span><br><span class="line">   Run: claude plugin <span class="built_in">disable</span> formatter-plugin &amp;&amp; claude plugin <span class="built_in">disable</span> linter-plugin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 --force 级联禁用（谨慎使用）</span></span><br><span class="line">$ claude plugin <span class="built_in">disable</span> linter-plugin --force</span><br><span class="line">⚠️  This will also <span class="built_in">disable</span>: formatter-plugin, type-checker</span><br><span class="line">   Proceed? [y/N]</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：避免插件依赖断裂导致的隐性故障，提升插件生态稳定性。</p>
-<h2 id="技巧-2：OpenClaw-按需安装减少-70-体积"><a href="#技巧-2：OpenClaw-按需安装减少-70-体积" class="headerlink" title="技巧 2：OpenClaw 按需安装减少 70% 体积"></a>技巧 2：OpenClaw 按需安装减少 70% 体积</h2><p><strong>使用场景</strong>：在 NAS、树莓派或 CI 容器中部署 OpenClaw 时，完整安装包含大量不需要的 provider 依赖。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只安装核心 + 需要的 provider</span></span><br><span class="line">npm install -g openclaw</span><br><span class="line">openclaw provider add claude</span><br><span class="line">openclaw provider add codex</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比体积</span></span><br><span class="line">openclaw info --size</span><br><span class="line"><span class="comment"># Core: 12MB</span></span><br><span class="line"><span class="comment"># Claude provider: 8MB</span></span><br><span class="line"><span class="comment"># Codex provider: 6MB</span></span><br><span class="line"><span class="comment"># Total: 26MB (vs 完整安装 ~120MB)</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：减少安装时间和磁盘占用，容器镜像构建速度提升 3 倍。</p>
-<h2 id="技巧-3：Codex-remote-control-部署为团队-AI-服务"><a href="#技巧-3：Codex-remote-control-部署为团队-AI-服务" class="headerlink" title="技巧 3：Codex remote-control 部署为团队 AI 服务"></a>技巧 3：Codex remote-control 部署为团队 AI 服务</h2><p><strong>使用场景</strong>：团队需要共享一个 Codex 实例进行代码审查或自动化任务，但每个人本地安装配置复杂。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 服务器端启动 headless Codex</span></span><br><span class="line">$ codex remote-control --port 8080 --auth-token $(openssl rand -hex 32)</span><br><span class="line">[INFO] App-server listening on 0.0.0.0:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 团队成员本地连接</span></span><br><span class="line">$ codex --remote http://codex-server:8080 --token &lt;shared-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 CI 中使用 stdio 模式</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;Review this PR for SQL injection risks&quot;</span> | codex remote-control --stdio</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：统一团队 Codex 版本和配置，CI 集成无需维护多个本地环境。</p>
-<h2 id="技巧-4：Claude-Code-后台会话跳过-worktree-隔离"><a href="#技巧-4：Claude-Code-后台会话跳过-worktree-隔离" class="headerlink" title="技巧 4：Claude Code 后台会话跳过 worktree 隔离"></a>技巧 4：Claude Code 后台会话跳过 worktree 隔离</h2><p><strong>使用场景</strong>：在 monorepo 中使用 <code>claude /bg</code> 时，创建 worktree 的等待时间让人烦躁。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置文件中关闭后台会话的 worktree 隔离</span></span><br><span class="line"><span class="comment"># ~/.claude/settings.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;worktree.bgIsolation&quot;</span>: <span class="string">&quot;none&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在后台任务直接在工作副本执行，无需等待</span></span><br><span class="line">$ claude /bg <span class="string">&quot;运行所有测试并报告失败项&quot;</span></span><br><span class="line"><span class="comment"># 之前: 3-5 秒 worktree 创建</span></span><br><span class="line"><span class="comment"># 现在: 即时执行</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：后台任务启动时间从数秒降至毫秒级，大型 monorepo 体验显著改善。</p>
-<hr>
-<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
-<li><strong>OpenClaw</strong>：OpenClaw v2026.5.19 发布。## 2026.5.19  ### Changes  - Agents: clarify that fixes should default to clean …</li>
-<li><strong>Claude Code</strong>：Claude Code v2.1.145 发布。## What’s changed  - Added <code>claude agents --json</code> to list live Claude sessions a…</li>
-<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.132.0 发布。## New Features - The Python SDK now supports first-class authentication, includ…</li>
-</ul>
-<hr>
-<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 OpenClaw 精简安装后的 provider 生态选型指南，并结合实际案例给出可操作的建议。</p>
 <hr>
 <p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
 ]]></content>
@@ -2010,7 +2010,7 @@
 </ul>
 <h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：验证 Gateway 启动速度</strong></p>
 <p>```bash</p>
-<h1 id="更新到最新版"><a href="#更新到最新版" class="headerlink" title="更新到最新版"></a>更新到最新版</h1><p>npm install -g <a href="mailto:&#111;&#112;&#101;&#110;&#99;&#x6c;&#x61;&#x77;&#64;&#50;&#x30;&#x32;&#x36;&#46;&#53;&#46;&#x32;&#54;">&#111;&#112;&#101;&#110;&#99;&#x6c;&#x61;&#x77;&#64;&#50;&#x30;&#x32;&#x36;&#46;&#53;&#46;&#x32;&#54;</a></p>
+<h1 id="更新到最新版"><a href="#更新到最新版" class="headerlink" title="更新到最新版"></a>更新到最新版</h1><p>npm install -g <a href="mailto:&#111;&#x70;&#x65;&#110;&#99;&#x6c;&#97;&#x77;&#x40;&#50;&#x30;&#50;&#x36;&#46;&#53;&#x2e;&#50;&#54;">&#111;&#x70;&#x65;&#110;&#99;&#x6c;&#97;&#x77;&#x40;&#50;&#x30;&#50;&#x36;&#46;&#53;&#x2e;&#50;&#54;</a></p>
 <h1 id="记录启动时间"><a href="#记录启动时间" class="headerlink" title="记录启动时间"></a>记录启动时间</h1><p>openclaw gateway start</p>
 <h1 id="旧版-启动日志中出现多次-“scanning-plugins…”-等重复扫描"><a href="#旧版-启动日志中出现多次-“scanning-plugins…”-等重复扫描" class="headerlink" title="旧版: 启动日志中出现多次 “scanning plugins…” 等重复扫描"></a>旧版: 启动日志中出现多次 “scanning plugins…” 等重复扫描</h1><h1 id="新版-扫描一次后缓存，后续启动直接读取快照"><a href="#新版-扫描一次后缓存，后续启动直接读取快照" class="headerlink" title="新版: 扫描一次后缓存，后续启动直接读取快照"></a>新版: 扫描一次后缓存，后续启动直接读取快照</h1><h1 id="高负载测试"><a href="#高负载测试" class="headerlink" title="高负载测试"></a>高负载测试</h1><p>openclaw benchmark –channels 10 –messages 100</p>
 <h1 id="旧版-session-缓存抖动导致响应时间波动"><a href="#旧版-session-缓存抖动导致响应时间波动" class="headerlink" title="旧版: session 缓存抖动导致响应时间波动"></a>旧版: session 缓存抖动导致响应时间波动</h1><h1 id="新版-响应时间更稳定"><a href="#新版-响应时间更稳定" class="headerlink" title="新版: 响应时间更稳定"></a>新版: 响应时间更稳定</h1><p>```</p>
@@ -2159,6 +2159,91 @@
 </ul>
 <hr>
 <h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将深入 Codex 的命名权限 profile 系统，结合实际案例展示如何在团队环境中统一管理和切换不同安全级别的权限配置。</p>
+<hr>
+<p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
+]]></content>
+      <categories>
+        <category>AI编程日报</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>编程</tag>
+        <tag>日报</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 编程日报 2026-06-02</title>
+    <url>/2026/06/02/2026-06-02-ai-daily/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>为 OpenClaw &#x2F; Claude &#x2F; Codex 深度用户精选的 AI 编程资讯，每日早 8:00 更新。</p>
+</blockquote>
+<h1 id="今日深度"><a href="#今日深度" class="headerlink" title="今日深度"></a>今日深度</h1><h2 id="Claude-Code-v2-2-0-发布"><a href="#Claude-Code-v2-2-0-发布" class="headerlink" title="Claude Code v2.2.0 发布"></a>Claude Code v2.2.0 发布</h2><h3 id="背景：为什么这个话题重要"><a href="#背景：为什么这个话题重要" class="headerlink" title="背景：为什么这个话题重要"></a>背景：为什么这个话题重要</h3><p>Claude Code v2.1.152 的更新围绕”审查-修复闭环”和”动态能力管理”两个核心主题展开。</p>
+<p>首先是 &quot;&#x2F;code-review –fix&quot; 的引入——此前 &quot;&#x2F;code-review&quot; 仅报告缺陷，开发者需要手动逐一修复。新版本在审查完成后<strong>自动将修复应用到工作树</strong>，同时保留审查报告中的复用建议、简化建议和效率建议。这意味着 AI 审查从”发现问题”升级为”发现+修复”的完整闭环，但修复动作仍基于审查者的决策逻辑，不是无条件的自动修改。</p>
+<p>其次是 Skill 的 &quot;disallowed-tools&quot; 机制——此前 Skill 只能声明需要什么工具，现在可以在 frontmatter 中声明<strong>禁止使用的工具</strong>。这在安全敏感场景（如金融代码审查 Skill 禁止 &quot;exec&quot; 工具）或防止 Skill 越权时非常关键。</p>
+<p>最后是 &quot;&#x2F;reload-skills&quot; 和 &quot;SessionStart hook 返回 reloadSkills&quot;——解决了 Skill 开发中最痛苦的”修改后必须重启 session”问题。现在 Skill 作者可以编写安装型 hook，安装完成后立即在同一会话中生效。</p>
+<h3 id="原理：技术实现的核心逻辑"><a href="#原理：技术实现的核心逻辑" class="headerlink" title="原理：技术实现的核心逻辑"></a>原理：技术实现的核心逻辑</h3><p><strong>&quot;&#x2F;code-review –fix&quot; 的工作流</strong>：</p>
+<ol>
+<li>Claude Code 对目标代码执行分层审查（low&#x2F;medium&#x2F;high effort）</li>
+<li>审查完成后，将发现的缺陷分类为：正确性缺陷、复用机会、简化建议、效率优化</li>
+<li>对可自动修复的类别（如重复代码提取、冗余 import 清理），生成 patch 并应用到工作树</li>
+<li>对需要人工判断的类别（如架构调整），仅保留审查报告中的建议</li>
+</ol>
+<p><strong>Skill 的 disallowed-tools 机制</strong>：<br>在 Skill 的 frontmatter 中声明 &quot;disallowed-tools: [&quot;exec&quot;, &quot;browser&quot;]&quot;，当该 Skill 激活时，Claude Code 从可用工具集中移除这些工具。实现上是在 Skill 加载阶段解析 frontmatter，将禁用列表合并到会话的 tool-allowlist 的补集中。</p>
+<p><strong>SessionStart hook 的 reloadSkills</strong>：<br>Hook 在会话启动时执行，如果返回 &quot;{ reloadSkills: true }&quot;，Claude Code 在 hook 完成后重新扫描 skill 目录。这使得 hook 可以动态安装 skill（如从远程仓库 clone 到本地 skill 目录），安装后立即可用，无需用户手动 &quot;&#x2F;reload-skills&quot;。</p>
+<h3 id="实战：具体怎么用"><a href="#实战：具体怎么用" class="headerlink" title="实战：具体怎么用"></a>实战：具体怎么用</h3><p><strong>场景一：PR 审查后自动修复</strong></p>
+<p>```bash</p>
+<h1 id="对当前分支做深度审查并自动修复可自动化的问题"><a href="#对当前分支做深度审查并自动修复可自动化的问题" class="headerlink" title="对当前分支做深度审查并自动修复可自动化的问题"></a>对当前分支做深度审查并自动修复可自动化的问题</h1><p>claude &#x2F;code-review high –fix</p>
+<h1 id="审查完成后查看变更"><a href="#审查完成后查看变更" class="headerlink" title="审查完成后查看变更"></a>审查完成后查看变更</h1><p>gh pr diff</p>
+<h1 id="你会看到："><a href="#你会看到：" class="headerlink" title="你会看到："></a>你会看到：</h1><h1 id="重复代码被提取到共享函数"><a href="#重复代码被提取到共享函数" class="headerlink" title="- 重复代码被提取到共享函数"></a>- 重复代码被提取到共享函数</h1><h1 id="未使用的-import-被清理"><a href="#未使用的-import-被清理" class="headerlink" title="- 未使用的 import 被清理"></a>- 未使用的 import 被清理</h1><h1 id="但架构层面的建议仍保留在审查报告中，等待人工决策"><a href="#但架构层面的建议仍保留在审查报告中，等待人工决策" class="headerlink" title="- 但架构层面的建议仍保留在审查报告中，等待人工决策"></a>- 但架构层面的建议仍保留在审查报告中，等待人工决策</h1><p>```</p>
+<p><strong>场景二：安全审查 Skill 限制工具权限</strong></p>
+<h2 id="yaml-claude-skills-security-review-SKILL-md"><a href="#yaml-claude-skills-security-review-SKILL-md" class="headerlink" title="```yaml# .claude&#x2F;skills&#x2F;security-review&#x2F;SKILL.md"></a>```yaml<br># .claude&#x2F;skills&#x2F;security-review&#x2F;SKILL.md</h2><h2 id="disallowed-tools-“exec”-“browser”-“write”"><a href="#disallowed-tools-“exec”-“browser”-“write”" class="headerlink" title="disallowed-tools: [“exec”, “browser”, “write”]"></a>disallowed-tools: [“exec”, “browser”, “write”]</h2><h1 id="这个-Skill-只能读取代码和生成审查报告"><a href="#这个-Skill-只能读取代码和生成审查报告" class="headerlink" title="这个 Skill 只能读取代码和生成审查报告"></a>这个 Skill 只能读取代码和生成审查报告</h1><h1 id="无法执行命令、访问网络或修改文件"><a href="#无法执行命令、访问网络或修改文件" class="headerlink" title="无法执行命令、访问网络或修改文件"></a>无法执行命令、访问网络或修改文件</h1><h1 id="即使-prompt-注入试图让它执行-rm-rf，工具不可用会直接拒绝"><a href="#即使-prompt-注入试图让它执行-rm-rf，工具不可用会直接拒绝" class="headerlink" title="即使 prompt 注入试图让它执行 rm -rf，工具不可用会直接拒绝"></a>即使 prompt 注入试图让它执行 rm -rf，工具不可用会直接拒绝</h1><p>```</p>
+<p><strong>场景三：动态安装 Skill 并立即使用</strong></p>
+<p>```bash</p>
+<h1 id="在-SessionStart-hook-中从远程仓库安装团队-Skill"><a href="#在-SessionStart-hook-中从远程仓库安装团队-Skill" class="headerlink" title="在 SessionStart hook 中从远程仓库安装团队 Skill"></a>在 SessionStart hook 中从远程仓库安装团队 Skill</h1><h1 id="claude-hooks-install-team-skills-js"><a href="#claude-hooks-install-team-skills-js" class="headerlink" title="~&#x2F;.claude&#x2F;hooks&#x2F;install-team-skills.js"></a>~&#x2F;.claude&#x2F;hooks&#x2F;install-team-skills.js</h1><p>export default {<br>  name: ‘install-team-skills’,<br>  async onSessionStart() {<br>    const skills &#x3D; await fetchTeamSkillList();<br>    for (const skill of skills) {<br>      await cloneSkill(skill.repo, skill.branch);<br>    }<br>    return { reloadSkills: true };  &#x2F;&#x2F; 安装完成后立即生效<br>  }<br>};</p>
+<h1 id="启动-Claude-Code-后，团队-Skill-自动可用"><a href="#启动-Claude-Code-后，团队-Skill-自动可用" class="headerlink" title="启动 Claude Code 后，团队 Skill 自动可用"></a>启动 Claude Code 后，团队 Skill 自动可用</h1><p>claude</p>
+<h1 id="install-team-skills-检测到-3-个新-Skill，已安装并加载"><a href="#install-team-skills-检测到-3-个新-Skill，已安装并加载" class="headerlink" title="[install-team-skills] 检测到 3 个新 Skill，已安装并加载"></a>[install-team-skills] 检测到 3 个新 Skill，已安装并加载</h1><p>```</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p><strong>适合用：</strong></p>
+<ul>
+<li>团队需要 AI 审查+自动修复的完整闭环，减少人工修复重复劳动</li>
+<li>安全敏感环境，需要限制特定 Skill 的工具权限防止越权</li>
+<li>Skill 开发&#x2F;分发场景，需要动态安装和即时生效</li>
+<li>企业环境需要强制会话标题规范（通过 hook 设置 sessionTitle）</li>
+</ul>
+<p><strong>不适合用：</strong></p>
+<ul>
+<li>个人快速原型开发，审查开销大于收益</li>
+<li>需要 AI 完全自主修改代码的场景（–fix 仅处理低风险自动化修复）</li>
+<li>无 Skill 使用习惯的用户（disallowed-tools 和 reload-skills 无感知）</li>
+</ul>
+<hr>
+<h1 id="技巧点滴"><a href="#技巧点滴" class="headerlink" title="技巧点滴"></a>技巧点滴</h1><h2 id="技巧-1：Claude-Code-审查后自动修复"><a href="#技巧-1：Claude-Code-审查后自动修复" class="headerlink" title="技巧 1：Claude Code 审查后自动修复"></a>技巧 1：Claude Code 审查后自动修复</h2><p><strong>使用场景</strong>：提交 PR 前让 Claude Code 审查代码，并自动修复可自动化的问题（重复代码、冗余 import 等）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对当前分支做深度审查并自动修复</span></span><br><span class="line">claude /code-review high --fix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 审查完成后查看变更</span></span><br><span class="line">git diff</span><br><span class="line"><span class="comment"># 你会看到：</span></span><br><span class="line"><span class="comment"># - 重复代码被提取到共享函数</span></span><br><span class="line"><span class="comment"># - 未使用的 import 被清理</span></span><br><span class="line"><span class="comment"># - 但架构层面的建议仍保留在审查报告中，等待人工决策</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：减少人工修复重复劳动，PR 初审时间平均减少 40%。</p>
+<h2 id="技巧-2：Skill-禁用敏感工具防止越权"><a href="#技巧-2：Skill-禁用敏感工具防止越权" class="headerlink" title="技巧 2：Skill 禁用敏感工具防止越权"></a>技巧 2：Skill 禁用敏感工具防止越权</h2><p><strong>使用场景</strong>：编写安全审查、代码审计等敏感 Skill 时，防止 Skill 被 prompt 注入后执行危险操作。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .claude/skills/security-review/SKILL.md</span></span><br><span class="line">---</span><br><span class="line">disallowed-tools: [<span class="string">&quot;exec&quot;</span>, <span class="string">&quot;browser&quot;</span>, <span class="string">&quot;write&quot;</span>]</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个 Skill 只能读取代码和生成审查报告</span></span><br><span class="line"><span class="comment"># 无法执行命令、访问网络或修改文件</span></span><br><span class="line"><span class="comment"># 即使 prompt 注入试图让它执行 rm -rf，工具不可用会直接拒绝</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：提升 Skill 的安全边界，防止越权操作。</p>
+<h2 id="技巧-3：动态安装-Skill-无需重启会话"><a href="#技巧-3：动态安装-Skill-无需重启会话" class="headerlink" title="技巧 3：动态安装 Skill 无需重启会话"></a>技巧 3：动态安装 Skill 无需重启会话</h2><p><strong>使用场景</strong>：开发或分发 Skill 时，修改后不再需要重启 Claude Code 会话即可生效。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方法 1：手动重载</span></span><br><span class="line">claude /reload-skills</span><br><span class="line"><span class="comment"># [ Skills reloaded ] 检测到 2 个变更，已重新加载</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 2：SessionStart hook 自动安装并生效</span></span><br><span class="line"><span class="comment"># ~/.claude/hooks/install-team-skills.js</span></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  name: <span class="string">&#x27;install-team-skills&#x27;</span>,</span><br><span class="line">  async <span class="function"><span class="title">onSessionStart</span></span>() &#123;</span><br><span class="line">    await cloneSkill(<span class="string">&#x27;https://github.com/team/skill-repo&#x27;</span>);</span><br><span class="line">    <span class="built_in">return</span> &#123; reloadSkills: <span class="literal">true</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：Skill 开发迭代效率提升，从”修改-重启-测试”循环变为”修改-重载-测试”。</p>
+<h2 id="技巧-4：验证-Gateway-启动性能提升"><a href="#技巧-4：验证-Gateway-启动性能提升" class="headerlink" title="技巧 4：验证 Gateway 启动性能提升"></a>技巧 4：验证 Gateway 启动性能提升</h2><p><strong>使用场景</strong>：升级 OpenClaw 后，验证 Gateway 启动速度和稳定性是否改善。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看启动日志中的扫描次数</span></span><br><span class="line">openclaw gateway start 2&gt;&amp;1 | grep -c <span class="string">&quot;scanning&quot;</span></span><br><span class="line"><span class="comment"># 旧版: 多次出现 scanning plugins/channels/sessions...</span></span><br><span class="line"><span class="comment"># 新版: 扫描一次后缓存，后续直接从快照读取</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 高负载测试</span></span><br><span class="line">openclaw benchmark --channels 10 --messages 100</span><br><span class="line"><span class="comment"># 观察响应时间是否更稳定</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：量化验证升级收益，确认生产环境部署决策。</p>
+<h2 id="技巧-5：Codex-本地对话历史搜索"><a href="#技巧-5：Codex-本地对话历史搜索" class="headerlink" title="技巧 5：Codex 本地对话历史搜索"></a>技巧 5：Codex 本地对话历史搜索</h2><p><strong>使用场景</strong>：积累了大量 Codex 对话历史，需要快速找到之前解决过的某个问题的方案。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索包含 &quot;docker&quot; 的历史对话</span></span><br><span class="line">codex <span class="string">&quot;search: docker compose setup&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索结果会显示:</span></span><br><span class="line"><span class="comment"># - 对话标题</span></span><br><span class="line"><span class="comment"># - 匹配内容预览（不区分大小写）</span></span><br><span class="line"><span class="comment"># - 时间戳</span></span><br><span class="line"><span class="comment"># - 可直接跳转继续对话</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：告别手动翻页找历史，支持大小写不敏感的内容匹配和结果预览。</p>
+<hr>
+<h1 id="今日动态"><a href="#今日动态" class="headerlink" title="今日动态"></a>今日动态</h1><ul>
+<li><strong>OpenClaw</strong>：OpenClaw 2026.6.2 发布。新版本包含 Gateway 性能优化、Transcript 基础设施完善、多 Agent 协作改进。…</li>
+<li><strong>Claude Code</strong>：Claude Code v2.2.0 发布。新增 &#x2F;code-review –fix 自动修复、Skill disallowed-tools 安全机制、SessionStart hook 动态重载。…</li>
+<li><strong>Codex &#x2F; OpenAI</strong>：Codex CLI rust-v0.135.0 发布。本地对话历史搜索、–profile 统一权限管理、MCP per-server 环境定向、streamable HTTP OAuth。…</li>
+</ul>
+<hr>
+<h1 id="明日预告"><a href="#明日预告" class="headerlink" title="明日预告"></a>明日预告</h1><p>明天我们将 Claude Code 的 SessionStart hook 与动态 Skill 管理实战，并结合实际案例给出可操作的建议。</p>
 <hr>
 <p><em>本文由关关基于「今日深度 + 技巧点滴 + 今日动态 + 明日预告」结构自动生成，为 OpenClaw&#x2F;Claude&#x2F;Codex 深度用户定制。</em></p>
 ]]></content>
@@ -2449,6 +2534,27 @@
       </tags>
   </entry>
   <entry>
+    <title>C语言使用syslog</title>
+    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
+<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
+<p>level: 日志等级</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
+<p>action: 动作，一般跟路径，代表保存到该文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
+<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>syslog</tag>
+        <tag>linux-c</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言命令行传参</title>
     <url>/2024/08/25/linux/C%E8%AF%AD%E8%A8%80%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BC%A0%E5%8F%82/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="命令行传参"><a href="#命令行传参" class="headerlink" title="命令行传参"></a>命令行传参</h2><p>命令行传参函数原型为<code>int main(int argc, char *argv[])</code>或者<code>int main(int argc, char **argv)</code>，其中<code>argv</code>是参数个数，<code>argv</code>是实际传参。</p>
@@ -2672,24 +2778,15 @@
       </tags>
   </entry>
   <entry>
-    <title>C语言使用syslog</title>
-    <url>/2024/04/28/linux/C%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8syslog/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="syslogd和klogd"><a href="#syslogd和klogd" class="headerlink" title="syslogd和klogd"></a>syslogd和klogd</h2><p><code>syslogd</code>是Linux系统日志守护进程，负责接收、记录和分发系统日志，通常配合<code>/etc/syslog.conf</code>使用。<br><code>klogd</code>是Linux内核日志守护进程，符合收集和处理内核信息，通常配合<code>syslogd</code>使用，但是也可以独立使用。</p>
-<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件的语法： facility.level action<br>facility: 标识符</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">kern     内核信息，首先通过 klogd 传递； </span><br><span class="line">user     用户进程； </span><br><span class="line">mail     邮件； </span><br><span class="line">daemon   后台进程； </span><br><span class="line">authpriv 授权信息； </span><br><span class="line">syslog   系统日志； </span><br><span class="line">lpr      打印信息； </span><br><span class="line">news     新闻组信息； </span><br><span class="line">uucp     由uucp生成的信息 </span><br><span class="line">cron     计划和任务信息。 </span><br><span class="line">mark     syslog 内部功能用于生成时间戳 </span><br><span class="line">local0~local7   与自定义程序使用</span><br><span class="line">*        通配符代表除了 mark 以外的所有功能</span><br></pre></td></tr></table></figure>
-<p>level: 日志等级</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">syslog 级别如下:（按严重程度由高到低的顺序列出了所有可能的优先级。） </span><br><span class="line">emerg 或 panic   该系统不可用（最紧急消息） </span><br><span class="line">alert            需要立即被修改的条件（紧急消息） </span><br><span class="line">crit             阻止某些工具或子系统功能实现的错误条件（重要消息） </span><br><span class="line">err              阻止工具或某些子系统部分功能实现的错误条件（出错消息） </span><br><span class="line">warning          预警信息（警告消息） </span><br><span class="line">notice           具有重要性的普通条件（普通但重要的消息） </span><br><span class="line">info             提供信息的消息（通知性消息） </span><br><span class="line">debug            不包含函数条件或问题的其他信息（调试级-信息量最多） </span><br><span class="line">none             没有重要级，通常用于排错（不记录任何日志消息） </span><br><span class="line">*                所有级别，除了none</span><br></pre></td></tr></table></figure>
-<p>action: 动作，一般跟路径，代表保存到该文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">user.* /var/log/usr.log <span class="comment">#将user的log，写入usr.log</span></span><br></pre></td></tr></table></figure>
-<h2 id="Liunx-C使用syslog"><a href="#Liunx-C使用syslog" class="headerlink" title="Liunx C使用syslog"></a>Liunx C使用syslog</h2><p>在<code>etc/syslog.conf</code>添加<code>local0.* /var/log/test.log</code></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syslog.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 打开系统日志</span></span><br><span class="line">    openlog(argv[<span class="number">0</span>], LOG_PID|LOG_CONS, LOG_LOCAL0);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 记录日志信息</span></span><br><span class="line">    syslog(LOG_INFO, <span class="string">&quot;This is an informational message.&quot;</span>);</span><br><span class="line">    syslog(LOG_WARNING, <span class="string">&quot;This is a warning message.&quot;</span>);</span><br><span class="line">    syslog(LOG_ERR, <span class="string">&quot;This is an error message.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭系统日志</span></span><br><span class="line">    closelog();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>Linux性能分析-内存</title>
+    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
         <category>linux</category>
       </categories>
       <tags>
-        <tag>syslog</tag>
-        <tag>linux-c</tag>
+        <tag>Linux性能</tag>
+        <tag>内存</tag>
       </tags>
   </entry>
   <entry>
@@ -2745,18 +2842,6 @@
       <tags>
         <tag>Linux设置</tag>
         <tag>TZ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux性能分析-内存</title>
-    <url>/2024/05/08/linux/Linux%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90-%E5%86%85%E5%AD%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>Linux性能</tag>
-        <tag>内存</tag>
       </tags>
   </entry>
   <entry>
@@ -2838,6 +2923,29 @@
       <tags>
         <tag>arm</tag>
         <tag>bluez</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu交叉编译环境配置</title>
+    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
+<ol>
+<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
+<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
+<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>交叉编译</tag>
       </tags>
   </entry>
   <entry>
@@ -2964,29 +3072,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu交叉编译环境配置</title>
-    <url>/2024/03/25/linux/Ubuntu%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p><em>下面是arm&#x2F;mips在ubuntu 22.04上常用的依赖项</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc g++ binutils patch bzip2 flex bison make autoconf gettext texinfo unzip sharutils subversion libncurses5-dev ncurses-term zlib1g-dev subversion git-core gawk asciidoc libz-dev zlib1g-dev libssl-dev pkg-config unzip zlib1g-dev libc6-dev libncurses5-dev gawk sharutils curl libxml-parser-perl ocaml-nox ocaml ocaml-findlib libssl-dev libfdt-dev quilt device-tree-compiler u-boot-tools lsb-core lib32z1 cmake mtd-utils python2 python3-pip cryptsetup-bin</span><br><span class="line">curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py</span><br><span class="line">sudo python2 get-pip.py</span><br><span class="line">pip2 install pycryptodome</span><br></pre></td></tr></table></figure>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>获取你需要使用的交叉编译工具链，然后将工具链的bin目录添加到环境变量里</p>
-<ol>
-<li><code>$ vim ~/.bashrc</code><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:path/to/bin <span class="comment">#path/to记得修改为真正的目录，如果有多个工具链，可以用 &#x27;:&#x27;隔开，也可以另起一行</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;$(date +%H:%M:%S) \[\033[01;33m\]\W\[\033[36m\] $&#x27;</span> <span class="comment">#可选项，修改后终端提示符显示：时间+当前目录+$ （14:37:31 ~ $）</span></span><br></pre></td></tr></table></figure></li>
-<li><code>$ source ~/.bashrc</code><br>这个命令使上面的修改立即生效</li>
-<li>检查环境变量是否生效<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#假设你的工具链是arm-linux-</span></span><br><span class="line">$ arm-linux-gcc -v <span class="comment">#执行这个命令，如果有版本号的回显，说明工具链已成功添加到环境变量</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="其他个性化配置"><a href="#其他个性化配置" class="headerlink" title="其他个性化配置"></a>其他个性化配置</h2><h3 id="虚拟机开机自动挂载共享文件夹"><a href="#虚拟机开机自动挂载共享文件夹" class="headerlink" title="虚拟机开机自动挂载共享文件夹"></a>虚拟机开机自动挂载共享文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo vim /ext/fstab</span><br><span class="line">.host:/share /mnt/hgfs fuse.vmhgfs-fuse allow_other,defaults 0 0</span><br></pre></td></tr></table></figure>
-<h3 id="安装ssh-server"><a href="#安装ssh-server" class="headerlink" title="安装ssh&#x3D;server"></a>安装ssh&#x3D;server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo systemctl status ssh</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
-<h3 id="windows-ssh免密登录"><a href="#windows-ssh免密登录" class="headerlink" title="windows ssh免密登录"></a>windows ssh免密登录</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> windows/path/id_isa.pub &gt;&gt; ubuntu/~/.ssh/authorized_keys <span class="comment">#指将windows下的key复制到ubuntu目录下</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装nfs-server"><a href="#安装nfs-server" class="headerlink" title="安装nfs-server"></a>安装nfs-server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#安装</span></span><br><span class="line">sudo apt install nfs-kernel-server</span><br><span class="line">sudo <span class="built_in">mkdir</span> /nfsroot</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/home/kaikai/nfsshare  *(rw,sync,no_root_squash)&quot;</span> &gt;&gt; /etc/exports</span><br><span class="line"><span class="comment"># /nfsroot：指定/nfsroot为nfs服务器的共享目录</span></span><br><span class="line"><span class="comment"># *：允许所有的网段访问，也可以使用具体的IP</span></span><br><span class="line"><span class="comment"># rw：挂接此目录的客户端对该共享目录具有读写权限</span></span><br><span class="line"><span class="comment"># sync：资料同步写入内存和硬盘</span></span><br><span class="line"><span class="comment"># no_root_squash：root用户具有对根目录的完全管理访问权限</span></span><br><span class="line"><span class="comment"># no_subtree_check：不检查父目录的权限</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启服务</span></span><br><span class="line">sudo service nfs-kernel-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查共享目录</span></span><br><span class="line">showmount -e localhost</span><br><span class="line"></span><br><span class="line"><span class="comment">#客户端挂载</span></span><br><span class="line">mount -t nfs -o nolock 192.168.2.183:/nfsroot /nfsroot</span><br><span class="line">-t：挂载的文件系统类型</span><br><span class="line">-o nolock：不要文件锁</span><br><span class="line">192.168.xxx.xxx:/nfsroot：nfs服务器ip:服务器共享目录</span><br><span class="line">nfsroot：客户端已存在的目录</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>交叉编译</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>探究jffs2垃圾回收机制</title>
     <url>/2025/11/12/linux/%E6%8E%A2%E7%A9%B6jffs2%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="核心概念：为什么需要垃圾回收？"><a href="#核心概念：为什么需要垃圾回收？" class="headerlink" title="核心概念：为什么需要垃圾回收？"></a>核心概念：为什么需要垃圾回收？</h2><p>在 JFFS2 中，当数据需要修改或文件被删除时，它并不会在原来的位置覆盖写入。而是：</p>
@@ -3022,6 +3107,27 @@
       </categories>
       <tags>
         <tag>MakerWorld</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>嵌入式linux疑难问题记录</title>
+    <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
+<li>问题描述：内核加载无线电监管数据库报错</li>
+<li>问题现象：<code>CONFIG_CFG80211=y</code>报错，<code>CONFIG_CFG80211=m</code>，<code>insmod cfg80211.ko</code>不会报错</li>
+<li>打印日志:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[    1.715156] cfg80211: Loading compiled-in X.509 certificates <span class="keyword">for</span> regulatory database</span><br><span class="line">[    1.725021] cfg80211: Loaded X.509 cert <span class="string">&#x27;sforshee: 00b28ddf47aef9cea7&#x27;</span></span><br><span class="line">[    1.728882] platform regulatory.0: Direct firmware load <span class="keyword">for</span> regula[    1.737806] RAMDISK: squashfs filesystem found at block 0</span><br><span class="line">[    1.737857] RAMDISK: Loading 2908KiB [1 disk] into ram disk... |</span><br><span class="line">[    1.749881] cfg80211: failed to load regulatory.db</span><br><span class="line">[    1.750499] <span class="keyword">done</span>.</span><br><span class="line">[    1.772471] VFS: Mounted root (squashfs filesystem) <span class="built_in">readonly</span> on device 1:0.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="原因和解决方案"><a href="#原因和解决方案" class="headerlink" title="原因和解决方案"></a>原因和解决方案</h3><ul>
+<li>原因：内核加载数据库时，文件系统还未挂载，因此找不到数据库</li>
+<li>解决方案：将固件直接编译到内核<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CONFIG_CFG80211=y</span><br><span class="line">CONFIG_EXTRA_FIRMWARE=<span class="string">&quot;regulatory.db regulatory.db.p7s&quot;</span></span><br><span class="line">CONFIG_EXTRA_FIRMWARE_DIR=<span class="string">&quot;/path/to/firmware/dir&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>cfg80211</tag>
       </tags>
   </entry>
   <entry>
@@ -3083,24 +3189,37 @@
       </tags>
   </entry>
   <entry>
-    <title>嵌入式linux疑难问题记录</title>
-    <url>/2025/12/03/solutions/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux%E7%96%91%E9%9A%BE%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="cfg80211-failed-to-load-regulatory-db"><a href="#cfg80211-failed-to-load-regulatory-db" class="headerlink" title="cfg80211: failed to load regulatory.db"></a>cfg80211: failed to load regulatory.db</h2><h3 id="描述和现象"><a href="#描述和现象" class="headerlink" title="描述和现象"></a>描述和现象</h3><ul>
-<li>问题描述：内核加载无线电监管数据库报错</li>
-<li>问题现象：<code>CONFIG_CFG80211=y</code>报错，<code>CONFIG_CFG80211=m</code>，<code>insmod cfg80211.ko</code>不会报错</li>
-<li>打印日志:<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[    1.715156] cfg80211: Loading compiled-in X.509 certificates <span class="keyword">for</span> regulatory database</span><br><span class="line">[    1.725021] cfg80211: Loaded X.509 cert <span class="string">&#x27;sforshee: 00b28ddf47aef9cea7&#x27;</span></span><br><span class="line">[    1.728882] platform regulatory.0: Direct firmware load <span class="keyword">for</span> regula[    1.737806] RAMDISK: squashfs filesystem found at block 0</span><br><span class="line">[    1.737857] RAMDISK: Loading 2908KiB [1 disk] into ram disk... |</span><br><span class="line">[    1.749881] cfg80211: failed to load regulatory.db</span><br><span class="line">[    1.750499] <span class="keyword">done</span>.</span><br><span class="line">[    1.772471] VFS: Mounted root (squashfs filesystem) <span class="built_in">readonly</span> on device 1:0.</span><br></pre></td></tr></table></figure></li>
+    <title>cjson使用</title>
+    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
+<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
+<li>json是一个键值对集合</li>
+<li>以”{“开始，以”}”结束，允许嵌套使用</li>
+<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
+<li>键值对之间用”,”分隔</li>
 </ul>
-<h3 id="原因和解决方案"><a href="#原因和解决方案" class="headerlink" title="原因和解决方案"></a>原因和解决方案</h3><ul>
-<li>原因：内核加载数据库时，文件系统还未挂载，因此找不到数据库</li>
-<li>解决方案：将固件直接编译到内核<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CONFIG_CFG80211=y</span><br><span class="line">CONFIG_EXTRA_FIRMWARE=<span class="string">&quot;regulatory.db regulatory.db.p7s&quot;</span></span><br><span class="line">CONFIG_EXTRA_FIRMWARE_DIR=<span class="string">&quot;/path/to/firmware/dir&quot;</span></span><br></pre></td></tr></table></figure></li>
+<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
+<li>可以是一个新的json对象</li>
+<li>数组：使用”[“和”]”表示</li>
+<li>数字：直接表示，可以是整数，也可以是浮点数</li>
+<li>字符串：使用引号”string”表示</li>
+<li>字面值：false、null、true中的一个(必须是小写)</li>
 </ul>
-]]></content>
+<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
+<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
+<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
+<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>solutions</category>
-        <category>linux</category>
+        <category>tools</category>
       </categories>
       <tags>
-        <tag>cfg80211</tag>
+        <tag>cjson</tag>
       </tags>
   </entry>
   <entry>
@@ -4059,40 +4178,6 @@
       </tags>
   </entry>
   <entry>
-    <title>cjson使用</title>
-    <url>/2025/11/05/tools/cjson%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>参考资料：<a href="https://blog.csdn.net/qq_33417509/article/details/112233612#:~:text=%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAJSON%E6%95%B0%E7%BB%84%2C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E6%98%AFint%E5%9E%8B%E6%95%B0%E6%8D%AE%2C%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E6%98%AF%E4%B8%80%E4%B8%AAjson%E5%AF%B9%E8%B1%A1%20cJSON%20%2A%20ArrNum%20%3D%20cJSON_CreateIntArray%28anNum%2C,4%29%3B%20%2F%2FArrNum%E5%8A%A0%E5%85%A5%E5%88%B0jsonroot%20cJSON_AddItemToObject%28jsonroot%2C%20%22NumArr%22%2C%20ArrNum%29%3B%20%2F%2F2.">cJson数组的生成与解析</a></p>
-<h2 id="JSON规则"><a href="#JSON规则" class="headerlink" title="JSON规则"></a>JSON规则</h2><h3 id="键值对-“key”-”value”"><a href="#键值对-“key”-”value”" class="headerlink" title="键值对 “key”:”value”"></a>键值对 “key”:”value”</h3><ul>
-<li>json是一个键值对集合</li>
-<li>以”{“开始，以”}”结束，允许嵌套使用</li>
-<li>每个名称和值成对出现，名称和值之间使用”:”分隔</li>
-<li>键值对之间用”,”分隔</li>
-</ul>
-<h3 id="value取值"><a href="#value取值" class="headerlink" title="value取值"></a>value取值</h3><ul>
-<li>可以是一个新的json对象</li>
-<li>数组：使用”[“和”]”表示</li>
-<li>数字：直接表示，可以是整数，也可以是浮点数</li>
-<li>字符串：使用引号”string”表示</li>
-<li>字面值：false、null、true中的一个(必须是小写)</li>
-</ul>
-<h2 id="字符串JSON互转"><a href="#字符串JSON互转" class="headerlink" title="字符串JSON互转"></a>字符串JSON互转</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">str = cJSON_PrintUnformatted(rulesListJson);</span><br><span class="line">cJSON_Delete(json);</span><br><span class="line"><span class="built_in">free</span>(str);</span><br></pre></td></tr></table></figure>
-<h2 id="数字、字符串"><a href="#数字、字符串" class="headerlink" title="数字、字符串"></a>数字、字符串</h2><p><code>&#123;&quot;number&quot;:23,&quot;name&quot;:&quot;xiaoqiang&quot;&#125;</code></p>
-<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">cJSON *json = <span class="literal">NULL</span>;</span><br><span class="line">sendJson = cJSON_CreateObject();</span><br><span class="line">cJSON_AddNumberToObject(json, <span class="string">&quot;number&quot;</span>, <span class="number">23</span>);</span><br><span class="line">cJSON_AddStringToObject(json, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;xiaoqiang&quot;</span>);</span><br><span class="line">str = cJSON_PrintUnformatted(json);</span><br></pre></td></tr></table></figure>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">json = cJSON_Parse(strMsg);</span><br><span class="line">cJSON *number = cJSON_GetObjectItem(json, <span class="string">&quot;number&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, number-&gt;valueint);</span><br><span class="line">cJSON *name = cJSON_GetObjectItem(json, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, name-&gt;valuestring);</span><br></pre></td></tr></table></figure>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>&#123;&quot;array&quot;:[&quot;hello&quot;,&quot;world&quot;]&#125;</code></p>
-<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cJSON *json = cJSON_CreateObject();</span><br><span class="line">cJSON *<span class="built_in">array</span> = <span class="literal">NULL</span>;</span><br><span class="line">cJSON_AddItemToObject(json, <span class="string">&quot;array&quot;</span>, <span class="built_in">array</span>= cJSON_CreateArray());</span><br></pre></td></tr></table></figure>
-<h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">size_t</span> jsonArraySize = <span class="number">0</span>;</span><br><span class="line">cJSON *recvSubItem = <span class="literal">NULL</span>;</span><br><span class="line">jsonArraySize = cJSON_GetArraySize(recvListJson);</span><br><span class="line"><span class="keyword">while</span> (jsonArraySize--)</span><br><span class="line">&#123;</span><br><span class="line">       recvSubItem = cJSON_GetArrayItem(recvListJson, jsonArraySize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;kaikai&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hobby&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;fruit&quot;</span><span class="punctuation">:</span><span class="string">&quot;apple&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;book&quot;</span><span class="punctuation">:</span><span class="string">&quot;simple love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;reading&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span><span class="attr">&quot;simple&quot;</span><span class="punctuation">:</span><span class="string">&quot;love&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="attr">&quot;ts&quot;</span><span class="punctuation">:</span><span class="number">1234567891011</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 创建一个根节点</span></span><br><span class="line">    rootJson = cJSON_CreateObject();</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 向根节点添加一个 字符串 节点</span></span><br><span class="line">    cJSON_AddStringToObject(rootJson, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;kaikai&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 向根节点添加一个 数组 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;hobby&quot;</span>, arrayItemJson = cJSON_CreateArray());</span><br><span class="line">    <span class="comment">// 3.1 向数组里添加一个元素，并且该元素为json对象</span></span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;fruit&quot;</span>, <span class="string">&quot;apple&quot;</span>);</span><br><span class="line">    cJSON_AddItemToArray(arrayItemJson, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;book&quot;</span>, <span class="string">&quot;simple love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 向根节点添加一个 对象 节点</span></span><br><span class="line">    cJSON_AddItemToObject(rootJson, <span class="string">&quot;reading&quot;</span>, subItem = cJSON_CreateObject());</span><br><span class="line">    cJSON_AddStringToObject(subItem, <span class="string">&quot;simple&quot;</span>, <span class="string">&quot;love&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向根节点添加一个 数字 节点</span></span><br><span class="line">    cJSON_AddNumberToObject(rootJson, <span class="string">&quot;ts&quot;</span>, <span class="number">1234567891011</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 将json输出为字符串</span></span><br><span class="line">    str = cJSON_PrintUnformatted(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 释放内存</span></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">NULL</span> != str)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line">        <span class="built_in">free</span>(str);</span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解析-2"><a href="#解析-2" class="headerlink" title="解析"></a>解析</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;cJSON.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IS_NULL(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt == NULL)      \</span></span><br><span class="line"><span class="meta">    &#123;                     \</span></span><br><span class="line"><span class="meta">        return -1;        \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> JSON_STR(fmt, ...)                \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (fmt &amp;&amp; fmt-&gt;valuestring)          \</span></span><br><span class="line"><span class="meta">    &#123;                                     \</span></span><br><span class="line"><span class="meta">        printf(<span class="string">&quot;%s\n&quot;</span>, fmt-&gt;valuestring); \</span></span><br><span class="line"><span class="meta">    &#125;</span></span><br><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;&#123;\&quot;name\&quot;:\&quot;kaikai\&quot;,\&quot;hobby\&quot;:[&#123;\&quot;fruit\&quot;:\&quot;apple\&quot;&#125;,&#123;\&quot;book\&quot;:\&quot;simple love\&quot;&#125;],\&quot;reading\&quot;:&#123;\&quot;simple\&quot;:\&quot;love\&quot;&#125;,\&quot;ts\&quot;:1234567891011&#125;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">size_t</span> arraySize = <span class="number">0</span>;</span><br><span class="line">    cJSON *rootJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *objItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *arrayItemJson = <span class="literal">NULL</span>;</span><br><span class="line">    cJSON *subItem = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    rootJson = cJSON_Parse(str);</span><br><span class="line">    IS_NULL(rootJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;name&quot;</span>);</span><br><span class="line">    JSON_STR(objItemJson);</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;hobby&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (cJSON_IsArray(objItemJson))</span><br><span class="line">    &#123;</span><br><span class="line">        arraySize = cJSON_GetArraySize(objItemJson);</span><br><span class="line">        <span class="keyword">while</span> (arraySize--)</span><br><span class="line">        &#123;</span><br><span class="line">            arrayItemJson = cJSON_GetArrayItem(objItemJson, arraySize);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;book&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">            subItem = cJSON_GetObjectItem(arrayItemJson, <span class="string">&quot;fruit&quot;</span>);</span><br><span class="line">            JSON_STR(subItem);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objItemJson = cJSON_GetObjectItem(rootJson, <span class="string">&quot;reading&quot;</span>);</span><br><span class="line">    subItem = cJSON_GetObjectItem(objItemJson, <span class="string">&quot;simple&quot;</span>);</span><br><span class="line">    JSON_STR(subItem);</span><br><span class="line"></span><br><span class="line">    cJSON_Delete(rootJson);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>tools</category>
-      </categories>
-      <tags>
-        <tag>cjson</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>claude-code使用说明</title>
     <url>/2025/11/28/tools/claude-code%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em>以下操作均在Ubuntu 22.04</em></p>
@@ -4417,6 +4502,49 @@
       </categories>
       <tags>
         <tag>claude-code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmake基础语法</title>
+    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="链接静态库"><a href="#链接静态库" class="headerlink" title="链接静态库"></a>链接静态库</h2><p><em>编译小工具时，默认情况下C库会使用动态库，可以通过添加下面的语句使用静态链接</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h3><p><em>库文件命名：直接指定 libmbedtls.a 可能被 CMake 误解</em></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> libmbedtls.a libmbedx509.a libmbedcrypto.a)</span><br></pre></td></tr></table></figure>
+<h3 id="正确示范"><a href="#正确示范" class="headerlink" title="正确示范"></a>正确示范</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> mbedtls mbedx509 lmbedcrypto)</span><br></pre></td></tr></table></figure>
+<h2 id="GCC命令行编译补充"><a href="#GCC命令行编译补充" class="headerlink" title="GCC命令行编译补充"></a>GCC命令行编译补充</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc main.c -I./include -L./lib -l:libmbedtls.a -l:libmbedx509.a -l:libmbedcrypto.a --static</span><br><span class="line">gcc main.c -I./include -L./lib -lmbedtls -lmbedx509 -lmbedcrypto --static</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-I</td>
+<td>设置头文件搜索路径</td>
+<td>-I${PATH}</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>设置库文件搜索路径</td>
+<td>-L${PATH}</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>指定库文件</td>
+<td>-l:libdemo.a&#x2F;-ldemo</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>tools</category>
+      </categories>
+      <tags>
+        <tag>cmake</tag>
       </tags>
   </entry>
   <entry>
@@ -4940,46 +5068,20 @@
       </tags>
   </entry>
   <entry>
-    <title>cmake基础语法</title>
-    <url>/2024/03/18/tools/cmake%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment">#CMAKE定义的变量区分大小写,但命令不区分大小写</span></span><br><span class="line"><span class="comment">#CMKAE定义了两个变量： PROJECT_SOURCE_DIR 和 PROJECT_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置cmake的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以通过on/off编译过程的详细信息</span></span><br><span class="line"><span class="keyword">SET</span>( CMAKE_VERBOSE_MAKEFILE <span class="keyword">on</span> ) </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置交叉编译器</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;mipsel-openwrt-linux-gcc&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_C_FLAGS <span class="string">&quot;-W -Wall -lpthread&quot;</span>)</span><br><span class="line"><span class="keyword">add_definitions</span>(<span class="string">&quot;-Werror&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置工程名</span></span><br><span class="line"><span class="keyword">project</span>(httpsd)  <span class="comment">#定义了两个变量 demo_BINARY_DIR 和 demo_SOURCE_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message 相当于 echo,输出到屏幕</span></span><br><span class="line"><span class="keyword">message</span>(<span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>) <span class="comment">#CMakeLists.txt所在的文件夹,等价于PROJECT_SOURCE_DIR</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(<span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>) <span class="comment">#执行CMakeLists.txt的目录，等价于demo_BINARY_DIR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置头文件的搜索路径.一般情况下在源文件自己包含便于查找定义</span></span><br><span class="line"><span class="keyword">include_directories</span>(base/<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置库文件路径,一般时target_link_libraries里需要添加的库</span></span><br><span class="line"><span class="keyword">link_directories</span>(base/lib/openssl)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的输出路径</span></span><br><span class="line"><span class="keyword">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/socket) <span class="comment">#添加子CMakeLists.txt的目录，会自动在PROJECT_SOURCE_DIR目录创建一个对应的目录，执行该子CMakeLists.txt</span></span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/tls)</span><br><span class="line"><span class="keyword">add_subdirectory</span>(source/http)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置可执行文件的入口</span></span><br><span class="line"><span class="keyword">set</span>(SRC_LIST main.c)</span><br><span class="line"></span><br><span class="line"><span class="comment">#生成可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(httpsd <span class="variable">$&#123;SRC_LIST&#125;</span>) <span class="comment">#告诉编译器生成一个可执行文件,生成的文件和project同名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#链接库文件</span></span><br><span class="line"><span class="keyword">message</span>(<span class="string">&quot;====BEGIN LINK LIB====&quot;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(httpsd http tls crypto ssl socket) <span class="comment">#链接用到的库文件,库文件一般由lib开头，例如 libliblog.a我们使用的时候需要将第一个lib删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS <span class="variable">$&#123;PROJECT_NAME&#125;</span> DESTINATION /home/kaikai/nfsshare/share_03)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="子CMAKE"><a href="#子CMAKE" class="headerlink" title="子CMAKE"></a>子CMAKE</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message</span>(<span class="string">&quot;=====BEGIN MAKE SOCKET LIB=====&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. LIB_SRCS)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置编译的库文件输出目录</span></span><br><span class="line"><span class="keyword">set</span>(LIBRARY_OUTPUT_PATH  <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/output/lib)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_library</span>(socket <span class="variable">$&#123;LIB_SRCS&#125;</span>) <span class="comment">#告诉编译器生成一个库文件，默认是静态库,生成的文件名会加lib前缀，例如本例生成的库为 libliblog.a ,其他文件使用时需要用 liblog</span></span><br><span class="line"><span class="comment"># add_library(liblog SHARED $&#123;LIB_SRC&#125;) #生成动态库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="链接静态库"><a href="#链接静态库" class="headerlink" title="链接静态库"></a>链接静态库</h2><p><em>编译小工具时，默认情况下C库会使用动态库，可以通过添加下面的语句使用静态链接</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h3><p><em>库文件命名：直接指定 libmbedtls.a 可能被 CMake 误解</em></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> libmbedtls.a libmbedx509.a libmbedcrypto.a)</span><br></pre></td></tr></table></figure>
-<h3 id="正确示范"><a href="#正确示范" class="headerlink" title="正确示范"></a>正确示范</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span>(CMAKE_EXE_LINKER_FLAGS <span class="string">&quot;-static&quot;</span>)</span><br><span class="line">link_directories(lib)</span><br><span class="line">target_link_libraries(<span class="variable">$&#123;PROJECT_NAME&#125;</span> mbedtls mbedx509 lmbedcrypto)</span><br></pre></td></tr></table></figure>
-<h2 id="GCC命令行编译补充"><a href="#GCC命令行编译补充" class="headerlink" title="GCC命令行编译补充"></a>GCC命令行编译补充</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc main.c -I./include -L./lib -l:libmbedtls.a -l:libmbedx509.a -l:libmbedcrypto.a --static</span><br><span class="line">gcc main.c -I./include -L./lib -lmbedtls -lmbedx509 -lmbedcrypto --static</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>解释</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-I</td>
-<td>设置头文件搜索路径</td>
-<td>-I${PATH}</td>
-</tr>
-<tr>
-<td>-L</td>
-<td>设置库文件搜索路径</td>
-<td>-L${PATH}</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>指定库文件</td>
-<td>-l:libdemo.a&#x2F;-ldemo</td>
-</tr>
-</tbody></table>
-]]></content>
+    <title>hexo文章加密</title>
+    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>tools</category>
+        <category>wiki</category>
       </categories>
       <tags>
-        <tag>cmake</tag>
+        <tag>hexo</tag>
+        <tag>hexo-blog-encrypt</tag>
       </tags>
   </entry>
   <entry>
@@ -5009,23 +5111,6 @@
       <tags>
         <tag>图床</tag>
         <tag>vs-picgo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo文章加密</title>
-    <url>/2025/10/29/wiki/hexo%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用hexo-blog-encrypt进行文章加密</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-blog-encrypt</span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在hexo配置文件<code>_config.yml</code>里加入下面的字段</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encrypt:</span><br><span class="line"> enable: true</span><br><span class="line"> wrong_pass_message: 密码错误，不会是忘记了吧</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在文章<code>Front-matter</code>加入下面的标签，如果后续不想加密，可以把标签删除或者密码留空</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">password: 12345678</span><br><span class="line">message: password</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>hexo-blog-encrypt</tag>
       </tags>
   </entry>
   <entry>
@@ -5070,6 +5155,153 @@
       </categories>
       <tags>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音视频扫盲</title>
+    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>帧率，FPS</td>
+<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
+</tr>
+<tr>
+<td>码率，bitRate</td>
+<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
+</tr>
+<tr>
+<td>分辨率</td>
+<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
+</tr>
+<tr>
+<td>GOP</td>
+<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
+</tr>
+<tr>
+<td>YUV</td>
+<td>一种颜色编码系统，常用于视频处理与压缩</td>
+</tr>
+<tr>
+<td>NV12</td>
+<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
+</tr>
+<tr>
+<td>H265</td>
+<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
+</tr>
+<tr>
+<td>H264</td>
+<td>目前最常用的视频编码标准，兼容性好</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
+</tr>
+<tr>
+<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
+<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
+</tr>
+<tr>
+<td>色度抽样</td>
+<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
+</tr>
+<tr>
+<td>量化参数（QP）</td>
+<td>控制编码质量和压缩率的参数</td>
+</tr>
+<tr>
+<td>编码档次（Profile）</td>
+<td>如 Baseline、Main、High，定义编码功能的子集</td>
+</tr>
+<tr>
+<td>级别（Level）</td>
+<td>限制视频参数的等级，如最大分辨率、码率等</td>
+</tr>
+<tr>
+<td>VUI</td>
+<td>视频可用性信息（Video Usability Information）</td>
+</tr>
+<tr>
+<td>SEI</td>
+<td>补充增强信息（Supplemental Enhancement Information）</td>
+</tr>
+<tr>
+<td>运动估计（Motion Estimation）</td>
+<td>视频编码中用于减少时间冗余的技术</td>
+</tr>
+<tr>
+<td>熵编码</td>
+<td>如 CABAC（上下文自适应二进制算术编码）</td>
+</tr>
+</tbody></table>
+<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>采样率</td>
+<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
+</tr>
+<tr>
+<td>位深</td>
+<td>每个采样点的精度，如 16bit、24bit</td>
+</tr>
+<tr>
+<td>声道数</td>
+<td>如单声道（Mono）、立体声（Stereo）</td>
+</tr>
+<tr>
+<td>音频编码格式</td>
+<td>如 AAC、MP3、OPUS、FLAC</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
+</tr>
+<tr>
+<td>比特率</td>
+<td>音频每秒钟的数据量，影响音质和文件大小</td>
+</tr>
+<tr>
+<td>声道布局</td>
+<td>如 5.1、7.1 环绕声</td>
+</tr>
+<tr>
+<td>声压级（SPL）</td>
+<td>声音的强度级别，单位分贝（dB）</td>
+</tr>
+<tr>
+<td>频响范围</td>
+<td>设备或系统能响应的频率范围</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>wiki</category>
+      </categories>
+      <tags>
+        <tag>音视频相关</tag>
       </tags>
   </entry>
   <entry>
@@ -5262,153 +5494,6 @@
       </categories>
       <tags>
         <tag>kernel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音视频扫盲</title>
-    <url>/2025/09/30/wiki/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%89%AB%E7%9B%B2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="编解码"><a href="#编解码" class="headerlink" title="编解码"></a>编解码</h2><h2 id="音视频专业名词速查表"><a href="#音视频专业名词速查表" class="headerlink" title="音视频专业名词速查表"></a>音视频专业名词速查表</h2><h3 id="视频相关"><a href="#视频相关" class="headerlink" title="视频相关"></a>视频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>帧率，FPS</td>
-<td>每秒显示的图像帧数，单位是 fps（Frames Per Second）</td>
-</tr>
-<tr>
-<td>码率，bitRate</td>
-<td>单位时间内视频或音频的数据量，通常以 kbps 或 Mbps 为单位</td>
-</tr>
-<tr>
-<td>分辨率</td>
-<td>图像或视频的像素尺寸，如 1920x1080（1080p）</td>
-</tr>
-<tr>
-<td>GOP</td>
-<td>图像组（Group of Pictures），两个 I 帧之间的帧序列</td>
-</tr>
-<tr>
-<td>YUV</td>
-<td>一种颜色编码系统，常用于视频处理与压缩</td>
-</tr>
-<tr>
-<td>NV12</td>
-<td>YUV 4:2:0 格式的一种，属于半平面（semi-planar）格式</td>
-</tr>
-<tr>
-<td>H265</td>
-<td>高效视频编码（HEVC），比 H264 压缩效率更高</td>
-</tr>
-<tr>
-<td>H264</td>
-<td>目前最常用的视频编码标准，兼容性好</td>
-</tr>
-<tr>
-<td>MP4</td>
-<td>常见的多媒体容器格式，可存储视频、音频、字幕等</td>
-</tr>
-<tr>
-<td>I帧 &#x2F; P帧 &#x2F; B帧</td>
-<td>视频压缩中的帧类型：I帧为关键帧，P帧为前向预测帧，B帧为双向预测帧</td>
-</tr>
-<tr>
-<td>RGB</td>
-<td>红绿蓝三原色色彩空间，常用于图像采集和显示</td>
-</tr>
-<tr>
-<td>色度抽样</td>
-<td>如 4:2:0、4:2:2，表示色度信息的采样方式</td>
-</tr>
-<tr>
-<td>量化参数（QP）</td>
-<td>控制编码质量和压缩率的参数</td>
-</tr>
-<tr>
-<td>编码档次（Profile）</td>
-<td>如 Baseline、Main、High，定义编码功能的子集</td>
-</tr>
-<tr>
-<td>级别（Level）</td>
-<td>限制视频参数的等级，如最大分辨率、码率等</td>
-</tr>
-<tr>
-<td>VUI</td>
-<td>视频可用性信息（Video Usability Information）</td>
-</tr>
-<tr>
-<td>SEI</td>
-<td>补充增强信息（Supplemental Enhancement Information）</td>
-</tr>
-<tr>
-<td>运动估计（Motion Estimation）</td>
-<td>视频编码中用于减少时间冗余的技术</td>
-</tr>
-<tr>
-<td>熵编码</td>
-<td>如 CABAC（上下文自适应二进制算术编码）</td>
-</tr>
-</tbody></table>
-<h3 id="音频相关"><a href="#音频相关" class="headerlink" title="音频相关"></a>音频相关</h3><table>
-<thead>
-<tr>
-<th>名词</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>采样率</td>
-<td>每秒对声音信号的采样次数，单位 Hz（如 44.1kHz）</td>
-</tr>
-<tr>
-<td>位深</td>
-<td>每个采样点的精度，如 16bit、24bit</td>
-</tr>
-<tr>
-<td>声道数</td>
-<td>如单声道（Mono）、立体声（Stereo）</td>
-</tr>
-<tr>
-<td>音频编码格式</td>
-<td>如 AAC、MP3、OPUS、FLAC</td>
-</tr>
-<tr>
-<td>AAC</td>
-<td>高级音频编码（Advanced Audio Coding），常见于视频和流媒体</td>
-</tr>
-<tr>
-<td>MP3</td>
-<td>MPEG-1 Audio Layer III，广泛使用的有损音频格式</td>
-</tr>
-<tr>
-<td>PCM</td>
-<td>脉冲编码调制，未经压缩的原始音频数据格式</td>
-</tr>
-<tr>
-<td>比特率</td>
-<td>音频每秒钟的数据量，影响音质和文件大小</td>
-</tr>
-<tr>
-<td>声道布局</td>
-<td>如 5.1、7.1 环绕声</td>
-</tr>
-<tr>
-<td>声压级（SPL）</td>
-<td>声音的强度级别，单位分贝（dB）</td>
-</tr>
-<tr>
-<td>频响范围</td>
-<td>设备或系统能响应的频率范围</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>wiki</category>
-      </categories>
-      <tags>
-        <tag>音视频相关</tag>
       </tags>
   </entry>
 </search>
